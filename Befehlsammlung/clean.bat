@@ -1,7 +1,7 @@
 echo Begin deleting files
 
 REM Set location; Attention after "=" no space!
-set loc="C:\Users\i00202920\Documents\GitHub\Pro1"
+set loc="C:\Users\i00202920\Documents\GitHub\EMI-Filter"
 
 del %loc%\*.aux /f /q /s 
 del %loc%\*.bcf /f /q /s
