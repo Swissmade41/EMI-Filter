@@ -1,9 +1,103 @@
 \section{Softwarekonzept} \label{sec:softwarekonzept}
 
-\subsection{1} \label{subsec:1}
+\subsection{Anforderung Software} \label{subsec:anforderungSoftware}
 
-\subsection{2} \label{subsec:2}
+Die Software soll das Frequenzverhalten und die Einfügungsverluste von CM und DM des EMI-Filters simulieren können. Das Werkzeug soll insbesondere mit einer Empfindlichkeitsanalyse die Auswirkungen der parasitäreren Parameter auf die Einfügungsverluste des Filters darstellen. Die parasitären Filterparameter können in einem Bereich von ± 30\% variiert werden. Der Filter wird mit Hilfe von CM- und DM äquivalenten Schaltungsmodelle berechnet. Um die Auswirkungen der Parametervariation besser sichtbar zu machen, wird der Frequenzbereich des Filters in 3 Sektoren aufgeteilt: 0 kHz bis 500 kHz, 500 kHz bis 5 MHz und 5 MHz bis 30 MHz. 
 
-\subsection{3} \label{subsec:3}
+Die folgende Konzeptbeschreibung der Software bezieht sich auf die maximal anzustrebende Lösung, dass heisst mit allen Wunschzielen inkludiert. Die Software wird so strukturiert, dass wenn diese Lösung nicht erreicht wird, die Software gut zur  maximal anzustrebende Lösung erweiterbar ist.
+
+\subsection{GUI} \label{subsec:GUI}
+
+Die GUI wird in 6 Teilbereiche aufgeteilt: Menu, Filtertabelle, CM/DM Plot, Buttonfenster, Eingabefenster und Statusleiste. In der Abbildung \ref{fig:GUI} \nameref{fig:GUI} ist die Benutzerfläche des Programms dargestellt.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{GUI.png}
+	\caption{GUI}
+	\label{fig:GUI}
+\end{figure}
+
+\newpage
+
+\subsubsection{Menu} \label{subsubsec:menu}
+
+Im Menu können verschiedene Optionen ausgewählt werden. 
+\bigskip
+
+\paragraph{File} \label{para:file}
+Im Menupunkt "File" können Filterprofile gespeichert und geladen werden. Bei beiden Optionen wird der Explorer geöffnet um die .txt Datei im gewählten Verzeichnis abzulegen oder zu holen. In der Option Exit kann das Programm geschlossen werden. Dieser Menupunkt ist in der Abbildung Abbildung \ref{fig:GUIFile} \nameref{fig:GUIFile} ersichtlich.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4cm]{GUIFile.png}
+	\caption{Menuoption File}
+	\label{fig:GUIFile}
+\end{figure}
+
+\bigskip
+
+\paragraph{Window} \label{para:window}
+Im Menupunkt "Window" können die beiden Plots der CM und DM Berechnungen zur besseren Analyse in einem separaten  Fenster geöffnet werden. Dieser Menupunkt ist in der Abbildung Abbildung \ref{fig:GUIWindow} \nameref{fig:GUIWindow} ersichtlich.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4cm]{GUIWindow.png}
+	\caption{Menuoption Window}
+	\label{fig:GUIWindow}
+\end{figure}
+
+\bigskip
+
+\paragraph{Help} \label{para:window}
+Im Menupunkt "Help" können die beiden CM- und DM äquivalenten Schaltungsmodelle, die zur Berechnung verwendet werden, in einem seperaten Fenster dargestellt werden. Dieser Menupunkt ist in der Abbildung Abbildung \ref{fig:GUIHelp} \nameref{fig:GUIHelp} ersichtlich.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4cm]{GUIHelp.png}
+	\caption{Menuoption Help}
+	\label{fig:GUIHelp}
+\end{figure}
+
+\newpage
+
+\subsubsection{Filtertabelle} \label{subsubsec:filtertabelle}
+
+In der Filtertabelle werden alle erstellte Filterprofile dargestellt und verwaltet. Mit einer Checkbox können einzelne Profile im Plot aus- bzw. eingeblendet werden. Zudem kann bei jedem Filterprofil einen Namen und eine Plotfarbe hinzugefügt werden. Die parasitären Filterparameter des ausgewählten Filterprofils werden in das Eingabefenster geladen und können dort verändert werden. Mit den Shortcuts Backspace and Delete können ausgewählte Profile gelöscht werden.
+
+\subsubsection{CM/DM Plot} \label{subsubsec:CM_DMplot}
+
+In den CM/DM Plots werden die Berechnungen logarithmisch visualisiert. Die Plots sind für die bessere Darstellung in 3 Frequenzbereiche aufgeteilt:0 kHz bis 500 kHz, 500 kHz bis 5 MHz und 5 MHz bis 30 MHz. 
+
+\subsubsection{Buttonfenster} \label{subsubsec:buttonfenster}
+
+Im Buttonfenster können Filterprofile in die Filtertabelle geladen oder entfernt werden. Mit dem Button Add werden die eingegebene parasitären Filterparameter in einem neuen Filterprofil gespeichert. Mit dem Button Remove wird das ausgewählte Filterprofil gelöscht. Der Button dient als alternative zu den Shortcuts.
+
+\subsubsection{Eingabefenster} \label{subsubsec:eingabefenster}
+
+Im Eingabebereich befinden sich die einzelnen parasitären Filterparameter. Es können Werte eingegeben und diese mit einer Toleranz von ± 30\% mit einem Schieberegler variiert werden. Die Werte werden direkt in die Filterprofile geladen, um eine Neuberechnung durchzuführen.
+
+\subsubsection{Statusleiste} \label{subsubsec:statusleiste}
+
+In der Statusleiste werden Informationen und Fehlermeldungen ausgegeben.
+
+\newpage
+
+\subsection{Softwarestruktur} \label{subsec:softwarestruktur}
+
+Die Software wird mit dem Model-View-Controller Entwurfsmuster (MVC Design Pattern) \cite{MVCDesignPattern} strukturiert. Durch diese Strukturierung ist es weitgehende möglich die Daten und dessen graphischer Repräsentation zu trennen. Dies vereinfacht Wartungsarbeiten und die Wiederverwendbarkeit von Programmteile. Die Struktur ist in die drei Teilen Modell(engl. model), Präsentation(engl. view) und Steuerung(engl. controller) unterteilt
+
+\subsubsection{Model} \label{subsubsec:model}
+
+\subsubsection{View} \label{subsubsec:model}
+
+\subsubsection{Controller} \label{subsubsec:model}
+
+\subsubsection{Klassendiagramm} \label{subsubsec:model}
+
+%TODO Klassendiagramm erstellen und einfügen
+
+
+\subsection{Programmablauf} \label{subsec:programmablauf}
+
 
 \newpage
