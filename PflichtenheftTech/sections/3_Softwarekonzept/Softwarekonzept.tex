@@ -88,9 +88,15 @@ Die Software wird mit dem Model-View-Controller Entwurfsmuster (MVC Design Patte
 
 \subsubsection{Model} \label{subsubsec:model}
 
+Im Model werden die Berechnungen ausgeführt. Die Daten werden vom Controller an die View übergeben. 
+
 \subsubsection{View} \label{subsubsec:model}
 
+In der View werden die Panel programmiert. Die Eingaben des Benutzers werden in der View erfasst und die Berechnungen des Models als plot angezeigt.
+
 \subsubsection{Controller} \label{subsubsec:model}
+
+Der Controller übermittelt die Daten der View and das Model indem er die entsprechende Methode aufruft. 
 
 \subsubsection{Klassendiagramm} \label{subsubsec:model}
 
@@ -98,6 +104,8 @@ Die Software wird mit dem Model-View-Controller Entwurfsmuster (MVC Design Patte
 
 
 \subsection{Programmablauf} \label{subsec:programmablauf}
+
+Beim Start des Programms werden die Panel initialisiert und die default Konfiguration hergestellt. Nun kann entweder ein neuer Filter erzeugt, oder ein bestehender Filter geladen werden. Ein bestehender Filter wird mittels "Menu / load Filter profile" aus einer Textdatei geladen. Ein neuer Filter wird mittels verändern der Schieberegler eingestellt und unter "Menu / save Filter" oder mittels "Ctrl + s" in ein .txt file gespeichert. Mittels button "Add" wird die Filtereinstellung temporär, bis zum schliessen des Programms gespeichert. An der linken Seite des Programms ist das Filterpanel. Darin werden alle eingestellten Filter aufgelistet und können mittels aktivieren der checkbox in verschiedenen Farben angezeigt werden. Der Einfluss eines bestimmten Parameters auf die Funktion kann mittels Monte Carlo Methode ermittelt werden. Dabei wird der Wert in kleinen Schritten verändert zum Beispiel von -10 bis + 10 Prozent und die Kurve für jeden Wert einmal abgebildet. So entstehen mehrere Kurven für die verschiedenen Parameter die man dann vergleichen kann.
 
 
 \newpage
