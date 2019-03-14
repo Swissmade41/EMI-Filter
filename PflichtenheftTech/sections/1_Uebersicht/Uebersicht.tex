@@ -1,6 +1,11 @@
 \section{Übersicht} \label{sec:uebersicht}
 \subsection{Ausgangslage}
 
+Schaltnetzteile von elektrischen Geräten verursachen Leitungsgebundene Störungen. Deshalb schreiben Normen, wie beispielsweise die EN 55022 für IT-Ausrüstung, Grenzen für solche Störungen vor. Diese müssen deshalb mit einem Filter gedämpft werden. Sie werden unterteilt in Schaltfrequenzen, Oberschwingungen, und EMC / EMI Emissionen. EMC / EMI Emissionen sind in einem Frequenzbereich von 150 kHz – 30 MHz. Es gibt zwei Arten von Störungen oder Rauschen. Das Gleichtaktrauschen, oder common mode und das Gegentaktrauschen, differrential mode. Beim common mode treten die Störspannungen zwischen Netzwerkleitern und Bezugsmasse auf und die Störströme fliessen in Richtung der Netzwerksleiter. Beim differential mode tritt die Störspannung zwischen den Versorgungsleitungen auf und die Störströme fliessen in Richtung der Netzwerkströme.
+Schaffner hat uns nun den Auftrag erteilt ein Simulationsprogramm für Netzwerkfilter zu entwickeln. Die Anforderungen an das Programm sind, dass die Dämpfungseigenschaften des Filters und die Einfügungsverluste ermittelt werden können, sowohl für common mode als auch für differential mode. Die Parameter der parasitären Einflüsse können um ± 30 % verändert werden. 
+Das Programm soll einen analytischen Ansatz verfolgen oder mit einer Simulation gelöst werden. 
+
+
 
 \subsection{Projektziele} \label{subsec:projektziele}
 
