@@ -1,14 +1,14 @@
 \section{Theoretische Grundlagen} \label{sec:TheoretischeGrundlagen}
 
 \subsection{EMI-Filter} \label{subsec:emifilter}
-Das vorgegebene EMI-Filter muss bezüglich der Einfügungsverluste (insertion loss) untersucht werden. Die Einfügunsverluste hängen vom Gesamtrauschen der Schaltung ab. Es wird ein Ansatz verwendet der in der Praxis weit verbreitet ist, bei welchem das Gesamtrauschen in zwei Komponenten unterteilt wird. Man spricht vom Gegen-(=Differential Mode=DM) und Gleichtaktrauschen (=Common Mode=CM) . Anhand der vorgegebenen CM- und DM-Äquivalenten Schaltungen werden die Einfügungsverluste in Funktion der Frequenz berechnet. Die Berechnungen decken einen Bereich von 0 bis 30MHz ab.
+Das vorgegebene EMI-Filter muss bezüglich der Einfügungsverluste (insertion loss) untersucht werden. Die Einfügunsverluste hängen vom Gesamtrauschen der Schaltung ab. Es wird ein Ansatz verwendet, der in der Praxis weit verbreitet ist, bei welchem das Gesamtrauschen in zwei Komponenten unterteilt wird. Man spricht vom Gegen-(=Differential Mode=DM) und Gleichtaktrauschen (=Common Mode=CM). Anhand der vorgegebenen CM- und DM-Äquivalenten Schaltungen werden die Einfügungsverluste in Funktion der Frequenz berechnet. Die Berechnungen decken einen Bereich von 0 bis 30MHz ab.
 
 Die Einfügungsverluste sind wie folgt definiert: 
 
 \begin{equation}
 \left\lvert IL\right\rvert =\left\lvert H(j\omega) \right\rvert = 20*log(\frac{ \left\lvert U_{20} \right\rvert }{ \left\lvert U_2 \right\rvert })
 \end{equation}
-In der Definition kann das Spannungsverhältnis durch den Streuparameter (S-Parameter) S21 ersetzt werden. Dieser Parameter beschreibt den Transmissionsgrad des Filters. Die Einfügungsverluste sind auch mit dem Verhältnis von eingehenden zu abegegebenen Leistung zu Berechnen, jedoch eignet sich diese Methode mehr beim messtechnischen bestimmen der Einfügungsverluste. 
+In der Definition kann das Spannungsverhältnis durch den Streuparameter (S-Parameter) S\textsubscript{21} ersetzt werden. Dieser Parameter beschreibt den Transmissionsgrad des Filters. Die Einfügungsverluste wären auch mit dem Verhältnis von eingehende zu abegegebene Leistung zu berechnen, jedoch eignet sich diese Methode mehr beim messtechnischen bestimmen der Einfügungsverluste. 
 \begin{equation}
 \left\lvert IL\right\rvert = 20*log (\left\lvert S_{21} \right\rvert)
 \end{equation}
@@ -30,8 +30,8 @@ DM:
 \end{figure}
 
 \subsection{Vorgehen} \label{subsec:vorgehen}
-Die Einfügungsverluste werden analytisch ermittelt. Im ersten Schritt werden die Berechnungen in MATLAB gemacht. Somit können die Funktionen eifach geplottet werden. Diese Plots werden dann mit Simulationen in MPLAB Mindi verglichen um festzustellen ob diese korrekt sind. Die vollständigen und korrekten Berechnungen können somit in Java implementiert werden. Um die Einfügungsverluste bestimmen zu können, wird das Model der 2-Tore verwendet. Einzelne Schaltungsteile werden in ABCD-Matrixen abgebildet, welche dann durch Kaskadierung der einzelnen ABCD-Matrixen zusammengeführt werden. Die Einfügungsverluste werden aus den S-Parameter abgeleitet, welche direkt aus der ABCD-Matrix errechnet werden kann.
-Der S-Parameter Index 12 gibt den Tranmissionsgrad der Wellen an, die vom Tor 1 zum Tor2 übertragen wird. Die S-Parameter sind abhängig von den Bezugswiderständen (Innenwiderstand der Quelle sowie Lastwiderstand). In unserem Fall sind die Bezugswiderstände mit 50Ohm gegeben.
+Die Einfügungsverluste werden analytisch ermittelt. Im ersten Schritt werden die Berechnungen in MATLAB gemacht. Somit können die Funktionen  geplottet werden. Diese Plots werden dann mit Simulationen in MPLAB Mindi verglichen um festzustellen ob diese korrekt sind. Die vollständigen und korrekten Berechnungen können somit in Java implementiert werden. Um die Einfügungsverluste bestimmen zu können, wird das Model der 2-Tore verwendet. Einzelne Schaltungsteile werden in ABCD-Matrixen abgebildet, welche dann durch Kaskadierung der einzelnen ABCD-Matrixen zusammengeführt werden. Die Einfügungsverluste werden aus den S-Parameter abgeleitet, welche direkt aus der ABCD-Matrix berechnet werden.
+Der S-Parameter S\textsubscript{21} gibt den Transmissionsgrad der Wellen an, die vom Tor 1 zum Tor2 übertragen wird. Die S-Parameter sind abhängig von den Bezugswiderständen (Innenwiderstand der Quelle sowie Lastwiderstand). In unserem Fall sind die Bezugswiderstände mit 50Ohm gegeben.
 
 \newpage
 \subsection{Berechnungsbeispiel} \label{subsec:beispiel}
@@ -100,9 +100,7 @@ Somit sind alle gesuchten Werte gegeben und der S21 Parameter wird durch einsetz
 
 Schritt 5: Einfügungsverluste bilden
 
-Durch Einsetzen des Streuparameters S21 in die Definition der Einfügunsverluste, lassen sich diese Darstellen. Folgende Grafik zeigt die Berechnungen in MATLAB. 
-
-
+Durch einsetzen des Streuparameters S21 in die Definition der Einfügunsverluste lassen sich diese Darstellen. Folgende Grafik zeigt die Berechnungen in MATLAB im Direktvergleich mit der Grafik aus der Aufgabenstellung. Die Differenzen lassen sich dadurch erklären, dass in der Aufgabenstellung die Werte der Bauelemente nicht gegeben sind.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=15cm]{CM_vergleich.png}
