@@ -23,7 +23,7 @@ Die GUI wird in 5 Teilbereiche aufgeteilt: Menu, Filtertabelle, CM/DM Plot, Butt
 
 Im Menu können verschiedene Optionen ausgewählt werden. Diese sind ebenfalls alle mit einem Shortcut aufrufbar.
 \bigskip
-
+\shorthandoff{"}
 \paragraph{File} \label{para:file}
 Im Menupunkt "File" können Filterprofile gespeichert und geladen werden. Bei beiden Optionen wird der Explorer geöffnet um die .txt Datei im gewählten Verzeichnis abzulegen oder zu holen. In der Option Exit kann das Programm geschlossen werden. Dieser Menupunkt ist in der Abbildung \ref{fig:GUIFile} \nameref{fig:GUIFile} dargestellt.
 
@@ -37,7 +37,7 @@ Im Menupunkt "File" können Filterprofile gespeichert und geladen werden. Bei be
 \bigskip
 
 \paragraph{Simulation} \label{para:simulation}
-Im Menupunkt \"Simulation" kann die Simulationsart Monte Carlo ausgewählt werden. Es öffnet sich ein neues Fenster in dem der Parameter, die Toleranz und die Anzahl Messungen eingestellt werden kann. Dieser Menupunkt ist in der Abbildung \ref{fig:GUISimulation} dargestellt.
+Im Menupunkt "Simulation" kann die Simulationsart Monte Carlo ausgewählt werden. Es öffnet sich ein neues Fenster in dem der Parameter, die Toleranz und die Anzahl Messungen eingestellt werden kann. Dieser Menupunkt ist in der Abbildung \ref{fig:GUISimulation} dargestellt.
 
 \begin{figure}[H]
 	\centering
@@ -57,7 +57,7 @@ Im Menupunkt "Help" können die beiden CM- und DM äquivalenten Schaltungsmodell
 	\caption{Menuoption Help}
 	\label{fig:GUIHelp}
 \end{figure}
-
+\shorthandon{"}
 \newpage
 
 \subsubsection{Filtertabelle} \label{subsubsec:filtertabelle}
@@ -91,24 +91,44 @@ Die Software wird mit dem Model-View-Controller Entwurfsmuster (MVC Design Patte
 
 \subsubsection{Model} \label{subsubsec:model}
 
-Im Model werden die Berechnungen ausgeführt. Die Daten werden vom Controller an die View übergeben. 
+Das Model enthält Arbeitsdaten eines Programmes und ist für die Berechnungen zuständig. Das Model enthält niemals Referenzen auf die view und den controller und ist somit von diesen Teilen abgegrenzt.
 
 \subsubsection{View} \label{subsubsec:model}
 
-In der View werden die Panel programmiert. Die Eingaben des Benutzers werden in der View erfasst und die Berechnungen des Models als plot angezeigt.
+Die view ist für die Darstellung der Programmoberfläche (GUI) und der Berechnungen zuständig. Mit entsprechender Schnittstellen werden die Benutzereingaben weitergeleitet.
 
 \subsubsection{Controller} \label{subsubsec:model}
 
-Der Controller übermittelt die Daten der View and das Model indem er die entsprechende Methode aufruft. 
+Der Controller ist die vermittelnde Schicht zwischen der Grafischen Darstellung und den Berechnungen. Der controller muss somit Zugriff auf die Programmoberfläche und Daten haben.
+
+\newpage 
 
 \subsubsection{Klassendiagramm} \label{subsubsec:model}
 
-%TODO Klassendiagramm erstellen und einfügen
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm]{Klassendiagramm.png}
+	\caption{Klassendiagramm}
+	\label{fig:Klassendiagramm}
+\end{figure} 
 
+\newpage
 
 \subsection{Programmablauf} \label{subsec:programmablauf}
 
-Beim Start des Programms werden die Panel initialisiert und die default Konfiguration hergestellt. Nun kann entweder ein neuer Filter erzeugt, oder ein bestehender Filter geladen werden. Ein bestehender Filter wird mittels "Menu / load Filter profile" aus einer Textdatei geladen. Ein neuer Filter wird mittels verändern der Schieberegler eingestellt und unter "Menu / save Filter" oder mittels "Ctrl + s" in ein .txt file gespeichert. Mittels button "Add" wird die Filtereinstellung temporär, bis zum schliessen des Programms gespeichert. An der linken Seite des Programms ist das Filterpanel. Darin werden alle eingestellten Filter aufgelistet und können mittels aktivieren der checkbox in verschiedenen Farben angezeigt werden. Der Einfluss eines bestimmten Parameters auf die Funktion kann mittels Monte Carlo Methode ermittelt werden. Dabei wird der Wert in kleinen Schritten verändert zum Beispiel von -10 bis + 10 Prozent und die Kurve für jeden Wert einmal abgebildet. So entstehen mehrere Kurven für die verschiedenen Parameter die man dann vergleichen kann.
+
+Nach dem Aufstarten des Programmes kann der Benutzer über die Programmoberfläche (\ref{fig:GUI} \nameref{fig:GUI}) seine Simulationen starten.
+Am Anfang ist ein default Filter initialisiert. Dieser ist in der Filtertabelle eingetragen, jedoch sind die parasitären Filterparameter im Eingabefenster noch undefiniert. Der Benutzer kann diese nun definieren und die berechneten Einfügungsverluste von CM und DM des EMI-Filters werden im Plot dargestellt. Mit dem Button Add wird der Filter abgespeichert und ein neuer Filter kann definiert werden. Es können somit mehrere Filter gleichzeitig dargestellt werden. 
+
+Um die Filter richtig zu verwalten ist es möglich in der Filtertabelle über die Checkbox einzelne Filter im Plot ein und auszublenden. Ebenfalls können sie spezifisch benannt werden. Der Plot und die einzelnen Kurven können mit einem Rechtsklick auf den CM/DM Plot individuell angepasst und auch exportiert werde. Wird ein Filter nicht mehr benötigt kann er in der Filtertabelle angewählt und mit dem Button Remove entfernt werden. Damit der Benutzer nicht jedesmal die Filterprofile einstellen muss, können diese über File/Save filterprofil in einer .txt Datei abgespeichert werden. Bei einem Neustart des Programmes kann über File/Load filterprofile die Filterprofile wieder geladen werden. 
+
+Um die Auswirkungen einzelner parasitären Filterparameter besser zu analysieren, kann unter Simulation/Monte Carlo eine Monte Carlo Simulation gestartet werden. Es wird ein neues Fenster geöffnet in dem der Filterparameter, die Toleranz und die Anzahl Berechnungen eingestellt werden können. Jede Berechnung wird als einzelner Filter in die Filtertabelle geladen. Um nachzuschauen wo welche Filterparameter sich in der Schaltung befindet, können unter Help/CM electrical circuit und CM electrical circuit die Ersatzschaltungen, von der die Berechnungen ausgehen, angeschaut werden. Das Programm wird über File/Exit oder beim Schliessen des Fensters beendet.
+ 
+
+\subsection{Package} \label{subsec:package}
+
+In der Software werden folgende Packages verwendet:
+
 
 
 \newpage
