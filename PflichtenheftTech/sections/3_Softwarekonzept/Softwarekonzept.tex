@@ -8,7 +8,7 @@ Die folgende Konzeptbeschreibung der Software bezieht sich auf die maximal anzus
 
 \subsection{GUI} \label{subsec:GUI}
 
-Die GUI wird in 6 Teilbereiche aufgeteilt: Menu, Filtertabelle, CM/DM Plot, Buttonfenster, Eingabefenster und Statusleiste. In der Abbildung \ref{fig:GUI} \nameref{fig:GUI} ist die Benutzerfläche des Programms dargestellt.
+Die GUI wird in 5 Teilbereiche aufgeteilt: Menu, Filtertabelle, CM/DM Plot, Buttonfenster und Eingabefenster. In der Abbildung \ref{fig:GUI} \nameref{fig:GUI} ist die Benutzerfläche des Programms dargestellt.
 
 \begin{figure}[H]
 	\centering
@@ -21,11 +21,11 @@ Die GUI wird in 6 Teilbereiche aufgeteilt: Menu, Filtertabelle, CM/DM Plot, Butt
 
 \subsubsection{Menu} \label{subsubsec:menu}
 
-Im Menu können verschiedene Optionen ausgewählt werden. 
+Im Menu können verschiedene Optionen ausgewählt werden. Diese sind ebenfalls alle mit einem Shortcut aufrufbar.
 \bigskip
 
 \paragraph{File} \label{para:file}
-Im Menupunkt "File" können Filterprofile gespeichert und geladen werden. Bei beiden Optionen wird der Explorer geöffnet um die .txt Datei im gewählten Verzeichnis abzulegen oder zu holen. In der Option Exit kann das Programm geschlossen werden. Dieser Menupunkt ist in der Abbildung Abbildung \ref{fig:GUIFile} \nameref{fig:GUIFile} ersichtlich.
+Im Menupunkt "File" können Filterprofile gespeichert und geladen werden. Bei beiden Optionen wird der Explorer geöffnet um die .txt Datei im gewählten Verzeichnis abzulegen oder zu holen. In der Option Exit kann das Programm geschlossen werden. Dieser Menupunkt ist in der Abbildung \ref{fig:GUIFile} \nameref{fig:GUIFile} dargestellt.
 
 \begin{figure}[H]
 	\centering
@@ -36,20 +36,20 @@ Im Menupunkt "File" können Filterprofile gespeichert und geladen werden. Bei be
 
 \bigskip
 
-\paragraph{Window} \label{para:window}
-Im Menupunkt "Window" können die beiden Plots der CM und DM Berechnungen zur besseren Analyse in einem separaten  Fenster geöffnet werden. Dieser Menupunkt ist in der Abbildung Abbildung \ref{fig:GUIWindow} \nameref{fig:GUIWindow} ersichtlich.
+\paragraph{Simulation} \label{para:simulation}
+Im Menupunkt \"Simulation" kann die Simulationsart Monte Carlo ausgewählt werden. Es öffnet sich ein neues Fenster in dem der Parameter, die Toleranz und die Anzahl Messungen eingestellt werden kann. Dieser Menupunkt ist in der Abbildung \ref{fig:GUISimulation} dargestellt.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=4cm]{GUIWindow.png}
-	\caption{Menuoption Window}
-	\label{fig:GUIWindow}
+	\includegraphics[width=4cm]{GUISimulation.png}
+	\caption{Menuoption Simulation}
+	\label{fig:GUISimulation}
 \end{figure}
 
 \bigskip
 
-\paragraph{Help} \label{para:window}
-Im Menupunkt "Help" können die beiden CM- und DM äquivalenten Schaltungsmodelle, die zur Berechnung verwendet werden, in einem seperaten Fenster dargestellt werden. Dieser Menupunkt ist in der Abbildung Abbildung \ref{fig:GUIHelp} \nameref{fig:GUIHelp} ersichtlich.
+\paragraph{Help} \label{para:Help}
+Im Menupunkt "Help" können die beiden CM- und DM äquivalenten Schaltungsmodelle, die zur Berechnung verwendet werden, in einem seperaten Fenster dargestellt werden. Dieser Menupunkt ist in der Abbildung \ref{fig:GUIHelp} \nameref{fig:GUIHelp} dargestellt.
 
 \begin{figure}[H]
 	\centering
@@ -62,11 +62,18 @@ Im Menupunkt "Help" können die beiden CM- und DM äquivalenten Schaltungsmodell
 
 \subsubsection{Filtertabelle} \label{subsubsec:filtertabelle}
 
-In der Filtertabelle werden alle erstellte Filterprofile dargestellt und verwaltet. Mit einer Checkbox können einzelne Profile im Plot aus- bzw. eingeblendet werden. Zudem kann bei jedem Filterprofil einen Namen und eine Plotfarbe hinzugefügt werden. Die parasitären Filterparameter des ausgewählten Filterprofils werden in das Eingabefenster geladen und können dort verändert werden. Mit den Shortcuts Backspace and Delete können ausgewählte Profile gelöscht werden.
+In der Filtertabelle werden alle erstellte Filterprofile dargestellt und verwaltet. Mit einer Checkbox können einzelne Profile im Plot aus- bzw. eingeblendet werden. Zudem kann bei jedem Filterprofil einen Namen hinzugefügt werden. Die parasitären Filterparameter des ausgewählten Filterprofils werden in das Eingabefenster geladen und können dort verändert werden. Mit den Shortcuts Backspace and Delete können ausgewählte Profile gelöscht werden.
 
 \subsubsection{CM/DM Plot} \label{subsubsec:CM_DMplot}
 
-In den CM/DM Plots werden die Berechnungen logarithmisch visualisiert. Die Plots sind für die bessere Darstellung in 3 Frequenzbereiche aufgeteilt:0 kHz bis 500 kHz, 500 kHz bis 5 MHz und 5 MHz bis 30 MHz. 
+In den CM/DM Plots werden die Berechnungen logarithmisch visualisiert. Die Plots sind für die bessere Darstellung in 3 Frequenzbereiche aufgeteilt:0 kHz bis 500 kHz, 500 kHz bis 5 MHz und 5 MHz bis 30 MHz. Mit einem Rechtsklick auf den Plot können verschiedene Optionen ausgewählt werden. So können die Eigenschaften (Farbe, Darstellung, Schrift usw.) und der Zoom individuell eingestellt werden. Der Plot kann auch direkt in eine .png Datei abgespeichert oder gedruckt werden. Diese Optionen sind in der Abbildung \ref{fig:PlotSettings} \nameref{fig:PlotSettings} ersichtlich.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4cm]{PlotSettings.png}
+	\caption{Ploteinstellungen}
+	\label{fig:PlotSettings}
+\end{figure} 
 
 \subsubsection{Buttonfenster} \label{subsubsec:buttonfenster}
 
@@ -75,10 +82,6 @@ Im Buttonfenster können Filterprofile in die Filtertabelle geladen oder entfern
 \subsubsection{Eingabefenster} \label{subsubsec:eingabefenster}
 
 Im Eingabebereich befinden sich die einzelnen parasitären Filterparameter. Es können Werte eingegeben und diese mit einer Toleranz von ± 30\% mit einem Schieberegler variiert werden. Die Werte werden direkt in die Filterprofile geladen, um eine Neuberechnung durchzuführen.
-
-\subsubsection{Statusleiste} \label{subsubsec:statusleiste}
-
-In der Statusleiste werden Informationen und Fehlermeldungen ausgegeben.
 
 \newpage
 
