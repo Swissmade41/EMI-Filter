@@ -4,7 +4,9 @@
 
 Die Software soll das Frequenzverhalten und die Einfügungsverluste von CM und DM des EMI-Filters simulieren können. Das Werkzeug soll insbesondere mit einer Empfindlichkeitsanalyse die Auswirkungen der parasitäreren Parameter auf die Einfügungsverluste des Filters darstellen. Die parasitären Filterparameter können in einem Bereich von ± 30\% variiert werden. Der Filter wird mit Hilfe von CM- und DM äquivalenten Schaltungsmodelle berechnet. Um die Auswirkungen der Parametervariation besser sichtbar zu machen, wird der Frequenzbereich des Filters in 3 Sektoren aufgeteilt: 0 kHz bis 500 kHz, 500 kHz bis 5 MHz und 5 MHz bis 30 MHz. 
 
-Die folgende Konzeptbeschreibung der Software bezieht sich auf die maximal anzustrebende Lösung, dass heisst mit allen Wunschzielen inkludiert. Die Software wird so strukturiert, dass wenn diese Lösung nicht erreicht wird, die Software gut zur  maximal anzustrebende Lösung erweiterbar ist.
+Die folgende Konzeptbeschreibung der Software bezieht sich auf die maximal anzustrebende Lösung, dass heisst mit allen Wunschzielen inkludiert. Die Software wird so strukturiert, dass wenn diese Lösung nicht erreicht wird, die Software gut zur  maximal anzustrebende Lösung erweiterbar ist. Das Klassendiagramm ist in der Abbildung \ref{fig:Klassendiagramm} \nameref{fig:Klassendiagramm} ersichtlich.
+
+
 
 \subsection{GUI} \label{subsec:GUI}
 
@@ -125,10 +127,21 @@ Um die Filter richtig zu verwalten ist es möglich in der Filtertabelle über di
 Um die Auswirkungen einzelner parasitären Filterparameter besser zu analysieren, kann unter Simulation/Monte Carlo eine Monte Carlo Simulation gestartet werden. Es wird ein neues Fenster geöffnet in dem der Filterparameter, die Toleranz und die Anzahl Berechnungen eingestellt werden können. Jede Berechnung wird als einzelner Filter in die Filtertabelle geladen. Um nachzuschauen wo welche Filterparameter sich in der Schaltung befindet, können unter Help/CM electrical circuit und CM electrical circuit die Ersatzschaltungen, von der die Berechnungen ausgehen, angeschaut werden. Das Programm wird über File/Exit oder beim Schliessen des Fensters beendet.
  
 
-\subsection{Package} \label{subsec:package}
+\subsection{Libraries} \label{subsec:Libraries}
 
-In der Software werden folgende Packages verwendet:
+In der Software werden folgende Libraries verwendet:
+
+\textbf{Swing}: Mit dem vorinstallierten Swing Framework von Java wird die GUI aufgebaut.
+
+\textbf{JFreeChart}: Die Berechnungen werden mit JFreeChart grafisch also Plot dargestellt. \cite{jfreechart}
+
+\textbf{Apache Math Commons} Die Apache Math Commons Library beinhaltet wichtige Mathematikfunktionen, wie rechnen mit Komplexen Zahlen usw. \cite{apache}
 
 
+\textbf{Engineering Text Fields} Die von Prof. Dr. Richard Gut zur Verfügung gestellte Klasse verhindert Fehleingaben und vereinfacht die Eingabe von Zahlen (nano,piko...)
+
+
+\textbf{Minimatlab}: Die von Prof. Dr. Richard Gut zur Verfügung gestellte Klasse beinhaltet bekannte Matlab Befehle und vereinfacht somit die Berechnung
+s
 
 \newpage
