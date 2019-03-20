@@ -15,6 +15,28 @@ In der Definition kann das Spannungsverhältnis durch den Streuparameter \ref{su
  Dieser Parameter (Foreml \ref{equ:def_s21}) beschreibt den Transmissionsgrad des Filters. Die Einfügungsverluste wären auch mit dem Verhältnis von eingehende zu abegegebene Leistung zu berechnen, jedoch eignet sich diese Methode mehr beim messtechnischen bestimmen der Einfügungsverluste. 
 \newpage
 \subsection{Schaltungen} \label{subsec:schaltungen}
+Die Schaltung \ref{fig:orig_Schaltung} \nameref{fig:orig_Schaltung} zeigt den Filteraufbau, wie er der Aufgabenstellung zu entnehmen ist. Um das Gegentaktrauschen und das Gleichtaktrauschen bestimmen zu können, werden die beiden Schaltungsäquivalente gebildet. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 10cm]{orig_ElectricalCircuit.png}
+	\caption{Original Schaltung}
+	\label{fig:orig_Schaltung}
+\end{figure}
+Hierbei müssen die elektrischen Bauelemente, wie Spule und Kondensator mit den passenden parasitären Parameter ergänz werden. In Abbildung \ref{fig:stray_L} und \ref{fig:stray_C} werden die parasitären Parameter von Spule und Kondensator gezeigt.
+\begin{figure}[H]
+	\begin{minipage}[h]{0.45\linewidth}
+		\centering
+		\includegraphics[width = 5cm]{stray_L.png}
+		\label{fig:stray_L}
+		\caption{Parasiäre Elemente einer Induktivität}
+	\end{minipage}
+	\begin{minipage}[h]{0.45\linewidth}
+		\centering
+		\includegraphics[width = 7cm]{stray_C.png}
+		\label{fig:stray_C}
+		\caption{Parasiäre Elemente einer Kapazität}
+	\end{minipage}
+\end{figure}
 Folgende Schaltungen stellen die CM- und DM-Äquivalenten Schaltungen. Da die Berechnungen in einem Bereich von bis zu 30 MHz gemacht werden, ist es notwendig die parasitären Parameter von Spule und Kondensator miteinzubeziehen.
 
 \begin{figure}[H]
@@ -158,9 +180,15 @@ Die Impedanz eines  $\pi$-Glieds lässt sich anhand der ABCD-Matrix $A_\pi$ (For
 	\end{minipage}
 \end{figure}
 
-Wenn die ABCD-Matrix einer Schaltung gebildet wurde, kann diese direkt in die Streuparameter umgewandelt werden. Der $s_{21}$ Parameter kann wie in Formel \ref{equ:s21} beschrieben, durch einsetzten der ABCD-Matrix bestimmt werden.
+Wenn die ABCD-Matrix einer Schaltung gebildet wurde, kann diese direkt in die Streuparameter umgewandelt werden. Der $s_{21}$ Parameter kann wie in Formel \ref{equ:s21} beschrieben, durch einsetzten der ABCD-Matrix bestimmt werden. Für den Widerstand $R_w$ muss die verwendete Bezugsimpedanz eingesetzt werden.
 \begin{equation}\label{equ:s21}
 s_{21} = \frac{2}{A_{11}+\frac{A{12}}{R_w}+A_{21}*R_w+A_{22}}
+\end{equation}
+Die Indexierung der ABCD-Matrix wird in Abbildung \ref{equ:A_index} gezeigt
+\begin{equation}\label{equ:A_index}
+	A = \left[\begin{matrix}
+	A_{11}&A_{12}\\A_{21}&A_{22}
+	\end{matrix}\right]
 \end{equation}
 \newpage
 
