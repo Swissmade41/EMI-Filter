@@ -1,10 +1,9 @@
 \section{Theoretische Grundlagen} \label{sec:TheoretischeGrundlagen}
 
 \subsection{EMI-Filter} \label{subsec:emifilter}
-Das vorgegebene EMI-Filter muss bezüglich der Einfügungsverluste (insertion loss) untersucht werden. Die Einfügunsverluste hängen vom Gesamtrauschen der Schaltung ab. Es wird ein Ansatz verwendet, der in der Praxis weit verbreitet ist, bei welchem das Gesamtrauschen in zwei Komponenten unterteilt wird. Man spricht vom Gegen-(=Differential Mode=DM) und Gleichtaktrauschen (=Common Mode=CM). Anhand der vorgegebenen CM- und DM-Äquivalenten Schaltungen (Abbildungen \ref{fig:CM-Schaltungäquivalent}, \ref{fig:DM-Schaltungsäquivalent})werden die Einfügungsverluste in Funktion der Frequenz berechnet. Die Berechnungen decken einen Bereich von 0 bis 30MHz ab.
+Das vorgegebene EMI-Filter muss bezüglich der Einfügungsverluste (insertion loss) untersucht werden. Die Einfügunsverluste hängen vom Gesamtrauschen der Schaltung ab. Es wird ein Ansatz verwendet, der in der Praxis weit verbreitet ist, bei welchem das Gesamtrauschen in zwei Komponenten unterteilt wird. Man spricht vom Gegen-(=Differential Mode=DM) und Gleichtaktrauschen (=Common Mode=CM). Anhand der vorgegebenen CM- und DM-Äquivalenten Schaltungen (Abbildungen \ref{fig:CM-Schaltungäquivalent}, \ref{fig:DM-Schaltungsäquivalent})werden die Einfügungsverluste in Funktion der Frequenz berechnet. Die Berechnungen decken einen Bereich von 0 bis 30MHz ab. 
 
 Die Einfügungsverluste sind wie folgt definiert: 
-
 \begin{equation}\label{equ:Freqgang}
 	IL = \left\lvert H(j\omega) \right\rvert = 20*log(\frac{ \left\lvert U_{20} \right\rvert }{ \left\lvert U_2 \right\rvert })
 \end{equation}
@@ -12,14 +11,14 @@ In der Definition kann das Spannungsverhältnis durch den Streuparameter \ref{su
 \begin{equation}\label{equ:Einfügungsverluste}
 	IL = -20*log (\left\lvert S_{21} \right\rvert)
 \end{equation}
- Dieser Parameter (Foreml \ref{equ:def_s21}) beschreibt den Transmissionsgrad des Filters. Die Einfügungsverluste wären auch mit dem Verhältnis von eingehende zu abegegebene Leistung zu berechnen, jedoch eignet sich diese Methode mehr beim messtechnischen bestimmen der Einfügungsverluste. 
+ Dieser Parameter (Formel \ref{equ:def_s21}) beschreibt den Transmissionsgrad des Filters. Die Einfügungsverluste wären auch mit dem Verhältnis von eingehende zu abegegebene Leistung zu berechnen, jedoch eignet sich diese Methode mehr beim messtechnischen bestimmen der Einfügungsverluste. 
 \newpage
 \subsection{Schaltungen} \label{subsec:schaltungen}
 Die Schaltung \ref{fig:orig_Schaltung} \nameref{fig:orig_Schaltung} zeigt den Filteraufbau, wie er der Aufgabenstellung zu entnehmen ist. Um das Gegentaktrauschen und das Gleichtaktrauschen bestimmen zu können, werden die beiden Schaltungsäquivalente gebildet. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width = 10cm]{orig_ElectricalCircuit.png}
-	\caption{Original Schaltung}
+	\caption{Original Schaltung \cite{aufgabenstellung}}
 	\label{fig:orig_Schaltung}
 \end{figure}
 Hierbei müssen die elektrischen Bauelemente, wie Spule und Kondensator mit den passenden parasitären Parameter ergänz werden. In Abbildung \ref{fig:stray_L} und \ref{fig:stray_C} werden die parasitären Parameter von Spule und Kondensator gezeigt.
@@ -28,13 +27,13 @@ Hierbei müssen die elektrischen Bauelemente, wie Spule und Kondensator mit den 
 		\centering
 		\includegraphics[width = 5cm]{stray_L.png}
 		\label{fig:stray_L}
-		\caption{Parasiäre Elemente einer Induktivität}
+		\caption{Parasiäre Elemente einer Induktivität \cite{aufgabenstellung}}
 	\end{minipage}
 	\begin{minipage}[h]{0.45\linewidth}
 		\centering
 		\includegraphics[width = 7cm]{stray_C.png}
 		\label{fig:stray_C}
-		\caption{Parasiäre Elemente einer Kapazität}
+		\caption{Parasiäre Elemente einer Kapazität \cite{aufgabenstellung}}
 	\end{minipage}
 \end{figure}
 Folgende Schaltungen stellen die CM- und DM-Äquivalenten Schaltungen. Da die Berechnungen in einem Bereich von bis zu 30 MHz gemacht werden, ist es notwendig die parasitären Parameter von Spule und Kondensator miteinzubeziehen.
@@ -42,18 +41,19 @@ Folgende Schaltungen stellen die CM- und DM-Äquivalenten Schaltungen. Da die Be
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=15cm]{CM_ElectricalCircuit.png}
-	\caption{CM-Schaltungäquvalent}
+	\caption{CM-Schaltungäquvalent \cite{aufgabenstellung}}
 	\label{fig:CM-Schaltungäquivalent}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=15cm]{DM_ElectricalCircuit.png}
-	\caption{DM-Schaltungsäquvalent}
+	\caption{DM-Schaltungsäquvalent \cite{aufgabenstellung}}
 	\label{fig:DM-Schaltungsäquivalent}
 \end{figure}
 \newpage
 \subsection{Einfügungsverluste ermitteln} \label{subsec:vorgehen}
+Folgende Theorieabschnitte wurden überwiegend anhand folgender Quellen zusammengestellt: \cite{hftech}.
 Die Einfügungsverluste werden analytisch ermittelt. Im ersten Schritt werden die Berechnungen in MATLAB gemacht. Somit können die Funktionen  geplottet werden. Diese Plots werden dann mit Simulationen in MPLAB Mindi verglichen um festzustellen ob diese korrekt sind. Die vollständigen und korrekten Berechnungen können somit in Java implementiert werden. Um die Einfügungsverluste bestimmen zu können, wird das Model der 2-Tore verwendet. Einzelne Schaltungsteile werden in ABCD-Matrixen \ref{ABCD-Matrix} abgebildet, welche dann durch Kaskadierung der einzelnen ABCD-Matrixen zusammengeführt werden. Die Einfügungsverluste werden aus den Streuparameter\ref{subsec:Streuparameter} abgeleitet, welche direkt aus der ABCD-Matrix berechnet werden.
 Der S-Parameter S\textsubscript{21} gibt den Transmissionsgrad der Wellen an, die vom Tor 1 zum Tor2 übertragen wird. Die S-Parameter sind abhängig von den Bezugswiderständen (Innenwiderstand der Quelle sowie Lastwiderstand). In unserem Fall sind die Bezugswiderstände mit 50Ohm gegeben.
 
@@ -63,7 +63,7 @@ Die Streuparameter (S-Parameter) werden in der Hochfreqeunztechnik verwendet, um
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=15cm]{s_params_def.png}
-	\caption{2-Tor Wellengrössen und Anschlussleitungen}
+	\caption{2-Tor Wellengrössen und Anschlussleitungen \cite{hftech}}
 	\label{fig:2-Tor}
 \end{figure}
 Bei den S-Parameter werden die Eingangs- und Ausgangsgrössen nicht direkt anhand elektrischer Ströme und Spannungen beschrieben. Sie werden mithilfe von Wellengrössen beschrieben, wobei a\textsubscript{i} die einlaufenden Wellen sind und b\textsubscript{i} die Reflektierenden Wellen. Der Index i stellt den Torindex dar. Formel \ref{equ:def_a} und \ref{equ:def_b} zeigen wie die Wellengrössen a\textsubscript{i} sowie b\textsubscript{i} definiert sind.
@@ -118,7 +118,7 @@ Die Längsimpedanz lässt sich anhand der ABCD-Matrix A\textsubscript{L} (Formel
 	\begin{minipage}[h]{0.45\linewidth}
 		\centering
 		\includegraphics[width = 3cm]{h_impedance.png}
-		\caption{Längsimpedanz}
+		\caption{Längsimpedanz \cite{2torTabelle}}
 	\end{minipage}
 	\begin{minipage}[h]{0.45\linewidth}
 		\centering
@@ -134,7 +134,7 @@ Die Querimpedanz lässt sich anhand der ABCD-Matrix A\textsubscript{Q} (Formel \
 	\begin{minipage}[h]{0.45\linewidth}
 		\centering
 		\includegraphics[width = 3cm]{v_impedance.png}
-		\caption{Querimpedanz}
+		\caption{Querimpedanz \cite{2torTabelle}}
 	\end{minipage}
 	\begin{minipage}[h]{0.45\linewidth}
 		\centering
@@ -150,7 +150,7 @@ Die Impedanz eines T-Glieds lässt sich anhand der ABCD-Matrix $A_T$ (Formel \re
 	\begin{minipage}[h]{0.45\linewidth}
 		\centering
 		\includegraphics[width = 3cm]{t_impedance.png}\label{fig:tImpedance}
-		\caption{T-Glied}
+		\caption{T-Glied \cite{2torTabelle}}
 	\end{minipage}
 	\begin{minipage}[h]{0.45\linewidth}
 		\centering
@@ -168,7 +168,7 @@ Die Impedanz eines  $\pi$-Glieds lässt sich anhand der ABCD-Matrix $A_\pi$ (For
 		\centering
 		\includegraphics[width = 3cm]{pi_impedance.png}
 		\label{fig:piImpedance}
-		\caption{Pi-Glied}
+		\caption{Pi-Glied \cite{2torTabelle}}
 	\end{minipage}
 	\begin{minipage}[h]{0.45\linewidth}
 		\begin{equation}\label{equ:piImpedance}
@@ -200,13 +200,13 @@ Folgender Abschnitt zeigt auf, wie die Einfügungsverluste ermittelt werden. Als
 		\centering
 		\includegraphics[width=3.5cm]{CM_Admittanz.png}
 		\label{fig:CM-Admittanz}
-		\caption{CM-Admittanz}
+		\caption{CM-Admittanz \cite{aufgabenstellung}}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[h]{0.45\linewidth}
 	\centering
 		\includegraphics[width=4.5cm]{CM_Impedanz.png}
-		\caption{CM-Impedanz}
+		\caption{CM-Impedanz \cite{aufgabenstellung}}
 		\label{fig:CM-Impedanz}
 	\end{minipage}
 \end{figure}
