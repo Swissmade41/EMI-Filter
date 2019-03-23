@@ -1,10 +1,15 @@
 \section{Übersicht} \label{sec:uebersicht}
 \subsection{Ausgangslage}
 
-Schaltnetzteile von elektrischen Geräten verursachen Leitungsgebundene Störungen. Deshalb schreiben Normen, wie beispielsweise die EN 55022 für IT-Ausrüstung, Grenzen für solche Störungen vor. Diese müssen deshalb mit einem Filter gedämpft werden. Sie werden unterteilt in Schaltfrequenzen, Oberschwingungen, und EMC / EMI Emissionen. EMC / EMI Emissionen sind in einem Frequenzbereich von 150 kHz – 30 MHz. Es gibt zwei Arten von Störungen oder Rauschen. Das Gleichtaktrauschen, oder common mode und das Gegentaktrauschen, differrential mode. Beim common mode treten die Störspannungen zwischen Netzwerkleitern und Bezugsmasse auf und die Störströme fliessen in Richtung der Netzwerksleiter. Beim differential mode tritt die Störspannung zwischen den Versorgungsleitungen auf und die Störströme fliessen in Richtung der Netzwerkströme.
-Schaffner hat uns nun den Auftrag erteilt ein Simulationsprogramm für Netzwerkfilter zu entwickeln. Die Anforderungen an das Programm sind, dass die Dämpfungseigenschaften des Filters und die Einfügungsverluste ermittelt werden können, sowohl für common mode als auch für differential mode. Die Parameter der parasitären Einflüsse können um ± 30 \% verändert werden. 
-Das Programm soll einen analytischen Ansatz verfolgen oder mit einer Simulation gelöst werden. 
 
+In einer hochtechnisierten Gesellschaft, wo pro Haushalt diverse Elektrogeräte zum Einsatz kommen. Stellt sich die Frage, funktioniert das einwandfrei wenn verschiedene Geräte an dasselbe Netz angeschlossen werden?
+Niemand will darauf verzichten sich gleichzeitig die Haare zu föhnen und fernzusehen und darum muss eine Lösung her. Um den reibungslosen Betrieb erwähnter Geräte zu gewährleisten, braucht es elektrische Filter. Diese sogenannten Netzfilter schützen die anderen Geräte vor hochfrequenten Emissionen, die im innern eines Gerätes entstehen. Unter einem Netzfilter kann man sich ein Bauteil vorstellen, das am Eingang eines Gerätes geschaltet wird und nur den gewünschten Frequenzbereich, in der Schweiz 50 Hz, durchlässt. 
+So weit so gut. Doch wie werden solche Filter denn gemacht?
+Die Antwort liegt nahe. Es wird mit Widerständen, Kapazitäten und Induktivitäten ein Netzwerk gebaut dem ein Diagramm beigelegt wird. In diesem Diagramm wird die Dämpfungseigenschaft in Dezibel in Abhängigkeit von der Frequenz aufgezeigt. Ausserdem ist entscheidend welche Einfügungsverluste der Filter hat, das sind die Leistungsverluste im Filter. 
+Diese Werte sind matchentscheidend für das bestehen auf einem hochspezialisierten Markt. 
+Nun hat Herr Dalessandro von der Schaffner Gruppe uns die Aufgabe gestellt ein tool zu programmieren, dass in der Entwicklung von solchen Filter eingesetzt werden kann. Es geht darum die oben genannten Spezifikationen bereits auf dem Papier aufzuzeigen. Mit diesem einzigartigen Programm kann man nämlich bereits während der Planung eines Filters simlieren, welchen Einfluss die verschiedenen realen Bauteile auf den fertigen Filter haben.
+Im Folgenden ein Versuch zur Lösung einer hochkomplexen Aufgabe. 
+ 
 
 \newpage
 \subsection{Projektziele} \label{subsec:projektziele}

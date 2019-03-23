@@ -1,14 +1,23 @@
 \section{Testkonzept} \label{sec:Testkonzept}
 
-Um das fertige Produkt zu testen werden drei Testläufe unternommen. 
-Zuerst wird das Programm durch das Projektteam getestet. Dabei wird das GUI auf Herz und Nieren geprüft. Die Funktionen werden alle mehrmals ausprobiert und die berechnete Kurve, des eingestellten Filters wird mit einer PSpice Simulation mit gleichen Werten verglichen.
-Im zweiten Testlauf wird das Programm dem Auftraggeber abgegeben. Er testet das Programm und gibt ein Feedback. Er kann noch kleine Änderungen verlangen aber am Grobkonzept wird nichts mehr geändert.
-In der dritten Testphase wird das Programm an Mitstudenten oder in Elektrotechnik versierte Kollegen abgegeben. Dabei wird getestet, wie benutzerfreundlich das Projekt ist und wie stabil es auf den Rechnern der Tester läuft. Dabei wird auch versucht das Programm einem Stresstest zu unterziehen um es zum Abstürzen zu bringen. 
+Um das fertige Produkt zu testen werden drei Testläufe unternommen. Das soll garantieren, dass das Programm einwandfrei funktioniert. Dabei wird stets der Testlauf durchgeführt und danach werden die Ergebnisse validiert. 
+Zuerst wird das Programm durch das Projektteam getestet. 
+Im zweiten Testlauf wird das Programm dem Auftraggeber abgegeben. Er testet das Programm und gibt ein Feedback. 
+In der dritten Testphase wird das Programm an Mitstudenten oder in Elektrotechnik versierte Kollegen abgegeben. 
 
 
 
-% \subsection{1} \label{subsec:1}
+\subsection{1. Testphase} \label{subsec:1}
 
-% \subsection{2} \label{subsec:2}
+In der ersten Testphase werden die verschiedenen Teile des Programms unabhängig voneinander durch das Projektteam geprüft. 
+Das GUI wird mit der TraceV5 Methode in Java auf die richtige Programmabfolge getestet.
+Das Model in dem die Berechnungen stattfinden, wird mit einer Simulation überprüft. Dazu werden die gleichen Parameter wie einer MPLAB Mindi Simulation übergeben und danach eine Auswertung gemacht. Stimmen die erhaltenen Dämpfungskurven überein, kann mit der zweiten Testphase begonnen werden.
 
-% \subsection{3} \label{subsec:3}
+\subsection{2. Testphase} \label{subsec:2}
+
+In der zweiten Testphase wird das fertige Programm an Herrn Dalessandro übergeben. Er kann nach seinem Test allfällige Änderungen vorschlagen, am Konzept wird jedoch nichts mehr geändert. Es geht dabei mehr um kleine Anpassungen in der GUI und um einen Test in der realen Umgebung. Es wird nach dem Test erneut eine Validierung und gegebenenfalls eine Anpassung vorgenommen.
+ 
+
+\subsection{3. Testphase} \label{subsec:3}
+
+Nach der zweiten Testphase wird das Programm an Mitstudenten und Interessierte zum Test abgegeben. Dabei wird das Programm einem Stresstest unterzogen, also möglichst viele Plots sollen berechnet und geöffnet werden. In dieser Testphase geht es vorallem darum das Benutzererlebnis für möglichst viele Anwender zu testen und feedbacks zu sammeln. Nach dieser letzten Testphase werden die Ergebnisse ausgewertet und alfällige Änderungen vorgenommen.
