@@ -19,61 +19,52 @@ Folge Ziele wurden festgelegt:
 \newcommand{\HY}{\hyphenpenalty = 25\exhyphenpenalty = 25}
 \begin{table}[H]
 \small
-\begin{tabular}{>{\HY\RaggedRight}p{5cm} >{\HY\RaggedRight}p{6.5cm} >{\HY\RaggedRight}p{3cm}}
+\begin{tabular}{>{\HY\RaggedRight}p{5cm} >{\HY\RaggedRight}p{9.5cm} }
 \hline
-\textbf{Zielkriterium}					&\textbf{Zielvariable}									&\textbf{Randbedingung}\\
+\textbf{Ziel}					&\textbf{Beschreibung}			\\						
 \hline
 \rowcolor{hellgrau}
-\multicolumn{3}{l}{\textbf{1. Elektrotechnik}}\\
-- Frequenzverhalten von DM und CM des EMI-Filters		&x		&x\\
-- Einfügungsverluste von DM und CM (Insertion loss)\\
-- Auswirkung parasitärer Parameter (Empfindlichkeitsanalyse)\\
-- Variieren der Parasitäre Parameter im Bereich +-30%\\
-- Direkter Vergleich von 2 Filterdesigns bezüglich Leistung\\
-3 Frequenzbereiche\\
-1.2. dummy\\
+\multicolumn{2}{l}{\textbf{1.Elektrotechnik}}\\
+1.1 Frequenzverhalten		&\ Verhalten des Rauschens in den Frequenzbereichen von 0-500kHz, von 500kHz-5MHz und von 5MHz-30MHz.\\
+1.2 Eingangsdämpfung &\ (Insertion loss)  Berechnung der Grösse der Eingangsdämpfung, dargestellt in einer Kurve. \\
+1.3 Parasitäre Parameter &\ (Empfindlichkeitsanalyse) Erkennen und berechnen der Einflüsse der einzelnen Bauteile (Parameter).\\
+1.4 Filterdesign &\ Analyse der Schaltung um diese zu Vereinfachen. Wenn möglich auf regelmässige Glieder.\\
 \rowcolor{hellgrau}
-\multicolumn{3}{l}{\textbf{2. Software}}\\
-Plattformunabhängige Software -> Java\\
-Gute Softwarestrukturierung\\
-Benuztzerfreundlich\\
-Einfache Bedienung\\
-Geschützt vor Fehleingaben\\
-CM/DM Plot in einem eigenen Fenster gross darstellen\\	
+\multicolumn{2}{l}{\textbf{2. Software}}\\
+2.1 Plattform &\  Die Plattform soll möglichst unabhängig von Betriebssystemen gewählt werden. Daher ist JAVA die präferierte Wahl.\\
+2.2 Struktur &\	Um die Applikation möglichst erweiterbar zu halten ist das MVC-Framework eine gute Grundstruktur.\\
+2.3 GUI &\ Die Gui soll vorallem die Eingangsdämpfung Anzeigen. Ebenfalls sehr attraktiv ist es, wenn die Parameter via Schieberegler direkt verstellt werden können.\\
+2.4 Dateneingabe &\ Die Applikation soll möglichst vor Eingabefehlern schützen. Um die Bedienung noch weiter zu erleichtern erhält sie zudem noch einen Speicher um voreingestellte Filter zu speichern und wieder zu laden.\\
+2.5 Datenausgabe &\ Der Plot soll logarithmisch dargestellt werden. Zusätzlich soll er auch exportiert werden können.\\	
 \rowcolor{hellgrau}
-\multicolumn{3}{l}{\textbf{3. Wunschziele}}\\			
-Mehrere Filter gleichzeitig berechne und anzeigen lassen\\
-    In einer Tabelle können einzelne Filterprofile verwaltet werden\\
-    Die Filterprofile können benennt werden\\
-    Die Farbe der Kurve kann verändert werden\\
-Filterprofile speichern und laden\\
-Monte Carlo\\								
+\multicolumn{2}{l}{\textbf{3. Wunschziele}}\\			
+3.1 Verschiedene Filter &\ Um einen Mehrwert zu schaffen wäre es Praktisch direkt mehrere Layouts zu vergleichen.\\
+3.2 Monte Carlo Simulation &\ Falls die Zeit reicht wäre die Implementation einer Monte Carlo Simulation noch sinvoll.\\	
+3.3 Diverse Bedienungshilfen &\ Falls die Zeit reicht können noch diverse Bedienungshilfen und Gadgets eingebaut werden.\\
+					
 \hline
 \end{tabular}
 \end{table}
 
 \newpage
-\subsection{Nicht-Ziele}
-dummytext
+\subsection{Lieferobjekte} \label{subsec:lieferobjekt}
 
-Folgende Nicht-Ziele wurden definiert:
+Nachfolgend werden alle Lieferobjekte aufgelistet:
+
+\newcommand{\HE}{\hyphenpenalty = 25\exhyphenpenalty = 25}
 \begin{table}[H]
 \small
-\begin{tabular}{ll}
-\hline
-\textbf{Nicht-Zielkriterium}				&\textbf{Nicht-Zielvariable}											\\
+\begin{tabular}{>{\HE\RaggedRight}p{5.5cm} >{\HE\RaggedRight}p{4cm} }
 \hline
 \rowcolor{hellgrau}
-\textbf{1. Planung}						&	dummy																\\
-										&dummy											\\
-										&dummy								\\	
-\rowcolor{hellgrau}
-\textbf{2. Realisierung}					&																	\\
-										&dummy								\\
+\textbf{Beschreibung}					&\textbf{Datum}			\\						
+\hline
+%\rowcolor{hellgrau}
+%\multicolumn{2}{l}{\textbf{Objekt} } {\textbf{Datum}}\\
+1. Organisatorisches Pflichtenheft		&\ 24.03.19 und 04.04.19\\
+2. Technisches Pflichtenheft		&\ 24.03.19 und 04.04.19\\
+3. Disposition und Einleitung		&\ 02.05.19\\
+4. Fachbericht	&\ 13.06.19\\
 \hline
 \end{tabular}
 \end{table}
-
-\subsection{Lieferobjekt} \label{subsec:lieferobjekt}
-
-\subsection{Rahmenbedingungen} \label{subsec:rahmenbedingungen}
