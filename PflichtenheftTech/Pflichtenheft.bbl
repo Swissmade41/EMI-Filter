@@ -1,0 +1,181 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{aufgabenstellung}{article}{}
+      \name{author}{1}{}{%
+        {{hash=3551e7c82663d9303288ea986947ed55}{%
+           family={{Luca Dalessandro}},
+           familyi={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{3551e7c82663d9303288ea986947ed55}
+      \strng{fullhash}{3551e7c82663d9303288ea986947ed55}
+      \strng{bibnamehash}{3551e7c82663d9303288ea986947ed55}
+      \strng{authorbibnamehash}{3551e7c82663d9303288ea986947ed55}
+      \strng{authornamehash}{3551e7c82663d9303288ea986947ed55}
+      \strng{authorfullhash}{3551e7c82663d9303288ea986947ed55}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{21}
+      \field{month}{3}
+      \field{title}{Aufgabenstellung EMI-Filter}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb :Aufgabestellung Projekt DJ Filter LDa2019 DE (3).pdf:PDF
+      \endverb
+    \endentry
+    \entry{hftech}{article}{}
+      \name{author}{1}{}{%
+        {{hash=4b87388938e21ba8c9efcaa66e63c229}{%
+           family={{Stephan Rupp, Andreas Maier}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{4b87388938e21ba8c9efcaa66e63c229}
+      \strng{fullhash}{4b87388938e21ba8c9efcaa66e63c229}
+      \strng{bibnamehash}{4b87388938e21ba8c9efcaa66e63c229}
+      \strng{authorbibnamehash}{4b87388938e21ba8c9efcaa66e63c229}
+      \strng{authornamehash}{4b87388938e21ba8c9efcaa66e63c229}
+      \strng{authorfullhash}{4b87388938e21ba8c9efcaa66e63c229}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{21}
+      \field{month}{3}
+      \field{title}{Hochfrequenztechnik}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb :Hochfrequenztechnik_T2ELN3001_Teil_2_SR.pdf:PDF
+      \endverb
+    \endentry
+    \entry{2torTabelle}{article}{}
+      \name{author}{1}{}{%
+        {{hash=931b335cadd4fa8787e3abd8a53268e6}{%
+           family={{Peter Niklaus}},
+           familyi={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{931b335cadd4fa8787e3abd8a53268e6}
+      \strng{fullhash}{931b335cadd4fa8787e3abd8a53268e6}
+      \strng{bibnamehash}{931b335cadd4fa8787e3abd8a53268e6}
+      \strng{authorbibnamehash}{931b335cadd4fa8787e3abd8a53268e6}
+      \strng{authornamehash}{931b335cadd4fa8787e3abd8a53268e6}
+      \strng{authorfullhash}{931b335cadd4fa8787e3abd8a53268e6}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{21}
+      \field{month}{3}
+      \field{title}{2-Tor Tabellen}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb :2-Tor Tabellen.pdf:PDF
+      \endverb
+    \endentry
+    \entry{MVCDesignPattern}{article}{}
+      \name{author}{1}{}{%
+        {{hash=3f7473fc319c5fbd089d2814578783ef}{%
+           family={{javabeginners.de}},
+           familyi={j\bibinitperiod}}}%
+      }
+      \strng{namehash}{3f7473fc319c5fbd089d2814578783ef}
+      \strng{fullhash}{3f7473fc319c5fbd089d2814578783ef}
+      \strng{bibnamehash}{3f7473fc319c5fbd089d2814578783ef}
+      \strng{authorbibnamehash}{3f7473fc319c5fbd089d2814578783ef}
+      \strng{authornamehash}{3f7473fc319c5fbd089d2814578783ef}
+      \strng{authorfullhash}{3f7473fc319c5fbd089d2814578783ef}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{7}
+      \field{month}{3}
+      \field{title}{MVC Design Pattern}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb :MVC Design Pattern.pdf:PDF
+      \endverb
+    \endentry
+    \entry{jfreechart}{online}{}
+      \name{author}{1}{}{%
+        {{hash=af6ebe8d65d19455bf455a1c4b7d5b79}{%
+           family={{Andreas Viklund}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{af6ebe8d65d19455bf455a1c4b7d5b79}
+      \strng{fullhash}{af6ebe8d65d19455bf455a1c4b7d5b79}
+      \strng{bibnamehash}{af6ebe8d65d19455bf455a1c4b7d5b79}
+      \strng{authorbibnamehash}{af6ebe8d65d19455bf455a1c4b7d5b79}
+      \strng{authornamehash}{af6ebe8d65d19455bf455a1c4b7d5b79}
+      \strng{authorfullhash}{af6ebe8d65d19455bf455a1c4b7d5b79}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{17}
+      \field{month}{3}
+      \field{title}{JfreeChart}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb http://www.jfree.org/jfreechart/�
+      \endverb
+      \verb{url}
+      \verb http://www.jfree.org/jfreechart/%EF%BF%BD
+      \endverb
+    \endentry
+    \entry{apache}{online}{}
+      \name{author}{1}{}{%
+        {{hash=591fd05c2b7efba60bf8751a931f7c94}{%
+           family={{The Apache Software Foundation}},
+           familyi={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{591fd05c2b7efba60bf8751a931f7c94}
+      \strng{fullhash}{591fd05c2b7efba60bf8751a931f7c94}
+      \strng{bibnamehash}{591fd05c2b7efba60bf8751a931f7c94}
+      \strng{authorbibnamehash}{591fd05c2b7efba60bf8751a931f7c94}
+      \strng{authornamehash}{591fd05c2b7efba60bf8751a931f7c94}
+      \strng{authorfullhash}{591fd05c2b7efba60bf8751a931f7c94}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{17}
+      \field{month}{3}
+      \field{title}{Commons Math}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://commons.apache.org/proper/commons-math/�
+      \endverb
+      \verb{url}
+      \verb https://commons.apache.org/proper/commons-math/%EF%BF%BD
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

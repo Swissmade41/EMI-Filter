@@ -1,25 +1,13 @@
 \section{Übersicht} \label{sec:uebersicht}
 \subsection{Ausgangslage}
 
-
-In einer hochtechnisierten Gesellschaft, wo pro Haushalt diverse Elektrogeräte zum Einsatz kommen, stellt sich die Frage, funktioniert das einwandfrei wenn verschiedene Geräte an dasselbe Netz angeschlossen werden?
-Niemand will darauf verzichten sich gleichzeitig die Haare zu föhnen und dabei fernzusehen und darum muss eine Lösung her. \\ Um den reibungslosen Betrieb erwähnter Geräte zu gewährleisten, braucht es EMI-Filter  (Electro Magnetic Interferrence). Diese sogenannten Netzfilter schützen die anderen Geräte vor hochfrequenten Emissionen, die im Schalznezteil eines Gerätes entstehen. Unter einem Netzfilter kann man sich ein Bauteil vorstellen, das am Eingang eines Gerätes geschaltet wird und nur den gewünschten Frequenzbereich, in der Schweiz 50 Hz, durchlässt. \\ So weit so gut. Doch wie werden solche Filter denn gemacht? \\
-Die Antwort liegt nahe. Es wird aus Widerständen, Kondensatoren und Spulen ein Netzwerk gebaut. dem ein Diagramm beigelegt wird. In diesem Diagramm wird die Dämpfungseigenschaft in Dezibel in Abhängigkeit von der Frequenz aufgezeigt. Ausserdem ist entscheidend welche Einfügungsverluste der Filter hat, das sind die Leistungsverluste im Filter. \\ %TODO Dieser letzte Ist mir nicht ganz verständlich, handelt es sich nicht um das gleiche?
-
-Diese Werte sind matchentscheidend für das bestehen auf einem hochspezialisierten Markt. 
-Nun hat Herr Dalessandro von der Schaffner Gruppe uns die Aufgabe gestellt ein tool zu programmieren, dass in der Entwicklung von solchen Filter eingesetzt werden kann. Es geht darum die oben genannten Spezifikationen bereits auf dem Papier aufzuzeigen. Mit diesem einzigartigen Programm kann man nämlich bereits während der Planung eines Filters simlieren, welchen Einfluss die verschiedenen realen Bauteile auf den fertigen Filter haben.
-
-Im Folgenden ein Versuch zur Lösung einer hochkomplexen Aufgabe. 
- 
+In der modernen Gesellschaft hängen von Jahr zu Jahr mehr elektrische Verbraucher am Stromnetz. Der stetig steigende Leistungsbedarf dieser Verbraucher führt dazu, dass ihre Versorgung angepasst werden muss. Aus dem konventionellen Trafo-Netzteil entstand das sogenannte Schaltnetzteil. Dieses hat grosse Vorteile gegenüber dem Trafo-Netzteil, sowohl wirtschaftlich gesehen, als auch leistungsbezogen. \\Allerdings haben sie auch einen Nachteil. Sie lassen hochfrequente Störungen (EMI), entstehen, welche ins Netz zurückfliessen. Diese Störungen, welche man als Gleichtakt- und Gegentaktrauschen bezeichnet, können wiederum in anderen Verbrauchern  Störungen verursachen. \\Aufgrund dieses Problems wurden verschiedene Normen an Geräte gestellt um diese Emissionen zu minimieren. Daher werden in moderne Schaltnetzteile EMI-Filter verbaut.  Diese, auch Netzfilter genannt, bestehen aus einem Netzwerk von  aus Widerständen, Kondensatoren und Spulen. Da im Schaltnetzteil die Netzfrequenz in eine hochfrequente Spannung gewandlet wird, reagieren die Bauteile als Impedanzen und sie filtern, je nach Bauform, verschiedene hochfrequente Signale aus der Rückspeisung.
 
 
-%TODO In der modernen Gesellschaft hängen von Jahr zu Jahr mehr elektrische Verbraucher am Stromnetz. Der erhöhte Leistungsbedarf dieser Verbraucher, beginnend vor ca 30 Jahren, führte dazu, dass ihre Versorgung angepasst werden musste. Aus dem konventionellen Trafo-Netzteil entstand das sogenannte Schaltnetzteil. Dieses hat grosse Vorteile gegenüber dem Trafo-Netzteil, sowohl wirtschaftliche, als auch leistungsbezogen. \\Allerdings haben sie auch einen Nachteil. Sie lassen hochfrequente Störungen (EMI), entstehen, welche ins Netz zurückfliessen. Diese Störungen, welche man als Gleichtakt- und Gegentaktrauschen bezeichnet können wiederum in anderen Verbrauchern  Störungen verursachen. \\Als dieses Problem erkannt wurde, wurden verschiedene Normen an Geräte gestellt um diese Emissionen zu minimieren. Daher werden in die Schaltnetzteile EMI-Filter verbaut.  Diese, ebenfalls Netzfilter genannt, bestehen aus einem Netzwerk von  aus Widerständen, Kondensatoren und Spulen. Da im Schaltnetzteil die Netzfrequenz in eine hochfrequente Spannung gewandlet wird, reagieren die Bauteile als Impedanzen und filtern, je nach Bauform verschiedene hochfrequente Signale aus der Rückspeisung.
+Der Auftrag von Dr. Dalessandro lautet eine Applikation zu entwickeln, welche in der Entwicklung von solchen Filtern eingesetzt werden kann. Die Anforderungen an die Applikation sind, dass die Dämpfungseigenschaften des Filters simuliert und graphisch angezeigt werden können. Dabei sollen die Gleichtakt- und die Gegentaktstörungen differenziert betrachtet weden können. Ebenfalls soll die Applikation in der Lage sein, die parasitären Einflüsse der einzelnen Parameter (Bauteile) um ± 30 \% zu variieren.   
 
 
-%TODO Der Auftrag von Dr. Dalessandro lautet eine Applikation zu entwickeln, welche in der Entwicklung von solchen Filtern eingesetzt werden kann. Die Anforderungen an die Applikation sind, dass die Dämpfungseigenschaften des Filters simuliert und graphisch angezeigt werden können. Dabei sollen die Gleichtakt- und die Gegentaktstörungen differenziert betrachtet weden können. Ebenfalls soll die Applikation in der Lage sein, die parasitären Einflüsse der einzelnen Parameter (Bauteile) um ± 30 % zu variieren.   %TODO diese eigenschaften wurden doch bereits im org teil erklärt, müssen die hier noch einmal rein?
-
-
-%TODO Dieses Pflichtenheft beschreibt die technischen Aspekte des Auftrags und liefert bereits Ideen zur Umsetzung. 
+Dieses Pflichtenheft beschreibt die technischen Aspekte des Auftrags und liefert bereits Ideen betreffend der Umsetzung. 
  
 
 \newpage
