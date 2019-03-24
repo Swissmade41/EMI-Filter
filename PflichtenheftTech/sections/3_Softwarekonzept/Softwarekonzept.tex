@@ -2,9 +2,9 @@
 
 \subsection{Anforderung Software} \label{subsec:anforderungSoftware}
 
-Die Software soll das Frequenzverhalten und die Einfügungsverluste von CM und DM des EMI-Filters simulieren können. Das Werkzeug soll insbesondere mit einer Empfindlichkeitsanalyse die Auswirkungen der parasitäreren Parameter auf die Einfügungsverluste des Filters darstellen. Die parasitären Filterparameter können in einem Bereich von ± 30\% variiert werden. Der Filter wird mit Hilfe von CM- und DM äquivalenten Schaltungsmodelle berechnet. Um die Auswirkungen der Parametervariation besser sichtbar zu machen, wird der Frequenzbereich des Filters in 3 Sektoren aufgeteilt: 0 kHz bis 500 kHz, 500 kHz bis 5 MHz und 5 MHz bis 30 MHz. 
+Die Software soll das Frequenzverhalten und die Einfügungsverluste von CM und DM des EMI-Filters simulieren können. Das Werkzeug soll insbesondere mit einer Empfindlichkeitsanalyse die Auswirkungen der parasitäreren Parameter auf die Einfügungsverluste des Filters darstellen. Die parasitären Filterparameter können in einem Bereich von ± 30\% variiert werden. Der Filter wird mit Hilfe von CM- und DM äquivalenten Schaltungsmodellen berechnet. Um die Auswirkungen der Parametervariation besser sichtbar zu machen, wird der Frequenzbereich des Filters in 3 Sektoren aufgeteilt: 0 kHz bis 500 kHz, 500 kHz bis 5 MHz und 5 MHz bis 30 MHz. 
 
-Die folgende Konzeptbeschreibung der Software bezieht sich auf die maximal anzustrebende Lösung, dass heisst mit allen Wunschzielen inkludiert. Die Software wird so strukturiert, dass wenn diese Lösung nicht erreicht wird, die Software gut zur  maximal anzustrebende Lösung erweiterbar ist. Das Klassendiagramm ist in der Abbildung \ref{fig:Klassendiagramm} \nameref{fig:Klassendiagramm} ersichtlich.
+Die folgende Konzeptbeschreibung der Software bezieht sich auf die maximal anzustrebende Lösung, dass heisst mit allen Wunschzielen inkludiert. Die Software wird so strukturiert, dass wenn diese Lösung nicht erreicht wird, die Software trotzdem gut zur maximal anzustrebenden Lösung erweiterbar ist. Das Klassendiagramm ist in der Abbildung \ref{fig:Klassendiagramm} \nameref{fig:Klassendiagramm} ersichtlich.
 
 
 
@@ -93,14 +93,14 @@ Die Software wird mit dem Model-View-Controller Entwurfsmuster (MVC Design Patte
 
 \subsubsection{Model} \label{subsubsec:model}
 
-Das Model enthält Arbeitsdaten eines Programmes und ist für die Berechnungen zuständig. Das Model enthält niemals Referenzen auf die view und den controller und ist somit von diesen Teilen abgegrenzt.
+Das Model enthält Arbeitsdaten eines Programmes und ist für die Berechnungen zuständig. Das Model enthält niemals Referenzen auf die View und den Controller und ist somit von diesen Teilen abgegrenzt.
 
 \subsubsection{View} \label{subsubsec:View}
-Die view ist für die Darstellung der Programmoberfläche (GUI) und der Berechnungen zuständig. Mit entsprechender Schnittstellen werden die Benutzereingaben weitergeleitet.
+Die View ist für die Darstellung der Programmoberfläche (GUI) und der Berechnungen zuständig. Mit entsprechenden Schnittstellen werden die Benutzereingaben weitergeleitet.
 
 \subsubsection{Controller} \label{subsubsec:Controller}
 
-Der Controller ist die vermittelnde Schicht zwischen der Grafischen Darstellung und den Berechnungen. Der controller muss somit Zugriff auf die Programmoberfläche und Daten haben.
+Der Controller ist die vermittelnde Schicht zwischen der Grafischen Darstellung und den Berechnungen. Der Controller muss somit Zugriff auf die Programmoberfläche und auf die Daten haben.
 
 \newpage 
 

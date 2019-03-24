@@ -1,7 +1,7 @@
 \section{Theoretische Grundlagen} \label{sec:TheoretischeGrundlagen}
 
 \subsection{EMI-Filter} \label{subsec:emifilter}
-Das vorgegebene EMI-Filter muss bezüglich der Einfügungsverluste (insertion loss) untersucht werden. Die Einfügunsverluste hängen vom Gesamtrauschen der Schaltung ab. Es wird ein Ansatz verwendet, der in der Praxis weit verbreitet ist, bei welchem das Gesamtrauschen in zwei Komponenten unterteilt wird. Man spricht vom Gegen-(=Differential Mode=DM) und Gleichtaktrauschen (=Common Mode=CM). Anhand der vorgegebenen CM- und DM-Äquivalenten Schaltungen (Abbildungen \ref{fig:CM-Schaltungäquivalent}, \ref{fig:DM-Schaltungsäquivalent})werden die Einfügungsverluste in Funktion der Frequenz berechnet. Die Berechnungen decken einen Bereich von 0 bis 30MHz ab. 
+Das vorgegebene EMI-Filter muss bezüglich der Einfügungsverluste (Insertion Loss) untersucht werden. Die Einfügunsverluste hängen vom Gesamtrauschen der Schaltung ab. Es wird ein Ansatz verwendet, der in der Praxis weit verbreitet ist, bei welchem das Gesamtrauschen in zwei Komponenten unterteilt wird. Man spricht vom Gegen-(=Differential Mode=DM) und Gleichtaktrauschen (=Common Mode=CM). Anhand der vorgegebenen CM- und DM-Äquivalenten Schaltungen (Abbildungen \ref{fig:CM-Schaltungäquivalent}, \ref{fig:DM-Schaltungsäquivalent})werden die Einfügungsverluste in Funktion der Frequenz berechnet. Die Berechnungen decken einen Bereich von 0 bis 30MHz ab. 
 
 Die Einfügungsverluste sind wie folgt definiert: 
 \begin{equation}\label{equ:Freqgang}
@@ -110,8 +110,7 @@ Die Elemente der S-Matrix sind:
 \newpage
 
 \subsection{ABCD-Matrix}\label{ABCD-Matrix}
-Die ABCD-Matrix ist eine weitere gängige Variante, um das Verhalten von 2-Toren zu beschreiben. Diese Variante hat den Vorteil, dass man in Serie 
-geschaltene 2-Tore ohne grossen Aufwand zusammen rechnen kann. Sobald man die einzelnen ABCD-Matrixen gebildet hat und die Schaltung soweit vereinfacht ist, dass nur noch in Serie geschaltene ABCD-Matrixen vorzufinden sind, können diese miteinander multipliziert werden. Das Matrix-Produkt stellt dann die ABCD-Matrix der Gesamtschaltung dar. Folgende gängigen Schaltungen helfen die ABCD-Matrixen der einzelnen Schaltungsteilen zu bilden.
+Die ABCD-Matrix ist eine weitere gängige Variante, um das Verhalten von 2-Toren zu beschreiben. Diese Variante hat den Vorteil, dass man in Serie geschaltene 2-Tore ohne grossen Aufwand zusammen rechnen kann. Sobald man die einzelnen ABCD-Matrixen gebildet hat und die Schaltung soweit vereinfacht ist, dass nur noch in Serie geschaltene ABCD-Matrixen vorzufinden sind, können diese miteinander multipliziert werden. Das Matrix-Produkt stellt dann die ABCD-Matrix der Gesamtschaltung dar. Folgende gängigen Schaltungen helfen die ABCD-Matrixen der einzelnen Schaltungsteilen zu bilden.
 
 Die Längsimpedanz lässt sich anhand der ABCD-Matrix A\textsubscript{L} (Formel \ref{equ:horizImpedance}) darstellen
 \begin{figure}[H]
@@ -211,7 +210,7 @@ Folgender Abschnitt zeigt auf, wie die Einfügungsverluste ermittelt werden. Als
 	\end{minipage}
 \end{figure}
 \paragraph{Schritt 1: Berechnen der Längsimpedanz Z und der Queradmittanz Y\textsubscript{0}}\label{paragraph:schritt1}
-Für die Querimpedanz $Y_0$ ergibt sich die Formel
+Für die Queradmittanz $Y_0$ ergibt sich die Formel
 \begin{equation}\label{y_admittance}
 Y_0 = \frac{ 1 }{R_{Y1} + \frac{1}{j*\omega*C_{Y1}}+j*\omega*L_{Y1}} +\frac{ 1 }{R_{Y2} + \frac{1}{j*\omega*C_{Y2}}+j*\omega*L_{Y2}}
 \end{equation}
@@ -238,7 +237,7 @@ A_2 =
 \end{equation}
 
 \paragraph{Schritt 3: Gesamt-Kettenmatrix bilden}\label{paragraph:schritt3}
-Die ABCD-Matrixen haben den Vorteil, dass man sie sehr unkompliziert kaskadieren kann indem man das Produkt bildet.
+Die ABCD-Matrixen haben den Vorteil, dass man sie sehr unkompliziert kaskadieren kann, indem man das Produkt bildet.
 \begin{equation}
 A = A_1*A_2 = A_2 = \left[\begin{matrix}
 1 & 0\\ Y_0&1 
