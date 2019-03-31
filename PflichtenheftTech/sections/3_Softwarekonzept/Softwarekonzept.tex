@@ -2,32 +2,47 @@
 
 \subsection{Anforderung Software} \label{subsec:anforderungSoftware}
 
-Die Software soll das Frequenzverhalten und die Einfügungsverluste von CM und DM des EMI-Filters simulieren können. Das Werkzeug soll insbesondere mit einer Empfindlichkeitsanalyse die Auswirkungen der parasitäreren Parameter auf die Einfügungsverluste des Filters darstellen. Die parasitären Filterparameter können in einem Bereich von ± 30\% variiert werden. Der Filter wird mit Hilfe von CM- und DM äquivalenten Schaltungsmodellen berechnet. Um die Auswirkungen der Parametervariation besser sichtbar zu machen, wird der Frequenzbereich des Filters in 3 Sektoren aufgeteilt: 0 kHz bis 500 kHz, 500 kHz bis 5 MHz und 5 MHz bis 30 MHz. 
+Die Software soll das Frequenzverhalten und die Einfügungsverluste von CM und DM des EMI-Filters simulieren können. Das Werkzeug soll insbesondere mit einer Empfindlichkeitsanalyse die Auswirkungen der parasitäreren Parameter auf die Einfügungsverluste des Filters darstellen. Die parasitären Filterparameter können in einem Bereich von ± 30\% variiert werden. Der Filter wird mit Hilfe von CM- und DM äquivalenten Schaltungsmodellen berechnet. Um die Auswirkungen der Parametervariation besser sichtbar zu machen, wird der Frequenzbereich des Filters in 3 Sektoren aufgeteilt: 0 kHz bis 500 kHz, 500 kHz bis 5 MHz und 5 MHz bis 30 MHz. Das Klassendiagramm ist in der Abbildung \ref{fig:Klassendiagramm} ersichtlich.
 
-Die folgende Konzeptbeschreibung der Software bezieht sich auf die maximal anzustrebende Lösung, dass heisst mit allen Wunschzielen inkludiert. Die Software wird so strukturiert, dass wenn diese Lösung nicht erreicht wird, die Software trotzdem gut zur maximal anzustrebenden Lösung erweiterbar ist. Das Klassendiagramm ist in der Abbildung \ref{fig:Klassendiagramm} \nameref{fig:Klassendiagramm} ersichtlich.
+\subsection{Softwarestruktur} \label{subsec:softwarestruktur}
 
+Die Software wird mit dem Model-View-Controller Entwurfsmuster (MVC Design Pattern) \cite{MVCDesignPattern} strukturiert. Durch diese Strukturierung ist es weitgehende möglich die Daten und dessen graphischer Repräsentation zu trennen. Dies vereinfacht Wartungsarbeiten und die Wiederverwendbarkeit von Programmteile. Die Struktur ist in die drei Teilen Modell(engl. model), Präsentation(engl. view) und Steuerung(engl. controller) unterteilt
 
+\subsection{softwareelemente} \label{subsec:softwareelemente}
 
-\subsection{GUI} \label{subsec:GUI}
+\subsubsection{Eingabefenster} \label{subsubsec:eingabefenster}
 
-Die GUI wird in 5 Teilbereiche aufgeteilt: Menu, Filtertabelle, CM/DM Plot, Buttonfenster und Eingabefenster. In der Abbildung \ref{fig:GUI} \nameref{fig:GUI} ist die Benutzerfläche des Programms dargestellt.
+Das Eingabefenster ist dazu da, die einzelnen parasitären Filterparameter einzustellen und die Toleranz von ± 30\% mit einem Schieberegler zu variieren (TODO:Zielverweis). Die  Textfelder werden vor Fehleingaben geschützt (TODO:Zielverweis) und unterstützt spezielle Eingabeformen (z.B 10 milli=10m) (TODO:Zielverweis)
+
+\subsubsection{CM/DM Plot} \label{subsubsec:CM_DMplot}
+
+Um die Berechnungen zu visualisieren werden 2 Plots für CM und DM verwendet(TODO:Zielverweis) Die Plots sind für die bessere Darstellung in 3 Frequenzbereiche aufgeteilt:0 kHz bis 500 kHz, 500 kHz bis 5 MHz und 5 MHz bis 30 MHz. Mit einem Rechtsklick auf den Plot können verschiedene Optionen ausgewählt werden. (TODO:Zielverweis) So können die Eigenschaften (Farbe, Darstellung, Schrift usw.) und der Zoom individuell eingestellt werden. Der Plot kann auch direkt in eine .png Datei abgespeichert oder gedruckt werden. Diese Optionen sind in der Abbildung \ref{fig:PlotSettings} ersichtlich.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{GUI.png}
-	\caption{GUI}
-	\label{fig:GUI}
-\end{figure}
+	\includegraphics[width=4cm]{PlotSettings.png}
+	\caption{Ploteinstellungen}
+	\label{fig:PlotSettings}
+\end{figure} 
 
-\newpage
+
+\subsubsection{Filtertabelle} \label{subsubsec:filtertabelle}
+
+Für das Wunschziel (TODO:Zielverweis) kann in einer Filtertabelle alle erstellte Filterprofile dargestellt und verwaltet werden.  Mit einer Checkbox können einzelne Profile im Plot aus- bzw. eingeblendet werden. Zudem kann bei jedem Filterprofil einen Namen hinzugefügt werden. Die Werte der parasitären Filterparameter des ausgewählten Filterprofils werden in das Eingabefenster geladen und können dort verändert werden. Mit den Shortcuts Backspace and Delete können ausgewählte Profile gelöscht werden.
+
+\subsubsection{Buttonfenster} \label{subsubsec:buttonfenster}
+
+Im Buttonfenster können Filterprofile in die Filtertabelle geladen oder entfernt werden. (TODO:Zielverweis) Mit dem Button Add werden die eingegebene parasitären Filterparameter in einem neuen Filterprofil gespeichert. Mit dem Button Remove wird das ausgewählte Filterprofil gelöscht. Der Button dient als alternative zu den Shortcuts.
+
 
 \subsubsection{Menu} \label{subsubsec:menu}
 
-Im Menu können verschiedene Optionen ausgewählt werden. Diese sind ebenfalls alle mit einem Shortcut aufrufbar.
+Im Menu können verschiedene Optionen ausgewählt werden. Diese sind ebenfalls alle mit einem Shortcut aufrufbar. (TODO:Zielverweis Ziel Menu)
+
 \bigskip
 \shorthandoff{"}
 \paragraph{File} \label{para:file}
-Im Menupunkt "File" können Filterprofile gespeichert und geladen werden. Bei beiden Optionen wird der Explorer geöffnet um die .txt Datei im gewählten Verzeichnis abzulegen oder zu holen. In der Option Exit kann das Programm geschlossen werden. Dieser Menupunkt ist in der Abbildung \ref{fig:GUIFile} \nameref{fig:GUIFile} dargestellt.
+Im Menupunkt "File" können Filterprofile gespeichert und geladen werden. (TODO:Zielverweis) Bei beiden Optionen wird der Explorer geöffnet um die .txt Datei im gewählten Verzeichnis abzulegen oder zu holen. In der Option Exit kann das Programm geschlossen werden. Dieser Menupunkt ist in der Abbildung \ref{fig:GUIFile} \nameref{fig:GUIFile} dargestellt.
 
 \begin{figure}[H]
 	\centering
@@ -39,7 +54,7 @@ Im Menupunkt "File" können Filterprofile gespeichert und geladen werden. Bei be
 \bigskip
 
 \paragraph{Simulation} \label{para:simulation}
-Im Menupunkt "Simulation" kann die Simulationsart Monte Carlo ausgewählt werden. Es öffnet sich ein neues Fenster in dem der Parameter, die Toleranz und die Anzahl Messungen eingestellt werden kann. Dieser Menupunkt ist in der Abbildung \ref{fig:GUISimulation} dargestellt.
+Im Menupunkt "Simulation" kann die Simulationsart Monte Carlo ausgewählt werden.(TODO:Zielverweis) Es öffnet sich ein neues Fenster in dem der Parameter, die Toleranz und die Anzahl Messungen eingestellt werden kann. Dieser Menupunkt ist in der Abbildung \ref{fig:GUISimulation} dargestellt.
 
 \begin{figure}[H]
 	\centering
@@ -48,10 +63,10 @@ Im Menupunkt "Simulation" kann die Simulationsart Monte Carlo ausgewählt werden
 	\label{fig:GUISimulation}
 \end{figure}
 
-\bigskip
+\newpage
 
 \paragraph{Help} \label{para:Help}
-Im Menupunkt "Help" können die beiden CM- und DM äquivalenten Schaltungsmodelle, die zur Berechnung verwendet werden, in einem seperaten Fenster dargestellt werden. Dieser Menupunkt ist in der Abbildung \ref{fig:GUIHelp} \nameref{fig:GUIHelp} dargestellt.
+Im Menupunkt "Help" können die beiden CM- und DM äquivalenten Schaltungsmodelle, die zur Berechnung verwendet werden, in einem seperaten Fenster dargestellt werden. (TODO:Zielverweis) Dieser Menupunkt ist in der Abbildung \ref{fig:GUIHelp} \nameref{fig:GUIHelp} dargestellt.
 
 \begin{figure}[H]
 	\centering
@@ -60,49 +75,19 @@ Im Menupunkt "Help" können die beiden CM- und DM äquivalenten Schaltungsmodell
 	\label{fig:GUIHelp}
 \end{figure}
 \shorthandon{"}
-\newpage
 
-\subsubsection{Filtertabelle} \label{subsubsec:filtertabelle}
+\subsection{Programmablauf} \label{subsec:programmablauf}
 
-In der Filtertabelle werden alle erstellte Filterprofile dargestellt und verwaltet. Mit einer Checkbox können einzelne Profile im Plot aus- bzw. eingeblendet werden. Zudem kann bei jedem Filterprofil einen Namen hinzugefügt werden. Die parasitären Filterparameter des ausgewählten Filterprofils werden in das Eingabefenster geladen und können dort verändert werden. Mit den Shortcuts Backspace and Delete können ausgewählte Profile gelöscht werden.
+Der folgende Programmablauf ist auf die Maximallösung bezogen. In dieser Lösung sind alle Wunschziele(TODO: Auf Zielkapitel verweisen) vorhanden.
 
-\subsubsection{CM/DM Plot} \label{subsubsec:CM_DMplot}
+Nach dem Aufstarten des Programmes kann der Benutzer über die Programmoberfläche (\ref{fig:GUI} \nameref{fig:GUI}) seine Simulationen starten.
+Am Anfang ist ein default Filter initialisiert. Dieser ist in der Filtertabelle eingetragen, jedoch sind die parasitären Filterparameter im Eingabefenster noch undefiniert. Der Benutzer kann diese nun definieren und die berechneten Einfügungsverluste von CM und DM des EMI-Filters werden im Plot dargestellt. Mit dem Button Add wird der Filter abgespeichert und ein neuer Filter kann definiert werden. Es können somit mehrere Filter gleichzeitig dargestellt werden. 
 
-In den CM/DM Plots werden die Berechnungen logarithmisch visualisiert. Die Plots sind für die bessere Darstellung in 3 Frequenzbereiche aufgeteilt:0 kHz bis 500 kHz, 500 kHz bis 5 MHz und 5 MHz bis 30 MHz. Mit einem Rechtsklick auf den Plot können verschiedene Optionen ausgewählt werden. So können die Eigenschaften (Farbe, Darstellung, Schrift usw.) und der Zoom individuell eingestellt werden. Der Plot kann auch direkt in eine .png Datei abgespeichert oder gedruckt werden. Diese Optionen sind in der Abbildung \ref{fig:PlotSettings} \nameref{fig:PlotSettings} ersichtlich.
+Um die Filter richtig zu verwalten ist es möglich in der Filtertabelle über die Checkbox einzelne Filter im Plot ein und auszublenden. Ebenfalls können sie spezifisch benannt werden. Der Plot und die einzelnen Kurven können mit einem Rechtsklick auf den CM/DM Plot individuell angepasst und auch exportiert werde. Wird ein Filter nicht mehr benötigt kann er in der Filtertabelle angewählt und mit dem Button Remove entfernt werden. Damit der Benutzer nicht jedesmal die Filterprofile einstellen muss, können diese über File/Save filterprofil in einer .txt Datei abgespeichert werden. Bei einem Neustart des Programmes kann über File/Load filterprofile die Filterprofile wieder geladen werden. 
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=4cm]{PlotSettings.png}
-	\caption{Ploteinstellungen}
-	\label{fig:PlotSettings}
-\end{figure} 
-
-\subsubsection{Buttonfenster} \label{subsubsec:buttonfenster}
-
-Im Buttonfenster können Filterprofile in die Filtertabelle geladen oder entfernt werden. Mit dem Button Add werden die eingegebene parasitären Filterparameter in einem neuen Filterprofil gespeichert. Mit dem Button Remove wird das ausgewählte Filterprofil gelöscht. Der Button dient als alternative zu den Shortcuts.
-
-\subsubsection{Eingabefenster} \label{subsubsec:eingabefenster}
-
-Im Eingabebereich befinden sich die einzelnen parasitären Filterparameter. Es können Werte eingegeben und diese mit einer Toleranz von ± 30\% mit einem Schieberegler variiert werden. Die Werte werden direkt in die Filterprofile geladen, um eine Neuberechnung durchzuführen.
+Um die Auswirkungen einzelner parasitären Filterparameter besser zu analysieren, kann unter Simulation/Monte Carlo eine Monte Carlo Simulation gestartet werden. Es wird ein neues Fenster geöffnet in dem der Filterparameter, die Toleranz und die Anzahl Berechnungen eingestellt werden können. Jede Berechnung wird als einzelner Filter in die Filtertabelle geladen. Um nachzuschauen wo welche Filterparameter sich in der Schaltung befindet, können unter Help/CM electrical circuit und CM electrical circuit die Ersatzschaltungen, von der die Berechnungen ausgehen, angeschaut werden. Das Programm wird über File/Exit oder beim Schliessen des Fensters beendet.
 
 \newpage
-
-\subsection{Softwarestruktur} \label{subsec:softwarestruktur}
-
-Die Software wird mit dem Model-View-Controller Entwurfsmuster (MVC Design Pattern) \cite{MVCDesignPattern} strukturiert. Durch diese Strukturierung ist es weitgehende möglich die Daten und dessen graphischer Repräsentation zu trennen. Dies vereinfacht Wartungsarbeiten und die Wiederverwendbarkeit von Programmteile. Die Struktur ist in die drei Teilen Modell(engl. model), Präsentation(engl. view) und Steuerung(engl. controller) unterteilt
-
-\subsubsection{Model} \label{subsubsec:model}
-
-Das Model enthält Arbeitsdaten eines Programmes und ist für die Berechnungen zuständig. Das Model enthält niemals Referenzen auf die View und den Controller und ist somit von diesen Teilen abgegrenzt.
-
-\subsubsection{View} \label{subsubsec:View}
-Die View ist für die Darstellung der Programmoberfläche (GUI) und der Berechnungen zuständig. Mit entsprechenden Schnittstellen werden die Benutzereingaben weitergeleitet.
-
-\subsubsection{Controller} \label{subsubsec:Controller}
-
-Der Controller ist die vermittelnde Schicht zwischen der Grafischen Darstellung und den Berechnungen. Der Controller muss somit Zugriff auf die Programmoberfläche und auf die Daten haben.
-
-\newpage 
 
 \subsubsection{Klassendiagramm} \label{subsubsec:Klassendiagramm}
 
@@ -115,27 +100,26 @@ Der Controller ist die vermittelnde Schicht zwischen der Grafischen Darstellung 
 
 \newpage
 
-\subsection{Programmablauf} \label{subsec:programmablauf}
+\subsection{GUI} \label{subsec:GUI}
+
+Die GUI wird in 5 Teilbereiche aufgeteilt: Menu, Filtertabelle, CM/DM Plot, Buttonfenster und Eingabefenster. In der Abbildung \ref{fig:GUI} \nameref{fig:GUI} ist die Benutzerfläche des Programms dargestellt.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{GUI.png}
+	\caption{GUI}
+	\label{fig:GUI}
+\end{figure}
 
 
-Nach dem Aufstarten des Programmes kann der Benutzer über die Programmoberfläche (\ref{fig:GUI} \nameref{fig:GUI}) seine Simulationen starten.
-Am Anfang ist ein default Filter initialisiert. Dieser ist in der Filtertabelle eingetragen, jedoch sind die parasitären Filterparameter im Eingabefenster noch undefiniert. Der Benutzer kann diese nun definieren und die berechneten Einfügungsverluste von CM und DM des EMI-Filters werden im Plot dargestellt. Mit dem Button Add wird der Filter abgespeichert und ein neuer Filter kann definiert werden. Es können somit mehrere Filter gleichzeitig dargestellt werden. 
-
-Um die Filter richtig zu verwalten ist es möglich in der Filtertabelle über die Checkbox einzelne Filter im Plot ein und auszublenden. Ebenfalls können sie spezifisch benannt werden. Der Plot und die einzelnen Kurven können mit einem Rechtsklick auf den CM/DM Plot individuell angepasst und auch exportiert werde. Wird ein Filter nicht mehr benötigt kann er in der Filtertabelle angewählt und mit dem Button Remove entfernt werden. Damit der Benutzer nicht jedesmal die Filterprofile einstellen muss, können diese über File/Save filterprofil in einer .txt Datei abgespeichert werden. Bei einem Neustart des Programmes kann über File/Load filterprofile die Filterprofile wieder geladen werden. 
-
-Um die Auswirkungen einzelner parasitären Filterparameter besser zu analysieren, kann unter Simulation/Monte Carlo eine Monte Carlo Simulation gestartet werden. Es wird ein neues Fenster geöffnet in dem der Filterparameter, die Toleranz und die Anzahl Berechnungen eingestellt werden können. Jede Berechnung wird als einzelner Filter in die Filtertabelle geladen. Um nachzuschauen wo welche Filterparameter sich in der Schaltung befindet, können unter Help/CM electrical circuit und CM electrical circuit die Ersatzschaltungen, von der die Berechnungen ausgehen, angeschaut werden. Das Programm wird über File/Exit oder beim Schliessen des Fensters beendet.
- 
 
 \subsection{Libraries} \label{subsec:Libraries}
 
 In der Software werden folgende Libraries verwendet:
 
 \textbf{Swing}: Mit dem vorinstallierten Swing Framework von Java wird die GUI aufgebaut.
-
 \textbf{JFreeChart}: Die Berechnungen werden mit JFreeChart grafisch also Plot dargestellt. \cite{jfreechart}
-
 \textbf{Apache Math Commons} Die Apache Math Commons Library beinhaltet wichtige Mathematikfunktionen, wie rechnen mit Komplexen Zahlen usw. \cite{apache}
-
 \textbf{Engineering Text Fields} Die von Prof. Dr. Richard Gut zur Verfügung gestellte Klasse verhindert Fehleingaben und vereinfacht die Eingabe von Zahlen (nano,piko...)
 
 \newpage
