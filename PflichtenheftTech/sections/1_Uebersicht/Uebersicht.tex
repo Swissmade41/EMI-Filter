@@ -18,43 +18,36 @@ In der Folgenden Tabelle(ref?) werden alle Ziele aufgeleistet.In Kapitel 2 werde
 \newcommand{\HY}{\hyphenpenalty = 25\exhyphenpenalty = 25}
 \begin{table}[H]\label{tab:ziele}\caption{Ziele}
 \small
-\begin{tabular}{>{\HY\RaggedRight}p{7cm} >{\HY\RaggedRight}p{2cm} >{\HY\RaggedRight}p{2cm} >{\HY\RaggedRight}p{2cm}}
+\begin{tabular}{>{\HY\RaggedRight}p{7cm} >{\HY\RaggedRight}p{1.5cm} >{\HY\RaggedRight}p{1.5cm} >{\HY\RaggedRight}p{3cm}}
 \hline
-\textbf{Ziel}					&\textbf{Muss}	&\textbf{Soll}	&\textbf{Ref}			\\						
+\textbf{Ziel}					&\textbf{Muss}	&\textbf{Soll}	&\textbf{Zielbezeichnung}			\\						
 \hline
 \rowcolor{hellgrau}
-\multicolumn{4}{l}{\textbf{1.Plattform}}\\
-1.1 Unabhängigkeit		&\ x &\  &\ kap13\\
-1.2 Dummy		&\ dummy &\ dummy &\ kap13\\
-
-\rowcolor{hellgrau}
-\multicolumn{4}{l}{\textbf{2. Programmstruktur}}\\
-2.1 Berechnungen und GUI getrennt		&\ x &\  &\ kap13\\
-2.2 Modular aufgebaut/erweiterbar		&\ x &\  &\ kap13\\
-2.3 Dummy		&\ dummy &\ dummy &\ kap13\\
-
+\multicolumn{4}{l}{\textbf{Fachliche Anforderung}}\\
+Unabhängigkeit von Betriebssystemen		&\ x &\  &\ F1\\
+Modular aufgebaut/erweiterbar		&\ x &\  &\ F2\\
+Berechnungen und GUI getrennt		&\ x &\  &\ F3\\
+ Berechnungszeit < 10 Sek.		&\ x &\  &\ F4\\
+Unabhängige Komponenten		&\   &\ x &\ F5\\
+Verstellbare Parameter		&\ x &\   &\ F6\\
+Verschiedene Berechnungsmodi		&\ x &\   &\ F7\\	
+Monte-Carlo Simulation &\   &\ x &\ F8\\
 
 \rowcolor{hellgrau}
 \multicolumn{4}{l}{\textbf{3. Graphische Anforderungen}}\\			
-3.1 Frequenzbereich bis 5MHz		&\ x &\  &\ kap13\\
-3.2 Mehrere Plots gleichzeitig		&\ x &\  &\ kap13\\
-3.3 Export von Plots		&\  &\ x &\ kap13\\
-3.4 Visualisierung der Schaltung		&\  &\ x &\ kap13\\	
+Visualisierung der Schaltung		&\  &\ x &\ G1\\	
+Einfache und schnelle Eingabemöglichkeit &\ x &\  &\ G2\\
+Darstellung im Frequenzbereich bis 30MHz		&\ x &\  &\ G3\\
+Mehrere Plots gleichzeitig		&\ x &\  &\ G4\\
+Auslagern des Plots		&\   &\ x &\ G5\\
+
 
 \rowcolor{hellgrau}
-\multicolumn{4}{l}{\textbf{4. Mathematische Anforderungen}}\\			
-4.1 Berechnungszeit < 10 Sek.		&\ x &\  &\ kap13\\
-4.2 Unabhängige Komponenten		&\   &\ x &\ kap13\\
-4.3 Verstellbare Parameter		&\ x &\   &\ kap13\\
-4.4 Verschiedene Berechnungsmodi		&\ x &\   &\ kap13\\	
-4.5 Monte-Carlo Simulation &\   &\ x &\ kap13\\
-
-\rowcolor{hellgrau}
-\multicolumn{4}{l}{\textbf{5. Bedienhilfen}}\\			
-5.1 Schutz vor Fehleingaben		&\ x &\   &\ kap13\\
-5.2 Auslagern des Plots		&\   &\ x &\ kap13\\
-5.3 Speicherverwaltung		&\   &\ x &\ kap13\\
-5.4 Import von Daten		&\   &\ x &\ kap13\\	
+\multicolumn{4}{l}{\textbf{Anforderungen an die Bedienung}}\\			
+Schutz vor Fehleingaben		&\ x &\   &\ B1\\
+Export von Plots		&\  &\ x &\ B2\\
+Speicherverwaltung		&\   &\ x &\ B3\\
+Import von Daten		&\   &\ x &\ B4\\	
 				
 \hline
 \end{tabular}
