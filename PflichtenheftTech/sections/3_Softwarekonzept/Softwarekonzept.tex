@@ -1,14 +1,85 @@
 \section{Softwarekonzept} \label{sec:softwarekonzept}
 
+Die Beschreibung der Software wird in 2 Sektionen unterteilt. Zuerst werden die in der Zieltabelle aufgeführten technischen und die graphischen Anforderungen beschrieben.  Anschliessend werden die Anforderungen an die Bedienung definiert. und zum Schluss werden die einzelnen Elemente der GUI, und somit die Bedienung erklärt.
+
 \subsection{Anforderung Software} \label{subsec:anforderungSoftware}
 
-Die Software soll das Frequenzverhalten und die Einfügungsverluste von CM und DM des EMI-Filters simulieren können. Das Werkzeug soll insbesondere mit einer Empfindlichkeitsanalyse die Auswirkungen der parasitäreren Parameter auf die Einfügungsverluste des Filters darstellen. Die parasitären Filterparameter können in einem Bereich von ± 30\% variiert werden. Der Filter wird mit Hilfe von CM- und DM äquivalenten Schaltungsmodellen berechnet. Um die Auswirkungen der Parametervariation besser sichtbar zu machen, wird der Frequenzbereich des Filters in 3 Sektoren aufgeteilt: 0 kHz bis 500 kHz, 500 kHz bis 5 MHz und 5 MHz bis 30 MHz. Das Klassendiagramm ist in der Abbildung \ref{fig:Klassendiagramm} ersichtlich.
 
-\subsection{Softwarestruktur} \label{subsec:softwarestruktur}
+\subsubsection{Fachliche Anforderungen} \label{subsubsec:fachlicheanforderungen}
 
-Die Software wird mit dem Model-View-Controller Entwurfsmuster (MVC Design Pattern) \cite{MVCDesignPattern} strukturiert. Durch diese Strukturierung ist es weitgehende möglich die Daten und dessen graphischer Repräsentation zu trennen. Dies vereinfacht Wartungsarbeiten und die Wiederverwendbarkeit von Programmteile. Die Struktur ist in die drei Teilen Modell(engl. model), Präsentation(engl. view) und Steuerung(engl. controller) unterteilt
+\bigskip
+\shorthandoff{"}
+\paragraph{Wahl der Plattform} \label{para:wahlderplattform}
+Java, Die Software wird mit dem Model-View-Controller Entwurfsmuster (MVC Design Pattern) \cite{MVCDesignPattern} strukturiert. Durch diese Strukturierung ist es weitgehende möglich die Daten und deren graphische Repräsentation zu trennen. Dies vereinfacht Wartungsarbeiten und die Wiederverwendbarkeit von Programmteile. Die Struktur ist in die drei Teilen Modell(engl. model), Präsentation(engl. view) und Steuerung(engl. 		controller) unterteilt
 
-\subsection{Softwareelemente} \label{subsec:softwareelemente}
+\bigskip
+\paragraph{Mathematische Anforderungen}\label{para:mathematischeanforderungen}
+%TODO noch zu schreiben	
+\bigskip
+\paragraph{Berechnungszeit}\label{para:berechnungszeit}
+Um die erwünschte Berechnungszeit zu erreichen werden die Berechnungen in eigenen Threads ausgeführt. Somit werden "Freezes" im Programm verhindert und mehrere Berechnungen können gleichzeitig ablaufen. Weiterhin wird darauf geachtet, dass die einzelnen Methoden ihre Resultate jeweils in globalen Variabeln abspeichern, damit jederzeit Zugriff besteht.	
+\bigskip
+\paragraph{Verstellbarkeit der Parameter}\label{para:verstellbarkeitderparameter}
+Eine der Kernfunktionen des Programms besteht darin, dass die Parameter verändert werden können um ihren Einfluss auf die Eingangsdämpfung zu erkennen. Die Parameter sollen um bis +/- 30\% verändert werden können. 		Da wir hauptsächlich die auswirkungen graphisch darstellen und analysieren wollen und mit die Veränderungen nicht andauernd eingetippt werden müssen, greifen wir mithilfe eines Schiebereglers darauf zu. 
+\bigskip
+\paragraph{Unterscheidung von CM und DM}\label{para:unterscheidcmdm}
+		Die zweite Kernfunktion des Programms liegt in der graphischen Anzeige der Berechnungen als Dämpfung in Abhängigkeit der Zeit. Dabei ist die Vorgabe, dass wir einen Plot zum Differential-Mode und einen zum Common-Mode erhalten.
+		
+\bigskip
+\paragraph{Monte-Carlo Analyse}\label{para:montecarlo}
+Als zusätzliche Simulationsmöglichkeit soll die sog. Monte-Carlo-Analyse implementiert werden. (TODO:Beschreibung MC-Sim)
+		
+\shorthandon{"}
+		
+\subsubsection{Graphische Anforderungen} \label{subsubsec:graphischeanforderungen}
+
+\bigskip
+\shorthandoff{"}
+\paragraph{Visualisierung der Schaltungen} \label{para:visualisierungderschaltungen}
+Als generelle Hilfestellung soll das Programm dazu in der Lage sein, das Elektronische Schema der jeweilig Simulierten Schaltung anzuzeigen.
+\bigskip
+\paragraph{Eingabemöglichkeiten}\label{para:eingabemöglichkeiten}
+		Da wir  die Auswirkungen hauptsächlich graphisch darstellen und analysieren wollen, und damit die Veränderungen nicht andauernd eingetippt werden müssen, greifen wir mithilfe eines Schiebereglers darauf zu.
+\bigskip
+\paragraph{Mehrere Plots}\label{para:mehrereplots}
+		Das Programm hat seine Vorteile im Direkten Vergleich von mehreren Simulationen. Zwecksdessen werden können wir Standartmässig zwei verschiedene Plots nebeneinander Anzeigen. Falls mehr als 2 Simulationen angezeigt 		werden sollen, können auch mehrere Filterprofile übereinander dargestellt werden. 
+\bigskip
+\paragraph{Frequenbereich}\label{para:frequenzbereich}
+		Da das Frequenzspektrum sehr weit ist werden die Plots logarithmisch zur Frequenzachse dargestellt. Sie werden farblich in 3 Bereiche unterteilt.
+\bigskip
+\paragraph{Auslagern eines Plots}\label{para:auslagerneinesplots}
+Damit die Bedienung intuitiver gestaltet wird soll es möglich sein die Plot-Fenster aus dem Frame auszulagern um sie beispielsweise zu Vergrössern. 
+		
+\shorthandon{"}
+
+\subsubsection{Anforderungen an die Bedienung} \label{subsubsec:bedienungsanforderungen}
+
+\bigskip
+\shorthandoff{"}
+\paragraph{Speicherverwaltung}  \label{para:speicherverwaltung}
+Um einen wirklichen Mehrwert zu schaffen soll die Software die Möglichkeit erhalten, eingestellte Filterprofile abzuspeichern und diese auch nach einem Neustart des Programms wieder zu verwenden. 
+		Ebenfalls soll es möglich sein die Plots als Bild, oder PDF-Datei zu exportieren um sie zu verwenden.
+\bigskip
+\paragraph{Bedienungshilfen}\label{para:bedienungshilfen}
+		Um den User vor Fehleingaben zu schützen verwenden wir die von Herr Gut zur Verfügung gestellten Klassen. diese (TODO:Haben wir überhaupt die Möglichkeit etwas einzugeben?^^)
+		Sämtliche Funktionen des Programms sind ebenfalls in einem Menu und mithilfe von Shortcuts aufrufbar.
+
+\shorthandon{"}
+
+%\subsection{Softwarestruktur} \label{subsec:softwarestruktur}
+
+%Die Software wird mit dem Model-View-Controller Entwurfsmuster (MVC Design Pattern) \cite{MVCDesignPattern} strukturiert. Durch diese %Strukturierung ist es weitgehende möglich die Daten und dessen graphischer Repräsentation zu trennen. Dies vereinfacht Wartungsarbeiten und die %Wiederverwendbarkeit von Programmteile. Die Struktur ist in die drei Teilen Modell(engl. model), Präsentation(engl. view) und Steuerung(engl. %controller) unterteilt
+
+%\subsection{Softwareelemente} \label{subsec:softwareelemente}
+
+\subsection{Umsetzung im GUI}\label{subsec:umsetzungimgui}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{GUI.png}
+	\caption{GUI}
+	\label{fig:GUI}
+\end{figure}
 
 \subsubsection{Eingabefenster} \label{subsubsec:eingabefenster}
 
@@ -26,7 +97,8 @@ Um die Berechnungen zu visualisieren werden 2 Plots für CM und DM verwendet(G1,
 \end{figure} 
 
 
-\subsubsection{Filtertabelle} \label{subsubsec:filtertabelle}
+%\subsubsection{Filtertabelle} \label{subsubsec:filtertabelle}
+\subsubsection{Speicherverwaltung} \label{subsubsec:speicherverwaltung}
 
 Für das Wunschziel (B3, \nameref{subsec:projektziele} \ref{subsec:projektziele}) kann in einer Filtertabelle alle erstellte Filterprofile dargestellt und verwaltet werden.  Mit einer Checkbox können einzelne Profile im Plot aus- bzw. eingeblendet werden. Zudem kann bei jedem Filterprofil einen Namen hinzugefügt werden. Die Werte der parasitären Filterparameter des ausgewählten Filterprofils werden in das Eingabefenster geladen und können dort verändert werden. Mit den Shortcuts Backspace and Delete können ausgewählte Profile gelöscht werden.
 
@@ -63,7 +135,6 @@ Im Menupunkt "Simulation" kann die Simulationsart Monte Carlo ausgewählt werden
 	\label{fig:GUISimulation}
 \end{figure}
 
-\newpage
 
 \paragraph{Help} \label{para:Help}
 Im Menupunkt "Help" können die beiden CM- und DM äquivalenten Schaltungsmodelle, die zur Berechnung verwendet werden, in einem seperaten Fenster dargestellt werden(G5, \nameref{subsec:projektziele} \ref{subsec:projektziele}). Dieser Menupunkt ist in der Abbildung \ref{fig:GUIHelp} \nameref{fig:GUIHelp} dargestellt.
@@ -75,6 +146,9 @@ Im Menupunkt "Help" können die beiden CM- und DM äquivalenten Schaltungsmodell
 	\label{fig:GUIHelp}
 \end{figure}
 \shorthandon{"}
+
+
+\newpage
 
 \subsection{Programmablauf} \label{subsec:programmablauf}
 
@@ -99,18 +173,6 @@ Um die Auswirkungen einzelner parasitären Filterparameter besser zu analysieren
 \end{figure} 
 
 \newpage
-
-\subsection{GUI} \label{subsec:GUI}
-
-Die GUI wird in 5 Teilbereiche aufgeteilt: Menu, Filtertabelle, CM/DM Plot, Buttonfenster und Eingabefenster. In der Abbildung \ref{fig:GUI} \nameref{fig:GUI} ist die Benutzerfläche des Programms dargestellt.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=10cm]{GUI.png}
-	\caption{GUI}
-	\label{fig:GUI}
-\end{figure}
-
 
 
 \subsection{Libraries} \label{subsec:Libraries}
