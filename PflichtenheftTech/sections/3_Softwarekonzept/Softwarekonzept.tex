@@ -14,7 +14,7 @@ Java, Die Software wird mit dem Model-View-Controller Entwurfsmuster (MVC Design
 
 \bigskip
 \paragraph{Mathematische Anforderungen}\label{para:mathematischeanforderungen}
-%TODO noch zu schreiben	
+Das elektrische Verhalten der CM- und DM-äquivalenten Schaltungen, wird anhand der Streuparameter $S_{21}$ beschrieben. Um den Streuparameter $S_{21}$ zu bestimmen, werden die einzelnen Schaltungsteile in Form von A-Matrixen dargestellt. Diese werden wiederum durch Kaskadieren zu einer A-Matrix der Gesamtschaltungen  zusammengeführt. Der Streuparameter $S_{21}$ wird somit aus der A-Matrix dargestellt. Durch den $S_{21}$ ist durch die Definition die Einfügungsdämfung gegeben. Alle Berechnungen in Java werden zudem in Matlab berechnet, wie auch in der Simulationssoftware MPLAB Mindi simuliert. Dies dient der Verifizierung der Berechnungen in Java.
 \bigskip
 \paragraph{Berechnungszeit}\label{para:berechnungszeit}
 Um die erwünschte Berechnungszeit zu erreichen werden die Berechnungen in eigenen Threads ausgeführt. Somit werden "Freezes" im Programm verhindert und mehrere Berechnungen können gleichzeitig ablaufen. Weiterhin wird darauf geachtet, dass die einzelnen Methoden ihre Resultate jeweils in globalen Variabeln abspeichern, damit jederzeit Zugriff besteht.	
