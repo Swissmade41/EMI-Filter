@@ -1,23 +1,50 @@
 \section{Testkonzept} \label{sec:Testkonzept}
 
-Um das fertige Produkt zu testen werden drei Testläufe unternommen. Das soll garantieren, dass das Programm einwandfrei funktioniert. Dabei wird stets der Testlauf durchgeführt und danach werden die Ergebnisse validiert. 
-Zuerst wird das Programm durch das Projektteam getestet. 
-Im zweiten Testlauf wird das Programm dem Auftraggeber abgegeben. Er testet das Programm und gibt ein Feedback. 
-In der dritten Testphase wird das Programm an Mitstudenten oder in Elektrotechnik versierte Kollegen abgegeben. 
+Das Testkonzept definiert und beschreibt den Ablauf und die Methodik, wie die Software getestet und überprüft wird. Ziel ist eine einwandfreie Funktion sicherzustellen, wie auch die Erfüllung des Auftrages zu überprüfen. Als Wunschziel soll zudem die. Benutzerfreundlichkeit optimiert werden.
 
 
+\subsection{Kontinuierliche Kontrolle } \label{subsec:1}
 
-\subsection{1. Testphase} \label{subsec:1}
+Bereits während der Entwicklungsphase wir die Software kontinuierlich getestet um Folgefehler zu vermeiden. Diese werden jeweils direkt korrigiert und in einem Protokoll dokumentiert. 
 
-In der ersten Testphase werden die verschiedenen Teile des Programms unabhängig voneinander durch das Projektteam geprüft. 
-Das GUI wird mit der TraceV5 Methode in Java auf die richtige Programmabfolge getestet.
-Das Model in dem die Berechnungen stattfinden, wird mit einer Simulation überprüft. Dazu werden die gleichen Parameter wie einer MPLAB Mindi Simulation übergeben und danach eine Auswertung gemacht. Stimmen die erhaltenen Dämpfungskurven überein, kann mit der zweiten Testphase begonnen werden.
+\subsubsection{Überprüfung mittels Matlab  } \label{subsubsec:1}
 
-\subsection{2. Testphase} \label{subsec:2}
+Die Rückgabelwerte werden nach jeder Phase mittels Matlab kontrolliert und verglichen.
+Dies erfolgt aufbauend, also werden als erstes die einzelnen Klassen und Methoden nachgerechnet und verglichen. Alles wird vor der Integrierung einzeln überprüft, um wiederum Folgefehler zu vermeiden. Anschliessend werden die erstellten Funktionen einzeln überprüft. Schlussendlich wird die Software als Gesamtes durchgerechnet.
 
-In der zweiten Testphase wird das fertige Programm an Herrn Dalessandro übergeben. Er kann nach seinem Test allfällige Änderungen vorschlagen, am Konzept wird jedoch nichts mehr geändert. Es geht dabei mehr um kleine Anpassungen in der GUI und um einen Test in der realen Umgebung. Es wird nach dem Test erneut eine Validierung und gegebenenfalls eine Anpassung vorgenommen.
+
+\subsection{Softwaretest Intern} \label{subsec:2}
+
+Nach Vollendung der v0.9.5 wird die Software auf Herz und Nieren getestet.
+
+\subsubsection{Zielüberprüfung} \label{subsubsec:1}
+
+Die Software wird auf die Erfüllung aller gesteckten Ziele überprüft. Eventuelle Fehler werden behoben und dokumentiert.
+
+\subsubsection{Eingabefehlertest } \label{subsubsec:2}
  
+ Um eine hohe Qualität zu gewährleisten, werden bewusst eingaben getätigt welche die Software an Ihr Limit bringen sollte, um die Stabilität zu überprüfen. 
 
-\subsection{3. Testphase} \label{subsec:3}
+\subsection{Überprüfung durch Dritte} \label{subsec:3}
 
-Nach der zweiten Testphase wird das Programm an Mitstudenten und Interessierte zum Test abgegeben. Dabei wird das Programm einem Stresstest unterzogen, also möglichst viele Plots sollen berechnet und geöffnet werden. In dieser Testphase geht es vorallem darum das Benutzererlebnis für möglichst viele Anwender zu testen und feedbacks zu sammeln. Nach dieser letzten Testphase werden die Ergebnisse ausgewertet und alfällige Änderungen vorgenommen.
+Die Software wird durch Dritte überprüft. Die Prüfer sollen sowohl Fachfremde wie auch Experten sein. Im Vordergrund steht hierbei die intuitive Bedienung zu überprüfen.
+
+\subsubsection{Ablauf} \label{subsubsec:1}
+
+Die Prüfer erhalten eine kurze Einführung über EMI-Filter, die Software Bedienung wird jedoch nicht erklärt. Die Prüfer werden anhand eines Fragebogens ihre Beurteilung abgeben.
+
+\subsubsection{Auswertun} \label{subsubsec:2}
+
+Die  Fragebogen  werden ausgewertet und  in einem Dokument zussamengetragen, im Team wird dann über mögliche Änderungen entschieden 
+
+\subsection{Abnahme des Auftraggebers} \label{subsec:4}
+
+Wie besprochen wird Auftraggeber die Software zweimal zu überprüfen.
+
+\subsubsection{Vor-Abnahme} \label{subsubsec:1}
+
+Der Auftraggeber erhält in der Woche 20 die Version 0.9.5 zur Überprüfung. Dies gibt ihm die Möglichkeit seine Änderungswünsche einfliessen zu lassen. Wie in der Überprüfung durch Dritte erhält er keine Einführung in die Bedienung der Software.
+
+\subsubsection{Schlussabnahme} \label{subsubsec:2}
+
+Am Ende des Projekts wird Auftragnehmer die Software nochmals überprüfen. Gemeinsam wir ein Abnahmeprotokoll erstellt.
