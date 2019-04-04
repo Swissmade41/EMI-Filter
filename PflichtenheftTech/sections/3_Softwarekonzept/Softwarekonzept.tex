@@ -29,7 +29,7 @@ Das Klassendiagramm der Software ist in der Abbildung \ref{fig:Klassendiagramm} 
 
 \newpage
 
-\subsection{Fachliche Anforderungen} \label{subsubsec:fachlicheanforderungen}
+\subsection{analytische Anforderungen} \label{subsubsec:analytischeanforderungen}
 
 \bigskip
 \shorthandoff{"}
@@ -55,39 +55,7 @@ Die zweite Kernfunktion des Programms liegt in der graphischen Anzeige der Berec
 Als zusätzliche Simulationsmöglichkeit soll die sog. Monte-Carlo-Analyse implementiert werden. Mit dieser Analyse wird die Auswirkung der Toleranz eines einzelnen Parameters ausgewertet. 
 		
 		
-\subsection{Graphische Anforderungen} \label{subsec:graphischeanforderungen}
-
-\bigskip
-\subsubsection{Visualisierung der Schaltungen} \label{subsubsec:visualisierungderschaltungen}
-Als generelle Hilfestellung soll das Programm dazu in der Lage sein, das Elektronische Schema der jeweilig Simulierten Schaltung anzuzeigen.
-\bigskip
-\subsubsection{Eingabemöglichkeiten}\label{subsubsec:eingabemöglichkeiten}
-Da wir  die Auswirkungen hauptsächlich graphisch darstellen und analysieren wollen, und damit die Veränderungen nicht andauernd eingetippt werden müssen, greifen wir mithilfe eines Schiebereglers darauf zu.
-\bigskip
-\subsubsection{Mehrere Plots}\label{subsubsec:mehrereplots}
-Das Programm hat seine Vorteile im direkten Vergleich von mehreren Simulationen. So können mehrere Filterprofile gleichzeitig im Plot angezeigt und verglichen werden.
-\bigskip
-\subsubsection{Frequenbereich}\label{subsubsec:frequenzbereich}
-Da das Frequenzspektrum sehr weit ist werden die Plots logarithmisch zur Frequenzachse dargestellt. Sie werden farblich in 3 Bereiche unterteilt.
-\bigskip
-\subsubsection{Auslagern eines Plots}\label{subsubsec:auslagerneinesplots}
-Damit die Bedienung intuitiver gestaltet wird soll es möglich sein die Plot-Fenster aus dem Frame auszulagern um sie beispielsweise zu Vergrössern. 
-		
-
-\subsection{Anforderungen an die Bedienung} \label{subsec:bedienungsanforderungen}
-
-\bigskip
-\subsubsection{Speicherverwaltung}  \label{subsubsec:speicherverwaltung}
-Um einen wirklichen Mehrwert zu schaffen soll die Software die Möglichkeit erhalten, eingestellte Filterprofile abzuspeichern und diese auch nach einem Neustart des Programms wieder zu verwenden. Ebenfalls soll es möglich sein die Plots als Bild, oder PDF-Datei zu exportieren um sie zu verwenden.
-\bigskip
-\subsubsection{Bedienungshilfen}\label{subsubsec:bedienungshilfen}
-Um den User vor Fehleingaben zu schützen verwenden wir die von Herr Gut zur Verfügung gestellten Klassen. diese (TODO:Haben wir überhaupt die Möglichkeit etwas einzugeben?^^)
-Sämtliche Funktionen des Programms sind ebenfalls in einem Menu und mithilfe von Shortcuts aufrufbar.
-
-\shorthandon{"}
-
-\subsection{Umsetzung im GUI}\label{subsec:umsetzungimgui}
-%TODO Bilder vom Menu noch hier einfügen. die 3 bilder nebeneinandr
+\subsection{graphische Anforderungen} \label{subsec:graphischeanforderungen}
 In der Abbildung ref{fig:GUI} ist der Aufbau der GUI ersichtlich.
 
 \begin{figure}[H]
@@ -97,74 +65,92 @@ In der Abbildung ref{fig:GUI} ist der Aufbau der GUI ersichtlich.
 	\label{fig:GUI}
 \end{figure}
 
-\paragraph{Eingabefenster}
-Das Eingabefenster stellt die Benutzeroberfläche für die in den Kapitel \ref{subsubsec:auslagerneinesplots} und \ref{subsubsec:eingabemöglichkeiten} beschriebene Anforderungen zur Verfügung.
+\bigskip
+\subsubsection{Visualisierung der Schaltungen} \label{subsubsec:visualisierungderschaltungen}
+Als generelle Hilfestellung soll das Programm dazu in der Lage sein, das Elektronische Schema der jeweilig Simulierten Schaltung anzuzeigen.
+Im Menupunkt "Help" können die beiden CM- und DM äquivalenten Schaltungsmodelle, die zur Berechnung verwendet werden, in einem seperaten Fenster dargestellt werden. Dieser Menupunkt ist in der Abbildung \ref{fig:GUIHelp} \nameref{fig:GUIHelp} dargestellt.
 
-\paragraph{CM und DM Plot}
-Der CM und DM Plot stellt die Benutzeroberfläche für die in den Kapitel \ref{subsubsec:verstellbarkeitderparameter}, \ref{subsubsec:frequenzbereich}, \ref{subsubsec:mehrereplots} und \ref{subsubsec:unterschiedCmDm} beschriebene Anforderungen zur Verfügung.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4cm]{GUIHelp.png}
+	\caption{Menuoption Help}
+	\label{fig:GUIHelp}
+\end{figure}
+\shorthandon{"}
+\bigskip
 
-\paragraph{Filtertabelle}
-Die Filtertabelle stellt die Benutzeroberfläche für die in den Kapitel \ref{subsubsec:mehrereplots} und \ref{subsubsec:speicherverwaltung} beschriebene Anforderungen zur Verfügung.
+\subsubsection{Eingabemöglichkeiten}\label{subsubsec:eingabemöglichkeiten}
+Da wir  die Auswirkungen hauptsächlich graphisch darstellen und analysieren wollen, und damit die Veränderungen nicht andauernd eingetippt werden müssen, greifen wir mithilfe eines Schiebereglers darauf zu. Das Eingabefenster ist dazu da, die einzelnen parasitären Filterparameter einzustellen und die Toleranz von ± 30\% mit einem Schieberegler zu variieren. Die Textfelder werden vor Fehleingaben geschützt und unterstützt spezielle Eingabeformen (z.B 10 milli=10m)
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{inputPanel.png}
+	\caption{Eingabefenster}
+	\label{fig:GUIinputPanel}
+\end{figure}
+\shorthandon{"}
+\bigskip
 
-\paragraph{Buttonfenster}
-Das Buttonfenster stellt die Benutzeroberfläche für die im Kapitel \ref{subsubsec:mehrereplots} beschriebene Anforderung zur Verfügung.
+\subsubsection{Mehrere Plots}\label{subsubsec:mehrereplots}
+Das Programm hat seine Vorteile im direkten Vergleich von mehreren Simulationen. So können mehrere Filterprofile gleichzeitig im Plot angezeigt und verglichen werden. Die Abbildung \ref{GUIplotPanel} stellt die Benutzeroberfläche für die beschriebene Anforderungen zur Verfügung.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{plotPanel.png}
+	\caption{CM DM Plot}
+	\label{fig:GUIplotPanel}
+\end{figure}
+\shorthandon{"}
+Im Buttonfenster können Filterprofile in die Filtertabelle geladen oder entfernt werden. Mit dem Button "Add" werden die eingegebene parasitären Filterparameter in einem neuen Filterprofil gespeichert. Mit dem Button "Remove" wird das ausgewählte Filterprofil gelöscht.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4cm]{buttonPanel.png}
+	\caption{Buttonfenster}
+	\label{fig:buttonPanel}
+\end{figure}
+\shorthandon{"}
+\bigskip
 
-\paragraph{File}
-Der Menupunkt File stellt die Benutzeroberfläche für die im Kapitel \ref{subsubsec:speicherverwaltung} beschriebene Anforderung zur Verfügung.
 
-\paragraph{Simulation}
-Der Menupunkt Simulation stellt die Benutzeroberfläche für die im Kapitel \ref{subsubsec:montecarlo} beschriebene Anforderung zur Verfügung.
+\subsubsection{Frequenzbereich}\label{subsubsec:frequenzbereich}
+Da das Frequenzspektrum sehr weit ist werden die Plots logarithmisch zur Frequenzachse dargestellt. Sie werden farblich in 3 Bereiche unterteilt.
+\bigskip
+		
+\subsection{funktionelle Anforderungen} \label{subsec:funktionelleanforderungen}
 
-\paragraph{Help}
-Der Menupunkt Help stellt die Benutzeroberfläche für die im Kapitel \ref{subsubsec:bedienungshilfen} beschriebene Anforderung zur Verfügung.
+\bigskip
+\subsubsection{Speicherverwaltung}  \label{subsubsec:speicherverwaltung}
+Um einen wirklichen Mehrwert zu schaffen soll die Software die Möglichkeit erhalten, eingestellte Filterprofile abzuspeichern und diese auch nach einem Neustart des Programms wieder zu verwenden. Im Menupunkt "File" können Filterprofile gespeichert und geladen werden. Bei beiden Optionen wird der Explorer geöffnet um die .txt Datei im gewählten Verzeichnis abzulegen oder zu holen. In der Option Exit kann das Programm geschlossen werden. Dieser Menupunkt ist in der Abbildung \ref{fig:GUIFile} \nameref{fig:GUIFile} dargestellt.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4cm]{GUIFile.png}
+	\caption{File}
+	\label{fig:GUIFile}
+\end{figure}
+\shorthandon{"}
+In der Filtertabelle Abbildung: \ref{fig:filterPanel} können alle erstellte Filterprofile dargestellt und verwaltet werden.  Mit einer Checkbox können einzelne Profile im Plot aus- bzw. eingeblendet werden. Zudem kann bei jedem Filterprofil einen Namen hinzugefügt werden. Die Werte der parasitären Filterparameter des ausgewählten Filterprofils werden in das Eingabefenster geladen und können dort verändert werden. Mit den Shortcuts Backspace and Delete können ausgewählte Profile gelöscht werden.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4cm]{filterPanel.png}
+	\caption{Filtertabelle}
+	\label{fig:filterPanel}
+\end{figure}
+\bigskip
 
-
-% Auskommentiert. 
-\begin{comment}
-\subsubsection{Eingabefenster} \label{subsubsec:eingabefenster}
-
-Das Eingabefenster ist dazu da, die einzelnen parasitären Filterparameter einzustellen und die Toleranz von ± 30\% mit einem Schieberegler zu variieren (F6, Tabelle:\ref{tab:ziele}) . Die  Textfelder werden vor Fehleingaben geschützt (B1, Tabelle:\ref{tab:ziele}) und unterstützt spezielle Eingabeformen (z.B 10 milli=10m) (G2, Tabelle:\ref{tab:ziele})
-
-\subsubsection{CM/DM Plot} \label{subsubsec:CM_DMplot}
-
-Um die Berechnungen zu visualisieren werden 2 Plots für CM und DM verwendet(G4, Tabelle:\ref{tab:ziele}) Die Plots sind für die bessere Darstellung in 3 Frequenzbereiche aufgeteilt:0 kHz bis 500 kHz, 500 kHz bis 5 MHz und 5 MHz bis 30 MHz(G3, Tabelle:\ref{tab:ziele}). Mit einem Rechtsklick auf den Plot können verschiedene Optionen ausgewählt werden. So können die Eigenschaften (Farbe, Darstellung, Schrift usw.) und der Zoom individuell eingestellt werden(Fehlt bei Zielen). Der Plot kann auch direkt in eine .png Datei abgespeichert oder gedruckt werden(B2, Tabelle:\ref{tab:ziele}). Diese Optionen sind in der Abbildung \ref{fig:PlotSettings} ersichtlich.
-
+\subsubsection{Bedienungshilfen}\label{subsubsec:bedienungshilfen}
+Um den User vor Fehleingaben zu schützen verwenden wir die von Herr Gut zur Verfügung gestellten Klassen. diese (TODO:Haben wir überhaupt die Möglichkeit etwas einzugeben?^^)
+Sämtliche Funktionen des Programms sind ebenfalls in einem Menu und mithilfe von Shortcuts aufrufbar.
+Zudem kann mit einem Rechtsklick auf den Plot können verschiedene Optionen ausgewählt werden. So können die Eigenschaften (Farbe, Darstellung, Schrift usw.) und der Zoom individuell eingestellt werden. Ebenfalls soll es möglich sein die Plots als Bild, oder PDF-Datei zu exportieren um sie zu verwenden. Diese Optionen sind in der Abbildung \ref{fig:PlotSettings} ersichtlich.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=4cm]{PlotSettings.png}
 	\caption{Ploteinstellungen}
 	\label{fig:PlotSettings}
 \end{figure} 
-
-
-%\subsubsection{Filtertabelle} \label{subsubsec:filtertabelle}
-\subsubsection{Speicherverwaltung} \label{subsubsec:speicherverwaltung}
-
-Für das Wunschziel (B3, Tabelle:\ref{tab:ziele}) kann in einer Filtertabelle alle erstellte Filterprofile dargestellt und verwaltet werden.  Mit einer Checkbox können einzelne Profile im Plot aus- bzw. eingeblendet werden. Zudem kann bei jedem Filterprofil einen Namen hinzugefügt werden. Die Werte der parasitären Filterparameter des ausgewählten Filterprofils werden in das Eingabefenster geladen und können dort verändert werden. Mit den Shortcuts Backspace and Delete können ausgewählte Profile gelöscht werden.
-
-\subsubsection{Buttonfenster} \label{subsubsec:buttonfenster}
-
-Im Buttonfenster können Filterprofile in die Filtertabelle geladen oder entfernt werden. (TODO:Zielverweis) Mit dem Button Add werden die eingegebene parasitären Filterparameter in einem neuen Filterprofil gespeichert. Mit dem Button Remove wird das ausgewählte Filterprofil gelöscht. Der Button dient als alternative zu den Shortcuts.
-
-
-\subsubsection{Menu} \label{subsubsec:menu}
-
-Im Menu können verschiedene Optionen ausgewählt werden. Diese sind ebenfalls alle mit einem Shortcut aufrufbar. (TODO:Zielverweis Ziel Menu)
-
-\bigskip
-\shorthandoff{"}
-\paragraph{File} \label{para:file}
-Im Menupunkt "File" können Filterprofile gespeichert und geladen werden. (B4, Tabelle:\ref{tab:ziele}) Bei beiden Optionen wird der Explorer geöffnet um die .txt Datei im gewählten Verzeichnis abzulegen oder zu holen. In der Option Exit kann das Programm geschlossen werden. Dieser Menupunkt ist in der Abbildung \ref{fig:GUIFile} \nameref{fig:GUIFile} dargestellt.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=4cm]{GUIFile.png}
-	\caption{Menuoption File}
-	\label{fig:GUIFile}
-\end{figure}
-
+\shorthandon{"}
 \bigskip
 
+
+% Auskommentiert. 
+\begin{comment}
 \paragraph{Simulation} \label{para:simulation}
 Im Menupunkt "Simulation" kann die Simulationsart Monte Carlo ausgewählt werden(F8, Tabelle:\ref{tab:ziele}). Es öffnet sich ein neues Fenster in dem der Parameter, die Toleranz und die Anzahl Messungen eingestellt werden kann. Dieser Menupunkt ist in der Abbildung \ref{fig:GUISimulation} dargestellt.
 
@@ -174,19 +160,6 @@ Im Menupunkt "Simulation" kann die Simulationsart Monte Carlo ausgewählt werden
 	\caption{Menuoption Simulation}
 	\label{fig:GUISimulation}
 \end{figure}
-
-
-\paragraph{Help} \label{para:Help}
-Im Menupunkt "Help" können die beiden CM- und DM äquivalenten Schaltungsmodelle, die zur Berechnung verwendet werden, in einem seperaten Fenster dargestellt werden(G5, Tabelle:\ref{tab:ziele}). Dieser Menupunkt ist in der Abbildung \ref{fig:GUIHelp} \nameref{fig:GUIHelp} dargestellt.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=4cm]{GUIHelp.png}
-	\caption{Menuoption Help}
-	\label{fig:GUIHelp}
-\end{figure}
-\shorthandon{"}
-
 \end{comment}
 
 
