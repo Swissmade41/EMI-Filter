@@ -29,12 +29,12 @@ Das Klassendiagramm der Software ist in der Abbildung \ref{fig:Klassendiagramm} 
 
 \newpage
 
-\subsection{analytische Anforderungen} \label{subsubsec:analytischeanforderungen}
+\subsection{Analytische Anforderungen} \label{subsubsec:analytischeanforderungen}
 
 \bigskip
 \shorthandoff{"}
 \subsubsection{Softwarestruktur} \label{subsubsec:Softwarestruktur}
-Die Software mit Java geschrieben und ist somit Plattformunabhängig. Die Software wird mit dem Model-View-Controller Entwurfsmuster (MVC Design Pattern) \cite{MVCDesignPattern} strukturiert. Durch diese Strukturierung ist es weitgehende möglich die Daten und deren graphische Repräsentation zu trennen. Dies vereinfacht Wartungsarbeiten und die Wiederverwendbarkeit von Programmteile. Die Struktur ist in die drei Teilen Modell(engl. model), Präsentation(engl. view) und Steuerung(engl. controller) unterteilt.
+Die Software ist mit Java geschrieben und ist somit Plattformunabhängig. Die Software wird mit dem Model-View-Controller Entwurfsmuster (MVC Design Pattern) \cite{MVCDesignPattern} strukturiert. Durch diese Strukturierung ist es weitgehende möglich die Daten und deren graphische Repräsentation zu trennen. Dies vereinfacht Wartungsarbeiten und die Wiederverwendbarkeit von Programmteile. Die Struktur ist in die drei Teilen Modell(engl. model), Präsentation(engl. view) und Steuerung(engl. controller) unterteilt.
 
 \bigskip
 \subsubsection{Mathematische Anforderungen}\label{subsubsec:mathematischeanforderungen}
@@ -55,7 +55,7 @@ Die zweite Kernfunktion des Programms liegt in der graphischen Anzeige der Berec
 Als zusätzliche Simulationsmöglichkeit soll die sog. Monte-Carlo-Analyse implementiert werden. Mit dieser Analyse wird die Auswirkung der Toleranz eines einzelnen Parameters ausgewertet. 
 		
 		
-\subsection{graphische Anforderungen} \label{subsec:graphischeanforderungen}
+\subsection{Graphische Anforderungen} \label{subsec:graphischeanforderungen}
 In der Abbildung ref{fig:GUI} ist der Aufbau der GUI ersichtlich.
 
 \begin{figure}[H]
@@ -99,11 +99,11 @@ Das Programm hat seine Vorteile im direkten Vergleich von mehreren Simulationen.
 	\label{fig:GUIplotPanel}
 \end{figure}
 \shorthandon{"}
-Im Buttonfenster können Filterprofile in die Filtertabelle geladen oder entfernt werden. Mit dem Button "Add" werden die eingegebene parasitären Filterparameter in einem neuen Filterprofil gespeichert. Mit dem Button "Remove" wird das ausgewählte Filterprofil gelöscht.
+Im Fenter Abbildung \ref{fig:buttonPanel} können Filterprofile in die Filtertabelle geladen oder entfernt werden. Mit dem Button Add werden die eingegebene parasitären Filterparameter in einem neuen Filterprofil gespeichert. Mit dem Button Remove wird das ausgewählte Filterprofil gelöscht.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=4cm]{buttonPanel.png}
-	\caption{Buttonfenster}
+	\caption{Filterprofile}
 	\label{fig:buttonPanel}
 \end{figure}
 \shorthandon{"}
@@ -114,7 +114,7 @@ Im Buttonfenster können Filterprofile in die Filtertabelle geladen oder entfern
 Da das Frequenzspektrum sehr weit ist werden die Plots logarithmisch zur Frequenzachse dargestellt. Sie werden farblich in 3 Bereiche unterteilt.
 \bigskip
 		
-\subsection{funktionelle Anforderungen} \label{subsec:funktionelleanforderungen}
+\subsection{Funktionelle Anforderungen} \label{subsec:funktionelleanforderungen}
 
 \bigskip
 \subsubsection{Speicherverwaltung}  \label{subsubsec:speicherverwaltung}
@@ -136,9 +136,9 @@ In der Filtertabelle Abbildung: \ref{fig:filterPanel} können alle erstellte Fil
 \bigskip
 
 \subsubsection{Bedienungshilfen}\label{subsubsec:bedienungshilfen}
-Um den User vor Fehleingaben zu schützen verwenden wir die von Herr Gut zur Verfügung gestellten Klassen. diese (TODO:Haben wir überhaupt die Möglichkeit etwas einzugeben?^^)
+Um den User vor Fehleingaben zu schützen verwenden wir die von Herr Gut zur Verfügung gestellten Klassen.
 Sämtliche Funktionen des Programms sind ebenfalls in einem Menu und mithilfe von Shortcuts aufrufbar.
-Zudem kann mit einem Rechtsklick auf den Plot können verschiedene Optionen ausgewählt werden. So können die Eigenschaften (Farbe, Darstellung, Schrift usw.) und der Zoom individuell eingestellt werden. Ebenfalls soll es möglich sein die Plots als Bild, oder PDF-Datei zu exportieren um sie zu verwenden. Diese Optionen sind in der Abbildung \ref{fig:PlotSettings} ersichtlich.
+Zudem kann mit einem Rechtsklick auf den Plot können verschiedene Optionen ausgewählt werden. So können die Eigenschaften (Farbe, Darstellung, Schrift usw.) und der Zoom individuell eingestellt werden. Ebenfalls soll es möglich sein die Plots als Bild zu exportieren um sie zu verwenden. Diese Optionen sind in der Abbildung \ref{fig:PlotSettings} ersichtlich.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=4cm]{PlotSettings.png}
@@ -167,9 +167,9 @@ Im Menupunkt "Simulation" kann die Simulationsart Monte Carlo ausgewählt werden
 
 In der Software werden folgende Libraries verwendet:
 
-\textbf{Swing}: Mit dem vorinstallierten Swing Framework von Java wird die GUI aufgebaut.
-\textbf{JFreeChart}: Die Berechnungen werden mit JFreeChart grafisch also Plot dargestellt. \cite{jfreechart}
-\textbf{Apache Math Commons} Die Apache Math Commons Library beinhaltet wichtige Mathematikfunktionen, wie rechnen mit Komplexen Zahlen usw. \cite{apache}
-\textbf{Engineering Text Fields} Die von Prof. Dr. Richard Gut zur Verfügung gestellte Klasse verhindert Fehleingaben und vereinfacht die Eingabe von Zahlen (nano,piko...)
+\textbf{Swing}: Mit dem vorinstallierten Swing Framework von Java wird die GUI aufgebaut.\newline
+\textbf{JFreeChart}: Die Berechnungen werden mit JFreeChart grafisch also Plot dargestellt. \cite{jfreechart} \newline
+\textbf{Apache Math Commons}: Die Apache Math Commons Library beinhaltet wichtige Mathematikfunktionen, wie rechnen mit Komplexen Zahlen usw. \cite{apache}\newline
+\textbf{Engineering Text Fields}: Die von Prof. Dr. Richard Gut zur Verfügung gestellte Klasse verhindert Fehleingaben und vereinfacht die Eingabe von Zahlen (nano,piko...)
 
 \newpage
