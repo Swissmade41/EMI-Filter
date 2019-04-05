@@ -14,39 +14,42 @@ Dieses Pflichtenheft beschreibt die technischen Aspekte des Auftrags und liefert
 \subsection{Projektziele} \label{subsec:projektziele}
 
 
-In der Folgenden Tabelle werden alle Ziele aufgeleistet. In Kapitel 2 werden sie ausformuliert und ihre Implementation wird erläutert. 
+In der Folgenden Tabelle werden alle Ziele aufgeleistet. In Kapitel 2 werden sie ausformuliert und ihre Implementation wird erläutert. Wobei M für Muss-Ziele steht und O für Optionale-Ziele steht.
 \newcommand{\HY}{\hyphenpenalty = 25\exhyphenpenalty = 25}
 \begin{table}[H]
 \small
 \begin{tabular}{>{\HY\RaggedRight}p{7cm} >{\HY\RaggedRight}p{1.5cm} >{\HY\RaggedRight}p{1.5cm} >{\HY\RaggedRight}p{3cm}}
 \hline
-\textbf{Ziel}					&\textbf{Muss}	&\textbf{Optional}	&\textbf{Unterkapitel}			\\				
+\textbf{Ziel}					&\textbf{M.}	&\textbf{O.}	&\textbf{Unterkapitel}			\\				
 
 \hline
 \rowcolor{hellgrau}
-\multicolumn{4}{l}{\textbf{analytische Anforderung}}\\
+\multicolumn{4}{l}{\textbf{Analytische Anforderung}}\\
 Berechnungen und GUI getrennt		&\ x &\  &\ \ref{subsubsec:Softwarestruktur}\\
 Berechnungszeit < 500 ms		&\ x &\  &\ \ref{subsubsec:berechnungszeit}\\
 Unabhängige Komponenten		&\   &\ x &\ \ref{subsubsec:verstellbarkeitderparameter}\\
 Verstellbare Parameter		&\ x &\   &\ \ref{subsubsec:verstellbarkeitderparameter}\\
-CM- DM-Berechnung		&\ x &\   &\ \ref{subsubsec:unterschiedCmDm}\\	
+CM-, DM-Berechnung		&\ x &\   &\ \ref{subsubsec:unterschiedCmDm}\\	
 Monte-Carlo Simulation &\   &\ x &\ \ref{subsubsec:montecarlo}\\
 
 \rowcolor{hellgrau}
-\multicolumn{4}{l}{\textbf{graphische Anforderungen}}\\			
+\multicolumn{4}{l}{\textbf{Graphische Anforderungen}}\\			
 Visualisierung der Schaltung		&\  &\ x &\ \ref{subsubsec:visualisierungderschaltungen}\\	
-Einfache und schnelle Eingabemöglichkeit &\ x &\  &\ \ref{subsubsec:eingabemöglichkeiten}\\
+Eingabe von Zahlenwerte &\ x &\  &\ \ref{subsubsec:eingabemöglichkeiten}\\
+Feinjustierung mit Schieberegler +/- 30\% &\ x &\  &\ \ref{subsubsec:eingabemöglichkeiten}\\
+Abkürzungen für Dekaden &\  &\ x &\ \ref{subsubsec:eingabemöglichkeiten}\\
 Darstellung im Frequenzbereich bis 30MHz &\ x &\  &\ \ref{subsubsec:frequenzbereich}\\
+CM-, DM-Darstellung &\ x &\  &\ \ref{subsubsec:mehrereplots}\\
 Mehrere Plots gleichzeitig		&\ x &\  &\ \ref{subsubsec:mehrereplots}\\
 
 \rowcolor{hellgrau}
-\multicolumn{4}{l}{\textbf{funktionelle Anforderungen}}\\			
+\multicolumn{4}{l}{\textbf{Funktionelle Anforderungen}}\\			
 Unabhängigkeit von Betriebssystemen		&\ x &\  &\ \ref{subsubsec:Softwarestruktur}\\
 Schutz vor Fehleingaben		&\ x &\   &\ \ref{subsubsec:bedienungshilfen}\\
-Export von Plots		&\  &\ x &\ \ref{subsubsec:speicherverwaltung}\\
-Speicherverwaltung		&\   &\ x &\ \ref{subsubsec:speicherverwaltung}\\
-Import von Daten		&\   &\ x &\ \ref{subsubsec:speicherverwaltung}\\	
-				
+Export von PNG		&\  &\ x &\ \ref{subsubsec:speicherverwaltung}\\
+Bedienung mit shortcuts		&\   &\ x &\ \ref{subsubsec:speicherverwaltung}\\
+Anpassung von Farbe, Darstellung und Schrift		&\ x &\  &\ \ref{subsubsec:speicherverwaltung}\\	
+Zoom Möglichkeit		&\ x &\  &\ \ref{subsubsec:speicherverwaltung}\\				
 \hline
 \end{tabular}
 \end{table}
