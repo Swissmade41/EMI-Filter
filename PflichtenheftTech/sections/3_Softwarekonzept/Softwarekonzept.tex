@@ -5,9 +5,9 @@ Die Beschreibung des Softwarekonzepts wird in 2 Sektionen unterteilt. Zuerst wer
 
 \subsection{Programmablauf} \label{subsec:programmablauf}
 
-Der folgende Programmablauf ist auf die Maximallösung bezogen. In dieser Lösung sind alle Wunschziele(Tabelle:\ref{tab:ziele}) vorhanden.
+Der folgende Programmablauf ist auf die Maximallösung bezogen. In dieser Lösung sind alle Wunschziele (Kapitel: \ref{subsec:projektziele}) vorhanden.
 
-Nach dem Aufstarten des Programmes kann der Benutzer über die Programmoberfläche (\ref{fig:GUI} \nameref{fig:GUI}) seine Simulationen starten.
+Nach dem Aufstarten des Programmes kann der Benutzer über die Programmoberfläche (Abbildung: \ref{fig:GUI}) seine Simulationen starten.
 Am Anfang ist ein default Filter initialisiert. Dieser ist in der Filtertabelle eingetragen, jedoch sind die parasitären Filterparameter im Eingabefenster noch undefiniert. Der Benutzer kann diese nun definieren und die berechneten Einfügungsverluste von CM und DM des EMI-Filters werden im Plot dargestellt. Mit dem Button Add wird der Filter abgespeichert und ein neuer Filter kann definiert werden. Es können somit mehrere Filter gleichzeitig dargestellt werden. 
 
 Um die Filter richtig zu verwalten ist es möglich in der Filtertabelle über die Checkbox einzelne Filter im Plot ein und auszublenden. Ebenfalls können sie spezifisch benannt werden. Der Plot und die einzelnen Kurven können mit einem Rechtsklick auf den CM/DM Plot individuell angepasst und auch exportiert werde. Wird ein Filter nicht mehr benötigt kann er in der Filtertabelle angewählt und mit dem Button Remove entfernt werden. Damit der Benutzer nicht jedesmal die Filterprofile einstellen muss, können diese über File/Save filterprofil in einer .txt Datei abgespeichert werden. Bei einem Neustart des Programmes kann über File/Load filterprofile die Filterprofile wieder geladen werden. 
@@ -52,7 +52,15 @@ Die zweite Kernfunktion des Programms liegt in der graphischen Anzeige der Berec
 \bigskip
 \subsubsection{Monte-Carlo Analyse}\label{subsubsec:montecarlo}
 Als zusätzliche Simulationsmöglichkeit soll die sog. Monte-Carlo-Analyse implementiert werden. Mit dieser Analyse wird die Auswirkung der Toleranz eines einzelnen Parameters ausgewertet. 
-		
+Im Menupunkt "Simulation" kann die Simulationsart Monte Carlo ausgewählt werden. Es öffnet sich ein neues Fenster in dem der Parameter, die Toleranz und die Anzahl Messungen eingestellt werden kann. Dieser Menupunkt ist in der Abbildung \ref{fig:GUISimulation} dargestellt.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4cm]{GUISimulation.png}
+	\caption{Menuoption Simulation}
+	\label{fig:GUISimulation}
+\end{figure}	
+\bigskip
 		
 \subsection{Graphische Anforderungen} \label{subsec:graphischeanforderungen}
 In der Abbildung \ref{fig:GUI} ist der Aufbau der GUI ersichtlich.
@@ -90,7 +98,7 @@ Da wir  die Auswirkungen hauptsächlich graphisch darstellen und analysieren wol
 \bigskip
 
 \subsubsection{Mehrere Plots}\label{subsubsec:mehrereplots}
-Das Programm hat seine Vorteile im direkten Vergleich von mehreren Simulationen. So können mehrere Filterprofile gleichzeitig im Plot angezeigt und verglichen werden. Die Abbildung \ref{GUIplotPanel} stellt die Benutzeroberfläche für die beschriebene Anforderungen zur Verfügung.
+Das Programm hat seine Vorteile im direkten Vergleich von mehreren Simulationen. So können mehrere Filterprofile gleichzeitig im Plot angezeigt und verglichen werden. Die Abbildung \ref{fig:GUIplotPanel} stellt die Benutzeroberfläche für die beschriebene Anforderungen zur Verfügung.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{plotPanel.png}
@@ -146,21 +154,6 @@ Zudem kann mit einem Rechtsklick auf den Plot können verschiedene Optionen ausg
 \end{figure} 
 \shorthandon{"}
 \bigskip
-
-
-% Auskommentiert--------------------------------------------------------------
-\begin{comment}
-\paragraph{Simulation} \label{para:simulation}
-Im Menupunkt "Simulation" kann die Simulationsart Monte Carlo ausgewählt werden(F8, Tabelle:\ref{tab:ziele}). Es öffnet sich ein neues Fenster in dem der Parameter, die Toleranz und die Anzahl Messungen eingestellt werden kann. Dieser Menupunkt ist in der Abbildung \ref{fig:GUISimulation} dargestellt.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=4cm]{GUISimulation.png}
-	\caption{Menuoption Simulation}
-	\label{fig:GUISimulation}
-\end{figure}
-\end{comment}
-% Einkommentiert--------------------------------------------------------------
 
 \subsection{Libraries} \label{subsec:Libraries}
 
