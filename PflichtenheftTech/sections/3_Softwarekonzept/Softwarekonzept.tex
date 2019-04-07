@@ -1,6 +1,7 @@
 \section{Softwarekonzept} \label{sec:softwarekonzept}
 
-%TODO Besser beschreiben 
+Um das sämtliche Anforderungen an die Software zu erfüllen wurden alle Probleme erfasst und in Teilprobleme aufgeteilt. Angefangen von der Grundstruktur der Software werden wir von Oben herab, sogenannt Top-Down, jeweils Lösungen für die einzelnen Teilprobleme erarbeiten. Durch die MVC-Grundstruktur können all diese Teilprobleme unabhängig von einander behandelt werden. Dies erlaubt eine kluge und effiziente Arbeitsaufteilung.
+
 Die Beschreibung des Softwarekonzepts wird in 2 Sektionen unterteilt. Zuerst werden die in der Zieltabelle aufgeführten technischen und die graphischen Anforderungen beschrieben.  Anschliessend werden die Anforderungen an die Bedienung definiert. und zum Schluss werden die einzelnen Elemente der GUI, und somit die Bedienung erklärt.
 
 \subsection{Programmablauf} \label{subsec:programmablauf}
@@ -10,9 +11,9 @@ Der folgende Programmablauf ist auf die Maximallösung bezogen. In dieser Lösun
 Nach dem Aufstarten des Programmes kann der Benutzer über die Programmoberfläche (Abbildung: \ref{fig:GUI}) seine Simulationen starten.
 Am Anfang ist ein default Filter initialisiert. Dieser ist in der Filtertabelle eingetragen, jedoch sind die parasitären Filterparameter im Eingabefenster noch undefiniert. Der Benutzer kann diese nun definieren und die berechneten Einfügungsverluste von CM und DM des EMI-Filters werden im Plot dargestellt. Mit dem Button Add wird der Filter abgespeichert und ein neuer Filter kann definiert werden. Es können somit mehrere Filter gleichzeitig dargestellt werden. 
 
-Um die Filter richtig zu verwalten ist es möglich in der Filtertabelle über die Checkbox einzelne Filter im Plot ein und auszublenden. Ebenfalls können sie spezifisch benannt werden. Der Plot und die einzelnen Kurven können mit einem Rechtsklick auf den CM/DM Plot individuell angepasst und auch exportiert werde. Wird ein Filter nicht mehr benötigt kann er in der Filtertabelle angewählt und mit dem Button Remove entfernt werden. Damit der Benutzer nicht jedesmal die Filterprofile einstellen muss, können diese über File/Save filterprofil in einer .txt Datei abgespeichert werden. Bei einem Neustart des Programmes kann über File/Load filterprofile die Filterprofile wieder geladen werden. 
+Um die Filter richtig zu verwalten ist es möglich in der Filtertabelle über die Checkbox einzelne Filter im Plot ein und auszublenden. Ebenfalls können sie spezifisch benannt werden. Der Plot und die einzelnen Kurven können mit einem Rechtsklick auf den CM/DM Plot individuell angepasst und auch exportiert werde. Wird ein Filter nicht mehr benötigt kann er in der Filtertabelle angewählt und mit dem Button Remove entfernt werden. Damit der Benutzer nicht jedesmal die Filterprofile einstellen muss, können diese über File/Save filterprofil in einer .txt Datei abgespeichert werden. Bei einem Neustart des Programmes können über File/Load filterprofile die Filterprofile wieder geladen werden. 
 
-Um die Auswirkungen einzelner parasitären Filterparameter besser zu analysieren, kann unter Simulation/Monte Carlo eine Monte Carlo Simulation gestartet werden. Es wird ein neues Fenster geöffnet in dem der Filterparameter, die Toleranz und die Anzahl Berechnungen eingestellt werden können. Jede Berechnung wird als einzelner Filter in die Filtertabelle geladen. Um nachzuschauen wo welche Filterparameter sich in der Schaltung befindet, können unter Help/CM electrical circuit und CM electrical circuit die Ersatzschaltungen, von der die Berechnungen ausgehen, angeschaut werden. Das Programm wird über File/Exit oder beim Schliessen des Fensters beendet.
+Um die Auswirkungen einzelner parasitären Filterparameter besser zu analysieren, kann unter Simulation/Monte Carlo eine Monte Carlo Simulation gestartet werden. Es wird ein neues Fenster geöffnet in dem der Filterparameter, die Toleranz und die Anzahl Berechnungen eingestellt werden können. Jede Berechnung wird als einzelner Filter in die Filtertabelle geladen. Um nachzuschauen wo welche Filterparameter sich in der Schaltung befinden, können unter Help/CM electrical circuit und CM electrical circuit die Ersatzschaltungen, von der die Berechnungen ausgehen, angeschaut werden. Das Programm wird über File/Exit oder beim Schliessen des Fensters beendet.
 
 Das Klassendiagramm der Software ist in der Abbildung \ref{fig:Klassendiagramm} ersichtlich.
 
@@ -34,17 +35,17 @@ Das Klassendiagramm der Software ist in der Abbildung \ref{fig:Klassendiagramm} 
 \bigskip
 \shorthandoff{"}
 \subsubsection{Softwarestruktur} \label{subsubsec:Softwarestruktur}
-Die Software ist mit Java geschrieben und ist somit Plattformunabhängig. Die Software wird mit dem Model-View-Controller Entwurfsmuster (MVC Design Pattern) \cite{MVCDesignPattern} strukturiert. Durch diese Strukturierung ist es weitgehende möglich die Daten und deren graphische Repräsentation zu trennen. Dies vereinfacht Wartungsarbeiten und die Wiederverwendbarkeit von Programmteile. Die Struktur ist in die drei Teilen Modell(engl. model), Präsentation(engl. view) und Steuerung(engl. controller) unterteilt.
+Die Software ist mit Java geschrieben und ist somit Plattformunabhängig. Die Software wird mit dem Model-View-Controller Entwurfsmuster (MVC Design Pattern) \cite{MVCDesignPattern} strukturiert. Durch diese Strukturierung ist es weitgehend möglich die Daten und deren graphische Repräsentation zu trennen. Dies vereinfacht Wartungsarbeiten und die Wiederverwendbarkeit von Programmteilen. Die Struktur ist in die drei Teile: Modell (engl. model), Präsentation (engl. view) und Steuerung (engl. controller) unterteilt.
 
 \bigskip
 \subsubsection{Mathematische Anforderungen}\label{subsubsec:mathematischeanforderungen}
-Das elektrische Verhalten der CM- und DM-äquivalenten Schaltungen, wird anhand der Streuparameter $S_{21}$ beschrieben. Um den Streuparameter $S_{21}$ zu bestimmen, werden die einzelnen Schaltungsteile in Form von A-Matrixen dargestellt. Diese werden wiederum durch Kaskadieren zu einer A-Matrix der Gesamtschaltungen  zusammengeführt. Der Streuparameter $S_{21}$ wird somit aus der A-Matrix dargestellt. Durch den $S_{21}$ ist durch die Definition die Einfügungsdämfung gegeben. Damit die Berechnungen beliebig erweiterbar sind, wird eine strikte Struktur der Berechnungen eingehalten. Es werden Klassen für Bauelemente, wie Spule, Widerstand und Kondensator erstellt. Somit ist es möglich, dass wiederum Klassen für die verschiedenen A-Matrixen erstellt werden, wie Längs-, Quer-, Pi- und T-Glied. Dies bietet die Möglichkeit, die zu berechnende Schaltung anzupassen und zu erweitern.
+Das elektrische Verhalten der CM- und DM-äquivalenten Schaltungen, wird anhand der Streuparameter $S_{21}$ beschrieben. Um den Streuparameter $S_{21}$ zu bestimmen, werden die einzelnen Schaltungsteile in Form von A-Matrixen dargestellt. Diese werden wiederum durch Kaskadieren zu einer A-Matrix der Gesamtschaltungen  zusammengeführt. Der Streuparameter $S_{21}$ wird somit aus der A-Matrix dargestellt. Durch den $S_{21}$ ist durch die Definition die Einfügungsdämpfung gegeben. Damit die Berechnungen beliebig erweiterbar sind, wird eine strikte Struktur der Berechnungen eingehalten. Es werden Klassen für Bauelemente wie Spule, Widerstand und Kondensator erstellt. Somit ist es möglich, dass wiederum Klassen für die verschiedenen A-Matrixen erstellt werden wie Längs-, Quer-, Pi- und T-Glied. Dies bietet die Möglichkeit, die zu berechnende Schaltung anzupassen und zu erweitern.
 \bigskip
 \subsubsection{Berechnungszeit}\label{subsubsec:berechnungszeit}
-Um die erwünschte Berechnungszeit zu erreichen werden die Berechnungen in eigenen Threads ausgeführt. Somit werden "Freezes" im Programm verhindert und mehrere Berechnungen können gleichzeitig ablaufen. 
+Um die erwünschte Berechnungszeit zu erreichen, werden die Berechnungen in eigenen Threads ausgeführt. Somit werden "Freezes" im Programm verhindert und mehrere Berechnungen können gleichzeitig ablaufen. 
 \bigskip
 \subsubsection{Verstellbarkeit der Parameter}\label{subsubsec:verstellbarkeitderparameter}
-Eine der Kernfunktionen des Programms besteht darin, dass die Parameter verändert werden können um ihren Einfluss auf die Eingangsdämpfung zu erkennen. Die Parameter sollen um bis +/- 30\% verändert werden können. Da wir hauptsächlich die Auswirkungen graphisch darstellen und analysieren wollen und mit die Veränderungen nicht andauernd eingetippt werden müssen, greifen wir mithilfe eines Schiebereglers darauf zu. 
+Eine der Kernfunktionen des Programms besteht darin, dass die Parameter verändert werden können um ihren Einfluss auf die Eingangsdämpfung zu erkennen. Die Parameter sollen um bis +/- 30\% verändert werden können. Da wir hauptsächlich die Auswirkungen graphisch darstellen und analysieren wollen und damit die Veränderungen nicht andauernd eingetippt werden müssen, greifen wir mithilfe eines Schiebereglers darauf zu. 
 \bigskip
 \subsubsection{Unterscheidung von CM und DM}\label{subsubsec:unterschiedCmDm}
 Die zweite Kernfunktion des Programms liegt in der graphischen Anzeige der Berechnungen als Dämpfung in Abhängigkeit der Zeit. Dabei ist die Vorgabe, dass wir einen Plot zum Differential-Mode und einen zum Common-Mode erhalten.
@@ -74,8 +75,8 @@ In der Abbildung \ref{fig:GUI} ist der Aufbau der GUI ersichtlich.
 
 \bigskip
 \subsubsection{Visualisierung der Schaltungen} \label{subsubsec:visualisierungderschaltungen}
-Als generelle Hilfestellung soll das Programm dazu in der Lage sein, das Elektronische Schema der jeweilig Simulierten Schaltung anzuzeigen.
-Im Menupunkt "Help" können die beiden CM- und DM äquivalenten Schaltungsmodelle, die zur Berechnung verwendet werden, in einem seperaten Fenster dargestellt werden. Dieser Menupunkt ist in der Abbildung \ref{fig:GUIHelp} \nameref{fig:GUIHelp} dargestellt.
+Als generelle Hilfestellung soll das Programm dazu in der Lage sein, das elektronische Schema der jeweilig simulierten Schaltung anzuzeigen.
+Im Menupunkt "Help" können die beiden CM- und DM äquivalenten Schaltungsmodelle, die zur Berechnung verwendet werden, in einem separaten Fenster dargestellt werden. Dieser Menupunkt ist in der Abbildung \ref{fig:GUIHelp} \nameref{fig:GUIHelp} dargestellt.
 
 \begin{figure}[H]
 	\centering
@@ -87,7 +88,7 @@ Im Menupunkt "Help" können die beiden CM- und DM äquivalenten Schaltungsmodell
 \bigskip
 
 \subsubsection{Eingabemöglichkeiten}\label{subsubsec:eingabemöglichkeiten}
-Da wir  die Auswirkungen hauptsächlich graphisch darstellen und analysieren wollen, und damit die Veränderungen nicht andauernd eingetippt werden müssen, greifen wir mithilfe eines Schiebereglers darauf zu. Das Eingabefenster (Abbildung: \ref{fig:GUIinputPanel}) ist dazu da, die einzelnen parasitären Filterparameter einzustellen und die Toleranz von ± 30\% mit einem Schieberegler zu variiaeren. Die Textfelder werden vor Fehleingaben geschützt und unterstützt spezielle Eingabeformen (z.B 10 milli=10m)
+Da wir  die Auswirkungen hauptsächlich graphisch darstellen und analysieren wollen, und damit die Veränderungen nicht andauernd eingetippt werden müssen, greifen wir mithilfe eines Schiebereglers darauf zu. Das Eingabefenster (Abbildung: \ref{fig:GUIinputPanel}) ist dazu da, die einzelnen parasitären Filterparameter einzustellen und die Toleranz von ± 30\% mit einem Schieberegler zu variieren. Die Textfelder werden vor Fehleingaben geschützt indem sie  spezielle Eingabeformen (z.B. 10 milli=10m) unterstützen.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{inputPanel.png}
@@ -107,7 +108,7 @@ Das Programm hat seine Vorteile im direkten Vergleich von mehreren Simulationen.
 \end{figure}
 \shorthandon{"}
 \newpage
-Im Fenter Abbildung \ref{fig:buttonPanel} können Filterprofile in die Filtertabelle geladen oder entfernt werden. Mit dem Button Add werden die eingegebene parasitären Filterparameter in einem neuen Filterprofil gespeichert. Mit dem Button Remove wird das ausgewählte Filterprofil gelöscht.
+Im Fenster Abbildung \ref{fig:buttonPanel} können Filterprofile in die Filtertabelle geladen oder entfernt werden. Mit dem Button Add werden die eingegebenen parasitären Filterparameter in einem neuen Filterprofil gespeichert. Mit dem Button Remove wird das ausgewählte Filterprofil gelöscht.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=4cm]{buttonPanel.png}
@@ -118,7 +119,7 @@ Im Fenter Abbildung \ref{fig:buttonPanel} können Filterprofile in die Filtertab
 \bigskip
 
 \subsubsection{Frequenzbereich}\label{subsubsec:frequenzbereich}
-Da das Frequenzspektrum sehr weit ist werden die Plots logarithmisch zur Frequenzachse dargestellt. Sie werden farblich in 3 Bereiche unterteilt.
+Da das Frequenzspektrum sehr weit ist, werden die Plots logarithmisch zur Frequenzachse dargestellt. Sie werden farblich in 3 Bereiche unterteilt.
 \bigskip
 		
 \subsection{Funktionelle Anforderungen} \label{subsec:funktionelleanforderungen}
@@ -133,7 +134,7 @@ Um einen wirklichen Mehrwert zu schaffen soll die Software die Möglichkeit erha
 	\label{fig:GUIFile}
 \end{figure}
 \shorthandon{"}
-In der Filtertabelle Abbildung: \ref{fig:filterPanel} können alle erstellte Filterprofile dargestellt und verwaltet werden.  Mit einer Checkbox können einzelne Profile im Plot aus- bzw. eingeblendet werden. Zudem kann bei jedem Filterprofil einen Namen hinzugefügt werden. Die Werte der parasitären Filterparameter des ausgewählten Filterprofils werden in das Eingabefenster geladen und können dort verändert werden. Mit den Shortcuts Backspace and Delete können ausgewählte Profile gelöscht werden.
+In der Filtertabelle Abbildung: \ref{fig:filterPanel} können alle erstellte Filterprofile dargestellt und verwaltet werden.  Mit einer Checkbox können einzelne Profile im Plot aus- bzw. eingeblendet werden. Zudem kann bei jedem Filterprofil ein Name hinzugefügt werden. Die Werte der parasitären Filterparameter des ausgewählten Filterprofils werden in das Eingabefenster geladen und können dort verändert werden. Mit den Shortcuts Backspace and Delete können ausgewählte Profile gelöscht werden.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=4cm]{filterPanel.png}
@@ -145,7 +146,7 @@ In der Filtertabelle Abbildung: \ref{fig:filterPanel} können alle erstellte Fil
 \subsubsection{Bedienungshilfen}\label{subsubsec:bedienungshilfen}
 Um den User vor Fehleingaben zu schützen verwenden wir die von Herr Gut zur Verfügung gestellten Klassen.
 Sämtliche Funktionen des Programms sind ebenfalls in einem Menu und mithilfe von Shortcuts aufrufbar.
-Zudem kann mit einem Rechtsklick auf den Plot können verschiedene Optionen ausgewählt werden. So können die Eigenschaften (Farbe, Darstellung, Schrift usw.) und der Zoom individuell eingestellt werden. Ebenfalls soll es möglich sein die Plots als Bild zu exportieren um sie zu verwenden. Diese Optionen sind in der Abbildung \ref{fig:PlotSettings} ersichtlich.
+Zudem können mit einem Rechtsklick auf den Plot verschiedene Optionen ausgewählt werden. So können die Eigenschaften (Farbe, Darstellung, Schrift usw.) und der Zoom individuell eingestellt werden. Ebenfalls soll es möglich sein die Plots als Bild zu exportieren um sie zu verwenden. Diese Optionen sind in der Abbildung \ref{fig:PlotSettings} ersichtlich.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=4cm]{PlotSettings.png}
@@ -161,7 +162,7 @@ In der Software werden folgende Libraries verwendet:
 
 \textbf{Swing}: Mit dem vorinstallierten Swing Framework von Java wird die GUI aufgebaut.\newline
 \textbf{JFreeChart}: Die Berechnungen werden mit JFreeChart grafisch also Plot dargestellt. \cite{jfreechart} \newline
-\textbf{Apache Math Commons}: Die Apache Math Commons Library beinhaltet wichtige Mathematikfunktionen, wie rechnen mit Komplexen Zahlen usw. \cite{apache}\newline
+\textbf{Apache Math Commons}: Die Apache Math Commons Library beinhaltet wichtige Mathematikfunktionen, wie z.B. rechnen mit Komplexen Zahlen usw. \cite{apache}\newline
 \textbf{Engineering Text Fields}: Die von Prof. Dr. Richard Gut zur Verfügung gestellte Klasse verhindert Fehleingaben und vereinfacht die Eingabe von Zahlen (nano,piko...)
 
 \newpage
