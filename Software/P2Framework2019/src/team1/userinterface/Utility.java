@@ -3,6 +3,7 @@ package team1.userinterface;
 import java.awt.Container;
 import java.awt.Image;
 import java.awt.MediaTracker;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 
@@ -37,8 +38,8 @@ public class Utility {
 	public static ImageIcon loadResourceIcon(String strBild) {
 		MediaTracker tracker = new MediaTracker(p);
 		ImageIcon icon = new ImageIcon(Utility.class.getResource("icons" + "/" + strBild));
-		// System.out.println(Utility.class.getResource("icons" + File.separator +
-		// strBild));
+		 System.out.println(Utility.class.getResource("icons" + File.separator +
+		 strBild));
 		tracker.addImage(icon.getImage(), 0);
 		try {
 			tracker.waitForID(0);
