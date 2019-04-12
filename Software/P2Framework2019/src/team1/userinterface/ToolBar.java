@@ -15,19 +15,19 @@ import team1.util.TraceV4;
 public class ToolBar extends JToolBar implements Observer, ActionListener {
 	private TraceV4 trace = new TraceV4(this);
 	private static final long serialVersionUID = 1L;
-	private JButton btOk = new JButton("", Utility.loadResourceIcon("axialis-blue/24x24/Save.png"));
-	private JButton btCancel = new JButton(null, Utility.loadResourceIcon("axialis-blue/24x24/Printer.png"));
+//	private JButton btOk = new JButton("", Utility.loadResourceIcon("axialis-blue/24x24/Save.png"));
+//	private JButton btCancel = new JButton(null, Utility.loadResourceIcon("axialis-blue/24x24/Printer.png"));
 	private Controller controller;
 
 	public ToolBar(Controller controller) {
 		trace.constructorCall();
 		setBorder(MyBorderFactory.createMyBorder(" ToolBar "));
 		this.controller = controller;
-		setLayout(new FlowLayout(FlowLayout.LEFT));
-		add(btOk);
-		btOk.addActionListener(this);
-		add(btCancel);
-		this.setFloatable(true);
+//		setLayout(new FlowLayout(FlowLayout.LEFT));
+//		add(btOk);
+//		btOk.addActionListener(this);
+//		add(btCancel);
+//		this.setFloatable(true);
 	}
 
 	public void actionPerformed(ActionEvent e) {
