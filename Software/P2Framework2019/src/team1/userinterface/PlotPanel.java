@@ -13,7 +13,8 @@ import javax.swing.UIManager;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.axis.LogarithmicAxis;
+import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.StandardXYItemRenderer;
@@ -48,16 +49,22 @@ public class PlotPanel extends JPanel {
 		xyplot.setRangeGridlinePaint(Color.black);
 		xyplot.setDomainGridlinePaint(Color.black);
 
-		ValueAxis xAxis = xyplot.getDomainAxis(0);
-		xAxis.setRange(0, 1001);
+		LogarithmicAxis xAxis = new LogarithmicAxis("Frequency");
+		xAxis.setRange(0, 30e6);
 		xAxis.setAutoRange(false);
-		xAxis.setTickLabelsVisible(false);
-
-		ValueAxis yAxis = xyplot.getRangeAxis(0);
-		yAxis.setRange(-2.0, 2.0);
-		yAxis.setAutoRange(false);
-		yAxis.setTickLabelsVisible(false);
-
+		xAxis.setTickLabelsVisible(true);
+		xAxis.setLog10TickLabelsFlag(true);
+		xAxis.setExpTickLabelsFlag(true);
+		xAxis.setMinorTickCount(1000);
+		
+		NumberAxis yAxis = new NumberAxis("dB");
+		yAxis.setTickLabelsVisible(true);
+		yAxis.setAutoRange(true);
+		yAxis.setTickLabelsVisible(true);
+		
+		xyplot.setRangeAxis(yAxis);
+		xyplot.setDomainAxis(xAxis);
+		
 		XYItemRenderer renderer = new StandardXYItemRenderer();
 		renderer.setSeriesStroke(0, new BasicStroke(1f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL));
 		renderer.setSeriesPaint(0, Color.black);
@@ -77,9 +84,6 @@ public class PlotPanel extends JPanel {
 	public void setData(double[] x, double[] y1, double[] y2) {
 		trace.methodeCall();
 		XYPlot xyplot = chart.getXYPlot();
-
-		ValueAxis xAxis = xyplot.getDomainAxis(0);
-		xAxis.setRange(0, x.length);
 
 		XYSeries series = new XYSeries("Plot1");
 		for (int i = 1; i < x.length; i++) {
