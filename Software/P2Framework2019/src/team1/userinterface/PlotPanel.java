@@ -51,16 +51,20 @@ public class PlotPanel extends JPanel {
 		xyplot.setDomainGridlinePaint(Color.black);
 
 		LogarithmicAxis xAxis = new LogarithmicAxis("Frequency");
-		xAxis.setRange(0, 30e6);
+		xAxis.setRange(10e3, 30e6);
 		xAxis.setAutoRange(false);
 		xAxis.setTickLabelsVisible(true);
 		xAxis.setLog10TickLabelsFlag(true);
-		xAxis.setMinorTickCount(1000);
+		xAxis.setExpTickLabelsFlag(true);
+		xAxis.setAutoTickUnitSelection(false);
+		xAxis.setMinorTickCount(9);
+		xAxis.setAutoRangeNextLogFlag(true);
 		
 		NumberAxis yAxis = new NumberAxis("dB");
 		yAxis.setTickLabelsVisible(true);
 		yAxis.setAutoRange(true);
 		yAxis.setTickLabelsVisible(true);
+		yAxis.setRange(0, 150);
 		
 		xyplot.setRangeAxis(yAxis);
 		xyplot.setDomainAxis(xAxis);
