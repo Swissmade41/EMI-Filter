@@ -23,6 +23,7 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 import team1.matlabfunctions.MikroMatlab;
+import team1.model.Model;
 import team1.util.MyBorderFactory;
 import team1.util.Observable;
 import team1.util.TraceV4;
@@ -54,7 +55,6 @@ public class PlotPanel extends JPanel {
 		xAxis.setAutoRange(false);
 		xAxis.setTickLabelsVisible(true);
 		xAxis.setLog10TickLabelsFlag(true);
-		xAxis.setExpTickLabelsFlag(true);
 		xAxis.setMinorTickCount(1000);
 		
 		NumberAxis yAxis = new NumberAxis("dB");
@@ -76,41 +76,40 @@ public class PlotPanel extends JPanel {
 		xyplot.setRenderer(1, renderer);
 
 		add(new ChartPanel(chart));
-
-		// Test:
-		update(null, null);
 	}
 
-	public void setData(double[] x, double[] y1, double[] y2) {
+	public void setData(double[][][] cmData, double[][][] dmData) {
 		trace.methodeCall();
+		// cmData&dmData [Funktionsnummer],[x-Werte = 0, y-Werte = 1],[Datensätze]
 		XYPlot xyplot = chart.getXYPlot();
 
-		XYSeries series = new XYSeries("Plot1");
-		for (int i = 1; i < x.length; i++) {
-			series.add(x[i], y1[i]);
+		XYSeries series = new XYSeries("CM-Plot");
+		for(int i=0; i<cmData[0][0].length; i++)
+		{
+			series.add(cmData[0][0][i], cmData[0][1][i]);
 		}
+		
 		XYSeriesCollection dataset = new XYSeriesCollection();
 		dataset.addSeries(series);
+		
 		chart.getXYPlot().setDataset(0, dataset);
 
-		series = new XYSeries("Plot2");
-		for (int i = 1; i < x.length; i++) {
-			series.add(x[i], y2[i]);
+		series = new XYSeries("DM-Plot");
+		for(int i=0; i<dmData[0][0].length; i++)
+		{
+			series.add(dmData[0][0][i], dmData[0][1][i]);
 		}
+		
 		dataset = new XYSeriesCollection();
 		dataset.addSeries(series);
 		chart.getXYPlot().setDataset(1, dataset);
-
+		
 		repaint();
 	}
 
 	public void update(Observable obs, Object obj) {
 		trace.methodeCall();
-		double[] n = MikroMatlab.linspace(0, 100, 101);
-
-		double[] cos = new double[n.length];
-		double[] sin = new double[n.length];
-
-		setData(n, cos, sin);
+		Model model = (Model) obs;
+		setData(model.getCM(), model.getDM());
 	}
 }
