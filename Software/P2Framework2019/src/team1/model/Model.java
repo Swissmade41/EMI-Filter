@@ -22,7 +22,13 @@ public class Model extends Observable {
 		
 	}
 	
-	public void getData() {
-		
+	public double[][][] getCM() {
+		// cmData&dmData [Funktionsnummer],[x-Werte = 0, y-Werte = 1],[Datensätze]
+		return null;
+	}
+	
+	public double[][][] getDM() {
+		// cmData&dmData [Funktionsnummer],[x-Werte = 0, y-Werte = 1],[Datensätze]
+		return null;
 	}
 }
