@@ -1,0 +1,129 @@
+Technisches Pflichtenheft V2
+
+Arbeitspakete:
+
+
+-Gegenlesen, Ziele überprüfen
+-Softwarekonzept mit Herr Gut besprechen			Marco, Pascal
+-Zwischenpräsi 										Simon
+-Technische Grundlagen Konservieren					Lukas
+-org Teil											Simon
+-Implementation der Berechnungen					Lukas
+-Referenzen nach IEEE ausbessern					Lukas
+-Dalessandro kontaktieren wegen dem Testkonzept		Nik
+-Termin mit Herr Gut um die GUI(Beta)				Nik
+ zu besprechen vor der Projektwoche					
+-Testkonzept 										Nik
+-Ausgangslage										Marco
+-Softwarekonzept rumschieben						Pascal
+-GUI-Ziele											Marco
+-Zieltabelle										Marco
+-Meilensteine	Beta GUI und Beta der App			Marco
+
+
+
+1. Ausgangslage
+	-Definition des Inhalts
+	-Grundsätzliche Referenz auf den Auftrag(Lastenheft), was ist gegeben, etc.
+	-Grundsätzliches Vorgehen
+	
+1b. Ziele
+	-Werden aus den Softwaresections "generiert"
+	-SMART formulieren
+	
+
+2. Software (->eher Inhaltlich)
+	-Untersections bisher:
+		-GUI
+			-Menu
+			-Filtertabelle
+			-Plots
+			-Buttonfenster
+			-Eingabefenster
+		-Struktur
+			-Model
+			-View
+			-Controller
+			-Klassendiagramm
+		-Programmablauf
+		-Libraries
+		
+	-Top-Down Aufbau, da bin ich unsicher was am besten ist.
+		In allen Abschnitten wird schriftlich beschrieben warum, 
+		respektive was genau die Anforderung ist
+		und wie wir diese zu lösen gedenken
+		
+		BSP: 	Damit die Software skraa...
+				Um das zu erreichen wird...
+				Dieser Teil sorgt dafür, ...
+		
+		Beschrieb der Eigenschaften, bezogen auf mathematische Funktionalität
+		
+			-Plattform
+				Java
+			-Struktur
+				Getrennt, MVC, wie bisher
+				Diagramm
+			
+			
+			-Fähigkeiten der Plots
+				Frequenzbereich
+				Logarhitmisch
+				Vergleichbarkeit
+				
+		
+			-Implementation der Berechnungen
+				Methodische Implementierung durch T-Glieder und pi-Glieder
+				Verstellbarkeit der Parameter als Schieberegler
+				
+				
+			-Erweiterbarkeit(->Wunschziele)
+				Monte Carlo
+				Speicherverwaltung
+				Import/Export von Daten
+				
+			-(GUI)
+				Schutz vor Fehleingaben -> klasse von hr Gut	
+			
+			
+		Beschrieb des Aussehens			
+			hier wird die GUI wie bisher kurz Beschrieben(Einzelne Panels)
+			dabei wird auf die Benutzerfreundlichkeit hingewiesen
+			
+		
+					
+			
+			-Programmablauf
+				keine besonderen Veränderungen
+			-Libraries
+				same
+		
+			 
+
+	
+3. Testkonzept
+	-grundsätzlich Überarbeiten^^
+	-Validierung durch Simulation und Berechnungen,
+	 beginnend bei einzelnen Methoden
+	-Beta-Version implementieren
+	-Will Dr. Dalessandro es testen?
+	
+	
+4. Projektvereinbarung
+
+5. Anhang
+
+6. Quellen
+
+
+Diverse Kleinigkeiten
+	-Malzeichen LaTeX
+	-Rauschen muss weg^^
+	-beim Verweis auf Abbildungen nur die Zahl im Fliesstext
+	-logarithmus definieren
+	-index Grösser
+	-Begriffsfindung
+
+
+
+

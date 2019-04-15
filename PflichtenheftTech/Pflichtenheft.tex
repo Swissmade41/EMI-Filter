@@ -9,9 +9,9 @@
                                         %{class} = fhnwreport, article, 
                                         %          report, book, beamer, standalone
 \input{header}			                %loads all packages, definitions and settings												
-\title{Kleinwasserkraftwerk}          	%Project Title
-\author{Pflichtenheft}          		%Document Type => Technical Report, ...
-\date{Windisch, 22.11.2018}             %Place and Date
+\title{«DJ» EMI Filter für Schaltnetzteil}          			%Project Title
+\author{Pflichtenheft technischer Teil}  		%Document Type => Technical Report, ...
+\date{Windisch, 07.04.2019}             		%Place and Date
 
 \begin{document}
 
@@ -21,10 +21,9 @@
 
 \vspace*{-1cm}						    %compensates the space after the date line.
 \vfill
-\begin{figure} [H]
-	\centering
-	\includegraphics[width=11cm]{parkAvenue.jpg}
-	\label{fig:Park_Avenue_432}
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{titelBild.png}
 \end{figure}
 \vfill
 
@@ -34,10 +33,10 @@
 \begin{tabular}{ >{\bf} l p{10cm} l }
 Hochschule&Hochschule für Technik - FHNW\\
 Studiengang&Elektro- und Informationstechnik\\
-Autoren&Gruppe 4\\%Bachmann Lars \newline  Fischer Roni \newline Imhof Frank \newline Puschmann Pascal\\ 
-Betreuer&Pascal Buchschacher \newline Anita Gertiser\\
-Auftraggeber&Felix Jenni\\
-Version&1.0 %Normally not used!
+Auftraggeber&Dr. Luca Dalessandro\\
+Betreuer&Prof. Dr. Sebastian Gaulocher \newline Prof. Peter Niklaus \newline Prof. Dr. Richard Gut \newline  Dr. Anita Gertiser \newline Pascal Buchschacher \\
+Autoren&\textbf{Gruppe 1} \newline Niklaus Schwegler \newline Lukas von Däniken \newline Pascal Puschmann  \newline Simon Rohrer \newline Marco Binder\\
+Version&2.0 %Normally not used!
 \end{tabular}
 \end{center}
 }
@@ -56,16 +55,15 @@ Version&1.0 %Normally not used!
 %%---TEXT--------------------------------------------------------------------------------
 \pagenumbering{arabic}
 \include{sections/1_Uebersicht/Uebersicht}
-\include{sections/2_Loesungskonzept/Loesungskonzept}
-\include{sections/3_Auswertung/Auswertung}
-\include{sections/4_Detailkonzept/Detailkonzept}
-\include{sections/5_Wirtschaftlichkeit/Wirtschaftlichkeit}
-\include{sections/6_Projektvereinbahrung/Projektvereinbarung}
+
+\include{sections/3_Softwarekonzept/Softwarekonzept}
+\include{sections/4_Testkonzept/Testkonzept}
+\include{sections/5_Projektvereinbahrung/Projektvereinbarung}
 
 %%---BIBLIOGRAPHY------------------------------------------------------------------------
 
 {\sloppypar
-\selectlanguage{english}	
+\selectlanguage{ngerman}	
 \setlength{\bibitemsep}{\baselineskip}
 \printbibliography[heading=bibintoc]
 \label{sec:lit}
@@ -73,7 +71,7 @@ Version&1.0 %Normally not used!
 
 %%---Anhang------------------------------------------------------------------------
 
-\include{sections/7_Anhang/Anhang}
+\include{sections/6_Anhang/Anhang}
 
 %%---NOTES for DEBUG---------------------------------------------------------------------
 \ifdraft{%Do this only if mode=draft

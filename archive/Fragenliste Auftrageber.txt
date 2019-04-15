@@ -1,0 +1,7 @@
+Fragen aus dem Auftragstext
+
+-2 verschiedene GUI's
+-Eingangsdämpfung/Insertion loss
+-Fehlen im Ersatzschaltbild Komponenten
+-2 versch. Filterlayouts?
+
