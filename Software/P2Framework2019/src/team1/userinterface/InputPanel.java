@@ -71,6 +71,10 @@ class SliderSubPanel extends JPanel implements ChangeListener, ActionListener{
 	private JSlider slider;
 	private JTextField tfValue;
 	private double sliderStartingValue;
+	
+	static final int SLIDER_MIN = 70;
+	static final int SLIDER_MAX = 130;
+	static final int SLIDER_INIT = 100;
 	private String unit;
 	private Controller controller;
 
@@ -82,13 +86,13 @@ class SliderSubPanel extends JPanel implements ChangeListener, ActionListener{
 		sliderSubtitle = new JLabel(subParameter);
 		sliderSubtitle.setHorizontalAlignment(SwingConstants.CENTER);
 
-		slider = new JSlider(SwingConstants.VERTICAL,-30,30,0);
+		slider = new JSlider(SwingConstants.VERTICAL, SLIDER_MIN,SLIDER_MAX,SLIDER_INIT);
 		slider.addChangeListener(this);
 
 		//create % values for sliders
 		Hashtable<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
-		for (int i = -30; i <= 30; i+=10) {
-			labelTable.put(i, new JLabel(i + "%"));
+		for (int i = SLIDER_MIN; i <= SLIDER_MAX; i+=10) {
+			labelTable.put(i, new JLabel(i-100 + "%"));
 		}
 
 		slider.setLabelTable( labelTable );
@@ -104,8 +108,10 @@ class SliderSubPanel extends JPanel implements ChangeListener, ActionListener{
 
 	public void stateChanged(ChangeEvent e) {
 		
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		
 	}
 }

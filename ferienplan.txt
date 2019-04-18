@@ -1,0 +1,24 @@
+Lukas:
+- Dokumentation Simualtion
+
+Pascal:
+- Software umeackere
+
+
+Nik:
+- Lizenz JFreeChart
+- Statusbericht
+
+Marco:
+-Bestimmen der Parameter für das Inputpanel (mit Lukas anschauen)
+
+Simon:
+- Dispo, Einleitung, bis nächsten Samstag(in den Ferien)
+- Grundstruktur Fachbericht 
+
+Claudio:
+- melden
+
+Alle:
+- Eventcall bug finden!!
+- Software verstehen!
