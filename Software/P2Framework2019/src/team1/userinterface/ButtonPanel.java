@@ -1,4 +1,5 @@
 package team1.userinterface;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -8,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import team1.util.MyBorderFactory;
@@ -23,10 +25,11 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		this.controller = controller;
 		setPreferredSize(new Dimension(200, 250));
 		setMinimumSize(new Dimension(200, 250));
-		setBorder(MyBorderFactory.createMyBorder("ButtonPanel"));
+		setBorder(MyBorderFactory.createMyBorder(""));
 
-		add(btAdd).setBounds(10, 20, 80, 20);
-		add(btRemove).setBounds(100, 20, 80, 20);
+		add(new JLabel("Filter:")).setBounds(10, 20, 50, 20);
+		add(btAdd).setBounds(10, 45, 80, 20);
+		add(btRemove).setBounds(10, 70, 80, 20);		
 
 		btAdd.addActionListener(this);
 		btRemove.addActionListener(this);
@@ -36,10 +39,12 @@ public class ButtonPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btAdd) {
 			System.out.println("Add");
+			controller.addFilter();
 		}
 
 		if (e.getSource() == btRemove) {
 			System.out.println("Remove");
+			controller.removeFilter();
 		}
 	}
 }
