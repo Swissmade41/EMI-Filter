@@ -35,6 +35,8 @@ public class P2Framework2019 extends JFrame {
 
 	public P2Framework2019() {
 		trace.constructorCall();
+		controller.setView(view);
+		
 		model.addObserver(view);
 		trace.registerObserver(model, view);
 //		model.addObserver(toolBar);
