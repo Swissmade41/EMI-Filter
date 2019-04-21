@@ -17,5 +17,13 @@ public class Controller {
 	public void setView(View view) {
 		this.view = view;
 	}
+	
+	public void addFilter() {
+		view.filtertablePanel.addFilter();
+	}
+	
+	public void removeFilter() {
+		view.filtertablePanel.removeFilter();
+	}
 
 }
