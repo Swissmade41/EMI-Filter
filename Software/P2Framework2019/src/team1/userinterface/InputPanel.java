@@ -27,14 +27,13 @@ public class InputPanel extends JPanel implements ActionListener{
 	private ArrayList<ArrayList<SliderSubPanel>> sliders = new ArrayList<ArrayList<SliderSubPanel>>();
 	private Controller controller;
 
-	private String[] parameter = {"<html>L<sub>CM</sub></html>", "<html>C<sub>X1</sub></html>", "<html>C<sub>X2</sub></html>", "<html>C<sub>Y1</sub></html>", "<html>C<sub>Y2</sub></html>"};
+	private String[] parameter = {"<html>L<sub>0</sub></html>", "<html>C<sub>X1</sub></html>", "<html>C<sub>X2</sub></html>", "<html>C<sub>Y1</sub></html>"};
 
 	private String[][] subParameter = {
-			{"<html>L<sub>CM</sub></html>","<html>L<sub>R</sub></html>","<html>R<sub>P</sub></html>","<html>C<sub>1</sub></html>"}, 
+			{"<html>L<sub>0</sub></html>","<html>R<sub>p</sub></html>","<html>C<sub>p</sub></html>","<html>L<sub>r</sub></html>","<html>R<sub>w</sub></html>"}, 
 			{"<html>C<sub>X1</sub></html>","<html>L<sub>X1</sub></html>","<html>R<sub>X1</sub></html>"}, 
 			{"<html>C<sub>X2</sub></html>","<html>L<sub>X2</sub></html>","<html>R<sub>X2</sub></html>"},
-			{"<html>C<sub>Y1</sub></html>","<html>L<sub>Y1</sub></html>","<html>R<sub>Y1</sub></html>"}, 
-			{"<html>C<sub>Y2</sub></html>","<html>L<sub>Y2</sub></html>","<html>R<sub>Y2</sub></html>"}}; 
+			{"<html>C<sub>Y</sub></html>","<html>L<sub>Y</sub></html>","<html>R<sub>Y</sub></html>"}}; 
 		
 	public InputPanel(Controller controller) {
 		trace.constructorCall();
