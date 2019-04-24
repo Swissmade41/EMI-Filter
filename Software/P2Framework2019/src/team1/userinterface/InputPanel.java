@@ -70,6 +70,9 @@ class SliderSubPanel extends JPanel implements ChangeListener, ActionListener{
 	private JSlider slider;
 	private JTextField tfValue;
 	private double sliderStartingValue;
+	private String inputwert;
+	private int value;
+	private int sliderval;
 	
 	static final int SLIDER_MIN = 70;
 	static final int SLIDER_MAX = 130;
@@ -106,6 +109,15 @@ class SliderSubPanel extends JPanel implements ChangeListener, ActionListener{
 	}
 
 	public void stateChanged(ChangeEvent e) {
+		JSlider slider = (JSlider)e.getSource();
+		
+		inputwert =  tfValue.getText();
+		sliderval = slider.getValue();
+		
+		value= Integer.parseInt(inputwert)*sliderval/100;
+		
+
+		tfValue.setText(Integer.toString(value));
 		
 		
 	}
