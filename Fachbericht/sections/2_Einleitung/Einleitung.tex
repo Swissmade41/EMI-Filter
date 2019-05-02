@@ -1,1 +1,14 @@
 \section{Einleitung} \label{sec:einleitung}
+Unser Auftrag in diesem Projekt war es eine Software zu programmieren, die das Verhalten von so genannten EMI-Filtern simuliert. Diese werden üblicherweise in Schaltnetzteile verbaut, um zu verhindern, dass Störungen zurück ins Netz gespeist werden. Diese Netzgeräte können nämlich unter Umständen hohe Frequenzen erzeugen, die sich nicht gut mit der Netzfrequenz von 50 Hz vertragen. Der EMI- Filter filtert genau diese hochfrequenten Signale heraus, um zu verhindern, dass andere  Geräte, die auch ans Netz angeschlossen werden nicht davon beeinträchtigt sind.
+Der Auftraggeber ist Dr. Luca Dalessandro von der Firma Schaffner 
+Unser Team besteht aus 5 Teammitgliedern. Der Projektleiter ist Niklaus Schwegler. Für die Software ist der Hauptverantwortliche Pascal Puschmann, dieser wurde je nach Bedarf vom gesamten Team unterstützt. Der Elektroteil wurde von Lukas von Däniken und Marco Binder realisiert. Die Organisatorischen Bereiche wurden von Niklaus Schwegler und Simon Rohrer abgedeckt.
+
+Das Tool soll in der Lage sein den Filter in den Schaltungen Differential Mode und Common Mode zu berechnen. Ausserdem soll das User Interface sehr intuitiv und Bedienungsfreundlich sein, damit man schnell zum Resultat kommt. Des Weiteren kann man seine eigegeben Parameter Speichern und ein Filterprofil anlegen, was man später wieder aufrufen kann. Ein weiterer wichtiger Punkt ist, dass das Programm stabil laufen sollte, ohne dass es zu Ausfällen kommt. Dies wird unter anderem durch ausführliche Tests erreicht, was in diesem Bericht noch detailliert beschrieben wird. 
+Um das Programm leicht erweiterbar zu halten haben wir uns für die MVC Struktur entschieden, dies sorgt für einen Modularen Aufbau des Codes. Zudem ist es Plattformunabhängig, weil es mit Java geschrieben wurde.
+Die Elektrotechnische Herausforderung bestand darin, das Verhalten der beiden gegebenen Schaltungen zu analysieren und durch Berechnungen zu validieren. 
+Die Berechnungen von DM und CM mit allen realen Komponenten wurden in MATLAB durchgeführt.
+Auf die Resultate von unseren Berechnungen wird innerhalb dieses Berichts Genauer eigegangen.  
+Dieser Bericht soll eine Dokumentation über unsere geleistete Arbeit und unser neu angeeignetes Wissen sein. 
+Die Software steht ganz klar im Fokus des Geschehens, jedoch wird im Kapitel Grundlagen auch ausführlich auf die Elektrotechnik eigegangen, damit auch Fachfremde Leser die Chance haben etwas zu verstehen. 
+Ein zentraler Abschnitt wird der Aufbau und die Funktionsweise der GUI sein. In dem unter anderem auf das Klassendiagramm eigegangen wird und das grafische Aussehen erklärt werden soll. 
+Bis schlussendlich ein umfassendes Fazit gezogen werden kann. 
