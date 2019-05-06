@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.KeyStroke;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
@@ -28,7 +30,7 @@ import team1.model.Model;
 import team1.util.TraceV4;
 
 
-public class FiltertablePanel extends JPanel implements TableModelListener{
+public class FiltertablePanel extends JPanel implements TableModelListener, ListSelectionListener{
 	TraceV4 trace = new TraceV4(this);
 	private Controller controller;
 	
@@ -37,6 +39,9 @@ public class FiltertablePanel extends JPanel implements TableModelListener{
 
     DefaultTableModel model = new DefaultTableModel(data, columnNames);
     JTable table = new JTable(model);
+    
+    private double[][] d_effectiveParameterValues = new double[100][14];
+	private double[][] d_UserInputParameterValues = new double[100][14];
 
 	/**
 	 * set Layout to Gridlayout
@@ -64,6 +69,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener{
 		add(scrollPane);
 		
 		model.addTableModelListener(this);		
+		table.getSelectionModel().addListSelectionListener(this);
 	}
 	
     /**
@@ -72,6 +78,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener{
 	private void setRowSelection() {
 		table.setRowSelectionInterval(table.getRowCount()-1, table.getRowCount()-1);
 	}
+
 	
 	/**
 	 * add new row to the table
@@ -101,14 +108,19 @@ public class FiltertablePanel extends JPanel implements TableModelListener{
 		setRowSelection();
 	}
 
-
-	/**
-	 * update chart
-	 */
-	public void tableChanged(TableModelEvent e) {
-		//TODO: Daten weitergeben, Neuberechnung ausführen
+	public void updateEffectiveParameterValues(double[] values) {
+		for (int i = 0; i < values.length; i++) {
+			d_effectiveParameterValues[table.getSelectedRow()][i]=values[i];
+		}
 	}
 	
+	public void updateUserInputParameterValues(double[] values) {
+		for (int i = 0; i < values.length; i++) {
+			d_UserInputParameterValues[table.getSelectedRow()][i]=values[i];
+		}
+		System.out.println("update");
+	}
+
 	/**
 	 * call method to to load a textfile
 	 * update the filtertable
@@ -123,4 +135,25 @@ public class FiltertablePanel extends JPanel implements TableModelListener{
 	public void saveFiltertable() {
 		//TODO: writeTextfile aufrufen und tabelle übergeben
 	}
+
+
+	public void tableChanged(TableModelEvent e) {
+		//TODO: Daten weitergeben, Neuberechnung ausführen
+		System.out.println("aa");
+	}
+	
+	public void valueChanged(ListSelectionEvent e) {
+		//TODO beschreiben. if abfrage das code nur einmal ausgefühft wird
+		if(e.getValueIsAdjusting()) {
+			double[] tmpEffectiveParameterValues = new double[d_effectiveParameterValues[0].length];
+			double[] tmpUserrInputParameterValues = new double[d_effectiveParameterValues[0].length];
+			for (int i = 0; i < d_effectiveParameterValues[0].length; i++) {
+				tmpEffectiveParameterValues[i]=d_effectiveParameterValues[table.getSelectedRow()][i];
+				tmpUserrInputParameterValues[i]=d_UserInputParameterValues[table.getSelectedRow()][i];
+			}
+			System.out.println(table.getSelectedRow());
+			controller.updateInputPanel(tmpUserrInputParameterValues,tmpEffectiveParameterValues);
+		}
+	}
+	
 }
