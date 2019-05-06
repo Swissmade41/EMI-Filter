@@ -20,14 +20,20 @@ public class Controller {
 	
 	public void addFilter() {
 		view.filtertablePanel.addFilter();
+		view.inputPanel.resetInputPanel();
 	}
 	
 	public void removeFilter() {
 		view.filtertablePanel.removeFilter();
 	}
-	
-	public void inputEvent() {
-		view.inputPanel.inputPanelEvent();
-	}
 
+	
+	public void updateParamterValues(){
+		view.filtertablePanel.updateEffectiveParameterValues(view.inputPanel.getEffectiveParameterValues());
+		view.filtertablePanel.updateUserInputParameterValues(view.inputPanel.getUserInputParameterValues());
+	}
+	
+	public void updateInputPanel(double[] userInputFilterParameter, double[] effectiveFilterParameter) {
+		view.inputPanel.updateInputPanel(userInputFilterParameter, effectiveFilterParameter);
+	}
 }
