@@ -12,7 +12,7 @@ import team1.model.Model;
 import team1.userinterface.Controller;
 import team1.userinterface.MenuBar;
 import team1.userinterface.StatusBar;
-import team1.userinterface.ToolBar;
+
 import team1.userinterface.View;
 import team1.util.TraceV4;
 
@@ -30,7 +30,6 @@ public class P2Framework2019 extends JFrame {
 	private Controller controller = new Controller(model);
 	private View view = new View(controller);
 	private MenuBar menuBar = new MenuBar(controller);
-	private ToolBar toolBar = new ToolBar(controller);
 	private StatusBar statusBar = new StatusBar();
 
 	public P2Framework2019() {
