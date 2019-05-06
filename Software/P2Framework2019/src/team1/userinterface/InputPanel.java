@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Hashtable;
+
+import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,6 +22,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import team1.util.MyBorderFactory;
 import team1.util.TraceV4;
+
 
 public class InputPanel extends JPanel implements ActionListener{
 
@@ -41,6 +44,12 @@ public class InputPanel extends JPanel implements ActionListener{
 		setLayout(new GridBagLayout());
 		setBorder(MyBorderFactory.createMyBorder("Slider Panel"));
 		
+		JPanel c = new JPanel(new GridLayout());
+		c.setBorder(MyBorderFactory.createMyBorder("aaa"));
+		c.add(new InformationPanel());
+		add(c,new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(5, 5, 5, 5), 0, 0));
+		
 		for (int n = 0; n < parameter.length; n++) {
 			JPanel jPanel = new JPanel(new GridLayout());
 			jPanel.setBorder(MyBorderFactory.createMyBorder(parameter[n]));
@@ -53,7 +62,7 @@ public class InputPanel extends JPanel implements ActionListener{
 			}
 
 			sliders.add(sliderSubPanels);
-			add(jPanel,new GridBagConstraints(n, 1, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+			add(jPanel,new GridBagConstraints(n+1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
 					new Insets(5, 5, 5, 5), 0, 0));			
 		}
 	}
@@ -69,9 +78,9 @@ class SliderSubPanel extends JPanel implements ChangeListener, ActionListener{
 	private JLabel sliderSubtitle;
 	private JSlider slider;
 	private JTextField tfValue;
-	private double sliderStartingValue;
+	private JLabel result;
 	private String inputwert;
-	private int value;
+	private double value;
 	private int sliderval;
 	
 	static final int SLIDER_MIN = 70;
@@ -81,14 +90,15 @@ class SliderSubPanel extends JPanel implements ChangeListener, ActionListener{
 	private Controller controller;
 
 	public SliderSubPanel(Controller controller, String subParameter) {
-		super(new BorderLayout());
+		
+		super(new GridBagLayout());
 		trace.constructorCall();
 		this.controller = controller;
 
 		sliderSubtitle = new JLabel(subParameter);
 		sliderSubtitle.setHorizontalAlignment(SwingConstants.CENTER);
 
-		slider = new JSlider(SwingConstants.VERTICAL, SLIDER_MIN,SLIDER_MAX,SLIDER_INIT);
+		slider = new JSlider(SwingConstants.VERTICAL,SLIDER_MIN,SLIDER_MAX,SLIDER_INIT);
 		slider.addChangeListener(this);
 
 		//create % values for sliders
@@ -97,32 +107,55 @@ class SliderSubPanel extends JPanel implements ChangeListener, ActionListener{
 			labelTable.put(i, new JLabel(i-100 + "%"));
 		}
 
-		slider.setLabelTable( labelTable );
+		slider.setLabelTable(null);
 		slider.setPaintTicks(true);
 		slider.setPaintLabels(true);
 
 		tfValue = new JTextField();
+		result = new JLabel("WERT");
 		
-		add(sliderSubtitle,BorderLayout.NORTH);
-		add(tfValue, BorderLayout.CENTER);
-		add(slider, BorderLayout.SOUTH);	
+		add(sliderSubtitle, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
+				new Insets(5, 5, 5, 5), 10, 10));
+		add(tfValue, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+				new Insets(5, 5, 5, 5), 10, 10));
+		add(slider, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
+				new Insets(5, 5, 5, 5), 10, 50));
+		add(result, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
+				new Insets(5, 5, 5, 5), 10, 10));
 	}
-
 	public void stateChanged(ChangeEvent e) {
 		JSlider slider = (JSlider)e.getSource();
 		
 		inputwert =  tfValue.getText();
 		sliderval = slider.getValue();
 		
-		value= Integer.parseInt(inputwert)*sliderval/100;
+		value= Double.parseDouble(inputwert)*sliderval/100;
 		
 
-		tfValue.setText(Integer.toString(value));
+		result.setText(Double.toString(Math.round(Math.pow(10.0, 2) * value) / Math.pow(10.0, 2)));
 		
 		
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		
+	}
+}
+
+class InformationPanel extends JPanel {
+	
+	private JLabel invisible1 = new JLabel("");
+	private JLabel values = new JLabel("<html>+30% <p/> "+ "+20% <p/> " + "+10% <p/> " + "0 <p/> " + "-10% <p/> " + "-20% <p/> " +"-30%</html>");
+	private JLabel invisible2 = new JLabel("");
+
+	
+	public InformationPanel() {
+		setLayout(new BorderLayout());
+
+		
+		add(invisible1, BorderLayout.NORTH);
+		add(values, BorderLayout.CENTER);
+		add(invisible2, BorderLayout.SOUTH);
 		
 	}
 }
