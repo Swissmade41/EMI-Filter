@@ -17,7 +17,7 @@ public class Resistor implements ElecComponent{
 		this.d_R = d_R;
 	}
 	
-	public Complex getImpedance(double omega) {
+	public Complex getImpedance(double d_omega) {
 		return new Complex(d_R, 0.0);
 	}
 
