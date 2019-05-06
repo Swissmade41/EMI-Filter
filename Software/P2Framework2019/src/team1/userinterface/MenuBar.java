@@ -123,15 +123,15 @@ public  void panel() {
 	
 	public void DMfenster() {
 		
-		JFrame CMd = new JFrame("DM");
+		//JFrame CMd = new JFrame("DM");
 	//	CMd.setBackground();
-		CMd.setLayout (null);
-		CMd.setSize(400, 400);
-		CMd.setTitle("DM");
-		CMd.setDefaultCloseOperation(CMd.EXIT_ON_CLOSE);
-		CMd.setResizable(true);
-		CMd.setVisible(true);
-		
+		//CMd.setLayout (null);
+		//CMd.setSize(400, 400);
+		//CMd.setTitle("DM");
+		//CMd.setDefaultCloseOperation(CMd.EXIT_ON_CLOSE);
+		//CMd.setResizable(true);
+		//CMd.setVisible(true);
+		CircuitFrame2 circuitFrame2 = new CircuitFrame2("DM");
 		
 	}
 
@@ -167,33 +167,64 @@ public  void panel() {
 	}
 }
 
+
+
 class CircuitFrame extends JFrame{
 	
 	public CircuitFrame(String name) {
 		getContentPane().setLayout(new BorderLayout());
 		
 		getContentPane().add(new CircuitPanel(), BorderLayout.CENTER);
-		
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(400, 400);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setSize(800,800);
 		setResizable(true);
 		setVisible(true);
 	}
 }
-
-class CircuitPanel extends JPanel{
-	
-	public CircuitPanel() {
+	class CircuitPanel extends JPanel{
 		
+		public CircuitPanel() {
+			
+		}
+		
+		public void paintComponent(Graphics g) {
+			Image img = Utility.loadResourceImage("EMI_CM.png");
+			g.drawImage(img, 0, 0, getWidth(), getHeight(), this); // draw the image
+			}
 	}
+
 	
-	public void paintComponent(Graphics g) {
-		Image img = Utility.loadResourceImage("EMI_CM.png");
-		g.drawImage(img, 0, 0, getWidth(), getHeight(), this); // draw the image
+	
+	
+	
+	
+	class CircuitFrame2 extends JFrame{
+		
+		public CircuitFrame2(String name) {
+			getContentPane().setLayout(new BorderLayout());
+			
+			getContentPane().add(new CircuitPanel2(), BorderLayout.CENTER);
+			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+			setSize(800,800);
+			setResizable(true);
+			setVisible(true);
+			
 		}
 }
 
 
+
+class CircuitPanel2 extends JPanel{
+	
+	public CircuitPanel2() {
+		
+	}
+	
+	public void paintComponent(Graphics g) {
+		Image img = Utility.loadResourceImage("EMI_DM.png");
+		g.drawImage(img, 0, 0, getWidth(), getHeight(), this); // draw the image
+		}
+}
 
 
 
