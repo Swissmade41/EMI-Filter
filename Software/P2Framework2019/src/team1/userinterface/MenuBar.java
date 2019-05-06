@@ -1,5 +1,6 @@
 package team1.userinterface;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import team1.util.Observable;
@@ -17,7 +19,8 @@ import team1.util.TraceV4;
 
 public class MenuBar extends JMenuBar implements Observer, ActionListener {
 	private TraceV4 trace = new TraceV4(this);
-	private static final long serialVersionUID = 1L;
+	
+	private JFrame DMf = new JFrame("DM");
 	JMenu menu_File, menu_Window, menu_Simulation, menu_Help;
 	JMenuItem menuItemOnTop, submenuItem;
 	Controller controller;
@@ -95,10 +98,10 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 		
 		//Menu Help
 		menu_Help= new JMenu("Help");
-		menu_Help.setMnemonic(KeyEvent.VK_H);
 		
-		JMenuItem MenuItem_CMElectricalCircuit = new JMenuItem("CM electrical circuit", KeyEvent.VK_C);
-		MenuItem_CMElectricalCircuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+		
+		JMenuItem MenuItem_CMElectricalCircuit = new JMenuItem("CM electrical circuit", KeyEvent.VK_X);
+		MenuItem_CMElectricalCircuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
 		MenuItem_CMElectricalCircuit.setActionCommand("CM electrical circuit");
 		MenuItem_CMElectricalCircuit.addActionListener(this);
 		menu_Help.add(MenuItem_CMElectricalCircuit);
@@ -110,6 +113,31 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 		menu_Help.add(MenuItem_DMElectricalCircuit);
 		
 		add(menu_Help);
+		
+	}
+	
+	public void CMfenster() {
+		
+		JFrame CMf = new JFrame("CM");
+		CMf.setLayout (null);
+		CMf.setSize(400, 400);
+		CMf.setTitle("CM");
+		CMf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		CMf.toFront();
+		CMf.setResizable(true);
+		CMf.setVisible(true);
+		
+	}
+	public void DMfenster() {
+		
+		JFrame CMf = new JFrame("CM");
+		CMf.setLayout (null);
+		CMf.setSize(400, 400);
+		CMf.setTitle("CM");
+		CMf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		CMf.toFront();
+		CMf.setResizable(true);
+		CMf.setVisible(true);
 		
 	}
 
@@ -133,20 +161,16 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 			frame.setResizable(false);
 			System.out.println("NotResizable");
 		}
-		if (e.getActionCommand().equals("Open CM frame")) {
-			System.out.println("Open CM fram");
-		}
-		if (e.getActionCommand().equals("Open DM frame")) {
-			System.out.println("Open DM fram");
-		}
+	
 		if (e.getActionCommand().equals("Monte Carlo")) {
 			System.out.println("Monte Carlo");
 		}
 		if (e.getActionCommand().equals("CM electrical circuit")) {
-			System.out.println("CM electrical circuit");
+		this.CMfenster();
+		menu_Help.setMnemonic(KeyEvent.VK_X);
 		}
 		if (e.getActionCommand().equals("DM electrical circuit")) {
-			System.out.println("DM electrical circuit");
+		this.DMfenster();
 		}
 	}
 
