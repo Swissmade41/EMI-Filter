@@ -1,0 +1,40 @@
+* C:\Users\Lukas von Daeniken\iCloudDrive\Studium\Semester2\pro2E\MPLAB MINDI\EMI_DM2.wxsch
+*#SIMETRIX
+Ry1 Lr_N Ry1_N 246m
+V1 R1_P 0  AC 1 0 Sin(0 1 1k 0 0)
+R1 R1_P TX2_20 50
+R2 0 R2_N 50
+R3 R4_N R1_P 50
+R4 0 R4_N 50
+R5 TX1_20 R5_N 500Meg
+R$0.5*Rx1 Lr_N 0.5*Rx1_N 47.4m
+R$0.5*Rx2 TX1_20 0.5*Rx2_N 23.7m
+Lr Rw_P Lr_N 9.2u   
+Rw Rw_P TX1_20 11.3m
+Ly1 Cy1_N R5_N 8n   
+X$TX1 R2_N 0 TX1_20 R5_N Nonind_TxTX1 pinnames: 10 11 20 21 
+.subckt Nonind_TxTX1 10 11 20 21 
+F1 0 n1 E1 1
+E1 10 11 n1 0 1
+F2 0 n1 E2 1
+E2 20 21 n1 0 1
+.ends 
+
+X$TX2 Lr_N R5_N TX2_20 0 Nonind_TxTX2 pinnames: 10 11 20 21 
+.subckt Nonind_TxTX2 10 11 20 21 
+F1 0 n1 E1 1
+E1 10 11 n1 0 1
+F2 0 n1 E2 1
+E2 20 21 n1 0 1
+.ends 
+
+C$2*Cx1 0.5*Rx1_N 2*Cx1_N 293.4n   
+C$2*Cx2 0.5*Rx2_N 2*Cx2_N 293.4n   
+L$0.5*Lx1 2*Cx1_N R5_N 7.6n   
+Cy1 Ry1_N Cy1_N 3.85n   
+.KEEP R4_N R2_N
+.GRAPH "db(:R4_N/:R2_N)" Curvelabel="Gain" nowarn=true yunit="dB" complete=True analysis="ac" axisname=bodemag ylog=lin  persistence=0 disabled=false 
+.GRAPH "ph(:R4_N/:R2_N)" Curvelabel="Phase" nowarn=true yunit="degrees" complete=True analysis="ac"  axisname=bodephase ylog=lin   persistence=0 disabled=false
+L$0.5*Lx2 2*Cx2_N R5_N 7.6n   
+.AC DEC 200 20 30Meg
+
