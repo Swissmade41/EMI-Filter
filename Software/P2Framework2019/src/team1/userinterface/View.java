@@ -19,7 +19,7 @@ public class View extends JPanel implements Observer {
 	public FiltertablePanel filtertablePanel;
 	private PlotPanel CMplotPanel = new PlotPanel("CM");
 	private PlotPanel DMplotPanel = new PlotPanel("DM");
-	private InputPanel inputPanel;
+	public InputPanel inputPanel;
 	private ButtonPanel buttonPanel;
 	private Controller controller;
 
