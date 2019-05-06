@@ -25,5 +25,9 @@ public class Controller {
 	public void removeFilter() {
 		view.filtertablePanel.removeFilter();
 	}
+	
+	public void inputEvent() {
+		view.inputPanel.inputPanelEvent();
+	}
 
 }
