@@ -32,10 +32,12 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 	JMenu menu_File, menu_Window, menu_Simulation, menu_Help;
 	JMenuItem menuItemOnTop, submenuItem;
 	Controller controller;
-
+	Image img;
 	public MenuBar(Controller controller) {
 		trace.constructorCall();
 		this.controller = controller;
+		
+		img = Utility.loadResourceImage("EMI_CM.png");
 		
 		//Menu file
 		menu_File = new JMenu("File");
@@ -61,37 +63,6 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 		
 		add(menu_File);
 		
-		//Menu Window
-		menu_Window= new JMenu("Window");
-		menu_Window.setMnemonic(KeyEvent.VK_W);
-		
-		JMenuItem menuItemResizable = new JMenuItem("Resizable ", KeyEvent.VK_R);
-		menuItemResizable.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.ALT_MASK));
-		menuItemResizable.setActionCommand("Resizable");
-		menuItemResizable.addActionListener(this);
-		menu_Window.add(menuItemResizable);
-
-		JMenuItem menuItemNotResizable = new JMenuItem("Not Resizable ", KeyEvent.VK_N);
-		menuItemNotResizable.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.ALT_MASK));
-		menuItemNotResizable.setActionCommand("NotResizable");
-		menuItemNotResizable.addActionListener(this);
-		menu_Window.add(menuItemNotResizable);
-		
-		JMenuItem MenuItem_CMFrame = new JMenuItem("Open CM frame ", KeyEvent.VK_C);
-		MenuItem_CMFrame.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
-		MenuItem_CMFrame.setActionCommand("Open CM frame");
-		MenuItem_CMFrame.addActionListener(this);
-		menu_Window.add(MenuItem_CMFrame);
-		
-		JMenuItem MenuItem_DMFrame = new JMenuItem("Open DM frame ", KeyEvent.VK_D);
-		MenuItem_DMFrame.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
-		MenuItem_DMFrame.setActionCommand("Open DM frame");
-		MenuItem_DMFrame.addActionListener(this);
-		menu_Window.add(MenuItem_DMFrame);
-		
-		//TODO
-	//	add(menu_Window);
-		
 		//Menu simulation
 		menu_Simulation= new JMenu("Simulation");
 		menu_Simulation.setMnemonic(KeyEvent.VK_A);
@@ -106,10 +77,10 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 		
 		//Menu Help
 		menu_Help= new JMenu("Help");
-		menu_Help.setMnemonic(KeyEvent.VK_H);
+		menu_Help.setMnemonic(KeyEvent.VK_X);
 		
-		JMenuItem MenuItem_CMElectricalCircuit = new JMenuItem("CM electrical circuit", KeyEvent.VK_Y);
-		MenuItem_CMElectricalCircuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
+		JMenuItem MenuItem_CMElectricalCircuit = new JMenuItem("CM electrical circuit", KeyEvent.VK_X);
+		MenuItem_CMElectricalCircuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
 		MenuItem_CMElectricalCircuit.setActionCommand("CM electrical circuit");
 		MenuItem_CMElectricalCircuit.addActionListener(this);
 		menu_Help.add(MenuItem_CMElectricalCircuit);
@@ -135,18 +106,25 @@ public  void panel() {
 	
 	public void CMfenster() {
 		
-		JFrame CMf = new JFrame("CM");
-		CMf.setLayout (null);
-		CMf.setSize(400, 400);
-		CMf.setTitle("CM");
-		CMf.setDefaultCloseOperation(CMf.EXIT_ON_CLOSE);
-		CMf.setResizable(true);
-		CMf.setVisible(true);
+//		JFrame CMf = new JFrame("CM");
+//		CMf.setLayout (null);
+//		CMf.setSize(400, 400);
+//		CMf.setTitle("CM");
+//		CMf.setDefaultCloseOperation(CMf.EXIT_ON_CLOSE);
+//		CMf.setResizable(true);
+//		CMf.setVisible(true);
+		
+		CircuitFrame circuitFrame = new CircuitFrame("CM");
 		
 	}
+	
+
+
+	
 	public void DMfenster() {
 		
 		JFrame CMd = new JFrame("DM");
+	//	CMd.setBackground();
 		CMd.setLayout (null);
 		CMd.setSize(400, 400);
 		CMd.setTitle("DM");
@@ -169,14 +147,6 @@ public  void panel() {
 		if (e.getActionCommand().equals("Load filter profile")) {
 			System.out.println("Load");
 		}
-		if (e.getActionCommand().equals("Resizable")) {
-			frame.setResizable(true);
-			System.out.println("Resizable");
-		}
-		if (e.getActionCommand().equals("NotResizable")) {
-			frame.setResizable(false);
-			System.out.println("NotResizable");
-		}
 	
 		if (e.getActionCommand().equals("Monte Carlo")) {
 			System.out.println("Monte Carlo");
@@ -196,6 +166,33 @@ public  void panel() {
 
 	}
 }
+
+class CircuitFrame extends JFrame{
+	
+	public CircuitFrame(String name) {
+		getContentPane().setLayout(new BorderLayout());
+		
+		getContentPane().add(new CircuitPanel(), BorderLayout.CENTER);
+		
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSize(400, 400);
+		setResizable(true);
+		setVisible(true);
+	}
+}
+
+class CircuitPanel extends JPanel{
+	
+	public CircuitPanel() {
+		
+	}
+	
+	public void paintComponent(Graphics g) {
+		Image img = Utility.loadResourceImage("EMI_CM.png");
+		g.drawImage(img, 0, 0, getWidth(), getHeight(), this); // draw the image
+		}
+}
+
 
 
 
