@@ -1,0 +1,7 @@
+package team1.userinterface;
+
+import team1.util.TraceV4;
+
+public class ReadWrite {
+	private TraceV4 trace = new TraceV4(this);
+}

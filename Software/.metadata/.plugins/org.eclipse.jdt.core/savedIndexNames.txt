@@ -1,0 +1,7 @@
+INDEX VERSION 1.131+/Users/niklausschwegler/OneDrive/FHNW/04_Unterricht/FS19/pro2E/Team1/EMI-Filter/Software/.metadata/.plugins/org.eclipse.jdt.core
+462423832.index
+994654278.index
+2048152730.index
+3074168160.index
+3482786097.index
+1178602037.index
