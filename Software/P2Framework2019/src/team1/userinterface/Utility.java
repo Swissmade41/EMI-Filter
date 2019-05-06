@@ -25,7 +25,7 @@ public class Utility {
 
 	public static Image loadResourceImage(String strBild) {
 		MediaTracker tracker = new MediaTracker(p);
-		Image img = (new ImageIcon(Utility.class.getResource("bilder" + "/" + strBild))).getImage();
+		Image img = (new ImageIcon(Utility.class.getClassLoader().getResource("bilder" + "/" + strBild))).getImage();
 		tracker.addImage(img, 0);
 		try {
 			tracker.waitForID(0);
