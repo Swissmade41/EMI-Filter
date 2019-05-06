@@ -44,6 +44,12 @@ public class InputPanel extends JPanel implements ActionListener{
 		setLayout(new GridBagLayout());
 		setBorder(MyBorderFactory.createMyBorder("Slider Panel"));
 		
+		JPanel c = new JPanel(new GridLayout());
+		c.setBorder(MyBorderFactory.createMyBorder("aaa"));
+		c.add(new InformationPanel());
+		add(c,new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(5, 5, 5, 5), 0, 0));
+		
 		for (int n = 0; n < parameter.length; n++) {
 			JPanel jPanel = new JPanel(new GridLayout());
 			jPanel.setBorder(MyBorderFactory.createMyBorder(parameter[n]));
@@ -56,7 +62,7 @@ public class InputPanel extends JPanel implements ActionListener{
 			}
 
 			sliders.add(sliderSubPanels);
-			add(jPanel,new GridBagConstraints(n, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+			add(jPanel,new GridBagConstraints(n+1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
 					new Insets(5, 5, 5, 5), 0, 0));			
 		}
 	}
@@ -101,7 +107,7 @@ class SliderSubPanel extends JPanel implements ChangeListener, ActionListener{
 			labelTable.put(i, new JLabel(i-100 + "%"));
 		}
 
-		slider.setLabelTable( labelTable );
+		slider.setLabelTable(null);
 		slider.setPaintTicks(true);
 		slider.setPaintLabels(true);
 
@@ -117,7 +123,6 @@ class SliderSubPanel extends JPanel implements ChangeListener, ActionListener{
 		add(result, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
 				new Insets(5, 5, 5, 5), 10, 10));
 	}
-
 	public void stateChanged(ChangeEvent e) {
 		JSlider slider = (JSlider)e.getSource();
 		
@@ -133,6 +138,24 @@ class SliderSubPanel extends JPanel implements ChangeListener, ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		
+	}
+}
+
+class InformationPanel extends JPanel {
+	
+	private JLabel invisible1 = new JLabel("");
+	private JLabel values = new JLabel("<html>+30% <p/> "+ "+20% <p/> " + "+10% <p/> " + "0 <p/> " + "-10% <p/> " + "-20% <p/> " +"-30%</html>");
+	private JLabel invisible2 = new JLabel("");
+
+	
+	public InformationPanel() {
+		setLayout(new BorderLayout());
+
+		
+		add(invisible1, BorderLayout.NORTH);
+		add(values, BorderLayout.CENTER);
+		add(invisible2, BorderLayout.SOUTH);
 		
 	}
 }
