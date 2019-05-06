@@ -21,7 +21,11 @@ public class Inductor implements ElecComponent{
 		this.d_R = d_R;
 	}
 	public Complex getImpedance(double d_omega) {
-		Complex c_Admittance = new Complex(1/d_R, d_omega*(d_C-d_L));
+		Complex c_Admittance;
+		if(d_R == 0 && d_C == 0)
+			c_Admittance = new Complex(0.0, -1/(d_omega*d_L));
+		else
+			c_Admittance = new Complex(1/d_R, d_omega*d_C-1/(d_omega*d_L));
 		return c_Admittance.reciprocal();
 	}
 
