@@ -106,10 +106,10 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 		
 		//Menu Help
 		menu_Help= new JMenu("Help");
-		menu_Help.setMnemonic(KeyEvent.VK_X);
+		menu_Help.setMnemonic(KeyEvent.VK_H);
 		
-		JMenuItem MenuItem_CMElectricalCircuit = new JMenuItem("CM electrical circuit", KeyEvent.VK_X);
-		MenuItem_CMElectricalCircuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
+		JMenuItem MenuItem_CMElectricalCircuit = new JMenuItem("CM electrical circuit", KeyEvent.VK_Y);
+		MenuItem_CMElectricalCircuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
 		MenuItem_CMElectricalCircuit.setActionCommand("CM electrical circuit");
 		MenuItem_CMElectricalCircuit.addActionListener(this);
 		menu_Help.add(MenuItem_CMElectricalCircuit);
@@ -147,7 +147,6 @@ public  void panel() {
 	public void DMfenster() {
 		
 		JFrame CMd = new JFrame("DM");
-		CMd.setBackground();
 		CMd.setLayout (null);
 		CMd.setSize(400, 400);
 		CMd.setTitle("DM");
