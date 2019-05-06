@@ -1,0 +1,59 @@
+Fachbericht:
+
+-Struktur anpassen und Dispo anpassen
+-Problematik einleiten? Auftrag lügen wies nur geht!
+
+
+-Testprozess ausarbeiten
+	-Pflichtenheft lesen was wir machen wollten
+	
+-Softwarestruktur beschreiben
+	-Grundlagene klären
+	-IST-Zustand beschreiben
+	
+
+-Elektrotechnik
+	-Grundlagen beschreiben
+	
+
+
+
+Software
+Allgemein: -Dokumentation ergänzen
+
+View: -Inputpanel
+		- Werte ausgeben
+		- Einheiten Verarbeiten
+		
+	 -Filtertabelle
+	 	-Werte aus dem Inputpanel Auslesen
+		-Textfile speichern
+		
+	 -ButtonPanel
+	 	-Read und Write Buttons für Textdokumente Implementieren
+		
+	 -MenuBar
+	 	-Shortcuts ändern
+		-Schaltbilder Einfügen
+		-Monte Carlo anfangen
+		
+	 -PlotPanel
+	 	-Werte aus dem Model einlesen
+		
+	 -Statusbar
+	 	-evtl.
+	 
+	 -StorageManager
+	 	-Textfile lesen und generieren
+	 
+	 -View
+	 	-
+		
+		
+Model: -DM und CM berechnen
+	   -Mikromatlab?
+	   	 -Matrizen berechnen?
+	   -Werte aus dem Inputpanel mittels array auslesen um sie zu verarbeiten
+	   -
+
+Controller: -diverse Verknüpfungen erstellen(vorzu)
