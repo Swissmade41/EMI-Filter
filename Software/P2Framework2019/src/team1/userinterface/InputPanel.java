@@ -6,7 +6,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,6 +16,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import team1.util.MyBorderFactory;
 import team1.util.TraceV4;
@@ -126,7 +129,7 @@ public class InputPanel extends JPanel{
 }
 
 
-class InputSubPanel extends JPanel implements ChangeListener{
+class InputSubPanel extends JPanel implements ChangeListener, DocumentListener{
 	private TraceV4 trace = new TraceV4(this);
 	
 	private Controller controller;
@@ -154,6 +157,7 @@ class InputSubPanel extends JPanel implements ChangeListener{
 		this.controller = controller;
 		
 		//TODO:Startwert einfügen
+		textfield_ParameterValues.getDocument().addDocumentListener(this);
 		textfield_ParameterValues.setText("30");
 		label_ParameterValue.setText("30");
 		effectiveParameterValue=30;
@@ -162,15 +166,11 @@ class InputSubPanel extends JPanel implements ChangeListener{
 		this.label_subParameter.setHorizontalAlignment(SwingConstants.CENTER);
 
 		slider_Parameter = new JSlider(SwingConstants.VERTICAL,SLIDER_MIN,SLIDER_MAX,SLIDER_INIT);
-		
-		
 		slider_Parameter.setMajorTickSpacing(10);
 		slider_Parameter.setMinorTickSpacing(5);
-		
 		slider_Parameter.setLabelTable(null);
 		slider_Parameter.setPaintTicks(true);
 		slider_Parameter.setPaintLabels(false);
-		
 		slider_Parameter.addChangeListener(this);
 
 		add(label_subParameter, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
@@ -240,7 +240,29 @@ class InputSubPanel extends JPanel implements ChangeListener{
 		label_ParameterValue.setText(Double.toString(effectiveParameterValue));
 		
 		controller.updateParamterValues();		
+		
+		System.out.println("statechanged");
 	}
+
+
+	public void insertUpdate(DocumentEvent e) {
+		System.out.println("insert");	
+		controller.updateParamterValues();	
+	}
+
+
+	public void removeUpdate(DocumentEvent e) {
+		System.out.println("remove");
+		controller.updateParamterValues();	
+	}
+
+
+	public void changedUpdate(DocumentEvent e) {
+		System.out.println("update");
+		
+	}
+
+
 }
 
 class InformationPanel extends JPanel {
