@@ -8,7 +8,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
 
 import javax.swing.JFileChooser;
 
@@ -31,24 +30,11 @@ public class StorageManager {
     PrintWriter writer;
     BufferedReader reader;
 	JTextArea anzeigeTextFeld;
+    String stringBuffer = "";
 	
-	
-	
-	double [][]a =  {
-			{1,2,3,4},
-			{11,12,13,14,15,16,17,18,19,20,21,22,23}
-	};
-	
-	String textTest = "Hallo Velo";		
-		
-	
-	
-	
-	private void packFile() {
-		
-    }
 
-		
+	
+	
 
 	
     public void saveFile(double [][] d_UserInputParameterValues, int [][] s32_SliderPosition) {
@@ -81,11 +67,36 @@ public class StorageManager {
         
         writer.println("LGENDE HIER");
         // TODO LEGENDE PARAMETER
-        
-        
+
+        for (int rows = 0; rows < d_UserInputParameterValues.length; rows++) {
+			stringBuffer = "";
+			for (int columns = 0; columns < d_UserInputParameterValues[0].length; columns++) {
+				if ((d_UserInputParameterValues[0].length)-1==(columns)) {
+					stringBuffer+=String.valueOf(d_UserInputParameterValues[rows][columns]);
+					}else  {
+						stringBuffer+=String.valueOf(d_UserInputParameterValues[rows][columns]) + ",";
+					} 
+			}
+			writer.println(stringBuffer +";");
+		}
+       
+
         // TODO SCHLEIFE Prameter
         // Wenn null abrechen
-        writer.println("+");
+   
+        for (int rows = 0; rows < s32_SliderPosition.length; rows++) {
+			stringBuffer = "";
+			for (int columns = 0; columns < s32_SliderPosition[0].length; columns++) {
+
+				if ((s32_SliderPosition[0].length)-1==(columns)) {
+					stringBuffer+=String.valueOf(s32_SliderPosition[rows][columns]);
+					}else  {
+						stringBuffer+=String.valueOf(s32_SliderPosition[rows][columns]) + ",";
+					} 
+			}
+			writer.println(stringBuffer +";");
+		}
+        
         
         // TODO SCHLEIFE Slider
         // Wenn null abrechen
