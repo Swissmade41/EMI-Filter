@@ -48,6 +48,7 @@ public class View extends JPanel implements Observer {
 	public void update(Observable observable, Object obj) {
 		trace.methodeCall();
 		Model model = (Model) observable;
-
+		CMplotPanel.update(observable, obj);
+		DMplotPanel.update(observable, obj);
 	}
 }
