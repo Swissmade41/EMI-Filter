@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -61,7 +62,7 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 		MenuItem_Exit.addActionListener(this);
 		menu_File.add(MenuItem_Exit);
 		
-		add(menu_File);
+		
 		
 		//Menu simulation
 		menu_Simulation= new JMenu("Simulation");
@@ -73,46 +74,35 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 		MenuItem_MonteCarlo.addActionListener(this);
 		menu_Simulation.add(MenuItem_MonteCarlo);
 		
-		add(menu_Simulation);
+		
 		
 		//Menu Help
 		menu_Help= new JMenu("Help");
-		menu_Help.setMnemonic(KeyEvent.VK_X);
+		menu_Help.setMnemonic(KeyEvent.VK_H);
 		
-		JMenuItem MenuItem_CMElectricalCircuit = new JMenuItem("CM electrical circuit", KeyEvent.VK_X);
-		MenuItem_CMElectricalCircuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
+		JMenuItem MenuItem_CMElectricalCircuit = new JMenuItem("CM electrical circuit", KeyEvent.VK_T);
+		MenuItem_CMElectricalCircuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
 		MenuItem_CMElectricalCircuit.setActionCommand("CM electrical circuit");
 		MenuItem_CMElectricalCircuit.addActionListener(this);
 		menu_Help.add(MenuItem_CMElectricalCircuit);
 		
-		JMenuItem MenuItem_DMElectricalCircuit = new JMenuItem("DM electrical circuit", KeyEvent.VK_D);
-		MenuItem_DMElectricalCircuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+		JMenuItem MenuItem_DMElectricalCircuit = new JMenuItem("DM electrical circuit", KeyEvent.VK_R);
+		MenuItem_DMElectricalCircuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
 		MenuItem_DMElectricalCircuit.setActionCommand("DM electrical circuit");
 		MenuItem_DMElectricalCircuit.addActionListener(this);
 		menu_Help.add(MenuItem_DMElectricalCircuit);
-		
+
+		add(menu_File);
+		add(menu_Simulation);
 		add(menu_Help);
 		
 	}
-	
+
 
 	
 
-public  void panel() {
-	
-}
-
-	
-	
 	public void CMfenster() {
-		
-//		JFrame CMf = new JFrame("CM");
-//		CMf.setLayout (null);
-//		CMf.setSize(400, 400);
-//		CMf.setTitle("CM");
-//		CMf.setDefaultCloseOperation(CMf.EXIT_ON_CLOSE);
-//		CMf.setResizable(true);
-//		CMf.setVisible(true);
+
 		
 		CircuitFrame circuitFrame = new CircuitFrame("CM");
 		
@@ -123,14 +113,6 @@ public  void panel() {
 	
 	public void DMfenster() {
 		
-		//JFrame CMd = new JFrame("DM");
-	//	CMd.setBackground();
-		//CMd.setLayout (null);
-		//CMd.setSize(400, 400);
-		//CMd.setTitle("DM");
-		//CMd.setDefaultCloseOperation(CMd.EXIT_ON_CLOSE);
-		//CMd.setResizable(true);
-		//CMd.setVisible(true);
 		CircuitFrame2 circuitFrame2 = new CircuitFrame2("DM");
 		
 	}
@@ -153,10 +135,12 @@ public  void panel() {
 		}
 		if (e.getActionCommand().equals("CM electrical circuit")) {
 		this.CMfenster();
+		System.out.println("CM");
 	
 		}
 		if (e.getActionCommand().equals("DM electrical circuit")) {
 		this.DMfenster();
+		System.out.println("DM");
 		}
 	}
 
@@ -165,7 +149,9 @@ public  void panel() {
 		trace.methodeCall();
 
 	}
-}
+
+
+
 
 
 
@@ -176,7 +162,7 @@ class CircuitFrame extends JFrame{
 		
 		getContentPane().add(new CircuitPanel(), BorderLayout.CENTER);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setSize(800,800);
+		setSize(742,356);
 		setResizable(true);
 		setVisible(true);
 	}
@@ -205,7 +191,7 @@ class CircuitFrame extends JFrame{
 			
 			getContentPane().add(new CircuitPanel2(), BorderLayout.CENTER);
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			setSize(800,800);
+			setSize(1000,417);
 			setResizable(true);
 			setVisible(true);
 			
@@ -224,6 +210,7 @@ class CircuitPanel2 extends JPanel{
 		Image img = Utility.loadResourceImage("EMI_DM.png");
 		g.drawImage(img, 0, 0, getWidth(), getHeight(), this); // draw the image
 		}
+}
 }
 
 
