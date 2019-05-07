@@ -30,24 +30,27 @@ public class Capacitor implements ElecComponent{
 		return new Complex(d_R, d_omega*d_L + (-1/(d_omega*d_C)));
 	}
 
-	/*
+	/**
 	 * sets the capacity of the capacitor
+	 * @param d_C capacity to set
 	 */
 	public void setC(double d_C) {
 		this.d_C = d_C;
 		
 	}
 
-	/*
+	/**
 	 * sets the parasitic resistance of the capacitor
+	 * @param d_R parasitic resistance to set
 	 */
 	public void setR(double d_R) {
 		this.d_R = d_R;
 		
 	}
 
-	/*
+	/**
 	 * sets the parasitic inductance of the capacitor
+	 * @param d_L inductance to set
 	 */
 	public void setL(double d_L) {
 		this.d_L = d_L;
