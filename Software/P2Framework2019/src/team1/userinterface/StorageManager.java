@@ -32,7 +32,11 @@ public class StorageManager {
 	JTextArea anzeigeTextFeld;
     String stringBuffer = "";
 	
-
+	double a[][] = {
+			{2,4,6},
+			{1,3,5}
+			};
+	
 	
 	
 
@@ -71,10 +75,13 @@ public class StorageManager {
         for (int rows = 0; rows < d_UserInputParameterValues.length; rows++) {
 			stringBuffer = "";
 			for (int columns = 0; columns < d_UserInputParameterValues[0].length; columns++) {
-				if ((d_UserInputParameterValues[0].length)-1==(columns)) {
-					stringBuffer+=String.valueOf(d_UserInputParameterValues[rows][columns]);
+				if (s32_SliderPosition[rows][columns]==0) {
+					break;
+				}
+				if ((a[0].length)-1==(columns)) {
+					stringBuffer+=String.valueOf(a[rows][columns]);
 					}else  {
-						stringBuffer+=String.valueOf(d_UserInputParameterValues[rows][columns]) + ",";
+						stringBuffer+=String.valueOf(a[rows][columns]) + ",";
 					} 
 			}
 			writer.println(stringBuffer +";");
@@ -84,10 +91,14 @@ public class StorageManager {
         // TODO SCHLEIFE Prameter
         // Wenn null abrechen
    
+        
+        
+        
+        writer.println("+");
+        
         for (int rows = 0; rows < s32_SliderPosition.length; rows++) {
 			stringBuffer = "";
 			for (int columns = 0; columns < s32_SliderPosition[0].length; columns++) {
-
 				if ((s32_SliderPosition[0].length)-1==(columns)) {
 					stringBuffer+=String.valueOf(s32_SliderPosition[rows][columns]);
 					}else  {
@@ -96,7 +107,6 @@ public class StorageManager {
 			}
 			writer.println(stringBuffer +";");
 		}
-        
         
         // TODO SCHLEIFE Slider
         // Wenn null abrechen
