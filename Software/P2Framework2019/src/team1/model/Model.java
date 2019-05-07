@@ -33,7 +33,7 @@ public class Model extends Observable {
 	}
 	
 	/**
-	 * 
+	 * This method calculates the insertion loss for the given components for common and differential mode
 	 * @param elecComponents first dimensions specifies the number of the filter 
 	 * the second dimensions store the values of the electric components
 	 */
@@ -43,6 +43,7 @@ public class Model extends Observable {
 		int s32_filter = 0;
 		// CM
 		while(elecComponents[s32_filter][0] !=0) {
+			// Common mode
 			Inductor cm_L0 = new Inductor(2*elecComponents[s32_filter][Cp], 0.5*elecComponents[s32_filter][L0], 0.5*elecComponents[s32_filter][Rp]);
 			Inductor cm_Lr = new Inductor(0, 0.5*elecComponents[s32_filter][Lr], 0);
 			Resistor cm_Rw = new Resistor(0.5*elecComponents[s32_filter][Rw]);
@@ -63,8 +64,7 @@ public class Model extends Observable {
 				cmData[s32_filter][0][i] = d_freq[i];
 				cmData[s32_filter][1][i] = cm_IL;
 			}
-		
-			// DM
+			//Differential mode
 			Capacitor dm_Cy = new Capacitor(elecComponents[s32_filter][Cy], elecComponents[s32_filter][Ly], elecComponents[s32_filter][Ry]);
 			Capacitor dm_Cx1 = new Capacitor(2*elecComponents[s32_filter][Cx1], 0.5*elecComponents[s32_filter][Lx1], 0.5*elecComponents[s32_filter][Rx1]);
 			Capacitor dm_Cx2 = new Capacitor(2*elecComponents[s32_filter][Cx2], 0.5*elecComponents[s32_filter][Lx2], 0.5*elecComponents[s32_filter][Rx2]);
@@ -95,12 +95,18 @@ public class Model extends Observable {
 		notifyObservers();
 	}
 
+	/**
+	 * @return this method returns the calculated insertion loss for common mode
+	 */
 	public double[][][] getCM() {
 		// cmData  [Funktionsnummer],[x-Werte = 0, y-Werte = 1],[Datensätze]
 		return cmData;
 		//return null;
 	}
 	
+	/**
+	 * @return This method returns the calculated insertion loss for differential mode
+	 */
 	public double[][][] getDM() {
 		// dmData [Funktionsnummer],[x-Werte = 0, y-Werte = 1],[Datensätze]
 		return dmData;
