@@ -22,7 +22,6 @@ import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-import team1.matlabfunctions.MikroMatlab;
 import team1.model.Model;
 import team1.util.MyBorderFactory;
 import team1.util.Observable;
@@ -35,6 +34,10 @@ public class PlotPanel extends JPanel {
 	private JFreeChart chart = ChartFactory.createXYLineChart("Titel", "Frequency[Hz]", "Insertion loss[dB]", null,
 			PlotOrientation.VERTICAL, false, false, false);
 
+	/**
+	 * 
+	 * @param title
+	 */
 	public PlotPanel(String title) {
 		super(new BorderLayout());
 		trace.constructorCall();
@@ -82,6 +85,11 @@ public class PlotPanel extends JPanel {
 		add(new ChartPanel(chart));
 	}
 
+	/**
+	 * This method makes the plots for the given datasets
+	 * @param cmData contains the dataset for the common mode plot
+	 * @param dmData contains the dataset for the differential mode plot
+	 */
 	public void setData(double[][][] cmData, double[][][] dmData) {
 		trace.methodeCall();
 		// cmData&dmData [Funktionsnummer],[x-Werte = 0, y-Werte = 1],[Datensätze]
