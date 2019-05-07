@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
+import java.io.UnsupportedEncodingException;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JFrame;
@@ -42,6 +43,9 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
     
     private static double[][] d_effectiveParameterValues = new double[100][14];
 	private static double[][] d_UserInputParameterValues = new double[100][14];
+	private static int[][] s32_SliderPosition = new int[100][14];
+	
+	StorageManager storageManager =  new StorageManager();
 
 	/**
 	 * set Layout to Gridlayout
@@ -145,13 +149,21 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 */
 	public void loadFiltertable() {
 		//TODO: loadTextfile aufrufen und in tabelle schreiben
+		try {
+			storageManager.loadFile();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
 	 * call method to to write a textfile and hand over the entries
 	 */
 	public void saveFiltertable() {
-		//TODO: writeTextfile aufrufen und tabelle übergeben
+		//TODO: writeTextfile aufrufen und tabelle ï¿½bergeben
+		storageManager.saveFile(d_UserInputParameterValues, s32_SliderPosition);
+		
 	}
 
 	public double[][] getEffectiveParameterValues(){
@@ -167,7 +179,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	}
 	
 	public void valueChanged(ListSelectionEvent e) {
-		//TODO beschreiben. if abfrage das code nur einmal ausgefühft wird
+		//TODO beschreiben. if abfrage das code nur einmal ausgefï¿½hft wird
 		if(e.getValueIsAdjusting()) {
 			updateInputPanel();
 		}		

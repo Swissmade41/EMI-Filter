@@ -125,9 +125,11 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 		}
 		if (e.getActionCommand().equals("Save filter profile")) {
 			System.out.println("Save");
+			controller.saveFile();
 		}
 		if (e.getActionCommand().equals("Load filter profile")) {
 			System.out.println("Load");
+			controller.loadFile();
 		}
 	
 		if (e.getActionCommand().equals("Monte Carlo")) {

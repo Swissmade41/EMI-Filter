@@ -26,6 +26,14 @@ public class Controller {
 	public void removeFilter() {
 		view.filtertablePanel.removeFilter();
 	}
+	
+	public void saveFile() {
+		view.filtertablePanel.saveFiltertable();
+	}
+	
+	public void loadFile() {
+		view.filtertablePanel.loadFiltertable();
+	}
 
 	
 	public void updateParamterValues(){
@@ -46,6 +54,6 @@ public class Controller {
 	}
 	
 	public void calculateInsertionLoss() {
-		model.calculate(view.filtertablePanel.getEffectiveParameterValues());
+//		model.calculate(view.filtertablePanel.getEffectiveParameterValues());
 	}
 }

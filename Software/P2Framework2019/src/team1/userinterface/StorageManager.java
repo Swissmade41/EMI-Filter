@@ -1,9 +1,6 @@
 package team1.userinterface;
 
-import team1.P2Framework2019;
-import team1.util.TraceV4;
 
-import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,13 +8,19 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
+
 import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
+
+
+
+
+
+
+
+
 
 
 
@@ -29,7 +32,26 @@ public class StorageManager {
     BufferedReader reader;
 	JTextArea anzeigeTextFeld;
 	
-    private void saveFile() {
+	
+	
+	double [][]a =  {
+			{1,2,3,4},
+			{11,12,13,14,15,16,17,18,19,20,21,22,23}
+	};
+	
+	String textTest = "Hallo Velo";		
+		
+	
+	
+	
+	private void packFile() {
+		
+    }
+
+		
+
+	
+    public void saveFile(double [][] d_UserInputParameterValues, int [][] s32_SliderPosition) {
         //Prepare browse dialog
         JFileChooser jfcSave = new JFileChooser();
        int rt = jfcSave.showSaveDialog(null);
@@ -56,14 +78,26 @@ public class StorageManager {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        
+        writer.println("LGENDE HIER");
+        // TODO LEGENDE PARAMETER
+        
+        
+        // TODO SCHLEIFE Prameter
+        // Wenn null abrechen
+        writer.println("+");
+        
+        // TODO SCHLEIFE Slider
+        // Wenn null abrechen
 
-        writer.println("The first line");
-        writer.println("The second line");
+        
+//        writer.println("The first line");
+//        writer.println("The second line");
         writer.close();
 
     }
     
-    private void loadFile() throws UnsupportedEncodingException {
+    public void loadFile() throws UnsupportedEncodingException {
     	
     	anzeigeTextFeld = new JTextArea(5, 20);
 //    	JScrollPane scrollPane = new JScrollPane(anzeigeTextFeld); 
@@ -93,6 +127,7 @@ public class StorageManager {
             String zeile;
             while ((zeile = reader.readLine()) != null){
                 anzeigeTextFeld.append(zeile + "\n");
+                
             }
             reader.close();
         } catch (IOException exe) {
@@ -101,15 +136,28 @@ public class StorageManager {
          // TODO Datenfehlerausgeben
             System.exit(1);
         }
+        
+//        Scanner scanner = new Scanner(reader);
+//        
+//        int totalRow = 3;
+//
+//        for (int row = 0; scanner.hasNextLine() && row < totalRow; row++) {
+//            char[] b;
+//			b[] = scanner.nextLine().toCharArray();
+//        }
 
+        
 
+        System.out.println(anzeigeTextFeld.getText());
+  
+        
 
     }
 	
-//    public static void main(String args[]) throws IOException {
-//    	StorageManager storageManager = new StorageManager();
-//    	storageManager.loadFile();;
-//	}
+    public static void main(String args[]) throws IOException {
+    	StorageManager storageManager = new StorageManager();
+    	storageManager.loadFile();
+	}
    
 	
 //	TraceV4 trace = new TraceV4(this);
