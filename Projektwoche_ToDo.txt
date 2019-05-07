@@ -15,6 +15,12 @@ Fachbericht:
 -Elektrotechnik
 	-Grundlagen beschreiben
 	
+	
+Arbeitspakete:
+	-Ist-Schaltung beschreiben, Allgemeine EMI-Schaltungen beschreiben
+		(Kapitel Software, Grundlagen Schaltung, DM, CM)
+	-Parasitäre Parameter Grundlagen beschreiben
+	
 
 
 
