@@ -29,6 +29,7 @@ public class InputPanel extends JPanel{
 	private Controller controller;
 
 	static final int NUMBER_OF_PARAMETER = 14;
+	private static final double DEFAULT_VALUES[] = {0.5e-3, 7.92e3, 6.46e-12, 9.2e-6, 11.3e-3, 146.7e-9, 15.2e-9, 47.4e-3, 146.7e-9, 15.2e-9, 47.4e-3, 3.85e-9, 8e-9, 246e-3};
 	
 	private String[] parameter = {"<html>L<sub>0</sub></html>", "<html>C<sub>X1</sub></html>", "<html>C<sub>X2</sub></html>", "<html>C<sub>Y1</sub></html>"};
 
@@ -65,8 +66,10 @@ public class InputPanel extends JPanel{
 			}
 			
 			add(paramter_Panel,new GridBagConstraints(n+1, 1, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 0, 0), 0, 0));			
+					new Insets(0, 0, 0, 0), 0, 0));	
+			
 		}
+		this.resetInputPanel();
 	}
 	
 	/**
@@ -106,19 +109,21 @@ public class InputPanel extends JPanel{
 	}
 
 	public void resetInputPanel() {
+		int s32_tmpCounter = 0;
 		for (int n = 0; n < parameter.length; n++) {
 			for (int m = 0; m < subParameter[n].length; m++) {
-				inputSubPanel[n][m].resetTextfield();
+				inputSubPanel[n][m].setTextfieldValue(DEFAULT_VALUES[s32_tmpCounter]);
 				inputSubPanel[n][m].resetSliders();
+				s32_tmpCounter++;
 			}
 		}
 	}
 
 	public void updateInputPanel(double[] textfieldValues, double[] parameterValues) {
-		int tmpCounter=0;
+		int tmpCounter = 0;
 		for (int n = 0; n < parameter.length; n++) {
 			for (int m = 0; m < subParameter[n].length; m++) {
-				inputSubPanel[n][m].setTextfieldValue(textfieldValues[m]);
+				inputSubPanel[n][m].setTextfieldValue(textfieldValues[tmpCounter]);
 				//calculate sliderposition
 				int sliderValue=(int)(((parameterValues[tmpCounter]-textfieldValues[tmpCounter])*100)/textfieldValues[tmpCounter]);
 				inputSubPanel[n][m].setSlider(sliderValue);
@@ -156,7 +161,7 @@ class InputSubPanel extends JPanel implements ChangeListener, DocumentListener{
 		trace.constructorCall();
 		this.controller = controller;
 		
-		//TODO:Startwert einfügen
+		//TODO:Startwert einfï¿½gen
 		textfield_ParameterValues.getDocument().addDocumentListener(this);
 		textfield_ParameterValues.setText("30");
 		label_ParameterValue.setText("30");
@@ -188,7 +193,7 @@ class InputSubPanel extends JPanel implements ChangeListener, DocumentListener{
 	 * Check the input of textfield and return the value
 	 */
 	public double getTextfieldParameterValues() {
-		//TODO: Textfeld auf Fehleingaben prüfen!!!! 
+		//TODO: Textfeld auf Fehleingaben prï¿½fen!!!! 
 		return Double.parseDouble(textfield_ParameterValues.getText());
 	}
 	
@@ -197,14 +202,6 @@ class InputSubPanel extends JPanel implements ChangeListener, DocumentListener{
 	 */
 	public double getEffectiveParameterValues() {
 		return effectiveParameterValue;
-	}
-	
-	/**
-	 * Reset textfield to standardvalues
-	 */
-	public void resetTextfield() {
-		//TODO: Standardwert
-		setTextfieldValue(20);
 	}
 	
 	/**
@@ -228,7 +225,7 @@ class InputSubPanel extends JPanel implements ChangeListener, DocumentListener{
 	 * the event to inputpanel
 	 */
 	public void stateChanged(ChangeEvent e) {	
-		//TODO:Imput Textfield überprüfen
+		//TODO:Imput Textfield ï¿½berprï¿½fen
 		//Berechnungen mit VariableLengthInstruction besser coden
 		double d_inputwert;
 		JSlider slider = (JSlider)e.getSource();
@@ -247,13 +244,13 @@ class InputSubPanel extends JPanel implements ChangeListener, DocumentListener{
 
 	public void insertUpdate(DocumentEvent e) {
 		System.out.println("insert");	
-		controller.updateParamterValues();	
+		//controller.updateParamterValues();	
 	}
 
 
 	public void removeUpdate(DocumentEvent e) {
 		System.out.println("remove");
-		controller.updateParamterValues();	
+		//controller.updateParamterValues();	
 	}
 
 
