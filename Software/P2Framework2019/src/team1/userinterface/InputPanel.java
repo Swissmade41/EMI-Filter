@@ -66,10 +66,13 @@ public class InputPanel extends JPanel{
 			}
 			
 			add(paramter_Panel,new GridBagConstraints(n+1, 1, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 0, 0), 0, 0));	
-			
+					new Insets(0, 0, 0, 0), 0, 0));			
 		}
-		this.resetInputPanel();
+	}
+	
+	public void inizializeFirstFilter() {
+		resetInputPanel();
+		controller.updateParamterValues();
 	}
 	
 	/**
@@ -82,7 +85,7 @@ public class InputPanel extends JPanel{
 		
 		for (int n = 0; n < parameter.length; n++) {
 			for (int m = 0; m < subParameter[n].length; m++) {
-				d_parameterTextfielValue[s32_tmpCounter]= inputSubPanel[n][m].getTextfieldParameterValues();
+				d_parameterTextfielValue[s32_tmpCounter]= inputSubPanel[n][m].getUserParameterValue();
 				s32_tmpCounter++;
 			}
 		}
@@ -108,11 +111,12 @@ public class InputPanel extends JPanel{
 		return d_parameterValue;
 	}
 
+	
 	public void resetInputPanel() {
 		int s32_tmpCounter = 0;
 		for (int n = 0; n < parameter.length; n++) {
 			for (int m = 0; m < subParameter[n].length; m++) {
-				inputSubPanel[n][m].setTextfieldValue(DEFAULT_VALUES[s32_tmpCounter]);
+				inputSubPanel[n][m].resetTextfile(); //setTextfieldValue(DEFAULT_VALUES[s32_tmpCounter]);
 				inputSubPanel[n][m].resetSliders();
 				s32_tmpCounter++;
 			}
@@ -120,14 +124,14 @@ public class InputPanel extends JPanel{
 	}
 
 	public void updateInputPanel(double[] textfieldValues, double[] parameterValues) {
-		int tmpCounter = 0;
+		int s32_tmpCounter=0;
 		for (int n = 0; n < parameter.length; n++) {
 			for (int m = 0; m < subParameter[n].length; m++) {
-				inputSubPanel[n][m].setTextfieldValue(textfieldValues[tmpCounter]);
+				inputSubPanel[n][m].setTextfieldValue(textfieldValues[m]);
 				//calculate sliderposition
-				int sliderValue=(int)(((parameterValues[tmpCounter]-textfieldValues[tmpCounter])*100)/textfieldValues[tmpCounter]);
+				int sliderValue=(int)(((parameterValues[s32_tmpCounter]-textfieldValues[s32_tmpCounter])*100)/textfieldValues[s32_tmpCounter]);
 				inputSubPanel[n][m].setSlider(sliderValue);
-				tmpCounter++;
+				s32_tmpCounter++;
 			}
 		}
 	}
@@ -149,7 +153,7 @@ class InputSubPanel extends JPanel implements ChangeListener, DocumentListener{
 	private JTextField textfield_ParameterValues = new JTextField();
 	
 	private JLabel label_ParameterValue=new JLabel();
-	private double effectiveParameterValue;
+	private double d_effectiveParameterValue, d_userParameterValue;
 	
 	/**
 	 * add Textfield
@@ -161,11 +165,12 @@ class InputSubPanel extends JPanel implements ChangeListener, DocumentListener{
 		trace.constructorCall();
 		this.controller = controller;
 		
-		//TODO:Startwert einfï¿½gen
+		//TODO:Startwert einfügen
 		textfield_ParameterValues.getDocument().addDocumentListener(this);
 		textfield_ParameterValues.setText("30");
 		label_ParameterValue.setText("30");
-		effectiveParameterValue=30;
+		d_effectiveParameterValue=30;
+		
 
 		this.label_subParameter = new JLabel(subParameter);
 		this.label_subParameter.setHorizontalAlignment(SwingConstants.CENTER);
@@ -189,20 +194,17 @@ class InputSubPanel extends JPanel implements ChangeListener, DocumentListener{
 	}
 
 	
-	/**
-	 * Check the input of textfield and return the value
-	 */
-	public double getTextfieldParameterValues() {
-		//TODO: Textfeld auf Fehleingaben prï¿½fen!!!! 
-		return Double.parseDouble(textfield_ParameterValues.getText());
+	public double getUserParameterValue() {
+		return d_userParameterValue;
 	}
 	
 	/**
 	 * return the parametervalue
 	 */
 	public double getEffectiveParameterValues() {
-		return effectiveParameterValue;
+		return d_effectiveParameterValue;
 	}
+	
 	
 	/**
 	 * Reset Sliders to standardvalues
@@ -211,46 +213,69 @@ class InputSubPanel extends JPanel implements ChangeListener, DocumentListener{
 		setSlider(0);
 	}
 	
+	public void resetTextfile() {
+		textfield_ParameterValues.setText("30");
+	}
+	
 	public void setTextfieldValue(double value) {
 		textfield_ParameterValues.setText(Double.toString(value));
+	}
+	
+	public void setEffectiveParameterValueLabel() {
+		label_ParameterValue.setText(Double.toString(d_effectiveParameterValue));
 	}
 	
 	public void setSlider(int n) {
 		slider_Parameter.setValue(n);
 	}
 
-	/**
-	 * calculate the parameter value with the slider percent value
-	 * call the methode controller.input to forward
-	 * the event to inputpanel
-	 */
+
 	public void stateChanged(ChangeEvent e) {	
-		//TODO:Imput Textfield ï¿½berprï¿½fen
+		//TODO:Imput Textfield überprüfen
 		//Berechnungen mit VariableLengthInstruction besser coden
-		double d_inputwert;
-		JSlider slider = (JSlider)e.getSource();
-		d_inputwert =  Double.parseDouble(textfield_ParameterValues.getText());
-		double d_slidervalue = slider.getValue();
 		
-		d_slidervalue= d_inputwert+d_inputwert*d_slidervalue/100;		
-		effectiveParameterValue=Math.round(Math.pow(10.0, 2) * d_slidervalue) / Math.pow(10.0, 2);
-		label_ParameterValue.setText(Double.toString(effectiveParameterValue));
-		
+		updateEffectiveValue();
 		controller.updateParamterValues();		
 		
 		System.out.println("statechanged");
-	}
+	}	
 
+	private void checkUserInput() {
+		//TODO: Eingabe überprüfen!!! überprüfte eingabe gleich userparametervalue setzten
+		try {
+			d_userParameterValue = Double.parseDouble(textfield_ParameterValues.getText());
+		} catch (NumberFormatException e) {
+			// TODO: handle exception
+		}
+		
+		updateEffectiveValue();
+	}
+	
+	public void updateEffectiveValue() {
+		//TODO: Wert als p n f usw ausgeben
+		d_effectiveParameterValue = d_userParameterValue+ d_userParameterValue/100*slider_Parameter.getValue();
+		d_effectiveParameterValue=Math.round(d_effectiveParameterValue*100.0)/100.0;
+		setEffectiveParameterValueLabel();
+	}
 
 	public void insertUpdate(DocumentEvent e) {
 		System.out.println("insert");	
-		//controller.updateParamterValues();	
+		
+		try {
+			checkUserInput();
+		} catch (NullPointerException e2) {	}
+		
+		controller.updateParamterValues();	
+		
 	}
 
 
 	public void removeUpdate(DocumentEvent e) {
 		System.out.println("remove");
-		//controller.updateParamterValues();	
+		try {
+			checkUserInput();
+		} catch (NullPointerException e2) {	}
+		controller.updateParamterValues();	
 	}
 
 
