@@ -136,7 +136,14 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 		//TODO: writeTextfile aufrufen und tabelle übergeben
 	}
 
-
+	public double[][] getEffectiveParameterValues(){
+		return d_effectiveParameterValues;
+	}
+	
+	public double[][] getUserInputParameterValues(){
+		return d_UserInputParameterValues;
+	}
+	
 	public void tableChanged(TableModelEvent e) {
 		//TODO: Daten weitergeben, Neuberechnung ausführen
 		System.out.println("aa");
