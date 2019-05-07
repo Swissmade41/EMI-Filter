@@ -31,9 +31,14 @@ public class Controller {
 	public void updateParamterValues(){
 		view.filtertablePanel.updateEffectiveParameterValues(view.inputPanel.getEffectiveParameterValues());
 		view.filtertablePanel.updateUserInputParameterValues(view.inputPanel.getUserInputParameterValues());
+		calculateInsertionLoss();
 	}
 	
 	public void updateInputPanel(double[] userInputFilterParameter, double[] effectiveFilterParameter) {
 		view.inputPanel.updateInputPanel(userInputFilterParameter, effectiveFilterParameter);
+	}
+	
+	public void calculateInsertionLoss() {
+		model.calculate(view.filtertablePanel.getEffectiveParameterValues());
 	}
 }
