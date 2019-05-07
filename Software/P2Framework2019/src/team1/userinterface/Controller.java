@@ -29,10 +29,17 @@ public class Controller {
 
 	
 	public void updateParamterValues(){
-		view.filtertablePanel.updateEffectiveParameterValues(view.inputPanel.getEffectiveParameterValues());
-		view.filtertablePanel.updateUserInputParameterValues(view.inputPanel.getUserInputParameterValues());
+		//TODO beschreieben:Beim aufstarten entsteht nullpointer weil methode aufgerufen wird ohne das inputpanel fertig konstruiert ist
+		try {
+			view.filtertablePanel.updateEffectiveParameterValues(view.inputPanel.getEffectiveParameterValues());
+			view.filtertablePanel.updateUserInputParameterValues(view.inputPanel.getUserInputParameterValues());
+		} catch (NullPointerException e) {
+			System.out.println("updateexeption");
+		}
+		
 		calculateInsertionLoss();
 	}
+	
 	
 	public void updateInputPanel(double[] userInputFilterParameter, double[] effectiveFilterParameter) {
 		view.inputPanel.updateInputPanel(userInputFilterParameter, effectiveFilterParameter);
