@@ -86,28 +86,27 @@ public class PlotPanel extends JPanel {
 		trace.methodeCall();
 		// cmData&dmData [Funktionsnummer],[x-Werte = 0, y-Werte = 1],[Datensätze]
 		XYPlot xyplot = chart.getXYPlot();
-
-		XYSeries series = new XYSeries("CM-Plot");
-		for(int i=0; i<cmData[0][0].length; i++)
-		{
-			series.add(cmData[0][0][i], cmData[0][1][i]);
+		if(this.chart.getTitle().getText() == "CM") {
+			XYSeries series = new XYSeries("CM-Plot");
+			for(int i=0; i<cmData[0][0].length; i++)
+			{
+				series.add(cmData[0][0][i], cmData[0][1][i]);
+			}
+			XYSeriesCollection dataset = new XYSeriesCollection();
+			dataset.addSeries(series);
+			
+			chart.getXYPlot().setDataset(0, dataset);
 		}
-		
-		XYSeriesCollection dataset = new XYSeriesCollection();
-		dataset.addSeries(series);
-		
-		chart.getXYPlot().setDataset(0, dataset);
-
-		series = new XYSeries("DM-Plot");
-		for(int i=0; i<dmData[0][0].length; i++)
-		{
-			series.add(dmData[0][0][i], dmData[0][1][i]);
+		else {
+			XYSeries series= new XYSeries("DM-Plot");
+			for(int i=0; i<dmData[0][0].length; i++)
+			{
+				series.add(dmData[0][0][i], dmData[0][1][i]);
+			}
+			XYSeriesCollection dataset = new XYSeriesCollection();
+			dataset.addSeries(series);
+			chart.getXYPlot().setDataset(0, dataset);
 		}
-		
-		dataset = new XYSeriesCollection();
-		dataset.addSeries(series);
-		chart.getXYPlot().setDataset(1, dataset);
-		
 		repaint();
 	}
 
