@@ -40,8 +40,8 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
     DefaultTableModel model = new DefaultTableModel(data, columnNames);
     JTable table = new JTable(model);
     
-    private double[][] d_effectiveParameterValues = new double[100][14];
-	private double[][] d_UserInputParameterValues = new double[100][14];
+    private static double[][] d_effectiveParameterValues = new double[100][14];
+	private static double[][] d_UserInputParameterValues = new double[100][14];
 
 	/**
 	 * set Layout to Gridlayout
@@ -67,7 +67,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 		
 		JScrollPane scrollPane = new JScrollPane(table);
 		add(scrollPane);
-		
+
 		model.addTableModelListener(this);		
 		table.getSelectionModel().addListSelectionListener(this);
 	}
@@ -94,9 +94,9 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 * Information message if no entry in table or no row is selected
 	 */
 	public void removeFilter() {
-		int row = table.getSelectedRow();
+		int selectedRow = table.getSelectedRow();
 		try {
-			model.removeRow(row);
+			model.removeRow(selectedRow);
 		} catch (ArrayIndexOutOfBoundsException e) {
 			if(model.getRowCount()==0) {
 				JOptionPane.showMessageDialog(null, "Empty filtertable", "Information message", JOptionPane.INFORMATION_MESSAGE);
@@ -105,13 +105,31 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 				JOptionPane.showMessageDialog(null, "Please select the row to removed", "Information message", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}	
+		refreshFilterTable(selectedRow);
 		setRowSelection();
+		updateInputPanel();
 	}
 
+	private void refreshFilterTable(int selectedRow) {
+		if(selectedRow==-1) {
+			System.out.println("no row selcted");
+			return;
+		}
+		
+		int s32_tmpCounter=0;
+		for (int n = selectedRow; n < d_effectiveParameterValues.length-selectedRow-1; n++) {
+			for (int m = 0; m < d_effectiveParameterValues[0].length; m++) {
+				d_effectiveParameterValues[n][m]=d_effectiveParameterValues[n+1][m];
+				d_UserInputParameterValues[n][m]=d_UserInputParameterValues[n+1][m];
+			}
+		}
+	}
+	
 	public void updateEffectiveParameterValues(double[] values) {
 		for (int i = 0; i < values.length; i++) {
 			d_effectiveParameterValues[table.getSelectedRow()][i]=values[i];
 		}
+		System.out.println("Test");
 	}
 	
 	public void updateUserInputParameterValues(double[] values) {
@@ -145,22 +163,25 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	}
 	
 	public void tableChanged(TableModelEvent e) {
-		//TODO: Daten weitergeben, Neuberechnung ausführen
-		System.out.println("aa");
+		//TODO: Daten weitergeben, plot anpassen
 	}
 	
 	public void valueChanged(ListSelectionEvent e) {
 		//TODO beschreiben. if abfrage das code nur einmal ausgefühft wird
 		if(e.getValueIsAdjusting()) {
-			double[] tmpEffectiveParameterValues = new double[d_effectiveParameterValues[0].length];
-			double[] tmpUserrInputParameterValues = new double[d_effectiveParameterValues[0].length];
-			for (int i = 0; i < d_effectiveParameterValues[0].length; i++) {
-				tmpEffectiveParameterValues[i]=d_effectiveParameterValues[table.getSelectedRow()][i];
-				tmpUserrInputParameterValues[i]=d_UserInputParameterValues[table.getSelectedRow()][i];
-			}
-			System.out.println(table.getSelectedRow());
-			controller.updateInputPanel(tmpUserrInputParameterValues,tmpEffectiveParameterValues);
+			updateInputPanel();
+		}		
+	}
+	
+	private void updateInputPanel() {
+		double[] tmpEffectiveParameterValues = new double[d_effectiveParameterValues[0].length];
+		double[] tmpUserrInputParameterValues = new double[d_effectiveParameterValues[0].length];
+		for (int i = 0; i < d_effectiveParameterValues[0].length; i++) {
+			tmpEffectiveParameterValues[i]=d_effectiveParameterValues[table.getSelectedRow()][i];
+			tmpUserrInputParameterValues[i]=d_UserInputParameterValues[table.getSelectedRow()][i];
 		}
+
+		controller.updateInputPanel(tmpUserrInputParameterValues,tmpEffectiveParameterValues);
 	}
 	
 }
