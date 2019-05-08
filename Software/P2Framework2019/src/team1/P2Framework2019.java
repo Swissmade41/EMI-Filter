@@ -40,7 +40,7 @@ public class P2Framework2019 extends JFrame {
 		model.addObserver(view);
 		trace.registerObserver(model, view);
 		//kann erst wenn alles inizialisiert ist aufgerufen werden
-		view.inputPanel.inizializeFirstFilter();
+		view.inputPanel.initializeFirstFilter();
 //		model.addObserver(toolBar);
 //		trace.registerObserver(model, toolBar);
 //		model.addObserver(menuBar);
