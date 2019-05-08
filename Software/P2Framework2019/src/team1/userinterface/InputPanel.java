@@ -1,28 +1,28 @@
 package team1.userinterface;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import team1.util.JEngineerField;
 import team1.util.MyBorderFactory;
 import team1.util.TraceV4;
+import team1.util.EngineeringUtil;
 
-
+/**
+ * In the input panel the user can adjust the parameters
+ */
 public class InputPanel extends JPanel{
 
 	private TraceV4 trace = new TraceV4(this);
@@ -42,8 +42,10 @@ public class InputPanel extends JPanel{
 	InputSubPanel[][] inputSubPanel = new InputSubPanel[parameter.length][subParameter[0].length];
 	
 	/**
-	 * add the information panel
-	 * add all parameter panels with their subpanels
+	 * Build the Input panel
+	 * 
+	 * @param controller
+	 * 		Controller object
 	 */
 	public InputPanel(Controller controller) {
 		trace.constructorCall();
@@ -51,51 +53,55 @@ public class InputPanel extends JPanel{
 		setLayout(new GridBagLayout());
 		setBorder(MyBorderFactory.createMyBorder("Slider Panel"));
 		
+		//create the information panel
 		InformationPanel informationPanel= new InformationPanel();
 		add(informationPanel,new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
 				new Insets(0, 0, 0, 0), 0, 0));
 		
-		//create the parameterPanels
+		//create the parameter sub panels
 		for (int n = 0; n < parameter.length; n++) {	
 			JPanel paramter_Panel = new JPanel(new GridLayout());
-			paramter_Panel.setBorder(MyBorderFactory.createMyBorder(parameter[n]));
-			
+			paramter_Panel.setBorder(MyBorderFactory.createMyBorder(parameter[n]));		
 			for (int m = 0; m < subParameter[n].length; m++) {
 				inputSubPanel[n][m] = new InputSubPanel(this.controller, subParameter[n][m]); 
 				paramter_Panel.add(inputSubPanel[n][m]);
-			}
-			
+			}			
 			add(paramter_Panel,new GridBagConstraints(n+1, 1, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
 					new Insets(0, 0, 0, 0), 0, 0));			
 		}
 	}
 	
-	public void inizializeFirstFilter() {
+	/**
+	 * Inizialize the first filter
+	 */
+	public void initializeFirstFilter() {
 		resetInputPanel();
-		controller.updateParamterValues();
+		controller.updateParamterValues();	
 	}
 	
 	/**
-	 * convert value from subpanels textfields to one array
-	 * return the array
+	 * Convert the user input parameter values of all sub panels to one array
+	 * 
+	 * @return
+	 * 		User input parameter value
 	 */
 	public double[] getUserInputParameterValues() {
 		double[] d_parameterTextfielValue = new double[NUMBER_OF_PARAMETER];
-		int s32_tmpCounter = 0;
-		
+		int s32_tmpCounter = 0;	
 		for (int n = 0; n < parameter.length; n++) {
 			for (int m = 0; m < subParameter[n].length; m++) {
 				d_parameterTextfielValue[s32_tmpCounter]= inputSubPanel[n][m].getUserParameterValue();
 				s32_tmpCounter++;
 			}
-		}
-		
+		}	
 		return d_parameterTextfielValue;
 	}
-
+	
 	/**
-	 * convert value from subpanels parameter values to one array
-	 * return the array
+	 * Convert the effective parameter values of all sub panels to one array
+	 * 
+	 * @return
+	 * 		Effective parameter value
 	 */
 	public double[] getEffectiveParameterValues() {
 		double[] d_parameterValue = new double[NUMBER_OF_PARAMETER];
@@ -112,25 +118,39 @@ public class InputPanel extends JPanel{
 	}
 
 	
+	/**
+	 * Reset all input sub panels with default values
+	 */
 	public void resetInputPanel() {
 		int s32_tmpCounter = 0;
 		for (int n = 0; n < parameter.length; n++) {
 			for (int m = 0; m < subParameter[n].length; m++) {
-				inputSubPanel[n][m].resetTextfile(); //setTextfieldValue(DEFAULT_VALUES[s32_tmpCounter]);
-				inputSubPanel[n][m].resetSliders();
+				inputSubPanel[n][m].setUserParameterValue(DEFAULT_VALUES[s32_tmpCounter]);
+				inputSubPanel[n][m].setEffectiveParameterValues(DEFAULT_VALUES[s32_tmpCounter]);
+				inputSubPanel[n][m].resetSlider();
+				inputSubPanel[n][m].refreshComponents(); 				
 				s32_tmpCounter++;
 			}
 		}
 	}
 
+	/**
+	 * Update all input sub panels
+	 * 
+	 * @param textfieldValues
+	 * 		Current values of the textfields/user inputs 
+	 * @param parameterValues
+	 * 		Current effective parameter values
+	 */		
 	public void updateInputPanel(double[] textfieldValues, double[] parameterValues) {
 		int s32_tmpCounter=0;
 		for (int n = 0; n < parameter.length; n++) {
 			for (int m = 0; m < subParameter[n].length; m++) {
-				inputSubPanel[n][m].setTextfieldValue(textfieldValues[m]);
-				//calculate sliderposition
-				int sliderValue=(int)(((parameterValues[s32_tmpCounter]-textfieldValues[s32_tmpCounter])*100)/textfieldValues[s32_tmpCounter]);
+				inputSubPanel[n][m].setUserParameterValue(textfieldValues[s32_tmpCounter]);
+				int sliderValue=(int)(((parameterValues[s32_tmpCounter]-textfieldValues[s32_tmpCounter])*100)/textfieldValues[s32_tmpCounter]); //calculate sliderposition
 				inputSubPanel[n][m].setSlider(sliderValue);
+				inputSubPanel[n][m].setEffectiveParameterValues(parameterValues[s32_tmpCounter]);
+				inputSubPanel[n][m].refreshComponents(); 
 				s32_tmpCounter++;
 			}
 		}
@@ -138,6 +158,11 @@ public class InputPanel extends JPanel{
 }
 
 
+/**
+ * Input sub panel with parameter label, text field, slider, effective value label
+ * with handling the listeners
+ *
+ */
 class InputSubPanel extends JPanel implements ChangeListener, DocumentListener{
 	private TraceV4 trace = new TraceV4(this);
 	
@@ -150,15 +175,18 @@ class InputSubPanel extends JPanel implements ChangeListener, DocumentListener{
 	
 	private JLabel label_subParameter;
 	private JSlider slider_Parameter;
-	private JTextField textfield_ParameterValues = new JTextField();
+	private JEngineerField textfield_ParameterValues = new JEngineerField();
 	
 	private JLabel label_ParameterValue=new JLabel();
 	private double d_effectiveParameterValue, d_userParameterValue;
 	
 	/**
-	 * add Textfield
-	 * add Slider
-	 * add value label
+	 * Builds the sub panel with parameter label, text field, slider, effective value label
+	 * 
+	 * @param controller
+	 * 		Controller object
+	 * @param subParameter
+	 * 		Name of the sub parameter
 	 */
 	public InputSubPanel(Controller controller, String subParameter) {
 		super(new GridBagLayout());
@@ -166,11 +194,7 @@ class InputSubPanel extends JPanel implements ChangeListener, DocumentListener{
 		this.controller = controller;
 		
 		//TODO:Startwert einfügen
-		textfield_ParameterValues.getDocument().addDocumentListener(this);
-		textfield_ParameterValues.setText("30");
-		label_ParameterValue.setText("30");
-		d_effectiveParameterValue=30;
-		
+		textfield_ParameterValues.getDocument().addDocumentListener(this);		
 
 		this.label_subParameter = new JLabel(subParameter);
 		this.label_subParameter.setHorizontalAlignment(SwingConstants.CENTER);
@@ -193,105 +217,154 @@ class InputSubPanel extends JPanel implements ChangeListener, DocumentListener{
 				new Insets(5, 5, 5, 5), 10, 10));
 	}
 
+	/**
+	 * Setter of the effective parameter value
+	 * 
+	 * @param value
+	 * 		New value of the user parameter value
+	 */
+	public void setUserParameterValue(double value) {
+		d_userParameterValue= value;
+	}
 	
+	/**
+	 * Getter of the effective parameter value
+	 * 
+	 * @return 
+	 * 		User parameter value
+	 */
 	public double getUserParameterValue() {
 		return d_userParameterValue;
 	}
 	
 	/**
-	 * return the parametervalue
+	 * Setter of the effective parameter value
+	 * 
+	 * @param value
+	 * 		New value of the effective parameter value
+	 */
+	public void setEffectiveParameterValues(double value) {
+		d_effectiveParameterValue = value;
+	}
+	
+	/**
+	 * Getter of the effective parameter value
+	 * 
+	 * @return 
+	 * 		Effective parameter value
 	 */
 	public double getEffectiveParameterValues() {
 		return d_effectiveParameterValue;
 	}
 	
+	/**
+	 * Refresh text in textfield and the effective parameter label
+	 * and update te parameter values
+	 */
+	public void refreshComponents() {
+        	try {
+    			setTextfieldValue();
+    		} catch (IllegalStateException e) {
+    			//catch thread conflicts caused of the documentlistener 
+    			//and the set text in the textfield (Loop)
+    		}
+        	setLabelEffectiveParameterValue();
+			controller.updateParamterValues();
+	}
 	
 	/**
-	 * Reset Sliders to standardvalues
+	 * set the value of the slider
+	 * 
+	 * @param n
+	 * 		The new value of the slider
 	 */
-	public void resetSliders() {
-		setSlider(0);
-	}
-	
-	public void resetTextfile() {
-		textfield_ParameterValues.setText("30");
-	}
-	
-	public void setTextfieldValue(double value) {
-		textfield_ParameterValues.setText(Double.toString(value));
-	}
-	
-	public void setEffectiveParameterValueLabel() {
-		label_ParameterValue.setText(Double.toString(d_effectiveParameterValue));
-	}
-	
 	public void setSlider(int n) {
 		slider_Parameter.setValue(n);
 	}
-
-
-	public void stateChanged(ChangeEvent e) {	
-		//TODO:Imput Textfield überprüfen
-		//Berechnungen mit VariableLengthInstruction besser coden
-		
-		updateEffectiveValue();
-		controller.updateParamterValues();		
-		
-		System.out.println("statechanged");
-	}	
-
-	private void checkUserInput() {
-		//TODO: Eingabe überprüfen!!! überprüfte eingabe gleich userparametervalue setzten
-		try {
-			d_userParameterValue = Double.parseDouble(textfield_ParameterValues.getText());
-		} catch (NumberFormatException e) {
-			// TODO: handle exception
-		}
-		
+	
+	/**
+	 * Reset slider value to zero
+	 */
+	public void resetSlider() {
+		setSlider(0);
+	}
+	
+	/**
+	 * set as text of the textfield the user parameter value
+	 */
+	private void setTextfieldValue() {
+		String value= EngineeringUtil.convert(d_userParameterValue,2);
+		textfield_ParameterValues.setText(value);
+	}
+	
+	/**
+	 * set the label of the effectiv parameter value
+	 */
+	private void setLabelEffectiveParameterValue() {
+		label_ParameterValue.setText((EngineeringUtil.convert(d_effectiveParameterValue, 2)));
+	}
+	
+	/**
+	 * Read the text in the textfield and update the components and effective values
+	 */
+	private void readTextfieldInput() {
+		//TODO: umwandlung m zu e-3 nicht machen; bei eingabe m direkt übernehmen ohne zuerst enter drücken zu müssen
+		d_userParameterValue= EngineeringUtil.parse(textfield_ParameterValues.getText(0),2);		
+		refreshComponents();
 		updateEffectiveValue();
 	}
 	
+	/**
+	 * Calculate the effective value with the user input value and the slider value
+	 * and update the effective parameter label
+	 */
 	public void updateEffectiveValue() {
-		//TODO: Wert als p n f usw ausgeben
 		d_effectiveParameterValue = d_userParameterValue+ d_userParameterValue/100*slider_Parameter.getValue();
-		d_effectiveParameterValue=Math.round(d_effectiveParameterValue*100.0)/100.0;
-		setEffectiveParameterValueLabel();
+		setLabelEffectiveParameterValue();
 	}
+	
+	/**
+	 * Event by moving the slider; update effective value and refresh components
+	 */
+	public void stateChanged(ChangeEvent e) {	
+		updateEffectiveValue();	
+		refreshComponents();
+	}	
 
+	/**
+	 * Event by adding figures in textfield; read the new content in the textfield and
+	 * update the label of effective parameter value  and the  parameter values
+	 */
 	public void insertUpdate(DocumentEvent e) {
-		System.out.println("insert");	
-		
-		try {
-			checkUserInput();
-		} catch (NullPointerException e2) {	}
-		
-		controller.updateParamterValues();	
-		
+		readTextfieldInput();
+		setLabelEffectiveParameterValue();
+		controller.updateParamterValues();
 	}
 
-
+	/**
+	 * Event by removing figures in textfield; read the new content in the textfield and
+	 * update the label of effective parameter value  and the  parameter values
+	 * - update parameter values
+	 */
 	public void removeUpdate(DocumentEvent e) {
-		System.out.println("remove");
-		try {
-			checkUserInput();
-		} catch (NullPointerException e2) {	}
-		controller.updateParamterValues();	
+		readTextfieldInput();
+		setLabelEffectiveParameterValue();
+		controller.updateParamterValues();
 	}
-
 
 	public void changedUpdate(DocumentEvent e) {
-		System.out.println("update");
-		
 	}
-
 
 }
 
+/**
+ * Display the slider percent as a text in a panel
+ */
 class InformationPanel extends JPanel {
 		
 	/**
-	 * set nulllayout; modifiability not needed
-	 * add percernt labels
+	 * set null layout; modifiability not needed
+	 * add percent labels
 	 */
 	public InformationPanel() {
 		setLayout(null);
