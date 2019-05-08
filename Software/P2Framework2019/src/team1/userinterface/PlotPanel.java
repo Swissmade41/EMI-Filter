@@ -64,7 +64,6 @@ public class PlotPanel extends JPanel {
 		yAxis.setTickLabelsVisible(true);
 		yAxis.setAutoRange(true);
 		yAxis.setTickLabelsVisible(true);
-		yAxis.setRange(0, 150);
 		
 		xyplot.setRangeAxis(yAxis);
 		xyplot.setDomainAxis(xAxis);
@@ -91,25 +90,34 @@ public class PlotPanel extends JPanel {
 		// cmData&dmData [Funktionsnummer],[x-Werte = 0, y-Werte = 1],[Datensätze]
 		XYPlot xyplot = chart.getXYPlot();
 		if(this.chart.getTitle().getText() == "CM") {
-			XYSeries series = new XYSeries("CM-Plot");
-			for(int i=0; i<cmData[0][0].length; i++)
+			int filteriterator = 0;
+			while(cmData[filteriterator][0][0] !=0)
 			{
-				series.add(cmData[0][0][i], cmData[0][1][i]);
+				XYSeries series = new XYSeries("CM-Plot");
+				for(int i=0; i<cmData[filteriterator][0].length; i++)
+				{
+					series.add(cmData[filteriterator][0][i], cmData[filteriterator][1][i]);
+				}
+				XYSeriesCollection dataset = new XYSeriesCollection();
+				dataset.addSeries(series);
+				chart.getXYPlot().setDataset(filteriterator, dataset);
+				filteriterator++;
 			}
-			XYSeriesCollection dataset = new XYSeriesCollection();
-			dataset.addSeries(series);
-			
-			chart.getXYPlot().setDataset(0, dataset);
 		}
 		else {
-			XYSeries series= new XYSeries("DM-Plot");
-			for(int i=0; i<dmData[0][0].length; i++)
+			int filteriterator = 0;
+			while(dmData[filteriterator][0][0] !=0)
 			{
-				series.add(dmData[0][0][i], dmData[0][1][i]);
+				XYSeries series= new XYSeries("DM-Plot");
+				for(int i=0; i<dmData[filteriterator][0].length; i++)
+				{
+					series.add(dmData[filteriterator][0][i], dmData[filteriterator][1][i]);
+				}
+				XYSeriesCollection dataset = new XYSeriesCollection();
+				dataset.addSeries(series);
+				chart.getXYPlot().setDataset(filteriterator, dataset);
+				filteriterator++;
 			}
-			XYSeriesCollection dataset = new XYSeriesCollection();
-			dataset.addSeries(series);
-			chart.getXYPlot().setDataset(0, dataset);
 		}
 		repaint();
 	}

@@ -84,14 +84,18 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	}
 
 	
+	public int getRowcount() {
+		return table.getRowCount();
+	}
+	
 	/**
 	 * add new row to the table
 	 */
-	public void addFilter() {
-		model.addRow(new Object[]{true, "Filter "+ (model.getRowCount()+1)});
+	public void addFilter(String bool, String name) {
+		model.addRow(new Object[]{(bool.equals("true")) ?true:false, name});
 		setRowSelection();
 	}
-	
+
 	
 	/**
 	 * remove row from the table
@@ -109,44 +113,47 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 				JOptionPane.showMessageDialog(null, "Please select the row to removed", "Information message", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}	
-		refreshFilterTable(selectedRow);
+		deleteRowsInFilterData(selectedRow,1);
 		setRowSelection();
-		updateInputPanel();
+		updateInputPanel(table.getSelectedRow());
 	}
 
-	private void refreshFilterTable(int selectedRow) {
-		if(selectedRow==-1) {
-			System.out.println("no row selcted");
+	private void deleteRowsInFilterData(int row, int difference) {
+		if(row==-1) {
+			System.out.println("no row selected");
 			return;
 		}
 		
-		int s32_tmpCounter=0;
-		for (int n = selectedRow; n < d_effectiveParameterValues.length-selectedRow-1; n++) {
+		for (int n = row; n < d_effectiveParameterValues.length-row-1; n++) {
 			for (int m = 0; m < d_effectiveParameterValues[0].length; m++) {
-				d_effectiveParameterValues[n][m]=d_effectiveParameterValues[n+1][m];
-				d_UserInputParameterValues[n][m]=d_UserInputParameterValues[n+1][m];
+				d_effectiveParameterValues[n][m]=d_effectiveParameterValues[n+difference][m];
+				d_UserInputParameterValues[n][m]=d_UserInputParameterValues[n+difference][m];
+			}
+		}		
+	}
+	
+	private void addRowsInFilterData(int rowCount, double[][] effectiveValue, double[][] userInputValue) {
+		for (int n = 0; n < d_effectiveParameterValues.length-rowCount-1; n++) {
+			for (int m = 0; m < d_effectiveParameterValues[0].length; m++) {
+				d_effectiveParameterValues[n+rowCount][m]=effectiveValue[n][m];
+				d_UserInputParameterValues[n+rowCount][m]=userInputValue[n][m];
 			}
 		}
+		
 	}
 	
 	public void updateEffectiveParameterValues(double[] values) {
 		for (int i = 0; i < values.length; i++) {
 			d_effectiveParameterValues[table.getSelectedRow()][i]=values[i];
 		}
-		System.out.println("Test");
 	}
 	
 	public void updateUserInputParameterValues(double[] values) {
 		for (int i = 0; i < values.length; i++) {
 			d_UserInputParameterValues[table.getSelectedRow()][i]=values[i];
 		}
-		System.out.println("update");
 	}
 
-	/**
-	 * call method to to load a textfile
-	 * update the filtertable
-	 */
 	public void loadFiltertable() {
 		//TODO: loadTextfile aufrufen und in tabelle schreiben
 		try {
@@ -155,15 +162,30 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		String[] filtertable=storageManager.getFiltertable();
+		
+		int tmpRowCount=table.getRowCount();
+		for (int i = 0; i < filtertable.length; i++) {
+			addFilter(filtertable[i], filtertable[i+1]);
+			i++;
+		}
+		
+		addRowsInFilterData(tmpRowCount,storageManager.getEffectiveParameterValues(),storageManager.getUserInputParameterValues());		
 	}
 	
 	/**
 	 * call method to to write a textfile and hand over the entries
 	 */
-	public void saveFiltertable() {
-		//TODO: writeTextfile aufrufen und tabelle �bergeben
-		storageManager.saveFile(d_UserInputParameterValues, s32_SliderPosition);
+	public void saveFiltertable() {			
+		//filter enable and filter name
+		String s_filtertable ="";
+		for (int i = 0; i < table.getRowCount(); i++) {
+			s_filtertable+= table.getValueAt(i, 0).toString() +","+table.getValueAt(i, 1).toString()+",";
+		}
+		s_filtertable = s_filtertable.substring(0, s_filtertable.length()-1) +";";	//Replace last , with ;
 		
+		storageManager.saveFile(d_UserInputParameterValues, d_effectiveParameterValues, s_filtertable, table.getRowCount());		
 	}
 
 	public double[][] getEffectiveParameterValues(){
@@ -181,18 +203,17 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	public void valueChanged(ListSelectionEvent e) {
 		//TODO beschreiben. if abfrage das code nur einmal ausgef�hft wird
 		if(e.getValueIsAdjusting()) {
-			updateInputPanel();
+			updateInputPanel(table.getSelectedRow());
 		}		
 	}
 	
-	private void updateInputPanel() {
+	private void updateInputPanel(int row) {
 		double[] tmpEffectiveParameterValues = new double[d_effectiveParameterValues[0].length];
-		double[] tmpUserrInputParameterValues = new double[d_effectiveParameterValues[0].length];
+		double[] tmpUserrInputParameterValues = new double[d_UserInputParameterValues[0].length];
 		for (int i = 0; i < d_effectiveParameterValues[0].length; i++) {
-			tmpEffectiveParameterValues[i]=d_effectiveParameterValues[table.getSelectedRow()][i];
-			tmpUserrInputParameterValues[i]=d_UserInputParameterValues[table.getSelectedRow()][i];
+			tmpEffectiveParameterValues[i]=d_effectiveParameterValues[row][i];
+			tmpUserrInputParameterValues[i]=d_UserInputParameterValues[row][i];
 		}
-
 		controller.updateInputPanel(tmpUserrInputParameterValues,tmpEffectiveParameterValues);
 	}
 	
