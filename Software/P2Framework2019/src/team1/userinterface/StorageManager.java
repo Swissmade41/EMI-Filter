@@ -8,21 +8,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
 
 import javax.swing.JFileChooser;
 
 import javax.swing.JTextArea;
-
-
-
-
-
-
-
-
-
-
 
 public class StorageManager {
 
@@ -31,37 +20,25 @@ public class StorageManager {
     PrintWriter writer;
     BufferedReader reader;
 	JTextArea anzeigeTextFeld;
+    String stringBuffer = "";
+	
+	double a[][] = {
+			{2,4,6},
+			{1,3,5}
+			};
 	
 	
 	
-	double [][]a =  {
-			{1,2,3,4},
-			{11,12,13,14,15,16,17,18,19,20,21,22,23}
-	};
-	
-	String textTest = "Hallo Velo";		
-		
-	
-	
-	
-	private void packFile() {
-		
-    }
-
-		
 
 	
     public void saveFile(double [][] d_UserInputParameterValues, int [][] s32_SliderPosition) {
         //Prepare browse dialog
         JFileChooser jfcSave = new JFileChooser();
        int rt = jfcSave.showSaveDialog(null);
-//        fc.setFileHidingEnabled(false);
-//        fc.setAcceptAllFileFilterUsed(false);
-//        fc.setApproveButtonText("Open");
+
 
 
         //Show dialog
-//        int rt = jfcSave.showOpenDialog(null); //someframe is  JFrame
         if (rt == JFileChooser.APPROVE_OPTION){
             file = jfcSave.getSelectedFile(); //Do anything u want with this file
         }
@@ -73,26 +50,54 @@ public class StorageManager {
             writer = new PrintWriter(file.getPath()+".txt", "UTF-8");
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
+        	System.err.println("File not found: ");
             e.printStackTrace();
+            System.exit(1);
         } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
+        	System.err.println("Unknown datatyp: ");
             e.printStackTrace();
+            System.exit(1);
         }
         
         writer.println("LGENDE HIER");
         // TODO LEGENDE PARAMETER
-        
-        
+
+        for (int rows = 0; rows < d_UserInputParameterValues.length; rows++) {
+			stringBuffer = "";
+			for (int columns = 0; columns < d_UserInputParameterValues[0].length; columns++) {
+				if (s32_SliderPosition[rows][columns]==0) {
+					break;
+				}
+				if ((a[0].length)-1==(columns)) {
+					stringBuffer+=String.valueOf(a[rows][columns]);
+					}else  {
+						stringBuffer+=String.valueOf(a[rows][columns]) + ",";
+					} 
+			}
+			writer.println(stringBuffer +";");
+		}
+       
+
         // TODO SCHLEIFE Prameter
         // Wenn null abrechen
+   
+        
+        
+        
         writer.println("+");
         
-        // TODO SCHLEIFE Slider
-        // Wenn null abrechen
-
+        for (int rows = 0; rows < s32_SliderPosition.length; rows++) {
+			stringBuffer = "";
+			for (int columns = 0; columns < s32_SliderPosition[0].length; columns++) {
+				if ((s32_SliderPosition[0].length)-1==(columns)) {
+					stringBuffer+=String.valueOf(s32_SliderPosition[rows][columns]);
+					}else  {
+						stringBuffer+=String.valueOf(s32_SliderPosition[rows][columns]) + ",";
+					} 
+			}
+		
+		}
         
-//        writer.println("The first line");
-//        writer.println("The second line");
         writer.close();
 
     }
@@ -137,18 +142,7 @@ public class StorageManager {
             System.exit(1);
         }
         
-//        Scanner scanner = new Scanner(reader);
-//        
-//        int totalRow = 3;
-//
-//        for (int row = 0; scanner.hasNextLine() && row < totalRow; row++) {
-//            char[] b;
-//			b[] = scanner.nextLine().toCharArray();
-//        }
-
         
-
-        System.out.println(anzeigeTextFeld.getText());
   
         
 
