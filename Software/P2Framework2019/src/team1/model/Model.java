@@ -9,7 +9,7 @@ import team1.matlabfunctions.MikroMatlab;
 public class Model extends Observable {
 	private TraceV4 trace = new TraceV4(this);
 	
-	private int s32_nbrOfCalculations = 200;
+	private int s32_nbrOfCalculations = 400;
 	private double[][][] cmData = new double[100][2][s32_nbrOfCalculations];
 	private double[][][] dmData = new double[100][2][s32_nbrOfCalculations];
 	
@@ -38,13 +38,13 @@ public class Model extends Observable {
 	 * the second dimensions store the values of the electric components
 	 */
 	public void calculate(double[][] elecComponents) {
-		double[] d_freq = MikroMatlab.logspace(0, 7, s32_nbrOfCalculations);
+		double[] d_freq = MikroMatlab.logspace(0, Math.log10(3e7), s32_nbrOfCalculations);
 		double d_omega = 6e6*2*Math.PI;
 		int s32_filter = 0;
 		// CM
 		while(elecComponents[s32_filter][0] !=0) {
 			// Common mode
-			Inductor cm_L0 = new Inductor(2*elecComponents[s32_filter][Cp], 0.5*elecComponents[s32_filter][L0], 0.5*elecComponents[s32_filter][Rp]);
+			Inductor cm_L0 = new Inductor(2*elecComponents[s32_filter][Cp], elecComponents[s32_filter][L0], 0.5*elecComponents[s32_filter][Rp]);
 			Inductor cm_Lr = new Inductor(0, 0.5*elecComponents[s32_filter][Lr], 0);
 			Resistor cm_Rw = new Resistor(0.5*elecComponents[s32_filter][Rw]);
 			Capacitor cm_Cy = new Capacitor(2*elecComponents[s32_filter][Cy], 0.5*elecComponents[s32_filter][Ly], 0.5*elecComponents[s32_filter][Ry]);
@@ -79,16 +79,17 @@ public class Model extends Observable {
 			double dm_IL;
 		
 			for(int i=0; i<d_freq.length; i++) {
-				dm_A1 = MikroMatlab.getShuntImpedanceMatrix(dm_Cy.getImpedance(d_omega));
-				dm_A2 = MikroMatlab.getShuntImpedanceMatrix(dm_Cx1.getImpedance(d_omega));
-				dm_A3 = MikroMatlab.getSeriesImpedanceMatrix(dm_Lr.getImpedance(d_omega).add(dm_Rw.getImpedance(d_omega)));
-				dm_A4 = MikroMatlab.getShuntImpedanceMatrix(dm_Cx2.getImpedance(d_omega));
+				dm_A1 = MikroMatlab.getShuntImpedanceMatrix(dm_Cy.getImpedance(d_freq[i]*2*Math.PI));
+				dm_A2 = MikroMatlab.getShuntImpedanceMatrix(dm_Cx1.getImpedance(d_freq[i]*2*Math.PI));
+				dm_A3 = MikroMatlab.getSeriesImpedanceMatrix(dm_Lr.getImpedance(d_freq[i]*2*Math.PI).add(dm_Rw.getImpedance(d_freq[i]*2*Math.PI)));
+				dm_A4 = MikroMatlab.getShuntImpedanceMatrix(dm_Cx2.getImpedance(d_freq[i]*2*Math.PI));
 				dm_A = MikroMatlab.cascade(MikroMatlab.cascade(MikroMatlab.cascade(dm_A1, dm_A2), dm_A3), dm_A4);
 				d_Rb = 25;
 				dm_s21 =new Complex(2,0).divide( dm_A[0][0].add(dm_A[0][1].divide(d_Rb).add(dm_A[1][0].multiply(d_Rb)).add(dm_A[1][1])));
 				dm_IL = -20*Math.log10(dm_s21.abs());
 				dmData[s32_filter][0][i] = d_freq[i];
 				dmData[s32_filter][1][i] = dm_IL;
+				System.out.println(dm_IL);
 			}
 			s32_filter++;
 		}
