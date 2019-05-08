@@ -25,10 +25,8 @@ import org.jfree.data.xy.XYSeriesCollection;
 import team1.model.Model;
 import team1.util.MyBorderFactory;
 import team1.util.Observable;
-import team1.util.TraceV4;
 
 public class PlotPanel extends JPanel {
-	private TraceV4 trace = new TraceV4(this);
 
 	private static final long serialVersionUID = -4522467773085225830L;
 	private JFreeChart chart = ChartFactory.createXYLineChart("Titel", "Frequency[Hz]", "Insertion loss[dB]", null,
@@ -40,7 +38,6 @@ public class PlotPanel extends JPanel {
 	 */
 	public PlotPanel(String title) {
 		super(new BorderLayout());
-		trace.constructorCall();
 		
 		setBorder(MyBorderFactory.createMyBorder(""));
 		setPreferredSize(new Dimension(100, 100));
@@ -91,7 +88,6 @@ public class PlotPanel extends JPanel {
 	 * @param dmData contains the dataset for the differential mode plot
 	 */
 	public void setData(double[][][] cmData, double[][][] dmData) {
-		trace.methodeCall();
 		// cmData&dmData [Funktionsnummer],[x-Werte = 0, y-Werte = 1],[Datensätze]
 		XYPlot xyplot = chart.getXYPlot();
 		if(this.chart.getTitle().getText() == "CM") {
@@ -119,7 +115,6 @@ public class PlotPanel extends JPanel {
 	}
 
 	public void update(Observable obs, Object obj) {
-		trace.methodeCall();
 		Model model = (Model) obs;
 		setData(model.getCM(), model.getDM());
 	}

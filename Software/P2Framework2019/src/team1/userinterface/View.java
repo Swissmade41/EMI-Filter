@@ -25,7 +25,6 @@ public class View extends JPanel implements Observer {
 
 	public View(Controller controller) {
 		super(new GridBagLayout());
-		trace.constructorCall();
 		
 		buttonPanel = new ButtonPanel(controller);
 		filtertablePanel=new FiltertablePanel(controller);
@@ -46,7 +45,6 @@ public class View extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable observable, Object obj) {
-		trace.methodeCall();
 		Model model = (Model) observable;
 		CMplotPanel.update(observable, obj);
 		DMplotPanel.update(observable, obj);
