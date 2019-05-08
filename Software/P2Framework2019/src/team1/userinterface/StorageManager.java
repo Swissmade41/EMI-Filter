@@ -13,16 +13,6 @@ import javax.swing.JFileChooser;
 
 import javax.swing.JTextArea;
 
-
-
-
-
-
-
-
-
-
-
 public class StorageManager {
 
 
@@ -45,13 +35,10 @@ public class StorageManager {
         //Prepare browse dialog
         JFileChooser jfcSave = new JFileChooser();
        int rt = jfcSave.showSaveDialog(null);
-//        fc.setFileHidingEnabled(false);
-//        fc.setAcceptAllFileFilterUsed(false);
-//        fc.setApproveButtonText("Open");
+
 
 
         //Show dialog
-//        int rt = jfcSave.showOpenDialog(null); //someframe is  JFrame
         if (rt == JFileChooser.APPROVE_OPTION){
             file = jfcSave.getSelectedFile(); //Do anything u want with this file
         }
@@ -63,10 +50,13 @@ public class StorageManager {
             writer = new PrintWriter(file.getPath()+".txt", "UTF-8");
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
+        	System.err.println("File not found: ");
             e.printStackTrace();
+            System.exit(1);
         } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
+        	System.err.println("Unknown datatyp: ");
             e.printStackTrace();
+            System.exit(1);
         }
         
         writer.println("LGENDE HIER");
@@ -105,15 +95,9 @@ public class StorageManager {
 						stringBuffer+=String.valueOf(s32_SliderPosition[rows][columns]) + ",";
 					} 
 			}
-			writer.println(stringBuffer +";");
+		
 		}
         
-        // TODO SCHLEIFE Slider
-        // Wenn null abrechen
-
-        
-//        writer.println("The first line");
-//        writer.println("The second line");
         writer.close();
 
     }
