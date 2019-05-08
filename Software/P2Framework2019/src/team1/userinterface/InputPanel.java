@@ -295,8 +295,8 @@ class InputSubPanel extends JPanel implements ChangeListener, ActionListener{
 	 * set as text of the textfield the user parameter value
 	 */
 	private void setTextfieldValue() {
-		String value= EngineeringUtil.convert(d_userParameterValue,2);
-		textfield_ParameterValues.setText(value);
+		//TODO: Textfeld micro usw anzeigen
+		textfield_ParameterValues.setText(String.valueOf(d_userParameterValue));
 	}
 	
 	/**
