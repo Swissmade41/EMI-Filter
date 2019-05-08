@@ -5,6 +5,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -76,7 +78,7 @@ public class InputPanel extends JPanel{
 	 */
 	public void initializeFirstFilter() {
 		resetInputPanel();
-		controller.updateParamterValues();	
+		controller.updateParamterValues();			
 	}
 	
 	/**
@@ -163,7 +165,7 @@ public class InputPanel extends JPanel{
  * with handling the listeners
  *
  */
-class InputSubPanel extends JPanel implements ChangeListener, DocumentListener{
+class InputSubPanel extends JPanel implements ChangeListener, ActionListener{
 	private TraceV4 trace = new TraceV4(this);
 	
 	private Controller controller;
@@ -192,9 +194,6 @@ class InputSubPanel extends JPanel implements ChangeListener, DocumentListener{
 		super(new GridBagLayout());
 		trace.constructorCall();
 		this.controller = controller;
-		
-		//TODO:Startwert einfügen
-		textfield_ParameterValues.getDocument().addDocumentListener(this);		
 
 		this.label_subParameter = new JLabel(subParameter);
 		this.label_subParameter.setHorizontalAlignment(SwingConstants.CENTER);
@@ -215,7 +214,10 @@ class InputSubPanel extends JPanel implements ChangeListener, DocumentListener{
 				new Insets(5, 5, 5, 5), 10, 50));
 		add(label_ParameterValue, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
 				new Insets(5, 5, 5, 5), 10, 10));
+		
+		textfield_ParameterValues.addActionListener(this);
 	}
+	
 
 	/**
 	 * Setter of the effective parameter value
@@ -308,10 +310,9 @@ class InputSubPanel extends JPanel implements ChangeListener, DocumentListener{
 	 * Read the text in the textfield and update the components and effective values
 	 */
 	private void readTextfieldInput() {
-		//TODO: umwandlung m zu e-3 nicht machen; bei eingabe m direkt übernehmen ohne zuerst enter drücken zu müssen
-		d_userParameterValue= EngineeringUtil.parse(textfield_ParameterValues.getText(0),2);		
+		d_userParameterValue= EngineeringUtil.parse(textfield_ParameterValues.getText(1),2);	
 		refreshComponents();
-		updateEffectiveValue();
+		updateEffectiveValue();	
 	}
 	
 	/**
@@ -332,29 +333,14 @@ class InputSubPanel extends JPanel implements ChangeListener, DocumentListener{
 	}	
 
 	/**
-	 * Event by adding figures in textfield; read the new content in the textfield and
+	 * Textfield text changed; read the new content in the textfield and
 	 * update the label of effective parameter value  and the  parameter values
 	 */
-	public void insertUpdate(DocumentEvent e) {
+	public void actionPerformed(ActionEvent e) {
 		readTextfieldInput();
 		setLabelEffectiveParameterValue();
 		controller.updateParamterValues();
-	}
-
-	/**
-	 * Event by removing figures in textfield; read the new content in the textfield and
-	 * update the label of effective parameter value  and the  parameter values
-	 * - update parameter values
-	 */
-	public void removeUpdate(DocumentEvent e) {
-		readTextfieldInput();
-		setLabelEffectiveParameterValue();
-		controller.updateParamterValues();
-	}
-
-	public void changedUpdate(DocumentEvent e) {
-	}
-
+	}	
 }
 
 /**
