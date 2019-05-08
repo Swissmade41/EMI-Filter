@@ -158,18 +158,7 @@ public class StorageManager {
             System.exit(1);
         }
         
-//        Scanner scanner = new Scanner(reader);
-//        
-//        int totalRow = 3;
-//
-//        for (int row = 0; scanner.hasNextLine() && row < totalRow; row++) {
-//            char[] b;
-//			b[] = scanner.nextLine().toCharArray();
-//        }
-
         
-
-        System.out.println(anzeigeTextFeld.getText());
   
         
 
