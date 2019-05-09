@@ -53,6 +53,6 @@ public class Controller {
 	}
 	
 	public void calculateInsertionLoss() {
-		model.calculate(view.filtertablePanel.getEffectiveParameterValues());
+		model.calculate(view.filtertablePanel.getEffectiveParameterValues(), view.filtertablePanel.getSelectedRow(), view.filtertablePanel.getSelectedRowVisibility());
 	}
 }

@@ -1,34 +1,25 @@
 package team1.userinterface;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-import javafx.scene.layout.BackgroundImage;
 import team1.util.Observable;
 import team1.util.Observer;
 import team1.util.TraceV4;
 
 public class MenuBar extends JMenuBar implements Observer, ActionListener {
+	private static final long serialVersionUID = 1L;
 	private TraceV4 trace = new TraceV4(this);
 	JMenu menu_File, menu_Window, menu_Simulation, menu_Help;
 	JMenuItem menuItemOnTop, submenuItem;

@@ -27,22 +27,20 @@ import team1.util.MyBorderFactory;
 import team1.util.Observable;
 
 public class PlotPanel extends JPanel {
-
-	private static final long serialVersionUID = -4522467773085225830L;
+	
+	private static final long serialVersionUID = 1L;
 	private JFreeChart chart = ChartFactory.createXYLineChart("Titel", "Frequency[Hz]", "Insertion loss[dB]", null,
 			PlotOrientation.VERTICAL, false, false, false);
-
 	/**
-	 * 
-	 * @param title
-	 */
+	 * Constructor of the plotpanel
+	 * @param
+	 * 		title of the plot 
+	 */		
 	public PlotPanel(String title) {
 		super(new BorderLayout());
 		
 		setBorder(MyBorderFactory.createMyBorder(""));
 		setPreferredSize(new Dimension(100, 100));
-
-		// Farben und Settings
 		chart.setTitle(title);
 		chart.setBackgroundPaint(getBackground());
 		XYPlot xyplot = chart.getXYPlot();
@@ -86,44 +84,37 @@ public class PlotPanel extends JPanel {
 	 * @param cmData contains the dataset for the common mode plot
 	 * @param dmData contains the dataset for the differential mode plot
 	 */
-	public void setData(double[][][] cmData, double[][][] dmData) {
+	public void setData(double[][][] Data) {
 		// cmData&dmData [Funktionsnummer],[x-Werte = 0, y-Werte = 1],[Datensätze]
-		XYPlot xyplot = chart.getXYPlot();
-		if(this.chart.getTitle().getText() == "CM") {
 			int filteriterator = 0;
-			while(cmData[filteriterator][0][0] !=0)
+			while(Data[filteriterator][0][0] !=0)
 			{
-				XYSeries series = new XYSeries("CM-Plot");
-				for(int i=0; i<cmData[filteriterator][0].length; i++)
+				XYSeries series = new XYSeries("");
+				for(int i=0; i<Data[filteriterator][0].length; i++)
 				{
-					series.add(cmData[filteriterator][0][i], cmData[filteriterator][1][i]);
+					series.add(Data[filteriterator][0][i], Data[filteriterator][1][i]);
 				}
 				XYSeriesCollection dataset = new XYSeriesCollection();
 				dataset.addSeries(series);
-				chart.getXYPlot().setDataset(filteriterator, dataset);
+				if(Data[filteriterator][0][0] == -1)
+					chart.getXYPlot().setDataset(filteriterator, null);
+				else
+					chart.getXYPlot().setDataset(filteriterator, dataset);
 				filteriterator++;
 			}
-		}
-		else {
-			int filteriterator = 0;
-			while(dmData[filteriterator][0][0] !=0)
-			{
-				XYSeries series= new XYSeries("DM-Plot");
-				for(int i=0; i<dmData[filteriterator][0].length; i++)
-				{
-					series.add(dmData[filteriterator][0][i], dmData[filteriterator][1][i]);
-				}
-				XYSeriesCollection dataset = new XYSeriesCollection();
-				dataset.addSeries(series);
-				chart.getXYPlot().setDataset(filteriterator, dataset);
-				filteriterator++;
-			}
-		}
 		repaint();
 	}
-
+	
+	/**
+	 * Update the plotpanel
+	 */
 	public void update(Observable obs, Object obj) {
 		Model model = (Model) obs;
-		setData(model.getCM(), model.getDM());
+		if(this.chart.getTitle().getText() == "CM") {
+			setData(model.getCM());
+		}
+		else {
+			setData(model.getDM());
+		}
 	}
 }
