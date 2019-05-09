@@ -1,4 +1,5 @@
-\section{Software} \label{sec:software}
+\section{Umsetzung} \label{umsetzung}
+
 
 Die Software ist als Model-View-Controller Entwurf aufgebaut. Diese Struktur wird im Anhang erläutert. Somit sind die Berechnungen von der Benutzeroberfläche getrennt. Während im Model die Schaltbilder aufgebrochen werden um die Einfügedämpfung zu berechnen wird die Benutzeroberfläche in einzelne Panels aufgeteilt. Diese Panels beinhalten jeweils eine Grundfunktion der Software. Im Klassendiagramm (Abbildung \ref{fig:klassendiagramm} ) sind die Inhalte der verschiedenen Programmteile, sowie deren zusammenspiel ersichtlich. Der Controller wird standardmässig nur zur Übergabe der Befehle zwischen View und Model verwendet. Ausserhalb dieser Struktur befindet sich noch das Framework, welches die gesamte Software intialisiert. Im Klassendiagramm sind auch noch weitere externe Klassen vorhanden, welche der Software verschiedene Methoden zur Verfügung stellen. Diese gehören nicht zum MVC Entwurf da sie allgemeingültig sind und nicht für ein spezifisches Problem erstellt wurden.
 
@@ -11,9 +12,9 @@ Die Software ist als Model-View-Controller Entwurf aufgebaut. Diese Struktur wir
 \end{figure}
 \newpage
 
-\input{sections/3_Software/Ermittlung_der_Einfuegedaempfung/ErmittlungDerEinfuegedaempfung}
+\input{sections/3_Umsetzung/Model/ErmittlungDerEinfuegedaempfung}
 
-\input{sections/3_Software/Benutzeroberflaeche/Benutzeroberflaeche}
+\input{sections/3_Umsetzung/Benutzeroberflaeche/Benutzeroberflaeche}
 
 
 
