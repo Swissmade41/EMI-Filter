@@ -14,8 +14,6 @@ import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 import team1.util.JEngineerField;
 import team1.util.MyBorderFactory;
@@ -26,7 +24,7 @@ import team1.util.EngineeringUtil;
  * The input panel provides the input of the user and manage them
  */
 public class InputPanel extends JPanel{
-
+	private static final long serialVersionUID = 1L;
 	private TraceV4 trace = new TraceV4(this);
 	private Controller controller;
 
@@ -77,8 +75,7 @@ public class InputPanel extends JPanel{
 	 * Inizialize the first filter
 	 */
 	public void initializeFirstFilter() {
-		resetInputPanel();
-		controller.updateParamterValues();			
+		resetInputPanel();		
 	}
 	
 	/**
@@ -166,6 +163,8 @@ public class InputPanel extends JPanel{
  *
  */
 class InputSubPanel extends JPanel implements ChangeListener, ActionListener{
+	private static final long serialVersionUID = 1L;
+
 	private TraceV4 trace = new TraceV4(this);
 	
 	private Controller controller;
@@ -261,7 +260,7 @@ class InputSubPanel extends JPanel implements ChangeListener, ActionListener{
 	
 	/**
 	 * Refresh text in textfield and the effective parameter label
-	 * and update te parameter values
+	 * and update the parameter values
 	 */
 	public void refreshComponents() {
         	try {
@@ -347,7 +346,8 @@ class InputSubPanel extends JPanel implements ChangeListener, ActionListener{
  * Display the slider percent as a text in a panel
  */
 class InformationPanel extends JPanel {
-		
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * set null layout; modifiability not needed
 	 * add percent labels
