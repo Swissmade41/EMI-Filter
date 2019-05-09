@@ -21,6 +21,7 @@ import team1.util.TraceV4;
  * In the filter table panel the data of the filters are saved and managed
  */
 public class FiltertablePanel extends JPanel implements TableModelListener, ListSelectionListener{
+	private static final long serialVersionUID = 1L;
 	TraceV4 trace = new TraceV4(this);
 	private Controller controller;
 	
@@ -52,7 +53,6 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	    tc.setCellEditor(table.getDefaultEditor(Boolean.class));   
 	    tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
 	    	
-		
 		table.setPreferredScrollableViewportSize(new Dimension(200, 250));
 		table.setFillsViewportHeight(true);
 		table.getColumnModel().getColumn(0).setMaxWidth(45);
@@ -81,6 +81,27 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 */
 	public double[][] getUserInputParameterValues(){
 		return d_UserInputParameterValues;
+	}
+
+	/**
+	 * Getter of the set visibility from the selected row 
+	 * @return
+	 * 		1 = visible 0 = invisible
+	 */
+	public boolean getSelectedRowVisibility() {
+		if(table.getValueAt(table.getSelectedRow(), 0).toString()=="true") 
+			return true;
+		else 
+			return false;
+	}
+	
+	/**
+	 * Getter of the selected row
+	 * @return
+	 * 		selected row
+	 */		
+	public int getSelectedRow() {
+		return table.getSelectedRow();
 	}
     
     /**
@@ -119,20 +140,26 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 * Remove row from the filter table
 	 */
 	public void removeFilter() {
-		int selectedRow = table.getSelectedRow();
-		try {
-			model.removeRow(selectedRow);
-		} catch (ArrayIndexOutOfBoundsException e) {
-			if(model.getRowCount()==0) {
-				JOptionPane.showMessageDialog(null, "Empty filtertable", "Information message", JOptionPane.INFORMATION_MESSAGE);
-			}
-			else {
-				JOptionPane.showMessageDialog(null, "Please select the row to removed", "Information message", JOptionPane.INFORMATION_MESSAGE);
-			}
-		}	
-		deleteRowsInFilterData(selectedRow);
-		setRowSelection();
-		updateInputPanel(table.getSelectedRow());
+		if(model.getRowCount()>1) {
+			int selectedRow = table.getSelectedRow();
+			try {
+				model.removeRow(selectedRow);
+			} catch (ArrayIndexOutOfBoundsException e) {
+				if(model.getRowCount()==0) {
+					JOptionPane.showMessageDialog(null, "Empty filtertable", "Information message", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Please select the row to removed", "Information message", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}	
+			deleteRowsInFilterData(selectedRow);
+			setRowSelection();
+			updateInputPanel(table.getSelectedRow());
+			controller.calculateInsertionLoss();
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Forbidden action, unable to delete last remaining filter", "Warning", JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 
 	/**
@@ -254,8 +281,13 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 			tmpEffectiveParameterValues[i]=d_effectiveParameterValues[row][i];
 			tmpUserrInputParameterValues[i]=d_UserInputParameterValues[row][i];
 		}
-		controller.updateInputPanel(tmpUserrInputParameterValues,tmpEffectiveParameterValues);
+	controller.updateInputPanel(tmpUserrInputParameterValues,tmpEffectiveParameterValues);
 	}
 	
-	public void tableChanged(TableModelEvent e) {}
+	/**
+	 * Changing the filtertable executes the calculation
+	 */
+	public void tableChanged(TableModelEvent e) {
+		controller.calculateInsertionLoss();
+	}
 }
