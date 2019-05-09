@@ -2,18 +2,23 @@
 
 \subsection{Aufbau} \label{subsec:prinzip}
 
-Das Testkonzept soll eine einwandfreie Funktion unserer Software garantieren und eine einfache Bedienung ermöglichen. Dies wird durch die unten aufgeführten Tests realisiert. 
-Einen zentralen Anteil haben die kontinuierlichen Tests. Diese werden von Beginn weg durchgeführt, um Folgefehler zu vermeiden, was uns schlussendlich Zeit spart, weil dann weniger nach Fehlern gesucht wird.  
+Das Testkonzept soll eine einwandfreie Funktion unserer Software garantieren und eine einfache Bedienung ermöglichen. Dies wird durch die unten aufgeführten Tests realisiert.
+ 
+Einen zentralen Anteil haben die kontinuierlichen Tests. Diese werden von Beginn weg durchgeführt, um Folgefehler zu vermeiden, was uns schlussendlich Zeit spart, weil dann weniger nach Fehlern gesucht werden.  
+
 Bei der Software wird dies erreicht indem einzelne Methoden und Klassen einzeln ausgeführt werden, um die Funktion zu testen. Ausserdem wird so oft wie möglich, neu eingefügter Code vom ganzen Team angeschaut, damit alle Teammitglieder die Funktionsweise der Software verstehen.
-Im Teil der elektrotechnischen Grundlagen ist es von grosser Bedeutung die ausgerechneten Werte zu hinterfragen und auf ihre Richtigkeit zu überprüfen. Dafür wird angenommen, dass die dafür benutzten Rechenprogramme (MATLAB, MPLAB) stimmen. 
+
+Im Teil der elektrotechnischen Grundlagen ist es von grosser Bedeutung die ausgerechneten Werte zu hinterfragen und auf ihre Richtigkeit zu überprüfen, damit keine falschen Werte in die Software gelangen. Dafür wird angenommen, dass die dafür benutzten Rechenprogramme (MATLAB, MPLAB) stimmen. 
+
 Je nach Bedarf werden die Fachcoaches kontaktiert, falls noch Unklarheiten bei den Grundlagen oder der Software bestehen. 
 
 Nach Vollendung der Version 0.9.5 wird die Software mit internen Tests vom gesamtem Team komplett durchgetestet. Dafür wird ein Testprotokoll verwendet, das  im Anhang zu finden ist.  
-Die Software wird zum einen mit einem Kompatibilitätstest gefordert. Bei diesem Test werden Eingaben getätigt, die unsere Software an die Grenzen bringen dürfte. Es werden auch Fehleingaben gemacht, um zu sehen wie die Software darauf reagiert. Ein anderer Aspekt, um die Kompatibilität zu prüfen ist, die Verwendung von verschieden Betriebssystemen (Mac OS, WIndows). Um eine saubere Darstellung auf allen Displays zu gewährleisten, werden Bildschirme mit unterschiedlichen Auflösungen verwendet (Full HD, 4K).
+Die Software wird zum einen mit einem Kompatibilitätstest gefordert. Bei diesem Test werden Eingaben getätigt, die unsere Software an die Grenzen bringen dürfte. Es werden auch Fehleingaben gemacht, um zu sehen wie die Software darauf reagiert. Ein anderer Aspekt, um die Kompatibilität zu prüfen , ist die Verwendung von verschieden Betriebssystemen (Mac OS, WIndows). Um eine saubere Darstellung auf allen Displays zu gewährleisten, werden zudem Bildschirme mit unterschiedlichen Auflösungen verwendet (Full HD, 4K).
 
-Nach den internen Tests wird die Software dem Auftraggeber Dr. Luca Dalessandro zur Verfügung gestellt, damit er die Möglichkeit hat seine Meinung und Ideen noch einmal einzubringen. Des Weiteren wird mit externen Testpersonen zusammengearbeitet. 
-Dabei werden Experten und auch Fachfremde Tester gesucht, die Fachfremden erhalten eine grundlegende Einführung über EMI-Filter, damit sie verstehen wofür diese Software überhaupt entwickelt wurde. 
-Über die Funktionsweise der Benutzeroberfläche erhalten die Testpersonen jedoch keine Einführung. Damit kann man sehr gut überprüfen, wie einfach und intuitiv die Softwarebedienung ist. Dafür wird das bereits erwähnte Testprotokoll verwendet, in das die Testpersonen ihre Meinung und allfällige Anregungen hineinschreiben können. Die Fachpersonen werden ein vereinfachtes Testprotokoll erhalten, indem nicht alle einzelnen zu testenden Punkte aufgeführt sind.  
+Nach den internen Tests wird die Software dem Auftraggeber Dr. Luca Dalessandro zur Verfügung gestellt, damit er die Möglichkeit hat seine Meinung und Ideen noch einmal einzubringen. 
+Des Weiteren wird mit externen Testpersonen zusammengearbeitet. 
+Dabei werden Experten und auch Fachfremde Tester gesucht, wobei die Fachfremden eine grundlegende Einführung über EMI-Filter erhalten, damit sie in der Lage sind, zu verstehen wofür diese Software überhaupt entwickelt wurde. 
+Über die Funktionsweise der Benutzeroberfläche erhalten die Testpersonen jedoch keine Einführung. Damit kann man sehr gut überprüfen, wie einfach und intuitiv die Softwarebedienung ist. Dafür wird das bereits erwähnte Testprotokoll verwendet, in das die Testpersonen ihre Meinung und allfällige Anregungen hineinschreiben können. Die Fachpersonen werden ein vereinfachtes Testprotokoll erhalten, indem nicht alle einzelnen zu testenden Punkte aufgeführt sind.   
 Diese Protokolle werden ausgewertet und anschliessend wird sich im Team über allfällige Änderungen ausgetauscht. 
 Vor der Abgabe wird die Software noch ein letztes Mal getestet und ein Abnahmeprotokoll erstellt, bis die Software den Weg zum Auftraggeber findet.
 
@@ -22,12 +27,18 @@ Vor der Abgabe wird die Software noch ein letztes Mal getestet und ein Abnahmepr
 
 
 
+
+
+
+
+
+\newpage
 \subsection{Erwartungen} \label{subsec:validierung}
-Die zu erwartenden Testresultate variieren stark von der Zielgruppe die, die Software testet.
+Die zu erwartenden Testresultate variieren stark von den Testperson, die die Software testet.
 Die internen Tests werden die groben Fehler herausfiltern und schaffen eine stabile Grundlage auf die aufgebaut werden kann. Zudem wird überprüft, ob die alle Ziele erreicht wurden.
 Bei den Fachpersonen wird das Feedback höchst wahrscheinlich sehr umfangreich   ausfallen. Es ist zu erwarten, dass Fehler entdeckt werden, die noch nicht bekannt sind oder die Software gar zum Absturz gebracht wird. 
-Die Fachfremden Tester werden dies nicht erreichen, jedoch erhalten wir ein Hilfreiche Rückmeldung, was die Benutzerfreundlichkeit betrifft, weil diese Personen einen anderen Blick auf das grosse ganze haben. 
-Das Feedback des Auftraggebers wird sehr detailliert ausfallen, weil er genaue Vorstellungen hat was er von dem Produkt haben möchte. Es wird sich aber vermutlich mehrheitlich um die Funktionen drehen und nicht welche Fehler es gibt. 
+Die Fachfremden Tester werden dies nicht erreichen, jedoch erhalten wir eine Hilfreiche Rückmeldung, was die Benutzerfreundlichkeit betrifft, weil diese Personen einen anderen Blick auf das grosse ganze haben. 
+Das Feedback des Auftraggebers wird sehr detailliert ausfallen, weil er genaue Vorstellungen hat was er von dem Produkt haben möchte. Es wird sich, aber vermutlich mehrheitlich, um die Funktionen drehen und nicht welche Fehler es gibt. 
 
 
 

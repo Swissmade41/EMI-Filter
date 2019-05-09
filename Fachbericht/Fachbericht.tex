@@ -46,27 +46,17 @@ Version&2.0 %Normally not used!
 %\selectlanguage{ngerman}				%ngerman or english
 \thispagestyle{empty}
 			
-\begin{abstract}
-Abstract
-
-\end{abstract}
-und im hauptfile
-%%---ABSTRACT----------------------------------------------------------------------------
-\selectlanguage{ngerman}                %ngerman or english
-\thispagestyle{empty}
-\include{sections/abstract}
-
 %%---TABLE OF CONTENTS-------------------------------------------------------------------
-\pagenumbering{Roman}
-\selectlanguage{ngerman}                %ngerman or english
+\pagenumbering{Roman}		
+%\selectlanguage{ngerman}				%ngerman or english
 \tableofcontents
 \clearpage
+
 %%---TEXT--------------------------------------------------------------------------------
 \pagenumbering{arabic}
-
-\include{sections/1_Einleitung/Einleitung}
-\include{sections/2_Grundlagen/Grundlagen}
-\include{sections/3_Umsetzung/Umsetzung}
+\include{sections/1_Abstract/Abstract}
+\include{sections/2_Einleitung/Einleitung}
+\include{sections/3_Software/Software}
 \include{sections/4_Testkonzept/Testkonzept}
 \include{sections/5_Schluss/Schluss}
 
