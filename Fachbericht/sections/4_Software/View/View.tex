@@ -1,0 +1,35 @@
+\subsection{View} \label{subsec:view}
+
+\paragraph{Menu} \label{par:menu}
+
+Die Menübar verfügt über drei Menüs das File-,  Simulation- und ein Help-Menü.
+
+Das File-Menü dient zur Datenverwaltung, es erlaubt Filterprofile mittels "Save" abzuspeichern und "Load" zu laden. 
+Das Programm wandelt das Filterprofiel in ein Komma-getrenntes Textfile.
+
+Mittels "Save" wird das angewählte Filterprofil abgelegt. Es öffnet sich ein Dialog-Fenster,ein File Chooser, dieser erlaubt es den gewünschten Speicherpfad auszuwählen und die Datei zu benennen. Die Eingabe wird mit "Save" bestätigt. Nun ladet das Programm den zugehörigen Array welcher das Filterprofil enthält, mithilfe des Printwriter in ein Textfile. Das Textfile wird nun unter dem gewünschten Pfad abgelegt. 
+
+\paragraph{Inputpanel} \label{par:inputpanel}
+
+
+Im InputPanel werden die Filterdaten eingegeben. Das Panel wird in mehreren Subpanels unterteilt. Dies ist in der Abbildung (TODO: verweis) abgebildet. Im Subpanel InformationPanel(1) werden die Prozentzahlen der Schieberegler dargestellt. Diese sind an einer festen Position, da die Grösse des Inputpanels nicht verändert werden kann. 
+
+%TODO Bild Inputpanel Bearbeitet
+
+In den weiteren Subpanels (2-5), befinden sich die Komponenten, der modellierten realen Bauteile. Jede Komponente besitzt ein Textfeld (6), einen Slider (7) und ein Label (8). 
+Im Textfeld kann der Benutzer seine Werte für die Komponente eintragen. Beim aufstarten des Programmes wird das Feld mit einem Standardwert, der vom Auftragdokument übernommen wurde, geladen. Mit der Klasse JEngineerField werden die Eingaben geprüft. Es ist nur möglich Zahlen einzugeben. Grosse und kleine Zahlen können zur Vereinfachung in wissenschaftlicher Schreibweise (18e-12) oder in Einheiten-Schreibweise (18p) eingetragen werden. Die Ausgabe ist als Einheiten-Schreibweise vordefiniert. Mit einem Rechtsklick auf das Textfeld ist es möglich die Schreibweise der Eingabe und Ausgabe individuell zu verändern.
+Mit dem Schieberegler wird der im Textfeld eingegebener Wert um $\pm$ 30% verändert und im Label als effektiver Wert ausgegeben.
+Bei Änderungen am Textfeld oder am Schieberegler wird der eingegebener Wert und der effektiver Wert dem Controller(TODO:verweiss) weitergegeben der diese zur Speicherung weiterleitet.
+
+
+
+\paragraph{Plotpanel} \label{par:plotpanel}
+
+%Das BildPanel hat den Controller und ist im Null-Layout organisiert. Es enthält das Blockdiagramm als Bild und zeichnet es in seiner natürlichen Grösse. Die bevorzugte Grösse des BildPanel wird mittels setPreferredSize() gleich der Grösse des Bildes gesetzt. Das BildPanel hat weiter zwei JCheckboxen und einen JButton. Jedes GUI-Element hat den ActionListener des BildPanel. Bei den entsprechenden Ereignissen werden die zugehörigen Methoden im Controller aufgerufen.
+
+\paragraph{Filterpanel} \label{par:filterpanel}
+%Das BildPanel hat den Controller und ist im Null-Layout organisiert. Es enthält das Blockdiagramm als Bild und zeichnet es in seiner natürlichen Grösse. Die bevorzugte Grösse des BildPanel wird mittels setPreferredSize() gleich der Grösse des Bildes gesetzt. Das BildPanel hat weiter zwei JCheckboxen und einen JButton. Jedes GUI-Element hat den ActionListener des BildPanel. Bei den entsprechenden Ereignissen werden die zugehörigen Methoden im Controller aufgerufen.
+
+\paragraph{Buttonpanel} \label{par:buttonpanel}
+%Das BildPanel hat den Controller und ist im Null-Layout organisiert. Es enthält das Blockdiagramm als Bild und zeichnet es in seiner natürlichen Grösse. Die bevorzugte Grösse des BildPanel wird mittels setPreferredSize() gleich der Grösse des Bildes gesetzt. Das BildPanel hat weiter zwei JCheckboxen und einen JButton. Jedes GUI-Element hat den ActionListener des BildPanel. Bei den entsprechenden Ereignissen werden die zugehörigen Methoden im Controller aufgerufen.
+

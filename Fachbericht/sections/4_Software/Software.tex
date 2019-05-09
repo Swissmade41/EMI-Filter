@@ -1,0 +1,26 @@
+
+\section{Software} \label{sec:software}
+In diesem Kapitel wird die Umsetzung der Software dokumentiert und wie die in den Grundlagen beschriebenen Themen eingebaut werden. 
+
+%TODO Einfügen Bild GUI
+
+
+Die View ist für die Darstellung der Daten und die Verarbeitung der Benutzereingaben zuständig. Zur View gehören die Panels: InputPanel (1), FiltertablePanel (2), ButtonPanel (3), Menubar (4) und PlotPanel (5). In diesem Abschnitt werden die Panels dokumentiert Diese bilden zusammen die Benutzeroberfläche, die in der Abbildung (TODO verweis) ersichtlich ist. Im Klassendiagramm (TODO Verweis Anhang) sind alle Klassen die zur View gehören, mit der Farbe (TODO: Farbe) markiert.
+
+%Diese Infos gehören auch noch rein
+%Die Oben abgebildete Benutzerfläche ist die Maske, welche sich beim aufstauten der Software auf dem Bildschirm präsentiert. Wie die  meisten gängigen Applikationen verfügt die GUI eine am oberen Rand platzierten Menubar, um Dateien zu verwalten sowie Hilfestellung zu bieten. Im Zentrum ist im oberen Bereich das Plotpanel platziert, welches die Simulation sowohl im Gleichtakt (CM), als auch im Gegentakt (DM) als grafische Kurve darstellt. Gleich unterhalb befindet sich das Inputpanal, es ermöglicht mittels den Textfeldern eine  effiziente Eingabe der  Parameter. Mittels den Sleidern können die Parameter prozentual angepasst werden. Die Filtertabelle links dient zur Verwaltung der Filterprofilen.
+
+
+%TODO Model und Controller Anteasern(Wie dieses Beispiel)
+%Das Model hat eine SignalQuelle, eine Verzögerung und ein LMSFilter. Die SignalQuelle erzeugt das mit einem Störton gestörte Nutzsignal und erbt zu diesem Zwecke von der Klasse Thread. Sie ruft in regelmässigen Abständen via SignalListener die Methode processSignal(signal : double[]) mit einem Block von digitalen Signalwerten auf. Die Signalwerte werden dann, zur Estimation des Störtons durch die Verzögerung und durch das LMSFilter geschickt und letzteres mittels Fehlersignal adaptiert. 
+
+%Der Controller delegiert im Wesentlichen die Aufgaben ans Model, welches wiederum via Observer - Observable Entwurfsmuster zum Aufdatieren der View führt.
+
+
+\input{sections/4_Software/Model/Model}
+
+\input{sections/4_Software/View/View}
+
+\input{sections/4_Software/Controller/Controller}
+
+\input{sections/4_Software/Trace/Trace}

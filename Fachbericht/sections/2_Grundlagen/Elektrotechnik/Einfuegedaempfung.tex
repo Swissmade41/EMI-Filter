@@ -1,6 +1,10 @@
 \subsubsection{Einfügedämpfung}\label{subsec:einfuge}
 
 
-Einfügungsdämpfung (engl. Insertion loss) wird in Dezibel (dB) angegeben. Im folgendem wird beschrieben, wie die Einfügedämpfung für die Software errechnet wird.  Die Einfügungsdämpfung werden analytisch ermittelt. Im ersten Schritt werden die Berechnungen in MATLAB getätigt und geplotet. Diese Plots werden dann mit Simulationen in MPLAB Mindi verglichen um festzustellen ob diese korrekt sind. Nach überprüfung auf vollständikeit und korrektheit der Berechnungen, können diese in das Java implementiert werden.  Um die Einfügungsdämpfung bestimmen zu können, wird das Model der 2-Tore verwendet. Einzelne Schaltungsteile werden in der Kettenmatrix \ref{Kettenmatrix} abgebildet, welche dann durch Kaskadierung der einzelnen Kettenmatrixen zusammengeführt werden. Die Einfügungsdämpfung werden aus den Streuparameter\ref{subsec:Streuparameter} abgeleitet, welche direkt aus der Kettenmatrix berechnet werden.\cite{hftech}.
+Die Einfügedämpfung(engl. Insertion loss) ist eine Grösse, die verwendet wird, um das Verhalten einer Schaltung zu beschreiben. Sie beschreibt das Verhältnis zwischen der eingehenden Leistung zur abgegebenen Leistung. Sie wird in Dezibel (dB) angegeben. Es handelt sich um eine logarithmische Grösse. Um die Einfügedämpfung in einem Bereich von bis 30MHz abzudecken wird die Formel \ref{equ:Einfügungsverluste} verwendet. In der Formel \ref{equ:Einfügungsverluste} wird die Einfügedämpfung mittels Streuparameter(S-Parameter) berechnet. Sie wird in Dezibel (dB) angegeben. Der Streuparameter $S_{21}$ beschreibt im wesentlichen den Transmissionsgrad des eingehenden Signals. Der Transmissionsgrad beschreibt, welchen Anteil des eingehenden Signals am Ausgang wieder herauskommt.\\
 
+
+\begin{equation}\label{equ:Einfügungsverluste}
+	IL = -20*log (\left\lvert S_{21} \right\rvert)
+\end{equation}
 
