@@ -1,36 +1,25 @@
 package team1.userinterface;
 
-import java.awt.Checkbox;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.KeyEvent;
 import java.io.UnsupportedEncodingException;
 
-import javax.swing.DefaultCellEditor;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.KeyStroke;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
 
-
-import team1.model.Model;
 import team1.util.TraceV4;
 
-
+/**
+ * In the filter table panel the data of the filters are saved and managed
+ */
 public class FiltertablePanel extends JPanel implements TableModelListener, ListSelectionListener{
 	TraceV4 trace = new TraceV4(this);
 	private Controller controller;
@@ -46,12 +35,12 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	private static int[][] s32_SliderPosition = new int[100][14];
 	
 	StorageManager storageManager =  new StorageManager();
-
+	
 	/**
-	 * set Layout to Gridlayout
-	 * set first column to a checkbox cell
-	 * initialize JTable table and add to scrollpanel
-	 * add listener to DefaultTableModel model
+	 * Build the filter table
+	 * 
+	 * @param controller
+	 * 		Controller object
 	 */
     public FiltertablePanel(Controller controller) {
 		super(new GridLayout(1, 0));
@@ -76,8 +65,26 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 		table.getSelectionModel().addListSelectionListener(this);
 	}
 	
+	/**
+	 * Getter of the effective parameter values
+	 * @return
+	 * 		effective parameter values
+	 */
+	public double[][] getEffectiveParameterValues(){
+		return d_effectiveParameterValues;
+	}
+	
+	/**
+	 * Getter of the effective parameter values
+	 * @return
+	 * 		user input parameter values
+	 */
+	public double[][] getUserInputParameterValues(){
+		return d_UserInputParameterValues;
+	}
+    
     /**
-     * set row selection at the last entry
+     * set row selection at the last entry of the filter table
      */
 	private void setRowSelection() {
 		table.setRowSelectionInterval(table.getRowCount()-1, table.getRowCount()-1);
@@ -85,17 +92,31 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 
 	
 	/**
-	 * add new row to the table
+	 * Getter of the row count of the filter table
+	 * 
+	 * @return
+	 * 		row count of the filter table
 	 */
-	public void addFilter() {
-		model.addRow(new Object[]{true, "Filter "+ (model.getRowCount()+1)});
-		setRowSelection();
+	public int getRowcount() {
+		return table.getRowCount();
 	}
 	
+	/**
+	 * Add a new row to the filter table
+	 * 
+	 * @param bool
+	 * 		checkbox checked
+	 * @param name
+	 * 		filter name
+	 */
+	public void addFilter(String bool, String name) {
+		model.addRow(new Object[]{(bool.equals("true")) ?true:false, name});
+		setRowSelection();
+	}
+
 	
 	/**
-	 * remove row from the table
-	 * Information message if no entry in table or no row is selected
+	 * Remove row from the filter table
 	 */
 	public void removeFilter() {
 		int selectedRow = table.getSelectedRow();
@@ -109,91 +130,132 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 				JOptionPane.showMessageDialog(null, "Please select the row to removed", "Information message", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}	
-		refreshFilterTable(selectedRow);
+		deleteRowsInFilterData(selectedRow);
 		setRowSelection();
-		updateInputPanel();
+		updateInputPanel(table.getSelectedRow());
 	}
 
-	private void refreshFilterTable(int selectedRow) {
-		if(selectedRow==-1) {
-			System.out.println("no row selcted");
+	/**
+	 * Delete row in filter the filter data
+	 * 
+	 * @param row
+	 * 		row which should be deleted
+	 */
+	private void deleteRowsInFilterData(int row) {
+		if(row==-1) {
+			System.out.println("no row selected");
 			return;
 		}
 		
-		int s32_tmpCounter=0;
-		for (int n = selectedRow; n < d_effectiveParameterValues.length-selectedRow-1; n++) {
+		for (int n = row; n < d_effectiveParameterValues.length-row-1; n++) {
 			for (int m = 0; m < d_effectiveParameterValues[0].length; m++) {
 				d_effectiveParameterValues[n][m]=d_effectiveParameterValues[n+1][m];
 				d_UserInputParameterValues[n][m]=d_UserInputParameterValues[n+1][m];
 			}
-		}
+		}		
 	}
 	
+	/**
+	 * add rows to the filter data
+	 * 
+	 * @param rowCount
+	 * 		row count of the filter table
+	 * @param effectiveValue
+	 * 		effective value which should be added to the filter table
+	 * @param userInputValue
+	 * 		user input value which should be added to the filter table
+	 */
+	private void addRowsToFilterData(int rowCount, double[][] effectiveValue, double[][] userInputValue) {
+		for (int n = 0; n < d_effectiveParameterValues.length-rowCount-1; n++) {
+			for (int m = 0; m < d_effectiveParameterValues[0].length; m++) {
+				d_effectiveParameterValues[n+rowCount][m]=effectiveValue[n][m];
+				d_UserInputParameterValues[n+rowCount][m]=userInputValue[n][m];
+			}
+		}
+		
+	}
+	
+	/**
+	 * Update the effective parameter data the selected row
+	 * 
+	 * @param values
+	 * 		data of the row
+	 */
 	public void updateEffectiveParameterValues(double[] values) {
 		for (int i = 0; i < values.length; i++) {
 			d_effectiveParameterValues[table.getSelectedRow()][i]=values[i];
 		}
-		System.out.println("Test");
 	}
 	
+	/**
+	 * Update the user input parameter data the selected row
+	 * 
+	 * @param values
+	 * 		data of the row
+	 */
 	public void updateUserInputParameterValues(double[] values) {
 		for (int i = 0; i < values.length; i++) {
 			d_UserInputParameterValues[table.getSelectedRow()][i]=values[i];
 		}
-		System.out.println("update");
 	}
 
 	/**
-	 * call method to to load a textfile
-	 * update the filtertable
+	 * Forward the information from the filter table to save them in a text file
+	 */
+	public void saveFiltertable() {			
+		String s_filtertable ="";
+		for (int i = 0; i < table.getRowCount(); i++) {
+			s_filtertable+= table.getValueAt(i, 0).toString() +","+table.getValueAt(i, 1).toString()+",";
+		}
+		s_filtertable = s_filtertable.substring(0, s_filtertable.length()-1) +";";	//Replace last , with ;
+		
+		storageManager.saveFile(d_UserInputParameterValues, d_effectiveParameterValues, s_filtertable, table.getRowCount());		
+	}
+	
+	/**
+	 * Get the information from the text file and add it to the filter table
 	 */
 	public void loadFiltertable() {
-		//TODO: loadTextfile aufrufen und in tabelle schreiben
 		try {
 			storageManager.loadFile();
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		String[] filtertable=storageManager.getFiltertable();
+		int tmpRowCount=table.getRowCount();
+		for (int i = 0; i < filtertable.length; i++) {
+			addFilter(filtertable[i], filtertable[i+1]);
+			i++;
+		}
+		
+		addRowsToFilterData(tmpRowCount,storageManager.getEffectiveParameterValues(),storageManager.getUserInputParameterValues());		
 	}
 	
 	/**
-	 * call method to to write a textfile and hand over the entries
+	 * Update the input panel with the data of the filter table of the current selected row
 	 */
-	public void saveFiltertable() {
-		//TODO: writeTextfile aufrufen und tabelle �bergeben
-		storageManager.saveFile(d_UserInputParameterValues, s32_SliderPosition);
-		
-	}
-
-	public double[][] getEffectiveParameterValues(){
-		return d_effectiveParameterValues;
-	}
-	
-	public double[][] getUserInputParameterValues(){
-		return d_UserInputParameterValues;
-	}
-	
-	public void tableChanged(TableModelEvent e) {
-		//TODO: Daten weitergeben, plot anpassen
-	}
-	
 	public void valueChanged(ListSelectionEvent e) {
-		//TODO beschreiben. if abfrage das code nur einmal ausgef�hft wird
 		if(e.getValueIsAdjusting()) {
-			updateInputPanel();
+			updateInputPanel(table.getSelectedRow());
 		}		
 	}
 	
-	private void updateInputPanel() {
+	/**
+	 * Update the input panel with the data of the filter table
+	 * 
+	 * @param row
+	 * 		row of the filter table
+	 */
+	private void updateInputPanel(int row) {
 		double[] tmpEffectiveParameterValues = new double[d_effectiveParameterValues[0].length];
-		double[] tmpUserrInputParameterValues = new double[d_effectiveParameterValues[0].length];
+		double[] tmpUserrInputParameterValues = new double[d_UserInputParameterValues[0].length];
 		for (int i = 0; i < d_effectiveParameterValues[0].length; i++) {
-			tmpEffectiveParameterValues[i]=d_effectiveParameterValues[table.getSelectedRow()][i];
-			tmpUserrInputParameterValues[i]=d_UserInputParameterValues[table.getSelectedRow()][i];
+			tmpEffectiveParameterValues[i]=d_effectiveParameterValues[row][i];
+			tmpUserrInputParameterValues[i]=d_UserInputParameterValues[row][i];
 		}
-
 		controller.updateInputPanel(tmpUserrInputParameterValues,tmpEffectiveParameterValues);
 	}
 	
+	public void tableChanged(TableModelEvent e) {}
 }

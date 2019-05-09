@@ -1,21 +1,33 @@
 \section{Testkonzept}\label{sec:testkonzept}
-Wieso, weshalb und Warum
-\subsection{Prinzip} \label{subsec:prinzip}
 
-Unser Testkonzept soll eine einwandfreie Funktion unserer Software garantieren und ein einfache Bedienung ermöglichen. Dies wird durch verschiedene Tests realisiert. 
+\subsection{Aufbau} \label{subsec:prinzip}
 
-Grundsätzlich wird alles was implementiert wird, noch einmal sorgfältig durchgelesen und im Fall der Software, wird noch mal kontrolliert, ob keine Fehlermeldungen im Code angezeigt werden. Zudem werden die Java Methoden einzeln ausgeführt, um sich über die Funktion zu vergewissern. Dies erfordert ein hohes Mass an Selbstverantwortung. 
-Ausserdem wird so oft wie möglich neu eingefügter Code vom ganzen Team angeschaut, damit alle Teammitglieder die Funktionsweise der Software verstehen.
-Im Elektrotechnik-Teil ist es sehr wichtig die ausgerechneten Werte zu hinterfragen und auf ihre Richtigkeit zu überprüfen. Dafür wird das Rechenprogramm MATLAB verwendet, weil es eines der umfangreichsten Mathematikprogramme auf dem Markt ist. Je nach Bedarf werden die Fachcoaches kontaktiert, falls noch Unklarheiten bestehen. Diese Kontinuierliche Tests werden von Anfang an durchgeführt, um Folgefehler zu vermeiden, was uns mehr Zeit für Verbesserungen und neue Features gibt.  
-Nach der Projektwoche ist die Version 0.9.5 fertig. Diese wird nach Testprotokoll gründlich getestet. Zunächst wird besprochen, ob man die sich gesteckten Ziele zufriedenstellend erreicht hat. Die Version wird auch dem Auftraggeber Dr. Luca Dalessandro zur Verfügung gestellt, damit er die Möglichkeit hat seine Meinung und Ideen noch einmal einzubringen. Anschliessend beginnt die eigentliche Testphase. Die Software wird zum einen mit einem Kompatibilitätstest gefordert. Bei diesem Test werden Eingaben getätigt, die unsere Software an die Grenzen bringen dürfte. Es werden auch Fehleingaben gemacht, um zu sehen wie die Software darauf reagiert. Ein anderer Aspekt um die Kompatibilität zu prüfen ist, die Verwendung von verschieden Betriebssystemen (Mac OS, WIndows). Um eine saubere Darstellung auf allen Displays zu gewährleisten werden Bildschirme mit unterschiedlichen Auflösungen verwendet (Full HD, 4K).
-Danach werden die Tests durch dritte Personen durchgeführt. Dabei werden Experten und auch Fachfremde Tester gesucht. Die Fachfremden erhalten eine grundlegende Einführung über EMI-Filter, damit sie verstehen wofür diese Software entwickelt wurde. Über die Funktionsweise der GUI an sich erhalten die Testpersonen jedoch keine Einführung. Damit kann man sehr gut prüfen, wie einfach und intuitiv die Softwarebedienung ist. Dafür wird das bereits erwähnte Testprotokoll verwendet, in das die Testpersonen ihre Meinung und allfällige Anregungen hineinschreiben können.
-Die Fragebogen werden ausgewertet und anschliessend wird sich im Team über allfällige Änderungen ausgetauscht. 
-Vor der Abgabe wird die Software noch einem Getestet und ein Abnahmeprotokoll erstellt, bis die Software den Weg zum Auftraggeber findet.
-   
-\subsection{Erwartungen} \label{subsec:erwartungen}
-Zum Testkonzept gehören auch die zu erwartenden Resultate. Damit man eine Vorstellung dafür bekommt, wie die Software auf externe Personen wirkt und man sich besser auf das kommende Feedback einstellen kann. Dies hat den Vorteil, dass man einen Schritt zurück tritt und anders darüber urteilen kann. 
-Wir erwarten ,dass die Tester ein umfangreiches Feedback liefern werden. Besonders die Fachpersonen werden höchst wahrscheinlich einiges zu sagen haben bei dem wir dann nicht alles davon umsetzten können. Die Fachfremden Testpersonen werden Mühe haben zu verstehen, um was es überhaupt bei dieser Software geht. Dafür werden die Fachfremden viel über die Bedienungsfreundlichkeit
-beifügen, was uns auch sehr weiterhelfen kann.
+Das Testkonzept soll eine einwandfreie Funktion unserer Software garantieren und eine einfache Bedienung ermöglichen. Dies wird durch die unten aufgeführten Tests realisiert. 
+Einen zentralen Anteil haben die kontinuierlichen Tests. Diese werden von Beginn weg durchgeführt, um Folgefehler zu vermeiden, was uns schlussendlich Zeit spart, weil dann weniger nach Fehlern gesucht wird.  
+Bei der Software wird dies erreicht indem einzelne Methoden und Klassen einzeln ausgeführt werden, um die Funktion zu testen. Ausserdem wird so oft wie möglich, neu eingefügter Code vom ganzen Team angeschaut, damit alle Teammitglieder die Funktionsweise der Software verstehen.
+Im Teil der elektrotechnischen Grundlagen ist es von grosser Bedeutung die ausgerechneten Werte zu hinterfragen und auf ihre Richtigkeit zu überprüfen. Dafür wird angenommen, dass die dafür benutzten Rechenprogramme (MATLAB, MPLAB) stimmen. 
+Je nach Bedarf werden die Fachcoaches kontaktiert, falls noch Unklarheiten bei den Grundlagen oder der Software bestehen. 
+
+Nach Vollendung der Version 0.9.5 wird die Software mit internen Tests vom gesamtem Team komplett durchgetestet. Dafür wird ein Testprotokoll verwendet, das  im Anhang zu finden ist.  
+Die Software wird zum einen mit einem Kompatibilitätstest gefordert. Bei diesem Test werden Eingaben getätigt, die unsere Software an die Grenzen bringen dürfte. Es werden auch Fehleingaben gemacht, um zu sehen wie die Software darauf reagiert. Ein anderer Aspekt, um die Kompatibilität zu prüfen ist, die Verwendung von verschieden Betriebssystemen (Mac OS, WIndows). Um eine saubere Darstellung auf allen Displays zu gewährleisten, werden Bildschirme mit unterschiedlichen Auflösungen verwendet (Full HD, 4K).
+
+Nach den internen Tests wird die Software dem Auftraggeber Dr. Luca Dalessandro zur Verfügung gestellt, damit er die Möglichkeit hat seine Meinung und Ideen noch einmal einzubringen. Des Weiteren wird mit externen Testpersonen zusammengearbeitet. 
+Dabei werden Experten und auch Fachfremde Tester gesucht, die Fachfremden erhalten eine grundlegende Einführung über EMI-Filter, damit sie verstehen wofür diese Software überhaupt entwickelt wurde. 
+Über die Funktionsweise der Benutzeroberfläche erhalten die Testpersonen jedoch keine Einführung. Damit kann man sehr gut überprüfen, wie einfach und intuitiv die Softwarebedienung ist. Dafür wird das bereits erwähnte Testprotokoll verwendet, in das die Testpersonen ihre Meinung und allfällige Anregungen hineinschreiben können. Die Fachpersonen werden ein vereinfachtes Testprotokoll erhalten, indem nicht alle einzelnen zu testenden Punkte aufgeführt sind.  
+Diese Protokolle werden ausgewertet und anschliessend wird sich im Team über allfällige Änderungen ausgetauscht. 
+Vor der Abgabe wird die Software noch ein letztes Mal getestet und ein Abnahmeprotokoll erstellt, bis die Software den Weg zum Auftraggeber findet.
+
+ 
+
+
+
+
+\subsection{Erwartungen} \label{subsec:validierung}
+Die zu erwartenden Testresultate variieren stark von der Zielgruppe die, die Software testet.
+Die internen Tests werden die groben Fehler herausfiltern und schaffen eine stabile Grundlage auf die aufgebaut werden kann. Zudem wird überprüft, ob die alle Ziele erreicht wurden.
+Bei den Fachpersonen wird das Feedback höchst wahrscheinlich sehr umfangreich   ausfallen. Es ist zu erwarten, dass Fehler entdeckt werden, die noch nicht bekannt sind oder die Software gar zum Absturz gebracht wird. 
+Die Fachfremden Tester werden dies nicht erreichen, jedoch erhalten wir ein Hilfreiche Rückmeldung, was die Benutzerfreundlichkeit betrifft, weil diese Personen einen anderen Blick auf das grosse ganze haben. 
+Das Feedback des Auftraggebers wird sehr detailliert ausfallen, weil er genaue Vorstellungen hat was er von dem Produkt haben möchte. Es wird sich aber vermutlich mehrheitlich um die Funktionen drehen und nicht welche Fehler es gibt. 
 
 
 

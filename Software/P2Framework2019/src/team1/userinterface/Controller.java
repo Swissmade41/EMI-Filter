@@ -19,7 +19,7 @@ public class Controller {
 	}
 	
 	public void addFilter() {
-		view.filtertablePanel.addFilter();
+		view.filtertablePanel.addFilter("true","Filter "+ String.valueOf(view.filtertablePanel.getRowcount()+1));
 		view.inputPanel.resetInputPanel();
 	}
 	
@@ -42,7 +42,6 @@ public class Controller {
 			view.filtertablePanel.updateEffectiveParameterValues(view.inputPanel.getEffectiveParameterValues());
 			view.filtertablePanel.updateUserInputParameterValues(view.inputPanel.getUserInputParameterValues());
 		} catch (NullPointerException e) {
-			System.out.println("updateexeption");
 		}
 		
 		calculateInsertionLoss();
@@ -54,6 +53,6 @@ public class Controller {
 	}
 	
 	public void calculateInsertionLoss() {
-//		model.calculate(view.filtertablePanel.getEffectiveParameterValues());
+		model.calculate(view.filtertablePanel.getEffectiveParameterValues());
 	}
 }
