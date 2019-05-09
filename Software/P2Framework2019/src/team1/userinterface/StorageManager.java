@@ -10,9 +10,10 @@ import java.nio.file.Paths;
 
 import javax.swing.JFileChooser;
 
-
+/**
+ * The storage manager save/load information to/from a text file
+ */
 public class StorageManager {
-
 	 String[] filtertable;
 	 double [][] d_effectiveParameterValues = new double[100][14];
 	 double [][] d_UserInputParameterValues = new double[100][14];

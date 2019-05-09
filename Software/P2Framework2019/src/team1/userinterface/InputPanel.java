@@ -23,7 +23,7 @@ import team1.util.TraceV4;
 import team1.util.EngineeringUtil;
 
 /**
- * In the input panel the user can adjust the parameters
+ * The input panel provides the input of the user and manage them
  */
 public class InputPanel extends JPanel{
 
