@@ -9,6 +9,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileView;
 
 /**
  * The storage manager save/load information to/from a text file
@@ -83,6 +85,9 @@ public class StorageManager {
 		 PrintWriter writer = null;
 		 
 		 JFileChooser jfcSave = new JFileChooser();
+		 jfcSave.addChoosableFileFilter(new FileNameExtensionFilter("*.txt", "txt"));
+		 jfcSave.setFileFilter(new FileNameExtensionFilter("*.txt", "txt"));
+		 
 		 int rt = jfcSave.showSaveDialog(null);
 		 if (rt == JFileChooser.APPROVE_OPTION){
 			 file = jfcSave.getSelectedFile(); 
