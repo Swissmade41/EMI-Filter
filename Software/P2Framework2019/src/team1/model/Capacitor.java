@@ -1,13 +1,12 @@
+package team1.model;
+
+import org.apache.commons.math3.complex.Complex;
+
 /*
  * Class: Capacitor
  * This class represents capacitors with its parasitic parameters.
  * It calculates the impedance for a specific frequency.
  */
-package team1.model;
-
-import org.apache.commons.math3.complex.Complex;
-
-
 public class Capacitor implements ElecComponent{
     private double d_C;
 	private double d_L;
