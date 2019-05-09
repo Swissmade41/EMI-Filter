@@ -1,0 +1,14 @@
+\subsubsection{Einfügedämpfung}\label{subsec:einfuge}
+
+
+ Um die Einfügungsverluste bestimmen zu können, wird das Model der 2-Tore verwendet. Einzelne Schaltungsteile werden in ABCD-Matrizen \ref{ABCD-Matrix} abgebildet, welche dann durch Kaskadierung der einzelnen ABCD-Matrixen zusammengeführt werden. Die Einfügungsverluste werden aus den Streuparameter\ref{subsec:Streuparameter} abgeleitet, welche direkt aus der ABCD-Matrix berechnet werden.
+
+
+
+
+Insertion loss (dt. Einfügungsdämpfung) wird in Dezibel (dB) angegeben. Im folgendem wird beschrieben, wie die Einfügedämpfung für die Software errechnet wird.
+
+Die Einfügungsdämpfung werden analytisch ermittelt. Im ersten Schritt werden die Berechnungen in MATLAB getätigt und geplotet. Diese Plots werden dann mit Simulationen in MPLAB Mindi verglichen um festzustellen ob diese korrekt sind. Nach überprüfung auf vollständikeit und korrektheit der Berechnungen, können diese in das Java implementiert werden.
+
+Um die Einfügungsdämpfung bestimmen zu können, wird das Model der 2-Tore verwendet. Einzelne Schaltungsteile werden in ABCD-Matrixen \ref{ABCD-Matrix} abgebildet, welche dann durch Kaskadierung der einzelnen ABCD-Matrixen zusammengeführt werden. Die Einfügungsdämpfung werden aus den Streuparameter\ref{subsec:Streuparameter} abgeleitet, welche direkt aus der ABCD-Matrix berechnet werden.
+Der S-Parameter S\textsubscript{21} gibt den Transmissionsgrad der Wellen an, die vom Tor 1 zum Tor2 übertragen wird. Die S-Parameter sind abhängig von den Bezugswiderständen (Innenwiderstand der Quelle sowie Lastwiderstand). In unserem Fall sind die Bezugswiderstände mit 50Ohm gegeben.\cite{hftech}.

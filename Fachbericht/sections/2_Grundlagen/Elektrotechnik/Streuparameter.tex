@@ -1,7 +1,9 @@
-\subsubsection{Insertion loss/ Streuparameter}\label{subsec:streuparam}
+\subsubsection{Streuparameter}\label{subsubsec:streuparameter}
 
-Folgende Theorieabschnitte wurden überwiegend anhand folgender Quellen zusammengestellt: \cite{hftech}.
-Die Einfügungsverluste werden analytisch ermittelt. Im ersten Schritt werden die Berechnungen in MATLAB gemacht. Somit können die Funktionen  geplottet werden. Diese Plots werden dann mit Simulationen in MPLAB Mindi verglichen, um festzustellen ob diese korrekt sind. Die vollständigen und korrekten Berechnungen können somit in Java implementiert werden. Um die Einfügungsverluste bestimmen zu können, wird das Model der 2-Tore verwendet. Einzelne Schaltungsteile werden in ABCD-Matrizen \ref{ABCD-Matrix} abgebildet, welche dann durch Kaskadierung der einzelnen ABCD-Matrizen zusammengeführt werden. Die Einfügungsverluste werden aus den Streuparameter\ref{subsec:Streuparameter} abgeleitet, welche direkt aus der ABCD-Matrix berechnet werden.
+
+
+
+
 Der S-Parameter S\textsubscript{21} gibt den Transmissionsgrad der Wellen an, die vom Tor 1 zum Tor2 übertragen wird. Die S-Parameter sind abhängig von den Bezugswiderständen (Innenwiderstand der Quelle sowie Lastwiderstand). In unserem Fall sind die Bezugswiderstände mit 50Ohm gegeben.
 
 \begin{equation}\label{equ:Freqgang}
@@ -47,6 +49,7 @@ Aus der Abbildung 2.3 lässt sich folgende Streumatrix darstellen (Formel \ref{e
 		\end{matrix}
 	\right]
 \end{equation}
+
 Die Elemente der S-Matrix sind:
 
 \begin{equation}\label{equ:def_s11}
