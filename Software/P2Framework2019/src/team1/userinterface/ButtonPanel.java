@@ -19,6 +19,8 @@ public class ButtonPanel extends JPanel implements ActionListener {
 	private Controller controller;
 	private JButton btAdd = new JButton("Add");
 	private JButton btRemove = new JButton("Remove");
+	private JButton btLoad = new JButton("Load");
+	private JButton btSave = new JButton("Save");
 
 	public ButtonPanel(Controller controller) {
 		super(null);
@@ -30,10 +32,13 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		add(new JLabel("Filter:")).setBounds(10, 20, 50, 20);
 		add(btAdd).setBounds(10, 45, 80, 20);
 		add(btRemove).setBounds(10, 70, 80, 20);		
-
+		add(new JLabel("Storage:")).setBounds(10, 100, 60, 20);
+		add(btSave).setBounds(10, 125, 80, 20);
+		add(btLoad).setBounds(10, 150, 80, 20);
 		btAdd.addActionListener(this);
 		btRemove.addActionListener(this);
-
+		btSave.addActionListener(this);
+		btLoad.addActionListener(this);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -45,6 +50,12 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		if (e.getSource() == btRemove) {
 			System.out.println("Remove");
 			controller.removeFilter();
+		}
+		if(e.getSource() == btSave) {
+			controller.saveFile();
+		}
+		if(e.getSource() == btLoad) {
+			controller.loadFile();
 		}
 	}
 }
