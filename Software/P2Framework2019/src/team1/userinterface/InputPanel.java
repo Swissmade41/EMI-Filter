@@ -51,7 +51,7 @@ public class InputPanel extends JPanel{
 		trace.constructorCall();
 		this.controller = controller;
 		setLayout(new GridBagLayout());
-		setBorder(MyBorderFactory.createMyBorder("Slider Panel"));
+		setBorder(MyBorderFactory.createMyBorder(""));
 		
 		//create the information panel
 		InformationPanel informationPanel= new InformationPanel();

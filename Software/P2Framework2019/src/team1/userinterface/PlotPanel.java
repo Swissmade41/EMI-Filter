@@ -87,8 +87,9 @@ public class PlotPanel extends JPanel {
 	public void setData(double[][][] Data) {
 		// cmData&dmData [Funktionsnummer],[x-Werte = 0, y-Werte = 1],[Datensätze]
 			int filteriterator = 0;
-			while(Data[filteriterator][0][0] !=0)
+			while(Data[filteriterator][0][0] != 0)
 			{
+				System.out.println(filteriterator);
 				XYSeries series = new XYSeries("");
 				for(int i=0; i<Data[filteriterator][0].length; i++)
 				{
@@ -101,6 +102,7 @@ public class PlotPanel extends JPanel {
 				else
 					chart.getXYPlot().setDataset(filteriterator, dataset);
 				filteriterator++;
+				chart.getXYPlot().setDataset(filteriterator, null); // in case a dataset got removed it delets the last dataseries
 			}
 		repaint();
 	}

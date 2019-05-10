@@ -68,7 +68,6 @@ public class Model extends Observable {
 	 * 		the second dimensions store the values of the electric components
 	 */
 	public void calculate(double[][] elecComponents, int s32_filter, boolean b_visibility) {
-		//System.out.println("Berechnen");
 		if(b_visibility) {
 			double[] d_freq = MikroMatlab.logspace(0, Math.log10(3e7), s32_nbrOfCalculations);
 			// Common mode
@@ -120,6 +119,19 @@ public class Model extends Observable {
 		}
 		notifyObservers();
 	}
+	
+	/**
+	 * deletes a dataset for a specific filter
+	 * @param row
+	 */
+    public void deleteCalculation(int row) {
+       	for (int n = row; n < dmData.length-row-1; n++) {
+       		for (int m = 0; m < dmData[0].length; m++) {
+       			for(int o = 0; o < dmData[0][0].length; o++) {
+       				dmData[n][m][o]=dmData[n+1][m][o];
+       				cmData[n][m][o]=cmData[n+1][m][o];
+       			}	
+       		}
+       	}		
+   	}
 }
-
-
