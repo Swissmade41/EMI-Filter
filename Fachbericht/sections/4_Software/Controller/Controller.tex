@@ -1,3 +1,3 @@
 \subsection{Controller} \label{subsec:controller}
 
-%TODO Hier wird der Controller beschrieben
+Der Controller dient als Schnittstelle zwischen dem Model und der View. Dabei werden die von View aufgerufenen Funktionen an das Model weitergeleitet. Diese Werte, die das Model Berechnet hat, werden anschliessend wieder an den Controller gesendet und zurück zur View geleitet. Der Controller besteht aus 9 Methoden, wobei eine der Konstruktor ist. Von diesen Methoden wird das Model nur von den beiden Methoden calculateInsertionloss() und deleteRowInCalculationData() aufgerufen. Die Methode calculateInsertionloss() ist dafür zuständig den Insertionloss für die Schaltungen, mit den in der GUI  eingestellt Parametern, zu berechnen.  
