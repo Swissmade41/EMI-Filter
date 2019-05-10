@@ -44,7 +44,7 @@ public class Controller {
 		} catch (NullPointerException e) {
 		}
 		
-		calculateInsertionLoss();
+		calculateInsertionLoss(-1);
 	}
 	
 	
@@ -52,7 +52,27 @@ public class Controller {
 		view.inputPanel.updateInputPanel(userInputFilterParameter, effectiveFilterParameter);
 	}
 	
-	public void calculateInsertionLoss() {
-		model.calculate(view.filtertablePanel.getEffectiveParameterValues(), view.filtertablePanel.getSelectedRow(), view.filtertablePanel.getSelectedRowVisibility());
+	/**
+	 * calculates the insertion loss for either a specific row or the selected filter
+	 * @param row
+	 * 		-1 = calculates IL for selected filter else it calculates for the row
+	 */
+	public void calculateInsertionLoss(int row) {
+		if(row == -1) {
+			model.calculate(view.filtertablePanel.getEffectiveParameterValues(), view.filtertablePanel.getSelectedRow(), view.filtertablePanel.getSelectedRowVisibility());
+		}
+		else {
+			model.calculate(view.filtertablePanel.getEffectiveParameterValues(), row, view.filtertablePanel.getSelectedRowVisibility());
+		}
+		
+	}
+
+	/**
+	 * deletes the claculated values for a specific value
+	 * @param selectedRow
+	 * 		row to remove
+	 */	
+	public void deleteRowInCalculationData(int selectedRow) {
+		model.deleteCalculation(selectedRow);
 	}
 }

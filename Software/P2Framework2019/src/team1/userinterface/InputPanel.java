@@ -38,6 +38,11 @@ public class InputPanel extends JPanel{
 			{"<html>C<sub>X1</sub></html>","<html>L<sub>X1</sub></html>","<html>R<sub>X1</sub></html>"}, 
 			{"<html>C<sub>X2</sub></html>","<html>L<sub>X2</sub></html>","<html>R<sub>X2</sub></html>"},
 			{"<html>C<sub>Y</sub></html>","<html>L<sub>Y</sub></html>","<html>R<sub>Y</sub></html>"}}; 
+	
+	private String[][] units = {{"H", "Ω", "F", "H", "Ω"},
+								{"F", "H", "Ω"},
+								{"F", "H", "Ω"},
+								{"F", "H", "Ω"}};
 		
 	InputSubPanel[][] inputSubPanel = new InputSubPanel[parameter.length][subParameter[0].length];
 	
@@ -51,7 +56,7 @@ public class InputPanel extends JPanel{
 		trace.constructorCall();
 		this.controller = controller;
 		setLayout(new GridBagLayout());
-		setBorder(MyBorderFactory.createMyBorder("Slider Panel"));
+		setBorder(MyBorderFactory.createMyBorder(""));
 		
 		//create the information panel
 		InformationPanel informationPanel= new InformationPanel();
@@ -63,7 +68,7 @@ public class InputPanel extends JPanel{
 			JPanel paramter_Panel = new JPanel(new GridLayout());
 			paramter_Panel.setBorder(MyBorderFactory.createMyBorder(parameter[n]));		
 			for (int m = 0; m < subParameter[n].length; m++) {
-				inputSubPanel[n][m] = new InputSubPanel(this.controller, subParameter[n][m]); 
+				inputSubPanel[n][m] = new InputSubPanel(this.controller, subParameter[n][m], units[n][m]); 
 				paramter_Panel.add(inputSubPanel[n][m]);
 			}			
 			add(paramter_Panel,new GridBagConstraints(n+1, 1, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
@@ -173,10 +178,12 @@ class InputSubPanel extends JPanel implements ChangeListener, ActionListener{
 	static final int SLIDER_MAX = 30;
 	static final int SLIDER_INIT = 0;
 	
+	private String unit;
 	
 	private JLabel label_subParameter;
 	private JSlider slider_Parameter;
 	private JEngineerField textfield_ParameterValues = new JEngineerField();
+	
 	
 	private JLabel label_ParameterValue=new JLabel();
 	private double d_effectiveParameterValue, d_userParameterValue;
@@ -189,14 +196,15 @@ class InputSubPanel extends JPanel implements ChangeListener, ActionListener{
 	 * @param subParameter
 	 * 		Name of the sub parameter
 	 */
-	public InputSubPanel(Controller controller, String subParameter) {
+	public InputSubPanel(Controller controller, String subParameter, String unit) {
 		super(new GridBagLayout());
 		trace.constructorCall();
 		this.controller = controller;
 
 		this.label_subParameter = new JLabel(subParameter);
 		this.label_subParameter.setHorizontalAlignment(SwingConstants.CENTER);
-
+		this.unit = unit;
+		
 		slider_Parameter = new JSlider(SwingConstants.VERTICAL,SLIDER_MIN,SLIDER_MAX,SLIDER_INIT);
 		slider_Parameter.setMajorTickSpacing(10);
 		slider_Parameter.setMinorTickSpacing(5);
@@ -302,7 +310,7 @@ class InputSubPanel extends JPanel implements ChangeListener, ActionListener{
 	 * set the label of the effectiv parameter value
 	 */
 	private void setLabelEffectiveParameterValue() {
-		label_ParameterValue.setText((EngineeringUtil.convert(d_effectiveParameterValue, 2)));
+		label_ParameterValue.setText((EngineeringUtil.convert(d_effectiveParameterValue, 2))+unit);
 	}
 	
 	/**

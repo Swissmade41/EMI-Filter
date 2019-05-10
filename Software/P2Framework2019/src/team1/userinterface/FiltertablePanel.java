@@ -153,9 +153,14 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 				}
 			}	
 			deleteRowsInFilterData(selectedRow);
+			controller.deleteRowInCalculationData(selectedRow);
 			setRowSelection();
 			updateInputPanel(table.getSelectedRow());
-			controller.calculateInsertionLoss();
+			for(int filteriterator = 0; filteriterator < table.getRowCount(); filteriterator++) {
+				controller.calculateInsertionLoss(filteriterator);
+				System.out.println("calculate"+filteriterator);
+			}
+			
 		}
 		else {
 			JOptionPane.showMessageDialog(null, "Forbidden action, unable to delete last remaining filter", "Warning", JOptionPane.INFORMATION_MESSAGE);
@@ -288,6 +293,6 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 * Changing the filtertable executes the calculation
 	 */
 	public void tableChanged(TableModelEvent e) {
-		controller.calculateInsertionLoss();
+		controller.calculateInsertionLoss(-1);
 	}
 }
