@@ -2,36 +2,29 @@
 
 \subsection{Aufbau} \label{subsec:prinzip}
 
-Das Testkonzept soll eine einwandfreie Funktion unserer Software garantieren und eine einfache Bedienung ermöglichen. Dies wird durch die unten aufgeführten Tests realisiert.
+In der unteren Tabelle wird aufgeführt, welche Tests durchgeführt werden, um einen Überblick zu geben wie das Testkonzept aufgebaut ist. Die detaillierten Testprotokolle, die für die internen und externen Test verwendet werden, wird auf den Anhang verwiesen.  
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm]{ueberblickTestKonzept.png}
+	\label{fig:Test3}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm]{AblaufTestkonzept.png}
+	\label{fig:Test3}
+\end{figure}
+
+
+
+
+\subsection{Validierung} \label{subsec:validierung}
+Für die Berechnung des Insertionloss wird die Schaltung in mehreren Schritten vereinfacht. 
+Die Zwischenschritte müssen auf ihre Korrektheit geprüft werden, um Folgefehler zu vermeiden, die wertvolle Zeit kosten können.
+Diese werden mithilfe von mit Hilfe von MATLAB und MPLAB überprüft. 
+Mit MATLAB werden die Rechenschritte noch einmal durchgeführt. Während in MPLAB die vereinfachte Schaltung Simuliert wird. Die erhaltenen Werte der beiden Tools werden miteinnader verglichen, ob sie übereinstimmen.  
  
-Einen zentralen Anteil haben die kontinuierlichen Tests. Diese werden von Beginn weg durchgeführt, um Folgefehler zu vermeiden, was uns schlussendlich Zeit spart, weil dann weniger nach Fehlern gesucht werden.  
-
-Bei der Software wird dies erreicht indem einzelne Methoden und Klassen einzeln ausgeführt werden, um die Funktion zu testen. Ausserdem wird so oft wie möglich, neu eingefügter Code vom ganzen Team angeschaut, damit alle Teammitglieder die Funktionsweise der Software verstehen.
-
-Im Teil der elektrotechnischen Grundlagen ist es von grosser Bedeutung die ausgerechneten Werte zu hinterfragen und auf ihre Richtigkeit zu überprüfen, damit keine falschen Werte in die Software gelangen. Dafür wird angenommen, dass die dafür benutzten Rechenprogramme (MATLAB, MPLAB) stimmen. 
-
-Je nach Bedarf werden die Fachcoaches kontaktiert, falls noch Unklarheiten bei den Grundlagen oder der Software bestehen. 
-
-Nach Vollendung der Version 0.9.5 wird die Software mit internen Tests vom gesamtem Team komplett durchgetestet. Dafür wird ein Testprotokoll verwendet, das  im Anhang zu finden ist.  
-Die Software wird zum einen mit einem Kompatibilitätstest gefordert. Bei diesem Test werden Eingaben getätigt, die unsere Software an die Grenzen bringen dürfte. Es werden auch Fehleingaben gemacht, um zu sehen wie die Software darauf reagiert. Ein anderer Aspekt, um die Kompatibilität zu prüfen , ist die Verwendung von verschieden Betriebssystemen (Mac OS, WIndows). Um eine saubere Darstellung auf allen Displays zu gewährleisten, werden zudem Bildschirme mit unterschiedlichen Auflösungen verwendet (Full HD, 4K).
-
-Nach den internen Tests wird die Software dem Auftraggeber Dr. Luca Dalessandro zur Verfügung gestellt, damit er die Möglichkeit hat seine Meinung und Ideen noch einmal einzubringen. 
-Des Weiteren wird mit externen Testpersonen zusammengearbeitet. 
-Dabei werden Experten und auch Fachfremde Tester gesucht, wobei die Fachfremden eine grundlegende Einführung über EMI-Filter erhalten, damit sie in der Lage sind, zu verstehen wofür diese Software überhaupt entwickelt wurde. 
-Über die Funktionsweise der Benutzeroberfläche erhalten die Testpersonen jedoch keine Einführung. Damit kann man sehr gut überprüfen, wie einfach und intuitiv die Softwarebedienung ist. Dafür wird das bereits erwähnte Testprotokoll verwendet, in das die Testpersonen ihre Meinung und allfällige Anregungen hineinschreiben können. Die Fachpersonen werden ein vereinfachtes Testprotokoll erhalten, indem nicht alle einzelnen zu testenden Punkte aufgeführt sind.   
-Diese Protokolle werden ausgewertet und anschliessend wird sich im Team über allfällige Änderungen ausgetauscht. 
-Vor der Abgabe wird die Software noch ein letztes Mal getestet und ein Abnahmeprotokoll erstellt, bis die Software den Weg zum Auftraggeber findet.
-
- 
-
-
-
-
-
-
-
-
-
 \newpage
 \subsection{Erwartungen} \label{subsec:validierung}
 Die zu erwartenden Testresultate variieren stark von den Testperson, die die Software testet.
@@ -42,7 +35,5 @@ Das Feedback des Auftraggebers wird sehr detailliert ausfallen, weil er genaue V
 
 
 
-\subsection{Validierung} \label{subsec:validierung}
-Testergebnisse darstellen und Interpretieren
 
-Ebenfalls wird hier beschrieben welche Werte wir mit der Simulation und mit Matlab erreicht haben
+
