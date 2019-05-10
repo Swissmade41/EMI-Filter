@@ -55,18 +55,6 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 		
 		
 		
-		//Menu simulation
-		menu_Simulation= new JMenu("Simulation");
-		menu_Simulation.setMnemonic(KeyEvent.VK_A);
-		
-		JMenuItem MenuItem_MonteCarlo = new JMenuItem("Monte Carlo ", KeyEvent.VK_M);
-		MenuItem_MonteCarlo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK));
-		MenuItem_MonteCarlo.setActionCommand("Monte Carlo");
-		MenuItem_MonteCarlo.addActionListener(this);
-		menu_Simulation.add(MenuItem_MonteCarlo);
-		
-		
-		
 		//Menu Help
 		menu_Help= new JMenu("Help");
 		menu_Help.setMnemonic(KeyEvent.VK_H);
@@ -84,7 +72,6 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 		menu_Help.add(MenuItem_DMElectricalCircuit);
 
 		add(menu_File);
-		add(menu_Simulation);
 		add(menu_Help);
 		
 	}
@@ -142,9 +129,6 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 		trace.methodeCall();
 
 	}
-
-
-
 
 
 
