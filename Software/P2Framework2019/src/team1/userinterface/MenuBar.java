@@ -18,6 +18,10 @@ import team1.util.Observable;
 import team1.util.Observer;
 import team1.util.TraceV4;
 
+/**
+ * The class MenuBar handles the save and load process and provides displaying the electrical circuit
+ *
+ */
 public class MenuBar extends JMenuBar implements Observer, ActionListener {
 	private static final long serialVersionUID = 1L;
 	private TraceV4 trace = new TraceV4(this);
@@ -25,13 +29,17 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 	JMenuItem menuItemOnTop, submenuItem;
 	Controller controller;
 	Image img;
+	/**
+	 * Constructor of the MenuBar
+	 * @param controller
+	 * 		Controller object
+	 */
 	public MenuBar(Controller controller) {
 		trace.constructorCall();
 		this.controller = controller;
-		
-		img = Utility.loadResourceImage("EMI_CM.png");
-		
-		//Menu file
+
+
+		// Menu file
 		menu_File = new JMenu("File");
 		menu_File.setMnemonic(KeyEvent.VK_F);
 
@@ -40,61 +48,46 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 		MenuItem_Save.setActionCommand("Save filter profile");
 		MenuItem_Save.addActionListener(this);
 		menu_File.add(MenuItem_Save);
-		
+
 		JMenuItem MenuItem_Load = new JMenuItem("Load filter profile ", KeyEvent.VK_L);
 		MenuItem_Load.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
 		MenuItem_Load.setActionCommand("Load filter profile");
 		MenuItem_Load.addActionListener(this);
 		menu_File.add(MenuItem_Load);
-		
+
 		JMenuItem MenuItem_Exit = new JMenuItem("Exit ", KeyEvent.VK_E);
 		MenuItem_Exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 		MenuItem_Exit.setActionCommand("Exit");
 		MenuItem_Exit.addActionListener(this);
 		menu_File.add(MenuItem_Exit);
-		
-		
-		
-		//Menu Help
-		menu_Help= new JMenu("Help");
+
+		// Menu Help
+		menu_Help = new JMenu("Circuits");
 		menu_Help.setMnemonic(KeyEvent.VK_H);
-		
+
 		JMenuItem MenuItem_CMElectricalCircuit = new JMenuItem("CM electrical circuit", KeyEvent.VK_T);
 		MenuItem_CMElectricalCircuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
 		MenuItem_CMElectricalCircuit.setActionCommand("CM electrical circuit");
 		MenuItem_CMElectricalCircuit.addActionListener(this);
 		menu_Help.add(MenuItem_CMElectricalCircuit);
-		
+
 		JMenuItem MenuItem_DMElectricalCircuit = new JMenuItem("DM electrical circuit", KeyEvent.VK_R);
 		MenuItem_DMElectricalCircuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
 		MenuItem_DMElectricalCircuit.setActionCommand("DM electrical circuit");
 		MenuItem_DMElectricalCircuit.addActionListener(this);
 		menu_Help.add(MenuItem_DMElectricalCircuit);
+		
+		// Menu about
+		//TODO
 
 		add(menu_File);
 		add(menu_Help);
-		
+
 	}
 
-
-	
-
-	public void CMfenster() {
-
-		
-		CircuitFrame circuitFrame = new CircuitFrame("CM");
-		
-	}
-	
-
-
-	
-	public void DMfenster() {
-		
-		CircuitFrame2 circuitFrame2 = new CircuitFrame2("DM");
-		
-	}
-
+	/**
+	 * Listener for the menu bar.
+	 */
 	public void actionPerformed(ActionEvent e) {
 		trace.eventCall();
 		JFrame frame = (JFrame) getTopLevelAncestor();
@@ -109,87 +102,67 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 			System.out.println("Load");
 			controller.loadFile();
 		}
-	
-		if (e.getActionCommand().equals("Monte Carlo")) {
-			System.out.println("Monte Carlo");
-		}
 		if (e.getActionCommand().equals("CM electrical circuit")) {
-		this.CMfenster();
-		System.out.println("CM");
-	
+			CircuitFrame circuitFrame = new CircuitFrame("CM.png");
+			System.out.println("CM");
+
 		}
 		if (e.getActionCommand().equals("DM electrical circuit")) {
-		this.DMfenster();
-		System.out.println("DM");
+			CircuitFrame circuitFrame = new CircuitFrame("DM.png");
+			System.out.println("DM");
 		}
 	}
 
-	@Override
+
 	public void update(Observable observable, Object obj) {
 		trace.methodeCall();
 
 	}
 
+	/**
+	 * Class CircuitFrame provides the frame to display the electrical circuits
+	 *
+	 */
+	class CircuitFrame extends JFrame {
 
-
-class CircuitFrame extends JFrame{
-	
-	public CircuitFrame(String name) {
-		getContentPane().setLayout(new BorderLayout());
-		
-		getContentPane().add(new CircuitPanel(), BorderLayout.CENTER);
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setSize(742,356);
-		setResizable(true);
-		setVisible(true);
-	}
-}
-	class CircuitPanel extends JPanel{
-		
-		public CircuitPanel() {
-			
-		}
-		
-		public void paintComponent(Graphics g) {
-			Image img = Utility.loadResourceImage("EMI_CM.png");
-			g.drawImage(img, 0, 0, getWidth(), getHeight(), this); // draw the image
-			}
-	}
-
-	
-	
-	
-	
-	
-	class CircuitFrame2 extends JFrame{
-		
-		public CircuitFrame2(String name) {
+		/**
+		 * constructor of the class CircuitFrame
+		 * @param name
+		 * 		contains the name of the image
+		 */	
+		public CircuitFrame(String name) {
 			getContentPane().setLayout(new BorderLayout());
-			
-			getContentPane().add(new CircuitPanel2(), BorderLayout.CENTER);
+			getContentPane().add(new CircuitPanel(name), BorderLayout.CENTER);
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			setSize(1000,417);
+			setSize(742, 356);
 			setResizable(true);
 			setVisible(true);
-			
 		}
-}
-
-
-
-class CircuitPanel2 extends JPanel{
-	
-	public CircuitPanel2() {
-		
 	}
-	
-	public void paintComponent(Graphics g) {
-		Image img = Utility.loadResourceImage("EMI_DM.png");
-		g.drawImage(img, 0, 0, getWidth(), getHeight(), this); // draw the image
+
+	/**
+	 * Class CircuitPanel 
+	 * Provides the panel in the circuit frame to display the electrical circuit
+	 *
+	 */
+	class CircuitPanel extends JPanel {
+		String title;
+		
+		/**
+		 * Constructor of the class CircuitPanel
+		 * @param title
+		 * 		contains the name of the picture
+		 */
+		public CircuitPanel(String title) {
+			this.title = title;
 		}
+		/**
+		 * drawing the suitable circuit
+		 */
+		public void paintComponent(Graphics g) {
+			Image img = Utility.loadResourceImage(title);
+			g.drawImage(img, 0, 0, getWidth(), getHeight(), this); // draw the image
+
+		}
+	}
 }
-}
-
-
-
-
