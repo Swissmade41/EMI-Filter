@@ -1,5 +1,15 @@
 \subsection{Model} \label{subsec:Model}
+Die Hauptaufgabe des Models besteht darin die Einfügedämpfung zu berechnen. Die Methode calculate() berechnet anhand der übergebenen Komponenten der Schaltung die Einfügedämpfung. Die Struktur des Models ist dem Klassendiagram (Verweis Klassendiagramm)zu entnehmen. Logarithmisch verteilt werden 400 Werte in einem Bereich von 0Hz bis 30MHz für die beiden Schaltungen(Verweis Gleich Gegentakt) berechnet. Die Berechnungen werden seperat für Gegen- und Gleichtakt durchgeführt.
 
-to be done => Beispiel Anschauen von Hr Gut
-%TODO Methoden der Klasse Model beschreiben
+Dafür werden, wie in Kapitel (Verweis) beschrieben, die einzelnen Schaltungsteile anhand von Kettenmatrizen beschrieben. Da die Kettenmatrix die Impedanz der einzelnen Schaltungsteilen beinhaltet, gibt es Klassen für Spule, Kondensator und Widerstand(Induktor, Capacity, Resistor). Dem Konstuktor diesen Klassen wird der Hauptwert(beim Kondensator z.B. die Kapazität), sowie die Parasitären Parameter(beim Kondensator der Serie Widerstand und die Serie Kapazität). Diese Objekte stellen die Methode .getImpedance(frequency) zu verfügung. Sie gibt für eine Frequenz die Impedanz zurück.
+
+Die Klasse Mikromatlab dient als Bibliothek für die Berechnungen. Sie beinhaltet die Methoden getSeriesImpedanceMatrix(SeriesImpedance) und getShuntImpedanceMatrix(ShuntImpedance). Diese Methoden geben für eine Impedanz(Quer oder Längs) die entsprechende Kettenmatrix zurück(Verweis Quer Längsimpedanz).
+
+Die Methode cascade(1. Matrix, 2. Matrix) ist eine weitere Methode der Mikromatlab Klasse. Sie ermöglicht die Kaskadierung der einzelnen Schaltungsteilen(Kettenmatrizen). Sie führt eine Matrix Multiplikation der Übergebenen Matrizen durch. Die einzelnen Schaltungsteile werden miteinander multipliziert. Das Produkt stellt die Gesamtkettenmatrix der Schaltung dar. 
+
+Die Formel(Verweis Formel s21 aus Kettenmatrix) legt dar, wie aus der Gesamtkettenmatrix der Streuparameter s21 Berechnet wird. In der Methode calculate wird die Beschriebene Berechnung in einer for-Schleife für die logarithmisch eingeteilte Frequenz-Achse durchgeführt. die logarithmische Einteilung wird anhand der Methode logspace() der Klasse Mikromatlab erstellt. Die berechneten s21-Parameter werden logarithmisch umgerechnet und in den Attrributen cmData und dmData abgespeichert. Diese beiden Attribute sind drei dimensionale Arrays, wobei die erste Dimension die Filter der Filtertabelle(Verweis) nummeriert. Die zweite Dimension spezifiziert die x und y-Achse. Die dritte Dimension beinhaltet die errechneten Werte. 
+
+Sobald die Berechnungen gemacht sind wird anhand der Methode notifyObserver() bei der View ein update ausgelöst. Die Methoden getCM und getDM des Models ermöglichen der View die berechneten Daten zu holen.
+
+Wie im Kapitel der Filtertabelle(Verweis) beschrieben ist es möglich die Filter anhand der Checkboxen sichtbar und unsichtbar zu stellen. Um diese Funktion zu gewährleisten, wird der Methode calculate() ein Kennzeichenung visability mitgegeben. Eine 1 bedeutet sichtbar und eine 0 unsichtbar. Falls die Funktion des entsprechenden Filters unsichtbar sein soll, wird dies in den Datensätzen mit einer minus eins gekennzeichnet. 
 
