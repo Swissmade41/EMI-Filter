@@ -18,7 +18,7 @@ import team1.util.TraceV4;
  */
 public class StorageManager {
 	private TraceV4 trace = new TraceV4(this);
-	
+
 	String[] filtertable;
 	double[][] d_effectiveParameterValues = new double[100][14];
 	double[][] d_UserInputParameterValues = new double[100][14];
@@ -29,11 +29,11 @@ public class StorageManager {
 	public StorageManager() {
 		trace.constructorCall();
 	}
-	
+
 	/**
 	 * Getter of the user input parameter from the text file
 	 * 
-	 * @return user input parameter
+	 * @return User input parameter
 	 */
 	public double[][] getUserInputParameterValues() {
 		trace.methodeCall();
@@ -43,7 +43,7 @@ public class StorageManager {
 	/**
 	 * Getter of the effective parameter value from the text file
 	 * 
-	 * @return effective parameter value
+	 * @return Effective parameter value
 	 */
 	public double[][] getEffectiveParameterValues() {
 		trace.methodeCall();
@@ -63,13 +63,13 @@ public class StorageManager {
 	/**
 	 * Save the information in a text file
 	 * 
-	 * @param d_UserInputParameter values of the user input parameter, which should
+	 * @param d_UserInputParameter Values of the user input parameter, which should
 	 *                             be saved
-	 * @param d_effectiveParameter values of the effective parameter, which should
+	 * @param d_effectiveParameter Values of the effective parameter, which should
 	 *                             be saved
-	 * @param s_filtertable        information in the filter table, which should be
+	 * @param s_filtertable        Information in the filter table, which should be
 	 *                             saved
-	 * @param s32_count            filtercount
+	 * @param s32_count            Filtercount
 	 */
 	public void saveFile(double[][] d_UserInputParameter, double[][] d_effectiveParameter, String s_filtertable,
 			int s32_count) {
@@ -79,9 +79,9 @@ public class StorageManager {
 	}
 
 	/**
-	 * load a textfile
+	 * Load a textfile
 	 * 
-	 * @throws UnsupportedEncodingException
+	 * @throws UnsupportedEncodingException file not readable
 	 */
 	public void loadFile() throws UnsupportedEncodingException {
 		trace.methodeCall();
@@ -124,7 +124,7 @@ public class StorageManager {
 	/**
 	 * Choose the text file in the directory and read the text file
 	 * 
-	 * @return text from text file as a string
+	 * @return Text from text file as a string
 	 */
 	private String getTextFromFile() {
 		trace.methodeCall();

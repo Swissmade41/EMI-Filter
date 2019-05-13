@@ -1,26 +1,40 @@
 package team1.model;
+
 import org.apache.commons.math3.complex.Complex;
-/*
- * Interface : ElecComponent
- * This interface contains the main methods to describes a electrical component (R, L, C)
- * with its parasitic parameters.
- * Additionally it contains a method to calculate the impedance of the electrical component
+
+/**
+ * This interface contains the main methods to describes a electrical component
+ * (R, L, C) with its parasitic parameters. Additionally it contains a method to
+ * calculate the impedance of the electrical component
  */
 public interface ElecComponent {
-	/*
-	 * returns the total impedance for a specific frequency
+
+	/**
+	 * Get the total impedance for a specific frequency
+	 * 
+	 * @param d_omega Angular frequency
+	 * @return Impedance
 	 */
 	public Complex getImpedance(double d_omega);
-	/*
-	 * sets the given capacity
+
+	/**
+	 * Sets the given capacity
+	 * 
+	 * @param d_C capacity
 	 */
 	public void setC(double d_C);
-	/*
-	 * sets the given resistance
+
+	/**
+	 * Sets the given resistance
+	 * 
+	 * @param d_R Resistor
 	 */
 	public void setR(double d_R);
-	/*
-	 * sets the given inductance
+
+	/**
+	 * Sets the given inductance
+	 * 
+	 * @param d_L Inductance
 	 */
 	public void setL(double d_L);
 }

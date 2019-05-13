@@ -1,4 +1,5 @@
 package team1.util;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -70,10 +71,8 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	/**
 	 * Builds a formatted JEngineerField
 	 * 
-	 * @param formatter
-	 *            The DecimalFormat defines the output format.
-	 * @param col
-	 *            Number of columns.
+	 * @param formatter The DecimalFormat defines the output format.
+	 * @param col       Number of columns.
 	 */
 	public JEngineerField(DecimalFormat formatter, int col) {
 		super(col);
@@ -84,8 +83,7 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	/**
 	 * Builds a default JEngineerField (outputmode = ENG and digits = 3)
 	 * 
-	 * @param col
-	 *            Number of columns.
+	 * @param col Number of columns.
 	 */
 	public JEngineerField(int col) {
 		super(col);
@@ -95,10 +93,8 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	/**
 	 * Constructs a JEngineerField (outputmode = ENG)
 	 * 
-	 * @param digits
-	 *            Number of digits (e.g. 12.34e-12 = 4 digits)
-	 * @param col
-	 *            Number of columns.
+	 * @param digits Number of digits (e.g. 12.34e-12 = 4 digits)
+	 * @param col    Number of columns.
 	 */
 	public JEngineerField(int digits, int col) {
 		super(col);
@@ -111,15 +107,11 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	/**
 	 * onstructs a JEngineerField
 	 * 
-	 * @param digits
-	 *            Anzahl angezeigter Digits (ENG und UNIT) oder Anzahl
-	 *            Nachkommastellen (FLOAT)
-	 * @param digits
-	 *            Number of digits (e.g. 12.34e-12 = 4 digits)
-	 * @param col
-	 *            Number of columns.
-	 * @param outputmode
-	 *            Defines the output mode. (e.g. UNIT = 123.4k, ENG = 123.4e3)
+	 * @param digits     Anzahl angezeigter Digits (ENG und UNIT) oder Anzahl
+	 *                   Nachkommastellen (FLOAT)
+	 * @param col        Number of columns.
+	 * @param outputmode Defines the output mode. (e.g. UNIT = 123.4k, ENG =
+	 *                   123.4e3)
 	 */
 	public JEngineerField(int digits, int col, int outputmode) {
 		super(col);
@@ -160,12 +152,10 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	/**
 	 * Converts a double value to a formatted String.
 	 * 
-	 * @param val
-	 *            The value that you want to convert.
-	 * @param digits
-	 *            Number of digits (e.g. 12.34e-12 = 4 digits)
-	 * @param outputmode
-	 *            Defines the output mode. (e.g. UNIT = 123.4k, ENG = 123.4e3)
+	 * @param val        The value that you want to convert.
+	 * @param digits     Number of digits (e.g. 12.34e-12 = 4 digits)
+	 * @param outputmode Defines the output mode. (e.g. UNIT = 123.4k, ENG =
+	 *                   123.4e3)
 	 * @return The formatted number as a String.
 	 */
 	public static String DoubletoStringENG(double val, int digits, int outputmode) {
@@ -209,8 +199,7 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	/**
 	 * Returns the exponent of a number.
 	 * 
-	 * @param val
-	 *            A value.
+	 * @param val A value.
 	 * @return The value's exponent.
 	 */
 	public static int getExpOfValue(double val) {
@@ -222,8 +211,7 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	/**
 	 * Returns the exponent of a number and converts it to unit suffix.
 	 * 
-	 * @param val
-	 *            A value.
+	 * @param val A value.
 	 * @return The value's unit suffix. (from 1e-15 to 1e15)
 	 */
 	public static String getUnitOfValue(double val) {
@@ -272,8 +260,7 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	/**
 	 * Overwritten method.
 	 * 
-	 * @param e
-	 *            The ActionEvent.
+	 * @param e The ActionEvent.
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
@@ -285,8 +272,8 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	}
 
 	/**
-	 * Adds a popup-menu to this JEngineerField. This allows to configure
-	 * settings by right click into the field.
+	 * Adds a popup-menu to this JEngineerField. This allows to configure settings
+	 * by right click into the field.
 	 */
 	public void addPopupMenu() {
 		txtField.addPopupMenu(txtField);
@@ -325,8 +312,7 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	/**
 	 * Gets the actual JEngineerField text.
 	 * 
-	 * @param outputMode
-	 *            Defines the output mode of the returned string.
+	 * @param outputMode Defines the output mode of the returned string.
 	 * @return The JEngineerField text.
 	 */
 	public String getText(int outputMode) {
@@ -336,10 +322,8 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	/**
 	 * Gets the actual JEngineerField text.
 	 * 
-	 * @param digits
-	 *            Defines the number of digits of the returned string.
-	 * @param outputMode
-	 *            Defines the output mode of the returned string.
+	 * @param digits     Defines the number of digits of the returned string.
+	 * @param outputMode Defines the output mode of the returned string.
 	 * @return The JEngineerField text.
 	 */
 	@Override
@@ -360,8 +344,7 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	 * Change the disabled text of this JEngineerField (is active when field is
 	 * disabled)
 	 * 
-	 * @param disabledText
-	 *            The new disabled text.
+	 * @param disabledText The new disabled text.
 	 */
 	public void setDisabledText(String disabledText) {
 		if (disabledText != null)
@@ -371,8 +354,7 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	/**
 	 * Overwritten method.
 	 * 
-	 * @param b
-	 *            true = enable, false = disable
+	 * @param b true = enable, false = disable
 	 * @see javax.swing.JComponent#setEnabled(boolean)
 	 */
 
@@ -390,8 +372,7 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	/**
 	 * Change the error text show time.
 	 * 
-	 * @param millis
-	 *            Milliseconds.
+	 * @param millis Milliseconds.
 	 */
 	public void setErrorShowTime(int millis) {
 		this.errorShowTime = millis;
@@ -400,8 +381,7 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	/**
 	 * Change the error text of this JEngineerField.
 	 * 
-	 * @param errText
-	 *            The new error text.
+	 * @param errText The new error text.
 	 */
 	public void setErrorText(String errText) {
 		if (errText != null)
@@ -411,8 +391,7 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	/**
 	 * Change the allowed range for the input value.
 	 * 
-	 * @param maxValue
-	 *            The highest allowed value.
+	 * @param maxValue The highest allowed value.
 	 */
 	public void setMaxValue(double maxValue) {
 		this.maxValue = maxValue;
@@ -423,8 +402,7 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	/**
 	 * Change the allowed range for the input value.
 	 * 
-	 * @param minValue
-	 *            The lowest allowed value.
+	 * @param minValue The lowest allowed value.
 	 */
 	public void setMinValue(double minValue) {
 		this.minValue = minValue;
@@ -435,8 +413,7 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	/**
 	 * Change the output mode of the JEngineerField.
 	 * 
-	 * @param outputMode
-	 *            The new output mode of this JEngineerField.
+	 * @param outputMode The new output mode of this JEngineerField.
 	 */
 	public void setOutputMode(int outputMode) {
 		this.outputMode = outputMode;
@@ -445,10 +422,8 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	/**
 	 * Change the allowed range for the input value.
 	 * 
-	 * @param minValue
-	 *            The lowest allowed value.
-	 * @param maxValue
-	 *            The highest allowed value.
+	 * @param minValue The lowest allowed value.
+	 * @param maxValue The highest allowed value.
 	 */
 	public void setRange(double minValue, double maxValue) {
 		this.minValue = minValue;
@@ -461,9 +436,8 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	/**
 	 * Change the allowed range for the input value.
 	 * 
-	 * @param rangeSpecifyer
-	 *            A JEngineerField constant that specifies the allowed range.
-	 *            (e.g ALL, POS, NEGNOZERO,..)
+	 * @param rangeSpecifyer A JEngineerField constant that specifies the allowed
+	 *                       range. (e.g ALL, POS, NEGNOZERO,..)
 	 */
 	public void setRange(int rangeSpecifyer) {
 		switch (rangeSpecifyer) {
@@ -516,8 +490,7 @@ public class JEngineerField extends JTextField implements FocusListener, ActionL
 	/**
 	 * Sets the value of the JEngineerField.
 	 * 
-	 * @param value
-	 *            A double value.
+	 * @param value A double value.
 	 */
 	public void setValue(double value) {
 		this.value = value;

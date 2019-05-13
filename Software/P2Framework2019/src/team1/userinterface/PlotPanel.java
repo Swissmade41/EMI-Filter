@@ -5,10 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -27,21 +24,26 @@ import team1.util.MyBorderFactory;
 import team1.util.Observable;
 import team1.util.TraceV4;
 
+/**
+ * The PlotPanel provide the plot for the presentation of the calculations
+ *
+ */
 public class PlotPanel extends JPanel {
 	private TraceV4 trace = new TraceV4(this);
 	private static final long serialVersionUID = 1L;
-	
+
 	private JFreeChart chart = ChartFactory.createXYLineChart("Titel", "Frequency[Hz]", "Insertion loss[dB]", null,
 			PlotOrientation.VERTICAL, false, false, false);
+
 	/**
 	 * Constructor of the plotpanel
-	 * @param
-	 * 		title of the plot 
-	 */		
+	 * 
+	 * @param title Title of the plot
+	 */
 	public PlotPanel(String title) {
 		super(new BorderLayout());
 		trace.constructorCall();
-		
+
 		setBorder(MyBorderFactory.createMyBorder(""));
 		setPreferredSize(new Dimension(100, 100));
 		chart.setTitle(title);
@@ -60,15 +62,15 @@ public class PlotPanel extends JPanel {
 		xAxis.setAutoTickUnitSelection(false);
 		xAxis.setMinorTickCount(9);
 		xAxis.setAutoRangeNextLogFlag(true);
-		
+
 		NumberAxis yAxis = new NumberAxis("dB");
 		yAxis.setTickLabelsVisible(true);
 		yAxis.setAutoRange(true);
 		yAxis.setTickLabelsVisible(true);
-		
+
 		xyplot.setRangeAxis(yAxis);
 		xyplot.setDomainAxis(xAxis);
-		
+
 		XYItemRenderer renderer = new StandardXYItemRenderer();
 		renderer.setSeriesStroke(0, new BasicStroke(1f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL));
 		renderer.setSeriesPaint(0, Color.black);
@@ -84,42 +86,42 @@ public class PlotPanel extends JPanel {
 
 	/**
 	 * This method makes the plots for the given datasets
-	 * @param cmData contains the dataset for the common mode plot
-	 * @param dmData contains the dataset for the differential mode plot
+	 * 
+	 * @param Data Data of the plot
 	 */
 	public void setData(double[][][] Data) {
 		trace.methodeCall();
 		// cmData&dmData [Funktionsnummer],[x-Werte = 0, y-Werte = 1],[Datensätze]
 		int filteriterator = 0;
-		while(Data[filteriterator][0][0] != 0)
-		{
+		while (Data[filteriterator][0][0] != 0) {
 			XYSeries series = new XYSeries("");
-			for(int i=0; i<Data[filteriterator][0].length; i++)
-			{
+			for (int i = 0; i < Data[filteriterator][0].length; i++) {
 				series.add(Data[filteriterator][0][i], Data[filteriterator][1][i]);
 			}
 			XYSeriesCollection dataset = new XYSeriesCollection();
 			dataset.addSeries(series);
-			if(Data[filteriterator][0][0] == -1)
+			if (Data[filteriterator][0][0] == -1)
 				chart.getXYPlot().setDataset(filteriterator, null);
 			else
 				chart.getXYPlot().setDataset(filteriterator, dataset);
 			filteriterator++;
-			chart.getXYPlot().setDataset(filteriterator, null); // in case a dataset got removed it delets the last dataseries
+			chart.getXYPlot().setDataset(filteriterator, null); // in case a dataset got removed it delets the last dataseries														
 		}
 		repaint();
 	}
-	
+
 	/**
 	 * Update the plotpanel
+	 * 
+	 * @param obs Observable
+	 * @param obj Object
 	 */
 	public void update(Observable obs, Object obj) {
 		trace.methodeCall();
 		Model model = (Model) obs;
-		if(this.chart.getTitle().getText() == "CM") {
+		if (this.chart.getTitle().getText() == "CM") {
 			setData(model.getCM());
-		}
-		else {
+		} else {
 			setData(model.getDM());
 		}
 	}

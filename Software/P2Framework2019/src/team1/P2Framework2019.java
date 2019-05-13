@@ -16,6 +16,9 @@ import team1.userinterface.MenuBar;
 import team1.userinterface.View;
 import team1.util.TraceV4;
 
+/**
+ *	Framework of the software
+ */
 public class P2Framework2019 extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private TraceV4 trace = new TraceV4(this);
@@ -34,10 +37,10 @@ public class P2Framework2019 extends JFrame {
 	public P2Framework2019() {
 		trace.constructorCall();
 		controller.setView(view);
-		
+
 		model.addObserver(view);
 		trace.registerObserver(model, view);
-		//kann erst wenn alles inizialisiert ist aufgerufen werden
+		// kann erst wenn alles inizialisiert ist aufgerufen werden
 		view.inputPanel.initializeFirstFilter();
 
 		getContentPane().setLayout(new BorderLayout());

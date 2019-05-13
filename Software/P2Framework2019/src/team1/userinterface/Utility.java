@@ -38,8 +38,7 @@ public class Utility {
 	public static ImageIcon loadResourceIcon(String strBild) {
 		MediaTracker tracker = new MediaTracker(p);
 		ImageIcon icon = new ImageIcon(Utility.class.getResource("icons" + "/" + strBild));
-		 System.out.println(Utility.class.getResource("icons" + File.separator +
-		 strBild));
+		System.out.println(Utility.class.getResource("icons" + File.separator + strBild));
 		tracker.addImage(icon.getImage(), 0);
 		try {
 			tracker.waitForID(0);

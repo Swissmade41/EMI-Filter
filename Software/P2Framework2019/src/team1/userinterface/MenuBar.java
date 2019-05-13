@@ -19,21 +19,23 @@ import team1.util.Observer;
 import team1.util.TraceV4;
 
 /**
- * The class MenuBar handles the save and load process and provides displaying the electrical circuit
+ * The class MenuBar handles the save and load process and provides displaying
+ * the electrical circuit
  *
  */
-public class MenuBar extends JMenuBar implements Observer, ActionListener {
+public class MenuBar extends JMenuBar implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private TraceV4 trace = new TraceV4(this);
-	
+
 	JMenu menu_File, menu_Help, menu_Circuit;
 	JMenuItem menuItemOnTop, submenuItem;
 	Controller controller;
 	Image img;
+
 	/**
 	 * Constructor of the MenuBar
-	 * @param controller
-	 * 		Controller object
+	 * 
+	 * @param controller Controller object
 	 */
 	public MenuBar(Controller controller) {
 		trace.constructorCall();
@@ -76,12 +78,12 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 		MenuItem_DMElectricalCircuit.setActionCommand("DM electrical circuit");
 		MenuItem_DMElectricalCircuit.addActionListener(this);
 		menu_Circuit.add(MenuItem_DMElectricalCircuit);
-		
+
 		// Menu about
 		menu_Help = new JMenu("Help");
 		menu_Help.setMnemonic(KeyEvent.VK_H);
-		
-		JMenuItem MenuItem_About= new JMenuItem("About", KeyEvent.VK_A);
+
+		JMenuItem MenuItem_About = new JMenuItem("About", KeyEvent.VK_A);
 		MenuItem_About.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
 		MenuItem_About.setActionCommand("About");
 		MenuItem_About.addActionListener(this);
@@ -113,76 +115,70 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 
 		}
 		if (e.getActionCommand().equals("DM electrical circuit")) {
-			MenuFrame menuFrame = new MenuFrame("DM.png","circuit");
+			MenuFrame menuFrame = new MenuFrame("DM.png", "circuit");
 			menuFrame.setTitle("DM circuit");
 		}
 		if (e.getActionCommand().equals("About")) {
 			MenuFrame menuFrame = new MenuFrame("DM.png", "about");
 			menuFrame.setTitle("About");
 		}
-		
-	}
-
-
-	public void update(Observable observable, Object obj) {
-		trace.methodeCall();
 
 	}
 
 	/**
-	 * Class MenuFrame provides the frame to display the electrical circuits and the about text
+	 * Class MenuFrame provides the frame to display the electrical circuits and the
+	 * about text
 	 *
 	 */
 	class MenuFrame extends JFrame {
 		private static final long serialVersionUID = 1L;
 		private TraceV4 trace = new TraceV4(this);
-		
+
 		/**
 		 * constructor of the class MenuFrame
-		 * @param name
-		 * 		contains the name of the image
-		 * @param panel
-		 * 		"about" or "circuit" panel
-		 */	
-		
+		 * 
+		 * @param name  contains the name of the image
+		 * @param panel "about" or "circuit" panel
+		 */
+
 		public MenuFrame(String name, String panel) {
 			trace.constructorCall();
 			getContentPane().setLayout(new BorderLayout());
-			if(panel.equals("circuit")) {
+			if (panel.equals("circuit")) {
 				getContentPane().add(new CircuitPanel(name), BorderLayout.CENTER);
 				setSize(760, 370);
 				setResizable(false);
-			}
-			else if(panel.equals("about")) {
+			} else if (panel.equals("about")) {
 				getContentPane().add(new AboutPanel(), BorderLayout.CENTER);
 				setSize(200, 150);
 				setResizable(false);
 			}
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			setVisible(true);
-			
+
 		}
 	}
 
 	/**
-	 * Class CircuitPanel 
-	 * Provides the panel in the menu frame to display the electrical circuit
+	 * Class CircuitPanel Provides the panel in the menu frame to display the
+	 * electrical circuit
 	 *
 	 */
 	class CircuitPanel extends JPanel {
 		private static final long serialVersionUID = 1L;
 		private TraceV4 trace = new TraceV4(this);
 		String title;
-		
+
 		/**
 		 * Constructor of the class CircuitPanel
-		 * @param title
-		 * 		contains the name of the picture
+		 * 
+		 * @param title contains the name of the picture
 		 */
 		public CircuitPanel(String title) {
 			trace.constructorCall();
 			this.title = title;
 		}
+
 		/**
 		 * drawing the suitable circuit
 		 */
@@ -190,24 +186,23 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 			trace.methodeCall();
 			Image img = Utility.loadResourceImage(title);
 			g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
-		}	
+		}
 	}
-	
+
 	/**
-	 * Class AboutPanel
-	 * Provides the panel in the circuit menu to display the about
+	 * Class AboutPanel Provides the panel in the circuit menu to display the about
 	 */
-	class AboutPanel extends JPanel{
+	class AboutPanel extends JPanel {
 		private static final long serialVersionUID = 1L;
 		private TraceV4 trace = new TraceV4(this);
 
 		/**
 		 * Constructor of the class AboutPanel
 		 */
-		public AboutPanel() {	
+		public AboutPanel() {
 			trace.constructorCall();
 		}
-		
+
 		/**
 		 * drawing the about text
 		 */

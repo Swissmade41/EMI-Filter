@@ -1,4 +1,5 @@
 package team1.util;
+
 import java.util.Locale;
 
 /**
@@ -23,10 +24,8 @@ public class EngineeringUtil {
 	 * <code>String</code>.
 	 * </pre>
 	 * 
-	 * @param val
-	 *            The value to be converted
-	 * @param dp
-	 *            The number of decimal places
+	 * @param val The value to be converted
+	 * @param dp  The number of decimal places
 	 */
 	public static String convert(double val, int dp) {
 		// If the value is zero, then simply return 0 with the correct number of
@@ -62,8 +61,7 @@ public class EngineeringUtil {
 	 * <code>double</code> value.
 	 * </pre>
 	 * 
-	 * @param str
-	 *            The String to be parsed
+	 * @param str The String to be parsed
 	 */
 	public static double parse(String str) {
 		if (str.contains("e") || str.contains("E")) {
@@ -80,10 +78,8 @@ public class EngineeringUtil {
 	 * than dp are not allowed and throw an exception.
 	 * </pre>
 	 * 
-	 * @param str
-	 *            The String to be parsed
-	 * @param dp
-	 *            The number of decimal places
+	 * @param str The String to be parsed
+	 * @param dp  The number of decimal places
 	 */
 	public static double parse(String str, int dp) throws NumberFormatException {
 		int dpIndex = str.indexOf('.');
@@ -117,8 +113,7 @@ public class EngineeringUtil {
 	 * <code>double</code> value.
 	 * </pre>
 	 * 
-	 * @param chars
-	 *            The char[] to be parsed
+	 * @param chars The char[] to be parsed
 	 */
 	public static double parse(char[] chars) throws NumberFormatException {
 		int exponent = 0;
