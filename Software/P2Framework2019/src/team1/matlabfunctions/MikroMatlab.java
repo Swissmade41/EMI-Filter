@@ -1,15 +1,21 @@
 package team1.matlabfunctions;
 
 import org.apache.commons.math3.complex.Complex;
-
+/**
+ * this class provides some math methods which are needed for the calculations
+ */
 public class MikroMatlab {
 
 	/**
 	 * creates a list of logarithmic spaced values from 10^start to 10^end
-	 * @param start 
-	 * @param end
-	 * @param points number of values 
+	 * @param 
+	 * 		start pow 
+	 * @param 
+	 * 		end pow
+	 * @param 
+	 * 		number of values 
 	 * @return
+	 * 		logarithmic spaced list
 	 */
 	public static double [] logspace(double d_start, double d_end, int d_points) {
         double d_vector [] = new double[(int)d_points];
@@ -22,9 +28,12 @@ public class MikroMatlab {
 
     /**
      * multiplies two matrices with dimensions 2*2.
-     * @param A Matrix 1 (2*2)
-     * @param B Matrix 2 (2*2)
-     * @return product of A and B
+     * @param 
+     * 		Matrix 1 (2*2)
+     * @param 
+     * 		Matrix 2 (2*2)
+     * @return 
+     * 		product of Matrix 1 and Matrix 2
      **/
     public static Complex[][] cascade(Complex[][] A, Complex[][] B){
     	Complex[][] res = A;
@@ -35,9 +44,11 @@ public class MikroMatlab {
 		return res;
     }
 	/**
-     * returns the shunt impedance matrix for a given impedance.
-     * @param c_impedance the given impedance
-     * @return 2*2 A matrix for the impedance
+     * creats a shunt impedance matrix for a given impedance.
+     * @param 
+     * 		shunt impedance
+     * @return 
+     * 		Shunt impedance matrix
      **/
 	public static Complex[][]getShuntImpedanceMatrix(Complex c_impedance) {
 		Complex[][] shuntImp = new Complex[][] { { new Complex(1, 0), new Complex(0, 0) },
@@ -47,9 +58,11 @@ public class MikroMatlab {
 	}
 	
 	/**
-     * returns the series impedance matrix for a given impedance.
-     * @param c_impedance the given impedance
-     * @return 2*2 A matrix for the impedance
+     * creats a series impedance matrix for a given impedance.
+     * @param 
+     * 		series impedance
+     * @return 
+     * 		Series impedance matrix
      **/
 	public static Complex[][]getSeriesImpedanceMatrix(Complex c_impedance) {
 		Complex[][] seriesImp = new Complex[][] { { new Complex(1, 0), c_impedance},
