@@ -150,7 +150,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 				setResizable(false);
 			} else if (panel.equals("about")) {
 				getContentPane().add(new AboutPanel(), BorderLayout.CENTER);
-				setSize(200, 150);
+				setSize(280, 150);
 				setResizable(false);
 			}
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -211,6 +211,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 			g.drawString("EMI-Filter Simulator", 20, 20);
 			g.drawString("Version 1.0", 20, 35);
 			g.drawString("FHNW Pojekt2 FS2019 Gruppe 1", 20, 50);
+			g.drawString("Package Plot: http://www.jfree.org/jfreechart/", 20,80);
 		}
 	}
 }

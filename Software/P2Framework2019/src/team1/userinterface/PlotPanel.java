@@ -1,3 +1,5 @@
+//Package: http://www.jfree.org/jfreechart/
+
 package team1.userinterface;
 
 import java.awt.BasicStroke;
