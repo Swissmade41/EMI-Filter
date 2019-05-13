@@ -31,19 +31,36 @@ Da der obere (siehe Abbildung \ref{fig:CMSchaltungErgänzt}, Nr. 1) und untere S
 	\caption{Vereinfachte Gleichtaktschaltung}
 	\label{fig:CMSchaltungvereinfacht}
 \end{figure}
+
 \paragraph{Gegentaktschaltung}\label{para:zusammenfassungGegentakt}
-Abbildung \ref{fig:DMSchaltungAufgabenstellung}
+Folgender Abschnitt legt Schritt für Schritt dar, wie die Gegentaktschaltung vereinfacht wird. Die Abbildung \ref{fig:DMSchaltungAufgabenstellung} zeigt die Originalschaltung, wie Sie der Aufgabenstellung entnommen wurde. In einem ersten Schritt wird die gekoppelte Spule (Im Bild L0) vereinfacht. Die Magnetfelder der beiden Induktivitäten L0 kompensieren sich gegenseitig. Sie fallen weg, da sie Niederohmig werden. Somit verschwindet L0 mit den parasitären Elementen C1, C2 und die beiden Widerstände Rp.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width = 15cm]{DM_Aufgabenstellung.png}
-	\caption{Ergänzte Gegentaktschaltung}
+	\caption{Originale Gegentaktschaltung}
 	\label{fig:DMSchaltungAufgabenstellung}
 \end{figure}
-
-%TODO fehlt noch?
-
-Dieser Abschnitt fehlt noch
-
+Durch diese Veränderungen erhält man die Gegentaktschaltung mit reduziertem L0(Abbildung \ref{fig:DMSchaltungreduziertL0}). Damit die Symmetrie der Schaltung gegeben ist, werden im unteren Strang Rw’ und Lw’ ergänzt. Diese Änderungen sind auch in der Gleichtaktschaltung vorhanden. Zudem werden die Kondensatoren C3 und C4 entfernt. Die Einflüsse sind aufgrund der kleinen Kapazität zu vernachlässigen. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 15cm]{EMI_DMpretty4.png}
+	\caption{Gegentaktschaltung mit reduziertem L0}
+	\label{fig:DMSchaltungreduziertL0}
+\end{figure}
+In einem nächsten Schritt wird mithilfe der Symmetrie der Schaltung weitere Teile zusammengefasst. Die im Bild eingezeichnete Linie(Abbildung \ref{fig:DMSchaltungreduziertL0}, Nr.1) entspricht der Symmetrie. Entlang dieser Linie werden die Verbindungen getrennt. Die offenen Enden werden auf das Bezugspotential geschalten. Dabei werden bei den aufgetrennten Verbindungen die elektrischen Komponenten aufgeteilt. Widerstände und Induktivitäten werden halbiert und die Kapazitäten verdoppelt. Durch dieses Vorgehen ergibt sich die Schaltung, wie in Abbildung \ref{fig:DMSchaltungSymAufgetrennt} ersichtlich.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 15cm]{EMI_DMpretty7.png}
+	\caption{symmetrisch aufgetrennte Gegentaktschaltung}
+	\label{fig:DMSchaltungSymAufgetrennt}
+\end{figure}
+Der obere und untere Teil der aufgetrennten Schaltung sind weitgehend identisch. Somit reduziert sich die Schaltung auf einen der beiden Stränge. Abbildung \ref{fig:DMSchaltungvereinfacht} zeigt die komplett vereinfachte Schaltung, welche die Grundlagen für die Gegentaktberechnungen bildet. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 15cm]{EMI_DMvereinfacht.png}
+	\caption{komplett vereinfachte Gegentaktschaltung}
+	\label{fig:DMSchaltungvereinfacht}
+\end{figure}
 
 \paragraph{Rückwandlung} \label{par:ruckwandlung}
 
