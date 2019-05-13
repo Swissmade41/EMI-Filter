@@ -42,6 +42,7 @@ public class Model extends Observable {
 	 * 		cmData  [Funktionsnummer],[x-Werte = 0, y-Werte = 1],[Datensätze]
 	 */		
 	public double[][][] getCM() {
+		trace.methodeCall();
 		return cmData;
 	}
 	
@@ -50,6 +51,7 @@ public class Model extends Observable {
 	 * 		dmData [Funktionsnummer],[x-Werte = 0, y-Werte = 1],[Datensätze]
 	 */		
 	public double[][][] getDM() {
+		trace.methodeCall();
 		return dmData;
 	}
 	
@@ -57,6 +59,7 @@ public class Model extends Observable {
 	 * This method notifys the observer
 	 */
 	public void notifyObservers() {
+		trace.methodeCall();
         setChanged();
         super.notifyObservers();
     }
@@ -68,6 +71,7 @@ public class Model extends Observable {
 	 * 		the second dimensions store the values of the electric components
 	 */
 	public void calculate(double[][] elecComponents, int s32_filter, boolean b_visibility) {
+		trace.methodeCall();
 		if(b_visibility) {
 			double[] d_freq = MikroMatlab.logspace(0, Math.log10(3e7), s32_nbrOfCalculations);
 			// Common mode
@@ -125,6 +129,7 @@ public class Model extends Observable {
 	 * @param row
 	 */
     public void deleteCalculation(int row) {
+    	trace.methodeCall();
        	for (int n = row; n < dmData.length-row-1; n++) {
        		for (int m = 0; m < dmData[0].length; m++) {
        			for(int o = 0; o < dmData[0][0].length; o++) {

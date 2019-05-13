@@ -7,6 +7,8 @@ package team1.model;
 
 import org.apache.commons.math3.complex.Complex;
 
+import team1.util.TraceV4;
+
 public class Resistor implements ElecComponent{
 	private double d_R;
 	

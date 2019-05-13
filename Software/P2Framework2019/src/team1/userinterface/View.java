@@ -16,6 +16,7 @@ import team1.util.TraceV4;
 public class View extends JPanel implements Observer {
 	private TraceV4 trace = new TraceV4(this);
 	private static final long serialVersionUID = 1L;
+	
 	public FiltertablePanel filtertablePanel;
 	private PlotPanel CMplotPanel = new PlotPanel("CM");
 	private PlotPanel DMplotPanel = new PlotPanel("DM");
@@ -25,6 +26,7 @@ public class View extends JPanel implements Observer {
 
 	public View(Controller controller) {
 		super(new GridBagLayout());
+		trace.constructorCall();
 		
 		buttonPanel = new ButtonPanel(controller);
 		filtertablePanel=new FiltertablePanel(controller);
@@ -45,6 +47,7 @@ public class View extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable observable, Object obj) {
+		trace.methodeCall();
 		Model model = (Model) observable;
 		CMplotPanel.update(observable, obj);
 		DMplotPanel.update(observable, obj);

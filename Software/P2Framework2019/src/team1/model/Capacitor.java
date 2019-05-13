@@ -2,6 +2,8 @@ package team1.model;
 
 import org.apache.commons.math3.complex.Complex;
 
+import team1.util.TraceV4;
+
 /*
  * Class: Capacitor
  * This class represents capacitors with its parasitic parameters.

@@ -7,7 +7,9 @@ package team1.model;
 
 import org.apache.commons.math3.complex.Complex;
 
-public class Inductor implements ElecComponent{
+import team1.util.TraceV4;
+
+public class Inductor implements ElecComponent{	
 	private double d_C;
 	private double d_L;
 	private double d_R;

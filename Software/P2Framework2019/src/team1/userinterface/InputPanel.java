@@ -26,6 +26,7 @@ import team1.util.EngineeringUtil;
 public class InputPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private TraceV4 trace = new TraceV4(this);
+	
 	private Controller controller;
 
 	static final int NUMBER_OF_PARAMETER = 14;
@@ -39,10 +40,10 @@ public class InputPanel extends JPanel{
 			{"<html>C<sub>X2</sub></html>","<html>L<sub>X2</sub></html>","<html>R<sub>X2</sub></html>"},
 			{"<html>C<sub>Y</sub></html>","<html>L<sub>Y</sub></html>","<html>R<sub>Y</sub></html>"}}; 
 	
-	private String[][] units = {{"H", "Ω", "F", "H", "Ω"},
-								{"F", "H", "Ω"},
-								{"F", "H", "Ω"},
-								{"F", "H", "Ω"}};
+	private String[][] units = {{"H", "\u03A9", "F", "H", "\u03A9"},
+								{"F", "H", "\u03A9"},
+								{"F", "H", "\u03A9"},
+								{"F", "H", "\u03A9"}};
 		
 	InputSubPanel[][] inputSubPanel = new InputSubPanel[parameter.length][subParameter[0].length];
 	
@@ -54,6 +55,7 @@ public class InputPanel extends JPanel{
 	 */
 	public InputPanel(Controller controller) {
 		trace.constructorCall();
+		
 		this.controller = controller;
 		setLayout(new GridBagLayout());
 		setBorder(MyBorderFactory.createMyBorder(""));
@@ -80,6 +82,7 @@ public class InputPanel extends JPanel{
 	 * Inizialize the first filter
 	 */
 	public void initializeFirstFilter() {
+		trace.methodeCall();
 		resetInputPanel();		
 	}
 	
@@ -90,6 +93,7 @@ public class InputPanel extends JPanel{
 	 * 		User input parameter value
 	 */
 	public double[] getUserInputParameterValues() {
+		trace.methodeCall();
 		double[] d_parameterTextfielValue = new double[NUMBER_OF_PARAMETER];
 		int s32_tmpCounter = 0;	
 		for (int n = 0; n < parameter.length; n++) {
@@ -108,6 +112,7 @@ public class InputPanel extends JPanel{
 	 * 		Effective parameter value
 	 */
 	public double[] getEffectiveParameterValues() {
+		trace.methodeCall();
 		double[] d_parameterValue = new double[NUMBER_OF_PARAMETER];
 		int s32_tmpCounter = 0;
 		
@@ -126,6 +131,7 @@ public class InputPanel extends JPanel{
 	 * Reset all input sub panels with default values
 	 */
 	public void resetInputPanel() {
+		trace.methodeCall();
 		int s32_tmpCounter = 0;
 		for (int n = 0; n < parameter.length; n++) {
 			for (int m = 0; m < subParameter[n].length; m++) {
@@ -147,6 +153,7 @@ public class InputPanel extends JPanel{
 	 * 		Current effective parameter values
 	 */		
 	public void updateInputPanel(double[] textfieldValues, double[] parameterValues) {
+		trace.methodeCall();
 		int s32_tmpCounter=0;
 		for (int n = 0; n < parameter.length; n++) {
 			for (int m = 0; m < subParameter[n].length; m++) {
@@ -169,7 +176,6 @@ public class InputPanel extends JPanel{
  */
 class InputSubPanel extends JPanel implements ChangeListener, ActionListener{
 	private static final long serialVersionUID = 1L;
-
 	private TraceV4 trace = new TraceV4(this);
 	
 	private Controller controller;
@@ -199,8 +205,8 @@ class InputSubPanel extends JPanel implements ChangeListener, ActionListener{
 	public InputSubPanel(Controller controller, String subParameter, String unit) {
 		super(new GridBagLayout());
 		trace.constructorCall();
+		
 		this.controller = controller;
-
 		this.label_subParameter = new JLabel(subParameter);
 		this.label_subParameter.setHorizontalAlignment(SwingConstants.CENTER);
 		this.unit = unit;
@@ -271,14 +277,15 @@ class InputSubPanel extends JPanel implements ChangeListener, ActionListener{
 	 * and update the parameter values
 	 */
 	public void refreshComponents() {
-        	try {
-    			setTextfieldValue();
-    		} catch (IllegalStateException e) {
-    			//catch thread conflicts caused of the documentlistener 
-    			//and the set text in the textfield (Loop)
-    		}
-        	setLabelEffectiveParameterValue();
-			controller.updateParamterValues();
+		trace.methodeCall();
+    	try {
+			setTextfieldValue();
+		} catch (IllegalStateException e) {
+			//catch thread conflicts caused of the documentlistener 
+			//and the set text in the textfield (Loop)
+		}
+    	setLabelEffectiveParameterValue();
+		controller.updateParamterValues();
 	}
 	
 	/**
@@ -335,6 +342,7 @@ class InputSubPanel extends JPanel implements ChangeListener, ActionListener{
 	 * Event by moving the slider; update effective value and refresh components
 	 */
 	public void stateChanged(ChangeEvent e) {	
+		trace.eventCall();
 		updateEffectiveValue();	
 		refreshComponents();
 	}	
@@ -344,6 +352,7 @@ class InputSubPanel extends JPanel implements ChangeListener, ActionListener{
 	 * update the label of effective parameter value  and the  parameter values
 	 */
 	public void actionPerformed(ActionEvent e) {
+		trace.eventCall();
 		readTextfieldInput();
 		setLabelEffectiveParameterValue();
 		controller.updateParamterValues();
@@ -355,12 +364,14 @@ class InputSubPanel extends JPanel implements ChangeListener, ActionListener{
  */
 class InformationPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
+	private TraceV4 trace = new TraceV4(this);
 
 	/**
 	 * set null layout; modifiability not needed
 	 * add percent labels
 	 */
 	public InformationPanel() {
+		trace.constructorCall();
 		setLayout(null);
 		setPreferredSize(new Dimension(60, 60));
 		

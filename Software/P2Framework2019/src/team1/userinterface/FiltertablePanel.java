@@ -22,7 +22,8 @@ import team1.util.TraceV4;
  */
 public class FiltertablePanel extends JPanel implements TableModelListener, ListSelectionListener{
 	private static final long serialVersionUID = 1L;
-	TraceV4 trace = new TraceV4(this);
+	private TraceV4 trace = new TraceV4(this);
+	
 	private Controller controller;
 	
 	private String[] columnNames = {"Enable", "Filtername" };
@@ -33,7 +34,6 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
     
     private static double[][] d_effectiveParameterValues = new double[100][14];
 	private static double[][] d_UserInputParameterValues = new double[100][14];
-	private static int[][] s32_SliderPosition = new int[100][14];
 	
 	StorageManager storageManager =  new StorageManager();
 	
@@ -46,6 +46,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
     public FiltertablePanel(Controller controller) {
 		super(new GridLayout(1, 0));
 		trace.constructorCall();	
+		
 		this.controller = controller;
 		
 		//Set Checkbox in first Column
@@ -71,6 +72,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 * 		effective parameter values
 	 */
 	public double[][] getEffectiveParameterValues(){
+		trace.methodeCall();
 		return d_effectiveParameterValues;
 	}
 	
@@ -80,6 +82,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 * 		user input parameter values
 	 */
 	public double[][] getUserInputParameterValues(){
+		trace.methodeCall();
 		return d_UserInputParameterValues;
 	}
 
@@ -89,6 +92,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 * 		1 = visible 0 = invisible
 	 */
 	public boolean getSelectedRowVisibility() {
+		trace.methodeCall();
 		if(table.getValueAt(table.getSelectedRow(), 0).toString()=="true") 
 			return true;
 		else 
@@ -101,6 +105,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 * 		selected row
 	 */		
 	public int getSelectedRow() {
+		trace.methodeCall();
 		return table.getSelectedRow();
 	}
     
@@ -108,6 +113,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
      * set row selection at the last entry of the filter table
      */
 	private void setRowSelection() {
+		trace.methodeCall();
 		table.setRowSelectionInterval(table.getRowCount()-1, table.getRowCount()-1);
 	}
 
@@ -119,6 +125,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 * 		row count of the filter table
 	 */
 	public int getRowcount() {
+		trace.methodeCall();
 		return table.getRowCount();
 	}
 	
@@ -131,6 +138,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 * 		filter name
 	 */
 	public void addFilter(String bool, String name) {
+		trace.methodeCall();
 		model.addRow(new Object[]{(bool.equals("true")) ?true:false, name});
 		setRowSelection();
 	}
@@ -140,6 +148,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 * Remove row from the filter table
 	 */
 	public void removeFilter() {
+		trace.methodeCall();
 		if(model.getRowCount()>1) {
 			int selectedRow = table.getSelectedRow();
 			try {
@@ -174,6 +183,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 * 		row which should be deleted
 	 */
 	private void deleteRowsInFilterData(int row) {
+		trace.methodeCall();
 		if(row==-1) {
 			System.out.println("no row selected");
 			return;
@@ -198,6 +208,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 * 		user input value which should be added to the filter table
 	 */
 	private void addRowsToFilterData(int rowCount, double[][] effectiveValue, double[][] userInputValue) {
+		trace.methodeCall();
 		for (int n = 0; n < d_effectiveParameterValues.length-rowCount-1; n++) {
 			for (int m = 0; m < d_effectiveParameterValues[0].length; m++) {
 				d_effectiveParameterValues[n+rowCount][m]=effectiveValue[n][m];
@@ -214,6 +225,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 * 		data of the row
 	 */
 	public void updateEffectiveParameterValues(double[] values) {
+		trace.methodeCall();
 		for (int i = 0; i < values.length; i++) {
 			d_effectiveParameterValues[table.getSelectedRow()][i]=values[i];
 		}
@@ -226,6 +238,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 * 		data of the row
 	 */
 	public void updateUserInputParameterValues(double[] values) {
+		trace.methodeCall();
 		for (int i = 0; i < values.length; i++) {
 			d_UserInputParameterValues[table.getSelectedRow()][i]=values[i];
 		}
@@ -234,7 +247,8 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	/**
 	 * Forward the information from the filter table to save them in a text file
 	 */
-	public void saveFiltertable() {			
+	public void saveFiltertable() {	
+		trace.methodeCall();
 		String s_filtertable ="";
 		for (int i = 0; i < table.getRowCount(); i++) {
 			s_filtertable+= table.getValueAt(i, 0).toString() +","+table.getValueAt(i, 1).toString()+",";
@@ -248,6 +262,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 * Get the information from the text file and add it to the filter table
 	 */
 	public void loadFiltertable() {
+		trace.methodeCall();
 		try {
 			storageManager.loadFile();
 		} catch (UnsupportedEncodingException e) {
@@ -268,6 +283,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 * Update the input panel with the data of the filter table of the current selected row
 	 */
 	public void valueChanged(ListSelectionEvent e) {
+		trace.methodeCall();
 		if(e.getValueIsAdjusting()) {
 			updateInputPanel(table.getSelectedRow());
 		}		
@@ -280,6 +296,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 * 		row of the filter table
 	 */
 	private void updateInputPanel(int row) {
+		trace.methodeCall();
 		double[] tmpEffectiveParameterValues = new double[d_effectiveParameterValues[0].length];
 		double[] tmpUserrInputParameterValues = new double[d_UserInputParameterValues[0].length];
 		for (int i = 0; i < d_effectiveParameterValues[0].length; i++) {
@@ -293,6 +310,6 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 * Changing the filtertable executes the calculation
 	 */
 	public void tableChanged(TableModelEvent e) {
-		controller.calculateInsertionLoss(-1);
+		trace.methodeCall();
 	}
 }

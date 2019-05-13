@@ -25,10 +25,12 @@ import org.jfree.data.xy.XYSeriesCollection;
 import team1.model.Model;
 import team1.util.MyBorderFactory;
 import team1.util.Observable;
+import team1.util.TraceV4;
 
 public class PlotPanel extends JPanel {
-	
+	private TraceV4 trace = new TraceV4(this);
 	private static final long serialVersionUID = 1L;
+	
 	private JFreeChart chart = ChartFactory.createXYLineChart("Titel", "Frequency[Hz]", "Insertion loss[dB]", null,
 			PlotOrientation.VERTICAL, false, false, false);
 	/**
@@ -38,6 +40,7 @@ public class PlotPanel extends JPanel {
 	 */		
 	public PlotPanel(String title) {
 		super(new BorderLayout());
+		trace.constructorCall();
 		
 		setBorder(MyBorderFactory.createMyBorder(""));
 		setPreferredSize(new Dimension(100, 100));
@@ -85,25 +88,25 @@ public class PlotPanel extends JPanel {
 	 * @param dmData contains the dataset for the differential mode plot
 	 */
 	public void setData(double[][][] Data) {
+		trace.methodeCall();
 		// cmData&dmData [Funktionsnummer],[x-Werte = 0, y-Werte = 1],[Datensätze]
-			int filteriterator = 0;
-			while(Data[filteriterator][0][0] != 0)
+		int filteriterator = 0;
+		while(Data[filteriterator][0][0] != 0)
+		{
+			XYSeries series = new XYSeries("");
+			for(int i=0; i<Data[filteriterator][0].length; i++)
 			{
-				System.out.println(filteriterator);
-				XYSeries series = new XYSeries("");
-				for(int i=0; i<Data[filteriterator][0].length; i++)
-				{
-					series.add(Data[filteriterator][0][i], Data[filteriterator][1][i]);
-				}
-				XYSeriesCollection dataset = new XYSeriesCollection();
-				dataset.addSeries(series);
-				if(Data[filteriterator][0][0] == -1)
-					chart.getXYPlot().setDataset(filteriterator, null);
-				else
-					chart.getXYPlot().setDataset(filteriterator, dataset);
-				filteriterator++;
-				chart.getXYPlot().setDataset(filteriterator, null); // in case a dataset got removed it delets the last dataseries
+				series.add(Data[filteriterator][0][i], Data[filteriterator][1][i]);
 			}
+			XYSeriesCollection dataset = new XYSeriesCollection();
+			dataset.addSeries(series);
+			if(Data[filteriterator][0][0] == -1)
+				chart.getXYPlot().setDataset(filteriterator, null);
+			else
+				chart.getXYPlot().setDataset(filteriterator, dataset);
+			filteriterator++;
+			chart.getXYPlot().setDataset(filteriterator, null); // in case a dataset got removed it delets the last dataseries
+		}
 		repaint();
 	}
 	
@@ -111,6 +114,7 @@ public class PlotPanel extends JPanel {
 	 * Update the plotpanel
 	 */
 	public void update(Observable obs, Object obj) {
+		trace.methodeCall();
 		Model model = (Model) obs;
 		if(this.chart.getTitle().getText() == "CM") {
 			setData(model.getCM());

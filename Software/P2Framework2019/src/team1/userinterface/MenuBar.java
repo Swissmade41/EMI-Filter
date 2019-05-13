@@ -25,7 +25,8 @@ import team1.util.TraceV4;
 public class MenuBar extends JMenuBar implements Observer, ActionListener {
 	private static final long serialVersionUID = 1L;
 	private TraceV4 trace = new TraceV4(this);
-	JMenu menu_File, menu_Window, menu_Simulation, menu_Help;
+	
+	JMenu menu_File, menu_Help, menu_Circuit;
 	JMenuItem menuItemOnTop, submenuItem;
 	Controller controller;
 	Image img;
@@ -37,7 +38,6 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 	public MenuBar(Controller controller) {
 		trace.constructorCall();
 		this.controller = controller;
-
 
 		// Menu file
 		menu_File = new JMenu("File");
@@ -62,25 +62,33 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 		menu_File.add(MenuItem_Exit);
 
 		// Menu Help
-		menu_Help = new JMenu("Circuits");
-		menu_Help.setMnemonic(KeyEvent.VK_H);
+		menu_Circuit = new JMenu("Circuits");
+		menu_Circuit.setMnemonic(KeyEvent.VK_H);
 
 		JMenuItem MenuItem_CMElectricalCircuit = new JMenuItem("CM electrical circuit", KeyEvent.VK_T);
 		MenuItem_CMElectricalCircuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
 		MenuItem_CMElectricalCircuit.setActionCommand("CM electrical circuit");
 		MenuItem_CMElectricalCircuit.addActionListener(this);
-		menu_Help.add(MenuItem_CMElectricalCircuit);
+		menu_Circuit.add(MenuItem_CMElectricalCircuit);
 
 		JMenuItem MenuItem_DMElectricalCircuit = new JMenuItem("DM electrical circuit", KeyEvent.VK_R);
 		MenuItem_DMElectricalCircuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
 		MenuItem_DMElectricalCircuit.setActionCommand("DM electrical circuit");
 		MenuItem_DMElectricalCircuit.addActionListener(this);
-		menu_Help.add(MenuItem_DMElectricalCircuit);
+		menu_Circuit.add(MenuItem_DMElectricalCircuit);
 		
 		// Menu about
-		//TODO
+		menu_Help = new JMenu("Help");
+		menu_Help.setMnemonic(KeyEvent.VK_H);
+		
+		JMenuItem MenuItem_About= new JMenuItem("About", KeyEvent.VK_A);
+		MenuItem_About.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+		MenuItem_About.setActionCommand("About");
+		MenuItem_About.addActionListener(this);
+		menu_Help.add(MenuItem_About);
 
 		add(menu_File);
+		add(menu_Circuit);
 		add(menu_Help);
 
 	}
@@ -90,27 +98,29 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		trace.eventCall();
-		JFrame frame = (JFrame) getTopLevelAncestor();
 		if (e.getActionCommand().equals("Exit")) {
-			System.out.println("Exit");
+			System.exit(0);
 		}
 		if (e.getActionCommand().equals("Save filter profile")) {
-			System.out.println("Save");
 			controller.saveFile();
 		}
 		if (e.getActionCommand().equals("Load filter profile")) {
-			System.out.println("Load");
 			controller.loadFile();
 		}
 		if (e.getActionCommand().equals("CM electrical circuit")) {
-			CircuitFrame circuitFrame = new CircuitFrame("CM.png");
-			System.out.println("CM");
+			MenuFrame menuFrame = new MenuFrame("CM.png", "circuit");
+			menuFrame.setTitle("CM circuit");
 
 		}
 		if (e.getActionCommand().equals("DM electrical circuit")) {
-			CircuitFrame circuitFrame = new CircuitFrame("DM.png");
-			System.out.println("DM");
+			MenuFrame menuFrame = new MenuFrame("DM.png","circuit");
+			menuFrame.setTitle("DM circuit");
 		}
+		if (e.getActionCommand().equals("About")) {
+			MenuFrame menuFrame = new MenuFrame("DM.png", "about");
+			menuFrame.setTitle("About");
+		}
+		
 	}
 
 
@@ -120,32 +130,48 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 	}
 
 	/**
-	 * Class CircuitFrame provides the frame to display the electrical circuits
+	 * Class MenuFrame provides the frame to display the electrical circuits and the about text
 	 *
 	 */
-	class CircuitFrame extends JFrame {
-
+	class MenuFrame extends JFrame {
+		private static final long serialVersionUID = 1L;
+		private TraceV4 trace = new TraceV4(this);
+		
 		/**
-		 * constructor of the class CircuitFrame
+		 * constructor of the class MenuFrame
 		 * @param name
 		 * 		contains the name of the image
+		 * @param panel
+		 * 		"about" or "circuit" panel
 		 */	
-		public CircuitFrame(String name) {
+		
+		public MenuFrame(String name, String panel) {
+			trace.constructorCall();
 			getContentPane().setLayout(new BorderLayout());
-			getContentPane().add(new CircuitPanel(name), BorderLayout.CENTER);
+			if(panel.equals("circuit")) {
+				getContentPane().add(new CircuitPanel(name), BorderLayout.CENTER);
+				setSize(760, 370);
+				setResizable(false);
+			}
+			else if(panel.equals("about")) {
+				getContentPane().add(new AboutPanel(), BorderLayout.CENTER);
+				setSize(200, 150);
+				setResizable(false);
+			}
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			setSize(742, 356);
-			setResizable(true);
 			setVisible(true);
+			
 		}
 	}
 
 	/**
 	 * Class CircuitPanel 
-	 * Provides the panel in the circuit frame to display the electrical circuit
+	 * Provides the panel in the menu frame to display the electrical circuit
 	 *
 	 */
 	class CircuitPanel extends JPanel {
+		private static final long serialVersionUID = 1L;
+		private TraceV4 trace = new TraceV4(this);
 		String title;
 		
 		/**
@@ -154,15 +180,42 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 		 * 		contains the name of the picture
 		 */
 		public CircuitPanel(String title) {
+			trace.constructorCall();
 			this.title = title;
 		}
 		/**
 		 * drawing the suitable circuit
 		 */
 		public void paintComponent(Graphics g) {
+			trace.methodeCall();
 			Image img = Utility.loadResourceImage(title);
-			g.drawImage(img, 0, 0, getWidth(), getHeight(), this); // draw the image
+			g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+		}	
+	}
+	
+	/**
+	 * Class AboutPanel
+	 * Provides the panel in the circuit menu to display the about
+	 */
+	class AboutPanel extends JPanel{
+		private static final long serialVersionUID = 1L;
+		private TraceV4 trace = new TraceV4(this);
 
+		/**
+		 * Constructor of the class AboutPanel
+		 */
+		public AboutPanel() {	
+			trace.constructorCall();
+		}
+		
+		/**
+		 * drawing the about text
+		 */
+		public void paintComponent(Graphics g) {
+			trace.methodeCall();
+			g.drawString("EMI-Filter Simulator", 20, 20);
+			g.drawString("Version 1.0", 20, 35);
+			g.drawString("FHNW Pojekt2 FS2019 Gruppe 1", 20, 50);
 		}
 	}
 }

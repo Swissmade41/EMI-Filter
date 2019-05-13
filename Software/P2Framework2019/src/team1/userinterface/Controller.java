@@ -1,6 +1,5 @@
 package team1.userinterface;
 
-import team1.P2Framework2019;
 import team1.model.Model;
 import team1.util.TraceV4;
 
@@ -15,29 +14,34 @@ public class Controller {
 	}
 	
 	public void setView(View view) {
+		trace.methodeCall();
 		this.view = view;
 	}
 	
 	public void addFilter() {
+		trace.methodeCall();
 		view.filtertablePanel.addFilter("true","Filter "+ String.valueOf(view.filtertablePanel.getRowcount()+1));
 		view.inputPanel.resetInputPanel();
 	}
 	
 	public void removeFilter() {
+		trace.methodeCall();
 		view.filtertablePanel.removeFilter();
 	}
 	
 	public void saveFile() {
+		trace.methodeCall();
 		view.filtertablePanel.saveFiltertable();
 	}
 	
 	public void loadFile() {
+		trace.methodeCall();
 		view.filtertablePanel.loadFiltertable();
 	}
 
 	
 	public void updateParamterValues(){
-		//TODO beschreieben:Beim aufstarten entsteht nullpointer weil methode aufgerufen wird ohne das inputpanel fertig konstruiert ist
+		trace.methodeCall();
 		try {
 			view.filtertablePanel.updateEffectiveParameterValues(view.inputPanel.getEffectiveParameterValues());
 			view.filtertablePanel.updateUserInputParameterValues(view.inputPanel.getUserInputParameterValues());
@@ -49,6 +53,7 @@ public class Controller {
 	
 	
 	public void updateInputPanel(double[] userInputFilterParameter, double[] effectiveFilterParameter) {
+		trace.methodeCall();
 		view.inputPanel.updateInputPanel(userInputFilterParameter, effectiveFilterParameter);
 	}
 	
@@ -58,6 +63,7 @@ public class Controller {
 	 * 		-1 = calculates IL for selected filter else it calculates for the row
 	 */
 	public void calculateInsertionLoss(int row) {
+		trace.methodeCall();
 		if(row == -1) {
 			model.calculate(view.filtertablePanel.getEffectiveParameterValues(), view.filtertablePanel.getSelectedRow(), view.filtertablePanel.getSelectedRowVisibility());
 		}
@@ -73,6 +79,7 @@ public class Controller {
 	 * 		row to remove
 	 */	
 	public void deleteRowInCalculationData(int selectedRow) {
+		trace.methodeCall();
 		model.deleteCalculation(selectedRow);
 	}
 }

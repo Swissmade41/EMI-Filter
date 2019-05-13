@@ -1,10 +1,5 @@
 package team1.userinterface;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,9 +8,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import team1.util.MyBorderFactory;
+import team1.util.TraceV4;
 
 public class ButtonPanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
+	private TraceV4 trace = new TraceV4(this);
+	
 	private Controller controller;
 	private JButton btAdd = new JButton("Add");
 	private JButton btRemove = new JButton("Remove");
@@ -24,6 +22,8 @@ public class ButtonPanel extends JPanel implements ActionListener {
 
 	public ButtonPanel(Controller controller) {
 		super(null);
+		trace.constructorCall();
+		
 		this.controller = controller;
 		setPreferredSize(new Dimension(200, 250));
 		setMinimumSize(new Dimension(200, 250));
@@ -42,6 +42,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		trace.eventCall();
 		if (e.getSource() == btAdd) {
 			System.out.println("Add");
 			controller.addFilter();
