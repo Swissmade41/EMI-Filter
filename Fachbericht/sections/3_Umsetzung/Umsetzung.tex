@@ -1,15 +1,11 @@
-\section{Umsetzung} \label{sec:umsetzung}
-Mithilfe der Grundlagen aus Kapitel 2\ref{sec:grundlagen} wird nun erläutert, wie aus der Schaltung des EMI-Filters mithilfe der Auftrennung in eine Gegentakt - und eine Gleichtaktschaltung die Einfügedämpfung(engl. Insertion Loss, IL) berechnet wird. 
-
-\subsection{Berechnung der Einfügedämpfung} \label{subsec:einfugedampfung}
-
-Die ursprüngliche Schaltung wird in eine Gleich- und Gegentschaltung aufgetrennt. Dieses Prinzip ist eine gängige Methode, da so Symmetrien entstehen, welche vereinfacht werden können. Für die beiden Ersatzschaltungen, werden jeweils als Kettenmatrizen \ref{Kettenmatrix} gebildet. Diese bestehen widerum aus Kettenmatrizen der einzelnen Längs- und Querimpedanzen. Aus der Kettenmatrix für die Ersatzschaltbilder wird mithilfe der Streuparameter direkt die Einfügungsdämpfung berechnet. Kettenmatrizen werden durch eine Kaskadierung vorgenommen, dies entspricht im wesentlichen der Matrixmultiplikation. \\
+\section{Ermitteln der Einfügedämpfung} \label{sec:umsetzung}
+In diesem Kapitel wird ausführlich beschrieben, wie aus den gegebenen Gleich- und Gegentaktschaltung (Verweis Aufgabenstellung) die Einfügedämpfung ermittelt wird. Um die einzelnen Schritte konsistent zu beschriebenen, wird an den entsprechenden Stellen Bezug auf die theoretischen Grundlagen Kapitel \ref{sec:Grundlagen} genommen. Der erste Abschnitt behandelt die Gleichtaktschaltung und in einem zweiten Abschnitt wird die Gegentaktschaltung behandelt. In diesen beiden Kapitel wird beschrieben, wie aus den Schaltungen aus der Aufgabenstellung die Kettenmatrizen der beiden Schaltungen ermittelt wird. Im Kapitel (verweis) ist beschrieben, wie aus den Kettenmatrizen die Einfügedämfung berechnet wird.
 
 
-\paragraph{Zusammenfassen der Schaltungen} \label{par:zusammenfassungSchaltung}
-Folgendes Kapitel zeigt Schritt für Schritt auf, wie die gegebenen Schaltungen vereinfacht werden können. Zudem wird beschrieben welche Komponenten vernachlässigt werden können. Der erste Abschnitt behandelt die Gleichtaktschaltung und in einem zweiten Abschnitt wird die Gegentaktschaltung behandelt.
+\subsection{Gleichtaktschaltung}\label{subsec:zusammenfassungGleichtakt}
+Um die Einfügedämpfung zu ermitteln, wird im ersten Schritt die Schaltung weitgehend vereinfacht. Die reduzierte Schaltung wird anhand der Kettenmatrix (siehe \ref{subsec:Kettenmatrix}) beschrieben. Aus der Kettenmatrix wird dann für den vorgegebenen Frequenzbereich die Einfügedämpung berechnet.
 
-\paragraph{Gleichtaktschaltung}\label{para:zusammenfassungGleichtakt}
+\paragraph{Reduktion der Schaltung}\label{para:redukGleichtakt}
 Abbildung \ref{fig:CMSchaltungOriginal} zeigt die Schaltung aus der Aufgabenstellung. 
 \begin{figure}[H]
 	\centering
@@ -17,22 +13,55 @@ Abbildung \ref{fig:CMSchaltungOriginal} zeigt die Schaltung aus der Aufgabenstel
 	\caption{Originale Gleichtaktschaltung\cite{aufgabenstellung}}
 	\label{fig:CMSchaltungOriginal}
 \end{figure}
-Die Originalschaltung ist mit den Komponenten $R_w$ und $L_r$ ergänzt worden, sodass sie symmetrisch ist(siehe Abbildung \ref{fig:CMSchaltungErgänzt}). Dies macht es möglich, dass die Schaltung zur Simulation wie folgt vereinfacht werden kann.
+Die Originalschaltung wird mit den Komponenten $R_w$ und $L_r$ ergänzt, sodass sie symmetrisch ist. Dies macht es möglich, dass die Schaltung weiter vereinfacht werden kann. Zudem wurden $C_1$ und $C_2$ in $C_p$ und $C'_p$ umbenannt um zu zeigen, dass es sich um die gleiche Kapazität handelt. Durch weglassen des Eisenkerns, wird $L_0$ und $L'_0$ mit dem Vorfaktor zwei ergänzt da sich die Magnetfelder überlagern. %TODO besser schreiben%
+Durch diese Änderungen ergibt sich die Schaltung in Abbildung \ref{fig:CMSchaltungErgänzt}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width = 15cm]{EMI_CMpretty1.png}
 	\caption{Ergänzte Gleichtaktschaltung}
 	\label{fig:CMSchaltungErgänzt}
 \end{figure}
-Da der obere (siehe Abbildung \ref{fig:CMSchaltungErgänzt}, Nr. 1) und untere Strang (siehe Abbildung \ref{fig:CMSchaltungErgänzt}, Nr. 2) identisch sind und es keinen Potentialunterschied zwischen ihnen gibt, kann die Schaltung, wie folgt, zusammen gefasst werden (siehe Abbildung \ref{fig:CMSchaltungvereinfacht}). Die Schaltung wird entlang der Symmetrie-Achse (siehe Abbildung \ref{fig:CMSchaltungErgänzt}, Nr. 3) aufgetrennt. Somit fallen die Kondensatoren $C_3$, $C_4$, $C_{x1}$ und $C_{x2}$ komplett weg. Die übrigen Komponenten von $L_0$ bilden eine Parallelschaltung, welche sich durch halbieren der Widerstände und Induktivitäten und verdoppeln der Kapazitäten zusammenfassen lässt. Zusätzlich werden die beiden $C_y$ und $C'_{y}$ parallel auf das Bezugspotential geschalten. Da $C_y$ und $C'_y$ identisch sind, werden sie wie in Abbildung \ref{fig:CMSchaltungvereinfacht} zusammengefasst. Diese vereinfachte Schaltung bildet die Grundlage für die Berechnungen der Software.
+ Der obere Strang(siehe Abbildung \ref{fig:CMSchaltungErgänzt}, Nr. 1) und untere Strang (siehe Abbildung \ref{fig:CMSchaltungErgänzt}, Nr. 2) sind identisch. Da es keinen Potentialunterschied zwischen ihnen gibt, kann die Schaltung entlang der Symmetrie-Achse (siehe Abbildung \ref{fig:CMSchaltungErgänzt}, Nr. 3) aufgetrennt werden. Dies ergibt die Schaltung in Abbildung \ref{fig:CMSchaltungaufgetrennt}.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width = 10cm]{EMI_CMpretty2.png}
+	\caption{Aufgetrennte Gleichtaktschaltung}
+	\label{fig:CMSchaltungaufgetrennt}
+\end{figure}
+Komponenten die nicht mehr fest verbunden sind, fallen weg. Dies gilt für die Kondensatoren $C_3$, $C_4$, $C_{x1}$ und $C_{x2}$. Die weiter reduzierte Schaltung wird in Abbildung \ref{fig:CMSchaltungvereinfacht1} abgebildet.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 10cm]{EMI_CMpretty3.png}
 	\caption{Vereinfachte Gleichtaktschaltung}
+	\label{fig:CMSchaltungvereinfacht1}
+\end{figure}
+Die übrigen Komponenten von $L_0$ bilden eine Parallelschaltung, welche sich durch halbieren der Widerstände und Induktivitäten und verdoppeln der Kapazitäten zusammenfassen lässt. Zusätzlich werden die beiden $C_y$ und $C'_{y}$ parallel auf das Bezugspotential geschalten. Da $C_y$ und $C'_y$ identisch sind, werden sie wie in Abbildung \ref{fig:CMSchaltungvereinfacht} zusammengefasst. Diese vereinfachte Schaltung bildet die Grundlage für die Berechnungen der Software.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 10cm]{EMI_CMpretty.png}
+	\caption{komplett reduzierte Gleichtaktschaltung}
 	\label{fig:CMSchaltungvereinfacht}
 \end{figure}
 
-\paragraph{Gegentaktschaltung}\label{para:zusammenfassungGegentakt}
+\paragraph{Bilden der Kettenmatrix}\label{para:kettenGleichtakt}
+Damit die Kettenmatrix der Gesamtschaltung gebildet werden kann, wird in einem ersten Schritt die reduzierte Schaltung in Längs- und Querimpedanzen (siehe Kapitel \ref{subsec:kettenmatrix} eingeteilt. Diese werden in Abbildung \ref{fig:cmschaltung} mit den Kennzeichnungen „QI“ und „LI“ vermerkt wobei „QI“ für Querimpedanz steht und „LI“ für Längsimpedanz. Die Impedanzen der einzelnen Schaltungsteile werden in die Kettenmatrizen für Quer- und Längsimpedanz eingesetzt. Die Kettenmatrizen werden durch Kaskadierung zur Kettenmatrix der Gesamtschaltung zusammengefasst.
+\begin{figure}[H]
+		\centering
+		\includegraphics[width = 10cm]{EMI_CMvereinfacht_markiert.png}
+		\label{fig:cmschaltung}
+		\caption{Einteilung der Gleichtaktschaltungteile}
+\end{figure}
+Anhand der Kettenmatrix der Gesamtschaltung kann die Einfügedämpfung direkt ermittelt werden, indem mit der Formel \ref{equ:s21ausAMatrix} der Streuparameter $S_{21}$ berechnet wird(siehe Kapitel Einfügedämpfung). $R_w$ ist die Bezugsimpedanz. Die Bezugsimpedanz bezieht sich auf die Innenimpedanz der Quelle und die Lastimpedanz. Bezüglich der Aufgabenstellung(Verweis Aufgabenstellung) ist dieser auf 50Ohm festgelegt.
+
+\begin{equation}\label{equ:s21ausAMatrix}
+s_{21} = \frac{2}{A_{11}+\frac{A{12}}{R_w}+A_{21}*R_w+A_{22}}
+\end{equation}
+
+
+\subsection{Gegentaktschaltung}\label{subsec:zusammenfassungGegentakt}
+\paragraph{Reduktion der Schaltung}\label{para:redukGegentakt}
 Folgender Abschnitt legt Schritt für Schritt dar, wie die Gegentaktschaltung vereinfacht wird. Die Abbildung \ref{fig:DMSchaltungAufgabenstellung} zeigt die Originalschaltung, wie Sie der Aufgabenstellung entnommen wurde. In einem ersten Schritt wird die gekoppelte Spule (Im Bild L0) vereinfacht. Die Magnetfelder der beiden Induktivitäten L0 kompensieren sich gegenseitig. Sie fallen weg, da sie Niederohmig werden. Somit verschwindet L0 mit den parasitären Elementen C1, C2 und die beiden Widerstände Rp.
 \begin{figure}[H]
 	\centering
@@ -62,16 +91,9 @@ Der obere und untere Teil der aufgetrennten Schaltung sind weitgehend identisch.
 	\label{fig:DMSchaltungvereinfacht}
 \end{figure}
 
-\paragraph{Rückwandlung} \label{par:ruckwandlung}
-
-Die Kettenmatrizen führen dazu, dass die einzelnen Schaltungsteile entweder eine Längs-, oder eine Querimpedanz bilden müssen. Die Aufteilung der einzelnen Schaltungsteile in Längs- und  Querimpedanzen und ist in den Abbildungen (Verweis Aufteilung 1 und 2) grafisch dargestellt, wobei „LI“ eine Längsimpedanz kennzeichnet und „QI“ eine Querimpedanz.
-\begin{figure}[H]
-		\centering
-		\includegraphics[width = 10cm]{EMI_CMvereinfacht_markiert.png}
-		\label{fig:cmschaltung}
-		\caption{Einteilung der Gleichtaktschaltungteile}
-\end{figure}
-
+\paragraph{Bilden der Kettenmatrix}\label{para:kettenGegentakt}
+Abbildung \ref{fig:dmschaltung} zeigt die Einteilung der reduzierten Schaltung in Längs- und Querimpedanzen.
+ 
 \begin{figure}[H]
 		\centering
 		\includegraphics[width = 10cm]{EMI_DMvereinfacht_markiert.png}
@@ -80,15 +102,6 @@ Die Kettenmatrizen führen dazu, dass die einzelnen Schaltungsteile entweder ein
 \end{figure}
 
 Im nächsten Schritt werden die Impedanzen der einzelnen Schaltungsteile gebildet, welche in die passenden Kettenmatrizen eingesetzt werden.
-
-\begin{equation}\label{equ:s21ausAMatrix}
-s_{21} = \frac{2}{A_{11}+\frac{A{12}}{R_w}+A_{21}*R_w+A_{22}}
-\end{equation}
+Wiederum durch Kaskadierung der einzelenen Kettenmatrizen wird die Kettenmatrix der Gesamtschaltung gebildet. Aus der Kettenmatrix wird, wie bei der Gleichtaktschaltung die Einfügedämpfung berechnet. Ein wichtiger Unterschied ist jedoch, dass bei der reduzierten Gegentaktschaltung (Abbildung \ref{fig:dmschaltung}) $R_w$ 25Ohm ist. 
 
 
-
-Anhand der Kettenmatrizen der beiden Schaltungen, wird mit der Formel \ref{equ:s21ausAMatrix} der Streuparameter $S_{21}$ berechnet. A1 bis A4 entsprechen den einzelnen Einträge der Matrix. $R_w$ ist die Bezugsimpedanz. Die Bezugsimpedanz bezieht sich auf die Innenimpedanz der Quelle und die Lastimpedanz. Bezüglich der Aufgabenstellung(Verweis Aufgabenstellung) ist dieser auf 50Ohm festgelegt. Ausserdem ist es wichtig, dass die beiden Impedanzen gleich gross sind damit die Schaltung Reziprok ist (Verweis Theoretische Grundlagen: Reziproke Schaltungen). (Wieso ?) 
-Bei der reduzierten Gegentaktschaltung (Abbildung \ref{fig:dmschaltung}) werden die beiden Impedanzen mit 25Ohm aufgeführt. Dies ergibt sich durch das Zusammenfassen der Gegentaktschaltung.\\
-
-
-Die Berechnungen werden in MATLAB getätigt und geplottet. Diese Plots werden dann mit Simulationen in MPLAB Mindi verglichen um festzustellen ob diese korrekt sind. Nach überprüfung auf vollständikeit und korrektheit der Berechnungen, können diese in das Java implementiert werden. 
