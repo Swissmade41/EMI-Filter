@@ -1,5 +1,7 @@
 package team1.userinterface;
 
+import javax.swing.JOptionPane;
+
 import team1.model.Model;
 import team1.util.TraceV4;
 
@@ -37,6 +39,11 @@ public class Controller {
 	 */
 	public void addFilter() {
 		trace.methodeCall();
+		if(view.filtertablePanel.getRowcount() >9) {
+			JOptionPane.showMessageDialog(null, "The maximal filter count is 10", "Warning",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		view.filtertablePanel.addFilter("true", "Filter " + String.valueOf(view.filtertablePanel.getRowcount() + 1));
 		view.inputPanel.resetInputPanel();
 	}
