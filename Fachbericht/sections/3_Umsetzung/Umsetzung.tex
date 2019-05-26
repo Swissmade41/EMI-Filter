@@ -1,5 +1,5 @@
 \section{Ermitteln der Einfügedämpfung} \label{sec:umsetzung}
-In diesem Kapitel wird ausführlich beschrieben, wie aus den gegebenen Gleich- und Gegentaktschaltung (Verweis Aufgabenstellung) die Einfügedämpfung ermittelt wird. Um die einzelnen Schritte konsistent zu beschriebenen, wird an den entsprechenden Stellen Bezug auf die theoretischen Grundlagen Kapitel \ref{sec:Grundlagen} genommen. Der erste Abschnitt behandelt die Gleichtaktschaltung und in einem zweiten Abschnitt wird die Gegentaktschaltung behandelt. In diesen beiden Kapitel wird beschrieben, wie aus den Schaltungen aus der Aufgabenstellung die Kettenmatrizen der beiden Schaltungen ermittelt wird. Im Kapitel (verweis) ist beschrieben, wie aus den Kettenmatrizen die Einfügedämfung berechnet wird.
+In diesem Kapitel wird ausführlich beschrieben, wie aus den gegebenen Gleich- und Gegentaktschaltung (Verweis Aufgabenstellung) die Einfügedämpfung ermittelt wird. Um die einzelnen Schritte konsistent zu beschriebenen, wird an den entsprechenden Stellen Bezug auf die theoretischen Grundlagen Kapitel \ref{sec:Grundlagen} genommen. Der erste Abschnitt behandelt die Gleichtaktschaltung \ref{subsec:zusammenfassungGleichtakt} und in einem zweiten Abschnitt wird die Gegentaktschaltung \ref{subsec:zusammenfassungGegentakt} behandelt. In diesen beiden Kapitel wird beschrieben, wie aus den Schaltungen aus der Aufgabenstellung die Kettenmatrizen der beiden Schaltungen ermittelt wird. Aus der Kettenmatrix kann somit die Einfügedämpfung berechnet werden, wie in Kapitel \ref{subsec:subsec:einfuge} beschrieben.
 
 
 \subsection{Gleichtaktschaltung}\label{subsec:zusammenfassungGleichtakt}
@@ -46,14 +46,14 @@ Die übrigen Komponenten von $L_0$ bilden eine Parallelschaltung, welche sich du
 \end{figure}
 
 \paragraph{Bilden der Kettenmatrix}\label{para:kettenGleichtakt}
-Damit die Kettenmatrix der Gesamtschaltung gebildet werden kann, wird in einem ersten Schritt die reduzierte Schaltung in Längs- und Querimpedanzen (siehe Kapitel \ref{subsec:kettenmatrix} eingeteilt. Diese werden in Abbildung \ref{fig:cmschaltung} mit den Kennzeichnungen „QI“ und „LI“ vermerkt wobei „QI“ für Querimpedanz steht und „LI“ für Längsimpedanz. Die Impedanzen der einzelnen Schaltungsteile werden in die Kettenmatrizen für Quer- und Längsimpedanz eingesetzt. Die Kettenmatrizen werden durch Kaskadierung zur Kettenmatrix der Gesamtschaltung zusammengefasst.
+Damit die Kettenmatrix der Gesamtschaltung gebildet werden kann, wird in einem ersten Schritt die reduzierte Schaltung in Längs- und Querimpedanzen (siehe Kapitel \ref{subsec:kettenmatrix} eingeteilt. Diese werden in Abbildung \ref{fig:cmschaltungEingeteilt} mit den Kennzeichnungen „QI“ und „LI“ vermerkt wobei „QI“ für Querimpedanz steht und „LI“ für Längsimpedanz. Die Impedanzen der einzelnen Schaltungsteile werden in die Kettenmatrizen für Quer- und Längsimpedanz eingesetzt. Die Kettenmatrizen werden durch Kaskadierung zur Kettenmatrix der Gesamtschaltung zusammengefasst.
 \begin{figure}[H]
 		\centering
 		\includegraphics[width = 10cm]{EMI_CMvereinfacht_markiert.png}
-		\label{fig:cmschaltung}
+		\label{fig:cmschaltungEingeteilt}
 		\caption{Einteilung der Gleichtaktschaltungteile}
 \end{figure}
-Anhand der Kettenmatrix der Gesamtschaltung kann die Einfügedämpfung direkt ermittelt werden, indem mit der Formel \ref{equ:s21ausAMatrix} der Streuparameter $S_{21}$ berechnet wird(siehe Kapitel Einfügedämpfung). $R_w$ ist die Bezugsimpedanz. Die Bezugsimpedanz bezieht sich auf die Innenimpedanz der Quelle und die Lastimpedanz. Bezüglich der Aufgabenstellung(Verweis Aufgabenstellung) ist dieser auf 50Ohm festgelegt.
+Anhand der Kettenmatrix der Gesamtschaltung kann die Einfügedämpfung direkt ermittelt werden, indem mit der Formel \ref{equ:s21ausAMatrix} der Streuparameter $S_{21}$ berechnet wird(siehe Kapitel \ref{sec:einfuge}). $R_w$ ist die Bezugsimpedanz. Die Bezugsimpedanz bezieht sich auf die Innenimpedanz der Quelle und die Lastimpedanz. Bezüglich der Aufgabenstellung(Verweis Aufgabenstellung) ist dieser auf 50Ohm festgelegt.
 
 \begin{equation}\label{equ:s21ausAMatrix}
 s_{21} = \frac{2}{A_{11}+\frac{A{12}}{R_w}+A_{21}*R_w+A_{22}}
@@ -92,16 +92,16 @@ Der obere und untere Teil der aufgetrennten Schaltung sind weitgehend identisch.
 \end{figure}
 
 \paragraph{Bilden der Kettenmatrix}\label{para:kettenGegentakt}
-Abbildung \ref{fig:dmschaltung} zeigt die Einteilung der reduzierten Schaltung in Längs- und Querimpedanzen.
+Abbildung \ref{fig:dmschaltungEingeteilt} zeigt die Einteilung der reduzierten Schaltung in Längs- und Querimpedanzen.
  
 \begin{figure}[H]
 		\centering
 		\includegraphics[width = 10cm]{EMI_DMvereinfacht_markiert.png}
-		\label{fig:dmschaltung}
+		\label{fig:dmschaltungEingeteilt}
 		\caption{Einteilung der Gegentaktschaltungsteile}
 \end{figure}
 
 Im nächsten Schritt werden die Impedanzen der einzelnen Schaltungsteile gebildet, welche in die passenden Kettenmatrizen eingesetzt werden.
-Wiederum durch Kaskadierung der einzelenen Kettenmatrizen wird die Kettenmatrix der Gesamtschaltung gebildet. Aus der Kettenmatrix wird, wie bei der Gleichtaktschaltung die Einfügedämpfung berechnet. Ein wichtiger Unterschied ist jedoch, dass bei der reduzierten Gegentaktschaltung (Abbildung \ref{fig:dmschaltung}) $R_w$ 25Ohm ist. 
+Wiederum durch Kaskadierung der einzelenen Kettenmatrizen wird die Kettenmatrix der Gesamtschaltung gebildet. Aus der Kettenmatrix wird, wie bei der Gleichtaktschaltung die Einfügedämpfung berechnet. Ein wichtiger Unterschied ist jedoch, dass bei der reduzierten Gegentaktschaltung (Abbildung \ref{fig:DMSchaltungvereinfacht}) $R_w$ 25Ohm ist. 
 
 
