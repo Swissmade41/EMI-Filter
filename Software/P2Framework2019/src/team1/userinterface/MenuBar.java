@@ -1,6 +1,7 @@
 package team1.userinterface;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -14,8 +15,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-import team1.util.Observable;
-import team1.util.Observer;
+import team1.util.BildPanel;
 import team1.util.TraceV4;
 
 /**
@@ -145,50 +145,20 @@ public class MenuBar extends JMenuBar implements ActionListener {
 			trace.constructorCall();
 			getContentPane().setLayout(new BorderLayout());
 			if (panel.equals("circuit")) {
-				getContentPane().add(new CircuitPanel(name), BorderLayout.CENTER);
-				setSize(760, 370);
-				setResizable(false);
+				BildPanel bildPanel = new BildPanel(name);
+				this.setSize(bildPanel.getWidth(), bildPanel.getHeight());
+				getContentPane().add(bildPanel, BorderLayout.CENTER);
+
 			} else if (panel.equals("about")) {
 				getContentPane().add(new AboutPanel(), BorderLayout.CENTER);
-				setSize(280, 150);
-				setResizable(false);
+				this.setSize(270, 150);
 			}
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			setVisible(true);
 
 		}
 	}
-
-	/**
-	 * Class CircuitPanel Provides the panel in the menu frame to display the
-	 * electrical circuit
-	 *
-	 */
-	class CircuitPanel extends JPanel {
-		private static final long serialVersionUID = 1L;
-		private TraceV4 trace = new TraceV4(this);
-		String title;
-
-		/**
-		 * Constructor of the class CircuitPanel
-		 * 
-		 * @param title contains the name of the picture
-		 */
-		public CircuitPanel(String title) {
-			trace.constructorCall();
-			this.title = title;
-		}
-
-		/**
-		 * drawing the suitable circuit
-		 */
-		public void paintComponent(Graphics g) {
-			trace.methodeCall();
-			Image img = Utility.loadResourceImage(title);
-			g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
-		}
-	}
-
+	
 	/**
 	 * Class AboutPanel Provides the panel in the circuit menu to display the about
 	 */
@@ -210,7 +180,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 			trace.methodeCall();
 			g.drawString("EMI-Filter Simulator", 20, 20);
 			g.drawString("Version 1.0", 20, 35);
-			g.drawString("FHNW Pojekt2 FS2019 Gruppe 1", 20, 50);
+			g.drawString("FHNW Poject 2 FS2019 Group 1", 20, 50);
 			g.drawString("Package Plot: http://www.jfree.org/jfreechart/", 20,80);
 		}
 	}

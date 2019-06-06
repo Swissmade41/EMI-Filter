@@ -60,5 +60,6 @@ public class View extends JPanel implements Observer {
 		trace.methodeCall();
 		CMplotPanel.update(obs, obj);
 		DMplotPanel.update(obs, obj);
+		inputPanel.update(obs, obj);
 	}
 }

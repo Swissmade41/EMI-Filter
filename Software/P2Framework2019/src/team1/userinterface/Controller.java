@@ -78,26 +78,54 @@ public class Controller {
 	public void updateParamterValues() {
 		trace.methodeCall();
 		try {
-			view.filtertablePanel.updateEffectiveParameterValues(view.inputPanel.getEffectiveParameterValues());
-			view.filtertablePanel.updateUserInputParameterValues(view.inputPanel.getUserInputParameterValues());
+			model.updateEffectiveParameterValues(view.inputPanel.getEffectiveParameterValues(), view.filtertablePanel.getSelectedRow());
+			model.updateUserInputParameterValues(view.inputPanel.getUserInputParameterValues(), view.filtertablePanel.getSelectedRow());
 		} catch (NullPointerException e) {
 		}
 
 		calculateInsertionLoss(-1);
 	}
-
+	
 	/**
-	 * Update input panel 
+	 * Delete row in filter the filter data
 	 * 
-	 * @param userInputFilterParameter
-	 * 		user input data from the filtertable
-	 * @param effectiveFilterParameter
-	 * 		effective data from the filtertable
+	 * @param row row which should be deleted
 	 */
-	public void updateInputPanel(double[] userInputFilterParameter, double[] effectiveFilterParameter) {
-		trace.methodeCall();
-		view.inputPanel.updateInputPanel(userInputFilterParameter, effectiveFilterParameter);
+	public void deleteRowsInFilterData(int row) {
+		model.deleteRowsInFilterData(row);
 	}
+	
+	/**
+	 * Get the effective parameter values
+	 * 
+	 * @return effective parameter values
+	 */
+	public double[][] getEffectiveParameterValues() {
+		return model.getEffectiveParameterValues();
+	}
+	
+	/**
+	 * Get the user input parameter values
+	 * 
+	 * @return user input parameter values
+	 */
+	public double[][] getUserInputParameterValues() {
+		return model.getUserInputParameterValues();
+	}
+	
+	/**
+	 * add rows to the filter data
+	 * 
+	 * @param rowCount       row count of the filter table
+	 * @param effectiveValue effective value which should be added to the filter
+	 *                       table
+	 * @param userInputValue user input value which should be added to the filter
+	 *                       table
+	 */
+	public void addRowsToFilterData(int rowCount, double[][] effectiveValue, double[][] userInputValue) {
+		model.addRowsToFilterData(rowCount, effectiveValue, userInputValue);
+	}
+
 
 	/**
 	 * calculates the insertion loss for either a specific row or the selected
@@ -109,10 +137,10 @@ public class Controller {
 	public void calculateInsertionLoss(int row) {
 		trace.methodeCall();
 		if (row == -1) {
-			model.calculate(view.filtertablePanel.getEffectiveParameterValues(), view.filtertablePanel.getSelectedRow(),
+			model.calculate(model.getEffectiveParameterValues(), view.filtertablePanel.getSelectedRow(),
 					view.filtertablePanel.getSelectedRowVisibility());
 		} else {
-			model.calculate(view.filtertablePanel.getEffectiveParameterValues(), row,
+			model.calculate(model.getEffectiveParameterValues(), row,
 					view.filtertablePanel.getSelectedRowVisibility());
 		}
 
@@ -126,5 +154,20 @@ public class Controller {
 	public void deleteRowInCalculationData(int selectedRow) {
 		trace.methodeCall();
 		model.deleteCalculation(selectedRow);
+	}
+	
+	/**
+	 * Get the selected row in the filter tabel panel
+	 * @return selcted row in filter tabel panel
+	 */
+	public int getSelectedRow() {
+		return view.filtertablePanel.getSelectedRow();
+	}
+	
+	/**
+	 * update the input panel with notifyObserver
+	 */
+	public void updateInputPanel(){
+		model.notifyObservers();
 	}
 }

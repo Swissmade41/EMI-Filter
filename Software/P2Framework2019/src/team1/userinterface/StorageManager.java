@@ -131,8 +131,11 @@ public class StorageManager {
 		File file = null;
 
 		JFileChooser jfcLoad = new JFileChooser();
+		jfcLoad.addChoosableFileFilter(new FileNameExtensionFilter("*.txt", "txt"));
+		jfcLoad.setFileFilter(new FileNameExtensionFilter("*.txt", "txt"));
 		int rt = jfcLoad.showOpenDialog(null);
 		if (rt == JFileChooser.APPROVE_OPTION) {
+			
 			file = jfcLoad.getSelectedFile();
 		}
 

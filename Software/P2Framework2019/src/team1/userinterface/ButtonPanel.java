@@ -52,15 +52,16 @@ public class ButtonPanel extends JPanel implements ActionListener {
 	}
 
 
+	/**
+	 * Get the button source and forward the event to the controller
+	 */
 	public void actionPerformed(ActionEvent e) {
 		trace.eventCall();
 		if (e.getSource() == btAdd) {
-			System.out.println("Add");
 			controller.addFilter();
 		}
 
 		if (e.getSource() == btRemove) {
-			System.out.println("Remove");
 			controller.removeFilter();
 		}
 		if (e.getSource() == btSave) {

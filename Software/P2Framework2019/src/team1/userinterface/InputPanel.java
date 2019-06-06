@@ -17,7 +17,9 @@ import javax.swing.event.ChangeListener;
 
 import team1.util.JEngineerField;
 import team1.util.MyBorderFactory;
+import team1.util.Observable;
 import team1.util.TraceV4;
+import team1.model.Model;
 import team1.util.EngineeringUtil;
 
 /**
@@ -147,7 +149,7 @@ public class InputPanel extends JPanel {
 	 * @param textfieldValues Current values of the textfields/user inputs
 	 * @param parameterValues Current effective parameter values
 	 */
-	public void updateInputPanel(double[] textfieldValues, double[] parameterValues) {
+	private void updateInputPanel(double[] textfieldValues, double[] parameterValues) {
 		trace.methodeCall();
 		int s32_tmpCounter = 0;
 		for (int n = 0; n < parameter.length; n++) {
@@ -162,6 +164,36 @@ public class InputPanel extends JPanel {
 			}
 		}
 	}
+	
+	/**
+	 * Update the input panel
+	 * 
+	 * @param obs Observable
+	 * @param obj Object
+	 */
+	public void update(Observable obs, Object obj) {
+		trace.methodeCall();
+		Model model = (Model) obs;
+		
+		//don't update the inputpanel if the source is from the calculation
+		if(model.getIsCalculated()) {
+			model.setIsCalculated(false);
+			return;
+		}
+		
+		double[][] effectiveValues = model.getEffectiveParameterValues();
+		double[][] inputValues =model.getUserInputParameterValues();
+		
+		double[] tmpEffectiveParameterValues = new double[effectiveValues[0].length];
+		double[] tmpUserrInputParameterValues = new double[inputValues[0].length];
+		for (int i = 0; i < effectiveValues[0].length; i++) {
+			tmpEffectiveParameterValues[i] = effectiveValues[controller.getSelectedRow()][i];
+			tmpUserrInputParameterValues[i] = inputValues[controller.getSelectedRow()][i];
+		}
+				
+		updateInputPanel(tmpUserrInputParameterValues, tmpEffectiveParameterValues);
+	}
+	
 }
 
 /**

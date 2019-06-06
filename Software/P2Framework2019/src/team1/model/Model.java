@@ -13,6 +13,8 @@ public class Model extends Observable {
 	private TraceV4 trace = new TraceV4(this);
 
 	private int s32_nbrOfCalculations = 400;
+	private boolean b_Iscalculated = false;
+	
 	private double[][][] cmData = new double[100][2][s32_nbrOfCalculations];
 	private double[][][] dmData = new double[100][2][s32_nbrOfCalculations];
 
@@ -30,6 +32,12 @@ public class Model extends Observable {
 	private static final int Cy = 11;
 	private static final int Ly = 12;
 	private static final int Ry = 13;
+	
+	private static double[][] d_effectiveParameterValues = new double[100][14];
+	private static double[][] d_UserInputParameterValues = new double[100][14];
+	
+	double[] selected;
+	double[] tmpUserrInputParameterValues;
 
 	/**
 	 * Constructor of the call model
@@ -67,6 +75,21 @@ public class Model extends Observable {
 		super.notifyObservers();
 	}
 
+	/**
+	 * Set the status of is calculated
+	 * @param status is calculated true or false
+	 */
+	public void setIsCalculated(boolean status) {
+		b_Iscalculated = status;
+	}
+	
+	/**
+	 * Get the status of is calculated
+	 * @return is calculated
+	 */
+	public boolean getIsCalculated() {
+		return b_Iscalculated;
+	}
 	/**
 	 * This method calculates the insertion loss for the given components for common
 	 * and differential mode
@@ -143,6 +166,7 @@ public class Model extends Observable {
 			cmData[s32_filter][0][0] = -1;
 			dmData[s32_filter][0][0] = -1;
 		}
+		setIsCalculated(true);
 		notifyObservers();
 	}
 
@@ -162,4 +186,96 @@ public class Model extends Observable {
 			}
 		}
 	}
+	
+	/**
+	 * Get the effective parameter values
+	 * 
+	 * @return effective parameter values
+	 */
+	public double[][] getEffectiveParameterValues() {
+		return d_effectiveParameterValues;
+	}
+
+	/**
+	 * Get the user input parameter values
+	 * 
+	 * @return user input parameter values
+	 */
+	public double[][] getUserInputParameterValues() {
+		return d_UserInputParameterValues;
+	}
+	
+	/**
+	 * Delete row in filter the filter data
+	 * 
+	 * @param row row which should be deleted
+	 */
+	public void deleteRowsInFilterData(int row) {
+		trace.methodeCall();
+		if (row == -1) {
+			System.out.println("no row selected");
+			return;
+		}
+
+		for (int n = row; n < d_effectiveParameterValues.length - row - 1; n++) {
+			for (int m = 0; m < d_effectiveParameterValues[0].length; m++) {
+				d_effectiveParameterValues[n][m] = d_effectiveParameterValues[n + 1][m];
+				d_UserInputParameterValues[n][m] = d_UserInputParameterValues[n + 1][m];
+			}
+		}
+	}
+
+	/**
+	 * add rows to the filter data
+	 * 
+	 * @param rowCount       row count of the filter table
+	 * @param effectiveValue effective value which should be added to the filter
+	 *                       table
+	 * @param userInputValue user input value which should be added to the filter
+	 *                       table
+	 */
+	public void addRowsToFilterData(int rowCount, double[][] effectiveValue, double[][] userInputValue) {
+		trace.methodeCall();
+		for (int n = 0; n < d_effectiveParameterValues.length - rowCount - 1; n++) {
+			for (int m = 0; m < d_effectiveParameterValues[0].length; m++) {
+				d_effectiveParameterValues[n + rowCount][m] = effectiveValue[n][m];
+				d_UserInputParameterValues[n + rowCount][m] = userInputValue[n][m];
+			}
+		}
+	}
+
+	/**
+	 * Update the effective parameter data the selected row
+	 * 
+	 * @param values data of the row
+	 * @param selectedRow the row which should be updated
+	 */
+	public void updateEffectiveParameterValues(double[] values, int selectedRow) {
+		trace.methodeCall();
+		for (int i = 0; i < values.length; i++) {
+			d_effectiveParameterValues[selectedRow][i] = values[i];
+		}
+	}
+
+	/**
+	 * Update the user input parameter data the selected row
+	 * 
+	 * @param values data of the row
+	 * @param selectedRow the row which should be updated
+	 */
+	public void updateUserInputParameterValues(double[] values, int selectedRow) {
+		trace.methodeCall();
+		for (int i = 0; i < values.length; i++) {
+			d_UserInputParameterValues[selectedRow][i] = values[i];
+		}
+	}
+	
+	/**
+	 * Update the input panel with the data of the filter table
+	 */
+	public void updateInputPanel() {
+		trace.methodeCall();
+		notifyObservers();
+	}
+
 }

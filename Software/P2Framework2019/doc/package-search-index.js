@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"team1"},{"l":"team1.matlabfunctions"},{"l":"team1.model"}]
+packageSearchIndex = [{"l":"team1"},{"l":"team1.model"}]

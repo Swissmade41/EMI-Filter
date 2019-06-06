@@ -32,10 +32,9 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	DefaultTableModel model = new DefaultTableModel(data, columnNames);
 	JTable table = new JTable(model);
 
-	private static double[][] d_effectiveParameterValues = new double[100][14];
-	private static double[][] d_UserInputParameterValues = new double[100][14];
-
 	StorageManager storageManager = new StorageManager();
+	
+	private boolean filterRemoved=false;
 
 	/**
 	 * Build the filter table
@@ -66,27 +65,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	}
 
 	/**
-	 * Getter of the effective parameter values
-	 * 
-	 * @return effective parameter values
-	 */
-	public double[][] getEffectiveParameterValues() {
-		trace.methodeCall();
-		return d_effectiveParameterValues;
-	}
-
-	/**
-	 * Getter of the effective parameter values
-	 * 
-	 * @return user input parameter values
-	 */
-	public double[][] getUserInputParameterValues() {
-		trace.methodeCall();
-		return d_UserInputParameterValues;
-	}
-
-	/**
-	 * Getter of the set visibility from the selected row
+	 * Get visibility from the selected row
 	 * 
 	 * @return 1 = visible 0 = invisible
 	 */
@@ -99,7 +78,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	}
 
 	/**
-	 * Getter of the selected row
+	 * Get the selected row
 	 * 
 	 * @return selected row
 	 */
@@ -113,11 +92,12 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 */
 	private void setRowSelection() {
 		trace.methodeCall();
+		
 		table.setRowSelectionInterval(table.getRowCount() - 1, table.getRowCount() - 1);
 	}
 
 	/**
-	 * Getter of the row count of the filter table
+	 * Get the row count of the filter table
 	 * 
 	 * @return row count of the filter table
 	 */
@@ -143,10 +123,19 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 */
 	public void removeFilter() {
 		trace.methodeCall();
+		
+		
 		if (model.getRowCount() > 1) {
-			int selectedRow = table.getSelectedRow();
+			int selectedRow = getSelectedRow();
+			
+			if(selectedRow+1==getRowcount()) {
+				//return;
+			}
+
 			try {
+				filterRemoved=true;
 				model.removeRow(selectedRow);
+								
 			} catch (ArrayIndexOutOfBoundsException e) {
 				if (model.getRowCount() == 0) {
 					JOptionPane.showMessageDialog(null, "Empty filtertable", "Information message",
@@ -155,83 +144,18 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 					JOptionPane.showMessageDialog(null, "Please select the row to removed", "Information message",
 							JOptionPane.INFORMATION_MESSAGE);
 				}
-			}
-			deleteRowsInFilterData(selectedRow);
+			} 
+			controller.deleteRowsInFilterData(selectedRow);
 			controller.deleteRowInCalculationData(selectedRow);
 			setRowSelection();
-			updateInputPanel(table.getSelectedRow());
+			controller.updateInputPanel();
 			for (int filteriterator = 0; filteriterator < table.getRowCount(); filteriterator++) {
 				controller.calculateInsertionLoss(filteriterator);
-				System.out.println("calculate" + filteriterator);
 			}
 
 		} else {
 			JOptionPane.showMessageDialog(null, "Forbidden action, unable to delete last remaining filter", "Warning",
 					JOptionPane.INFORMATION_MESSAGE);
-		}
-	}
-
-	/**
-	 * Delete row in filter the filter data
-	 * 
-	 * @param row row which should be deleted
-	 */
-	private void deleteRowsInFilterData(int row) {
-		trace.methodeCall();
-		if (row == -1) {
-			System.out.println("no row selected");
-			return;
-		}
-
-		for (int n = row; n < d_effectiveParameterValues.length - row - 1; n++) {
-			for (int m = 0; m < d_effectiveParameterValues[0].length; m++) {
-				d_effectiveParameterValues[n][m] = d_effectiveParameterValues[n + 1][m];
-				d_UserInputParameterValues[n][m] = d_UserInputParameterValues[n + 1][m];
-			}
-		}
-	}
-
-	/**
-	 * add rows to the filter data
-	 * 
-	 * @param rowCount       row count of the filter table
-	 * @param effectiveValue effective value which should be added to the filter
-	 *                       table
-	 * @param userInputValue user input value which should be added to the filter
-	 *                       table
-	 */
-	private void addRowsToFilterData(int rowCount, double[][] effectiveValue, double[][] userInputValue) {
-		trace.methodeCall();
-		for (int n = 0; n < d_effectiveParameterValues.length - rowCount - 1; n++) {
-			for (int m = 0; m < d_effectiveParameterValues[0].length; m++) {
-				d_effectiveParameterValues[n + rowCount][m] = effectiveValue[n][m];
-				d_UserInputParameterValues[n + rowCount][m] = userInputValue[n][m];
-			}
-		}
-
-	}
-
-	/**
-	 * Update the effective parameter data the selected row
-	 * 
-	 * @param values data of the row
-	 */
-	public void updateEffectiveParameterValues(double[] values) {
-		trace.methodeCall();
-		for (int i = 0; i < values.length; i++) {
-			d_effectiveParameterValues[table.getSelectedRow()][i] = values[i];
-		}
-	}
-
-	/**
-	 * Update the user input parameter data the selected row
-	 * 
-	 * @param values data of the row
-	 */
-	public void updateUserInputParameterValues(double[] values) {
-		trace.methodeCall();
-		for (int i = 0; i < values.length; i++) {
-			d_UserInputParameterValues[table.getSelectedRow()][i] = values[i];
 		}
 	}
 
@@ -246,7 +170,7 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 		}
 		s_filtertable = s_filtertable.substring(0, s_filtertable.length() - 1) + ";"; // Replace last , with ;
 
-		storageManager.saveFile(d_UserInputParameterValues, d_effectiveParameterValues, s_filtertable,
+		storageManager.saveFile(controller.getUserInputParameterValues(), controller.getEffectiveParameterValues(), s_filtertable,
 				table.getRowCount());
 	}
 
@@ -262,14 +186,29 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 		}
 
 		String[] filtertable = storageManager.getFiltertable();
-		int tmpRowCount = table.getRowCount();
-		for (int i = 0; i < filtertable.length; i++) {
+		int oldRowCount=table.getRowCount();
+		//Max filter count: 10
+		int rowCount = filtertable.length + table.getRowCount()*2;
+		if(rowCount >20) {
+			JOptionPane.showMessageDialog(null, "The maximal filter count is 10. The last " + (rowCount-20)/2 +" filters are not loaded.", "Warning",
+					JOptionPane.INFORMATION_MESSAGE);
+			rowCount=20 - table.getRowCount()*2+2;
+		}
+		else {
+			rowCount-= table.getRowCount()*2-2;
+		}
+		
+		for (int i = 0; i < rowCount-2; i++) {
 			addFilter(filtertable[i], filtertable[i + 1]);
 			i++;
 		}
-
-		addRowsToFilterData(tmpRowCount, storageManager.getEffectiveParameterValues(),
-				storageManager.getUserInputParameterValues());
+		controller.addRowsToFilterData(oldRowCount, storageManager.getEffectiveParameterValues(), storageManager.getUserInputParameterValues());
+		
+		for (int i = 0; i < 10; i++) {
+			controller.calculateInsertionLoss(i);
+			
+		}	
+		controller.updateInputPanel();
 	}
 
 	/**
@@ -277,26 +216,10 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 * selected row
 	 */
 	public void valueChanged(ListSelectionEvent e) {
-		trace.methodeCall();
+		trace.methodeCall();		
 		if (e.getValueIsAdjusting()) {
-			updateInputPanel(table.getSelectedRow());
+			controller.updateInputPanel();
 		}
-	}
-
-	/**
-	 * Update the input panel with the data of the filter table
-	 * 
-	 * @param row row of the filter table
-	 */
-	private void updateInputPanel(int row) {
-		trace.methodeCall();
-		double[] tmpEffectiveParameterValues = new double[d_effectiveParameterValues[0].length];
-		double[] tmpUserrInputParameterValues = new double[d_UserInputParameterValues[0].length];
-		for (int i = 0; i < d_effectiveParameterValues[0].length; i++) {
-			tmpEffectiveParameterValues[i] = d_effectiveParameterValues[row][i];
-			tmpUserrInputParameterValues[i] = d_UserInputParameterValues[row][i];
-		}
-		controller.updateInputPanel(tmpUserrInputParameterValues, tmpEffectiveParameterValues);
 	}
 
 	/**
@@ -304,5 +227,11 @@ public class FiltertablePanel extends JPanel implements TableModelListener, List
 	 */
 	public void tableChanged(TableModelEvent e) {
 		trace.methodeCall();
+		//By removing a filter in the table this Thread (Methode: calculationInsertionLoss) want access to a row, which not longer exist
+		if(filterRemoved) {
+			filterRemoved=false;
+			return;
+		}
+		controller.calculateInsertionLoss(e.getFirstRow());
 	}
 }
