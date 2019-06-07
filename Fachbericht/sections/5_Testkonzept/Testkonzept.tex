@@ -18,14 +18,55 @@ In der unteren Tabelle wird aufgeführt, welche Tests durchgeführt werden, um e
 
 
 
-
-\subsection{Validierung} \label{subsec:validierung}
-Für die Berechnung des Insertionloss wird die Schaltung in mehreren Schritten vereinfacht. 
-Die Zwischenschritte müssen auf ihre Korrektheit geprüft werden, um Folgefehler zu vermeiden, die wertvolle Zeit kosten können.
-Diese werden mithilfe von mit Hilfe von MATLAB und MPLAB überprüft. 
-Mit MATLAB werden die Rechenschritte noch einmal durchgeführt. Während in MPLAB die vereinfachte Schaltung Simuliert wird. Die erhaltenen Werte der beiden Tools werden miteinnader verglichen, ob sie übereinstimmen.  
- 
 \newpage
+\subsection{Validierung} \label{subsec:validierung}
+Um sicherzustellen, dass die Simulationen richtig sind und auch korrekt dargestellt werden, werden die Ergebnisse mit entsprechenden Simulationen der Simulationssoftware MPLAB mindi verglichen. Abbildung \ref{fig:verifCM_Schema} zeigt die Simulierte Gleichtaktschaltung in MPLAB mindi.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm]{verifCM_Schema.png}
+	\caption{Simulationsschaltung der Gleichtaktschaltung in MPLAB mindi}
+	\label{fig:verifCM_Schema}
+\end{figure}
+ Abbildung \ref{fig:verifCM_MPLAB} zeigt die Simulationsergebnisse in MPLAB mindi, welche optisch identisch sind mit den Messresultaten der entwickelten Simulationssoftware (Abbildung \ref{fig:verifCM_SW}).
+ \begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm]{verifCM_MPLAB.png}
+	\caption{Simulationsergebnisse der Gleichtaktschaltung in MPLAB mindi}
+	\label{fig:verifCM_MPLAB}
+\end{figure}
+ \begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm]{verifCM_SW.png}
+	\caption{Simulationsergebnisse der Gleichtaktschaltung in der EMI-Filter Simulationssoftware}
+	\label{fig:verifCM_SW}
+\end{figure}
+
+
+\newpage
+Abbildung \ref{fig:verifDM_Schema}zeigt die simulierte Gegentaktschaltung. Die Grafik \ref{fig:verifDM_MPLAB} zeigt die daraus resultierenden Simulationen.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm]{verifDM_Schema.png}
+	\caption{Simulationsschaltung der Gegentaktschaltung in MPLAB mindi}
+	\label{fig:verifDM_Schema}
+\end{figure}
+\newpage
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm]{verifDM_MPLAB.png}
+ 	\caption{Simulationsergebnisse der Gegentaktschaltung in MPLAB mindi}
+	\label{fig:verifDM_MPLAB}
+\end{figure}
+Die Ergebnisse von MPLAB mindi decken sich wiederum mit den Messresultate der entwickelten Simulationssoftware. Abbildung \ref{fig:verifDM_SW} zeigt die Resultate der entwickelten Simulationssoftware.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm]{verifDM_SW.png}
+	\caption{Simulationsergebnisse der Gegentaktschaltung in der EMI-Filter Simulationssoftware}
+	\label{fig:verifDM_SW}
+\end{figure}
+Aus den oben beschriebenen Vergleichen wird geschlossen, dass die Berechnungen korrekt in die Software implementiert wurden.
+\newpage
+
 \subsection{Erwartungen} \label{subsec:validierung}
 Die zu erwartenden Testresultate variieren stark von den Testperson, die die Software testet.
 Die internen Tests werden die groben Fehler herausfiltern und schaffen eine stabile Grundlage auf die aufgebaut werden kann. Zudem wird überprüft, ob die alle Ziele erreicht wurden.
