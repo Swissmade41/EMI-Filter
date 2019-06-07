@@ -3,9 +3,14 @@ Die View ist als GridBagLayout organisiert und enthält die im Kapitel \ref{subs
 \bigskip
 
 \paragraph{Inputpanel} \label{par:inputpanel}
-Das InputPanel hat den Controller und ist im GridBagLayout organisiert. Das Panel wird in mehreren Subpanels unterteilt. Diese sind in der Abbildung (TODO: verweis) abgebildet. 
+Das InputPanel hat den Controller und ist im GridBagLayout organisiert. Das Panel wird in mehreren Subpanels unterteilt. Diese sind in der Abbildung  \ref{fig:subpanels} abgebildet. 
 
-%TODO Bild Inputpanel Bearbeitet
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=13cm]{SubPanels.png}
+	\caption{InputSubPanels}
+	\label{fig:subpanels}
+\end{figure} 
 
 Das InformationPanel(1) ist im Null-Layout organisiert. Es werden die Prozentzahlen der Schieberegler dargestellt. Diese sind an einer festen Position, da die Grösse des Inputpanels nicht verändert werden kann. Die weiteren Subpanels (2-5) sind im GridBagLayout organisiert. In diesen Panels befinden sich die Komponenten, der modellierten realen Bauteile. Jede Komponente besitzt ein Textfeld, einen Slider und ein Label. Im Textfeld kann der Benutzer seine Werte für die Komponente eintragen. Beim Aufstarten des Programmes wird das Feld mit einem Standardwert, der vom Auftragdokument übernommen wurde, geladen. Mit der Klasse JEngineerField werden die Eingaben geprüft. Es ist nur möglich Zahlen einzugeben. Grosse und kleine Zahlen können zur Vereinfachung in wissenschaftlicher Schreibweise (18e-12) oder in Einheiten-Schreibweise (18p) eingetragen werden. Die Ausgabe ist als Einheiten-Schreibweise vordefiniert. Mit einem Rechtsklick auf das Textfeld ist es möglich die Schreibweise der Eingabe und Ausgabe individuell zu verändern.
 Mit dem Schieberegler wird der im Textfeld eingegebener Wert um $\pm$ 30\% verändert und im Label als effektiver Wert ausgegeben. Das Textfeld besitzt einen ActionListener und der Slider einen changeListener. Bei einem Ereignis wird die dazugehörige Methode im Controller  aufgerufen.
