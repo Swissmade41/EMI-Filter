@@ -7,7 +7,7 @@ Das InputPanel hat den Controller und ist im GridBagLayout organisiert. Das Pane
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=13cm]{SubPanels.png}
+	\includegraphics[width=16cm]{SubPanels.png}
 	\caption{InputSubPanels}
 	\label{fig:subpanels}
 \end{figure} 
@@ -17,19 +17,66 @@ Mit dem Schieberegler wird der im Textfeld eingegebener Wert um $\pm$ 30\% verä
 \bigskip
 
 \paragraph{Filtertablepanel} \label{par:filterpanel}
+
+
 Das Filtertablepanel hat den Controller und ist im GridBagLayout organisiert. Es enthält eine Tabelle, in der die Parameterwerte hinterlegt und zu dem entsprechenden Filter zugeordnet werden. Jeder Filter in der Tabelle besitzt eine Checkbox, um den Filter zu aktivieren, und ein Textfeld, um den Filter  zu benennen. Die Tabelle hat einen TableModelListener und einen ListSelectionListener. Bei einem Ereignis wird die dazugehörige Methode im Controller  aufgerufen.
 \bigskip
+
+\newpage
 
 \paragraph{Buttonpanel} \label{par:buttonpanel}
 Das ButtonPanel hat den Controller und ist im Null-Layout organisiert. Es enthält die vier Buttons und zwei dazugehörige Labels. Mit diesen kann die Filtertabelle verwaltet und die Speicherverwaltung aufgerufen werden. Jeder Button hat einen ActionListener. Bei einem Ereignis wird die dazugehörige Methode im Controller  aufgerufen.
 \bigskip
 
 \paragraph{Plotpanel} \label{par:plotpanel}
-Das PlotPanel ist im BorderLayout organisiert. Mit Hilfe des Package JfreeChart (TODO: verweis) wird die Einfügedämpfung des EMI-Filters in einem Plot dargestellt. Das Package übernimmt viele Funktionen wie das Zoomen des Plots oder das Ändern der Darstellung. Löst der Observer ein Erreignis aus, werden die Daten vom Model geholt und geplottet.
-\bigskip
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{Ploteinstellung.png}
+	\caption{Einstellungen}
+	\label{fig:einstellung}
+\end{figure} 
+
+Das PlotPanel ist im BorderLayout organisiert. Mit Hilfe des Package JfreeChart (TODO: verweis) wird die Einfügedämpfung des EMI-Filters in einem Plot dargestellt. Das Package übernimmt viele Funktionen wie das Zoomen des Plots oder das Ändern der Darstellung. Löst der Observer ein Erreignis aus, werden die Daten vom Model geholt und geplottet.
+
+\bigskip
 \newpage
 
 \paragraph{Menubar} \label{par:menu}
-Das Menubar hat den Controller und ist im Null-Layout organisiert. Es besitzt die Menus File, in dem die Speicherverwaltung aufgerufen werden kann, Circuit, in dem die Schaltungen, von denen die Berechnungen ausgehen angezeigt werden und About, in dem Informationen über das Programm hinterlegt sind. Die Menüs haben einen ActionListener. Bei einem Ereignis wird die dazugehörige Methode im Controller  aufgerufen.
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.3\linewidth}
+		\centering
+		\includegraphics[width=4cm]{file.png}
+		\caption{Menupunkt File}
+		\label{fig:file}
+	\end{minipage}
+    %\hfill
+    	\begin{minipage}{0.3\linewidth}
+	\centering
+		\includegraphics[width=4cm]{circuits.png}
+		\caption{Ersatzschaltbilder}
+		\label{fig:circuits}
+	\end{minipage}
+    %\hfill  
+        \begin{minipage}{0.3\linewidth}
+    \centering
+		\includegraphics[width=3cm]{help.png}
+		\caption{Menupunkt Help}
+		\label{fig:help}
+    \end{minipage}  
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=9cm]{oeffne.png}
+	\caption{Speichern/Öffnen von Filtern}
+	\label{fig:open}
+\end{figure} 
+
+Das Menubar hat den Controller und ist im Null-Layout organisiert. Es besitzt die Menus File (Abbildung \ref{fig:file}), in dem die Speicherverwaltung aufgerufen werden kann, Circuits (Abbildung \ref{fig:circuits}), in dem die Schaltungen, von denen die Berechnungen ausgehen angezeigt werden und Help (Abbildung \ref{fig:help}), in dem Informationen über das Programm hinterlegt sind. Die Menüs haben einen ActionListener. Bei einem Ereignis wird die dazugehörige Methode im Controller  aufgerufen. In Abbildung \ref{fig:open} sieht man zudem das Explorer-Menu um Daten zu Speichern/Öffnen.
+
+\newpage
 
