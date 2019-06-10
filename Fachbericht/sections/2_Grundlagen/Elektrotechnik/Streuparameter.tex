@@ -1,6 +1,7 @@
 \subsubsection{Streuparameter}\label{subsubsec:streuparameter}
 
-Die Streuparameter (S-Parameter) werden in der Hochfreqeunztechnik verwendet, um das Verhalten von n-Toren zu beschreiben. Bei einem 2-Tor sind vier Streuparameter nötig, um das Verhalten zu beschreiben. Sie beschreiben die Transmission von Tor 1 zu Tor 2, sowie von Tor 2 zu Tor 1. Des weiteren zeigen sie die Reflexion an den Toren auf. Die Abbildung \ref{fig:2-Tor} zeigt die Streuparameter an einem 2-Tor. 
+Die Streuparameter (S-Parameter) werden in der Hochfreqeunztechnik verwendet, um das Verhalten von n-Toren zu beschreiben. Bei einem 2-Tor sind vier Streuparameter nötig, um das Verhalten zu beschreiben. Sie beschreiben die Transmission von Tor 1 zu Tor 2, sowie von Tor 2 zu Tor 1. Des weiteren zeigen sie die Reflexion an den Toren auf. Die Abbildung \ref{fig:2-Tor} zeigt die Streuparameter an einem 2-Tor. \textcolor{red}{\textbf{TODO:Quelle ganzes kapitel}}
+
 
 \begin{figure}[H]
 	\centering
@@ -52,7 +53,7 @@ Die Elemente der S-Matrix sind:
 	s_{22} = b_2/a_2\textsf{ Ausgangsreflexionsfaktor bei angepasstem Eingang (a\textsubscript{1}=0)}
 \end{equation}
 
-In der folgenden Schaltung (Abbildung \ref{fig:bspscattering}) wird Schritt für Schritt erklärt, wie der $s_{21}$-Parameter der Streumatrix berechnet wird.
+In der folgenden Schaltung (Abbildung \ref{fig:bspscattering}) wird Schritt für Schritt erklärt, wie der \\ $s_{21}$-Parameter der Streumatrix berechnet wird.
  
 \begin{figure}[H]
 	\centering
@@ -93,7 +94,7 @@ A_{tot} = A_1 \cdot A_2 = \left[\begin{matrix}
 			\end{matrix}\right]
 \end{equation}
 
-Der nächste Schritt besteht darin, die Kettenmatrix in Bezug zu den Wellenimpedanzen darzustellen. In diesem Beispiel entspricht die Wellenimpedanz des Innenwiderstandes sowie des Lastwiderstandes 50\Omega . Aus der Formel \ref{equ:bspSMatrixtotnorm}  wird diese durch Einsetzen gebildet.
+Der nächste Schritt besteht darin, die Kettenmatrix in Bezug zu den Wellenimpedanzen darzustellen. In diesem Beispiel entspricht die Wellenimpedanz des Innenwiderstandes sowie des Lastwiderstandes 50$\Omega$ . Aus der Formel \ref{equ:bspSMatrixtotnorm}  wird diese durch Einsetzen gebildet.
 
 \begin{equation}\label{equ:bspSMatrixtotnorm}
 			A'_{tot} = \left[\begin{matrix}
@@ -139,3 +140,5 @@ Der Streuparameter $s_{21}$ entspricht dem Transmissionsfaktor der eingehenden W
 \begin{equation} \label{eqn:s32ausLeistung}
 	s_{21} = \sqrt{ \frac {P_l}{P_{AV}}} = \sqrt{ \frac{0.2434W} {0.5000W}} = 0.6977
 \end{equation}
+
+\bigskip
