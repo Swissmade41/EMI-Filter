@@ -1,18 +1,21 @@
 \subsubsection{Streuparameter}\label{subsubsec:streuparameter}
 
-Die Streuparameter (S-Parameter) werden in der Hochfreqeunztechnik verwendet, um das Verhalten von n-Toren zu beschreiben. Bei einem 2-Tor sind vier Streuparameter von nöten um das Verhalten zu beschreiben. Sie beschreiben die Transmission von Tor 1 zu Tor 2, sowie von Tor 2 zu Tor 1. Des weiteren zeigen sie die Reflexion an den Toren auf. Abbildung \ref{fig:2-Tor} \nameref{fig:2-Tor} zeigt die Streuparameter an einem 2-Tor. 
+Die Streuparameter (S-Parameter) werden in der Hochfreqeunztechnik verwendet, um das Verhalten von n-Toren zu beschreiben. Bei einem 2-Tor sind vier Streuparameter nötig, um das Verhalten zu beschreiben. Sie beschreiben die Transmission von Tor 1 zu Tor 2, sowie von Tor 2 zu Tor 1. Des weiteren zeigen sie die Reflexion an den Toren auf. Die Abbildung \ref{fig:2-Tor} zeigt die Streuparameter an einem 2-Tor. 
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=15cm]{s_params_def.png}
 	\caption{2-Tor Wellengrössen und Anschlussleitungen \cite{hftech}}
 	\label{fig:2-Tor}
 \end{figure}
-Bei den S-Parameter werden die Eingangs- und Ausgangsgrössen nicht direkt anhand elektrischer Ströme und Spannungen beschrieben. Sie werden mithilfe von Wellengrössen beschrieben, wobei a\textsubscript{i} die einlaufenden Wellen sind und b\textsubscript{i} die Reflektierenden Wellen. Der Index i stellt den Torindex dar. Formel \ref{equ:def_a} und \ref{equ:def_b} zeigen wie die Wellengrössen a\textsubscript{i} sowie b\textsubscript{i} definiert sind. Die Quadrate der Beträge der Wellenstärken a und b entsprechen gerade den Leistungen, die mit diesen Wellen übertragen werden.\cite{hftech}\cite{Bernstein2015}
+
+Bei den S-Parametern werden die Eingangs- und Ausgangsgrössen nicht direkt anhand elektrischer Ströme und Spannungen beschrieben, sondern mithilfe von Wellengrössen, wobei a\textsubscript{i} die einlaufenden Wellen sind und b\textsubscript{i} die reflektierenden Wellen. Der Index i stellt den Torindex dar. Formel \ref{equ:def_a} und \ref{equ:def_b} zeigen wie die Wellengrössen a\textsubscript{i} sowie b\textsubscript{i} definiert sind. Die Quadrate der Beträge der Wellenstärken a und b entsprechen gerade den Leistungen, die mit diesen Wellen übertragen werden.\cite{hftech}\cite{Bernstein2015}
+
 \begin{equation}\label{equ:def_a}
-	a_{ i } = \sqrt{ P_{ vor } }, a = Wellenstärke der vorlaufenden Welle
+	a_{ i } = \sqrt{ P_{ vor } }, a = Wellenstärke\;der\;vorlaufenden\;Welle
 \end{equation}
 \begin{equation}\label{equ:def_b}
-	b_{ i } = \sqrt{ P_{ rück } }, b = Wellenstärke der rücklaufenden Welle
+	b_{ i } = \sqrt{ P_{ rück } }, b = Wellenstärke\;der\;rücklaufenden\;Welle
 \end{equation}
 
 Aus der Abbildung 2.3 lässt sich folgende Streumatrix darstellen (Formel \ref{equ:scatteringMatrix}):
@@ -49,14 +52,16 @@ Die Elemente der S-Matrix sind:
 	s_{22} = b_2/a_2\textsf{ Ausgangsreflexionsfaktor bei angepasstem Eingang (a\textsubscript{1}=0)}
 \end{equation}
 
-An folgender Schaltung \ref{fig:bspscattering} wird Schritt für Schritt erklärt, wie der $s_{21}$-Parameter der Streumatrix berechnet wird. 
+In der folgenden Schaltung (Abbildung \ref{fig:bspscattering}) wird Schritt für Schritt erklärt, wie der $s_{21}$-Parameter der Streumatrix berechnet wird.
+ 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=15cm]{bspscattering.png}
 	\caption{Beispielschaltung Streuparameter}
 	\label{fig:bspscattering}
 \end{figure}
-Der Streuparameter $s_{21}$ ist, wie in Formel \ref{equ:s21} definiert. Somit muss in einem ersten Schritt die Kettenmatrix der Gesamtschaltung ermittelt werden. Die Kettenmatrix bezieht sich auf die beiden Widerstände $R_1$ und $R_2$. Der Widerstand $R_1$ stellt eine Längsimpedanz dar, welche somit in die passende Matrix eingesetzt wird(Formel \ref{equ:horizImpedance}). $A_1$ (Formel \ref{equ:r1}) stellt die Kettenmatrix der Längsimpedanz $R_1$ dar.
+
+Der Streuparameter $s_{21}$ ist wie in Formel \ref{equ:s21} definiert. Somit muss im ersten Schritt die Kettenmatrix der Gesamtschaltung ermittelt werden. Die Kettenmatrix bezieht sich auf die beiden Widerstände $R_1$ und $R_2$. Der Widerstand $R_1$ stellt eine Längsimpedanz dar, welche somit in die passende Matrix eingesetzt wird (Formel \ref{equ:horizImpedance}). $A_1$ (Formel \ref{equ:r1}) stellt die Kettenmatrix der Längsimpedanz $R_1$ dar.
 \begin{equation}\label{equ:r1}
 	A_1 = \left[\begin{matrix}
 			1&R_1\\0&1
@@ -88,7 +93,7 @@ A_{tot} = A_1 \cdot A_2 = \left[\begin{matrix}
 			\end{matrix}\right]
 \end{equation}
 
-Der nächste Schritt besteht darin, die Kettenmatrix in Bezug zu den Wellenimpedanzen darzustellen. In diesem Beispiel entspricht die Wellenimpedanz des Innen, sowie Lastwiderstandes mit dem Wert 50 Ohm. Aus der Formel \ref{equ:bspSMatrixtotnorm}  wird diese durch Einsetzen gebildet.
+Der nächste Schritt besteht darin, die Kettenmatrix in Bezug zu den Wellenimpedanzen darzustellen. In diesem Beispiel entspricht die Wellenimpedanz des Innenwiderstandes sowie des Lastwiderstandes 50\Omega . Aus der Formel \ref{equ:bspSMatrixtotnorm}  wird diese durch Einsetzen gebildet.
 
 \begin{equation}\label{equ:bspSMatrixtotnorm}
 			A'_{tot} = \left[\begin{matrix}
@@ -129,7 +134,8 @@ Aus der Matrix $A'_{tot}$ kann mithilfe der Formel \ref{eqn:s21ausA} der Streupa
 	\frac{2}{1.1333+0.4000+0.3333+1.0000}
 	= 0.6977
 \end{equation}
-Der Streuparameter $s_{21}$ entspricht dem Transmissionsfaktor der eingehenden Welle. Daraus ergibt sich die Formel \ref{eqn:s32ausLeistung}. Dies dient dient der Überprüfung der vorigen Berechnungen. Die Resultate der beiden Berechnungen stimmen überein.
+Der Streuparameter $s_{21}$ entspricht dem Transmissionsfaktor der eingehenden Welle. Daraus ergibt sich die Formel \ref{eqn:s32ausLeistung}. Dies dient der Überprüfung der vorigen Berechnungen. Die Resultate der beiden Berechnungen stimmen überein.
+
 \begin{equation} \label{eqn:s32ausLeistung}
 	s_{21} = \sqrt{ \frac {P_l}{P_{AV}}} = \sqrt{ \frac{0.2434W} {0.5000W}} = 0.6977
 \end{equation}
