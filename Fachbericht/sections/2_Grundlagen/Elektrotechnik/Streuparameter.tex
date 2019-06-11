@@ -1,6 +1,5 @@
 \subsubsection{Streuparameter}\label{subsubsec:streuparameter}
-
-Die Streuparameter (S-Parameter) werden in der Hochfreqeunztechnik verwendet, um das Verhalten von n-Toren zu beschreiben. Bei einem 2-Tor sind vier Streuparameter nötig, um das Verhalten zu beschreiben. Sie beschreiben die Transmission von Tor 1 zu Tor 2, sowie von Tor 2 zu Tor 1. Des weiteren zeigen sie die Reflexion an den Toren auf. Die Abbildung \ref{fig:2-Tor} zeigt die Streuparameter an einem 2-Tor. \textcolor{red}{\textbf{TODO:Quelle ganzes kapitel}}
+Dieses Kapitel ist eine Kurzeinführung in die Thematik der Streuparameter. Als Grunlage dazu dienen die Quellen \cite{hftech}\cite{Bernstein2015}. Streuparameter (S-Parameter) werden in der Hochfrequenztechnik verwendet, um das Verhalten von n-Toren zu beschreiben. Bei einem 2-Tor sind vier Streuparameter nötig, um das Verhalten zu beschreiben. Sie beschreiben die Transmission von Tor 1 zu Tor 2, sowie von Tor 2 zu Tor 1. Des weiteren zeigen sie die Reflexion an den Toren auf. Die Abbildung \ref{fig:2-Tor} zeigt die Streuparameter an einem 2-Tor. 
 
 
 \begin{figure}[H]
@@ -10,7 +9,7 @@ Die Streuparameter (S-Parameter) werden in der Hochfreqeunztechnik verwendet, um
 	\label{fig:2-Tor}
 \end{figure}
 
-Bei den S-Parametern werden die Eingangs- und Ausgangsgrössen nicht direkt anhand elektrischer Ströme und Spannungen beschrieben, sondern mithilfe von Wellengrössen, wobei a\textsubscript{i} die einlaufenden Wellen sind und b\textsubscript{i} die reflektierenden Wellen. Der Index i stellt den Torindex dar. Formel \ref{equ:def_a} und \ref{equ:def_b} zeigen wie die Wellengrössen a\textsubscript{i} sowie b\textsubscript{i} definiert sind. Die Quadrate der Beträge der Wellenstärken a und b entsprechen gerade den Leistungen, die mit diesen Wellen übertragen werden.\cite{hftech}\cite{Bernstein2015}
+Bei den S-Parametern werden die Eingangs- und Ausgangsgrössen nicht direkt anhand elektrischer Ströme und Spannungen beschrieben, sondern mithilfe von Wellengrössen, wobei a\textsubscript{i} die einlaufenden Wellen sind und b\textsubscript{i} die reflektierenden Wellen. Der Index i stellt den Torindex dar. Formel \ref{equ:def_a} und \ref{equ:def_b} zeigen wie die Wellengrössen a\textsubscript{i} sowie b\textsubscript{i} definiert sind. Die Quadrate der Beträge der Wellenstärken a und b entsprechen gerade den Leistungen, die mit diesen Wellen übertragen werden.
 
 \begin{equation}\label{equ:def_a}
 	a_{ i } = \sqrt{ P_{ vor } }, a = Wellenstärke\;der\;vorlaufenden\;Welle
@@ -62,7 +61,7 @@ In der folgenden Schaltung (Abbildung \ref{fig:bspscattering}) wird Schritt für
 	\label{fig:bspscattering}
 \end{figure}
 
-Der Streuparameter $s_{21}$ ist wie in Formel \ref{equ:s21} definiert. Somit muss im ersten Schritt die Kettenmatrix der Gesamtschaltung ermittelt werden. Die Kettenmatrix bezieht sich auf die beiden Widerstände $R_1$ und $R_2$. Der Widerstand $R_1$ stellt eine Längsimpedanz dar, welche somit in die passende Matrix eingesetzt wird (Formel \ref{equ:horizImpedance}). $A_1$ (Formel \ref{equ:r1}) stellt die Kettenmatrix der Längsimpedanz $R_1$ dar.
+Der Streuparameter $s_{21}$ ist, wie in Formel \ref{equ:s21} definiert. Somit muss im ersten Schritt die Kettenmatrix der Gesamtschaltung ermittelt werden. Die Kettenmatrix bezieht sich auf die beiden Widerstände $R_1$ und $R_2$. Der Widerstand $R_1$ stellt eine Längsimpedanz dar, welche somit in die passende Matrix eingesetzt wird (Formel \ref{equ:horizImpedance}). $A_1$ (Formel \ref{equ:r1}) stellt die Kettenmatrix der Längsimpedanz $R_1$ dar.
 \begin{equation}\label{equ:r1}
 	A_1 = \left[\begin{matrix}
 			1&R_1\\0&1
