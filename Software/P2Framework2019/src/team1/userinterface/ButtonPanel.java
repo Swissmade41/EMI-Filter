@@ -12,7 +12,7 @@ import team1.util.MyBorderFactory;
 import team1.util.TraceV4;
 
 /**
- * This class provides a panel with  Buttons
+ * This class provides a panel with Buttons
  *
  */
 public class ButtonPanel extends JPanel implements ActionListener {
@@ -27,8 +27,8 @@ public class ButtonPanel extends JPanel implements ActionListener {
 
 	/**
 	 * Place the Buttons on the panel
-	 * @param controller
-	 * 		Controller object
+	 * 
+	 * @param controller Controller object
 	 */
 	public ButtonPanel(Controller controller) {
 		super(null);
@@ -50,7 +50,6 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		btSave.addActionListener(this);
 		btLoad.addActionListener(this);
 	}
-
 
 	/**
 	 * Get the button source and forward the event to the controller

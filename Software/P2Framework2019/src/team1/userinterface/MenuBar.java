@@ -158,7 +158,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 
 		}
 	}
-	
+
 	/**
 	 * Class AboutPanel Provides the panel in the circuit menu to display the about
 	 */
@@ -181,7 +181,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 			g.drawString("EMI-Filter Simulator", 20, 20);
 			g.drawString("Version 1.0", 20, 35);
 			g.drawString("FHNW Poject 2 FS2019 Group 1", 20, 50);
-			g.drawString("Package Plot: http://www.jfree.org/jfreechart/", 20,80);
+			g.drawString("Package Plot: http://www.jfree.org/jfreechart/", 20, 80);
 		}
 	}
 }

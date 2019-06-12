@@ -36,8 +36,9 @@ public class PlotPanel extends JPanel {
 
 	private JFreeChart chart = ChartFactory.createXYLineChart("Titel", "Frequency[Hz]", "Insertion loss[dB]", null,
 			PlotOrientation.VERTICAL, false, false, false);
-	
-	private Color[] colors = new Color[] {Color.black, Color.green, Color.blue, Color.red, Color.cyan, Color.gray, Color.magenta, Color.orange, Color.gray, Color.pink};
+
+	private Color[] colors = new Color[] { Color.black, Color.green, Color.blue, Color.red, Color.cyan, Color.gray,
+			Color.magenta, Color.orange, Color.gray, Color.pink };
 
 	/**
 	 * Constructor of the plotpanel
@@ -80,7 +81,7 @@ public class PlotPanel extends JPanel {
 			renderer.setSeriesStroke(0, new BasicStroke(1f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL));
 			renderer.setSeriesPaint(0, colors[i]);
 			xyplot.setRenderer(i, renderer);
-		}		
+		}
 
 		add(new ChartPanel(chart));
 	}
@@ -107,9 +108,10 @@ public class PlotPanel extends JPanel {
 				chart.getXYPlot().setDataset(filteriterator, dataset);
 			filteriterator++;
 			chart.getXYPlot().getRenderer().setSeriesPaint(3, Color.ORANGE);
-			chart.getXYPlot().setDataset(filteriterator, null); // in case a dataset got removed it delets the last dataseries														
+			chart.getXYPlot().setDataset(filteriterator, null); // in case a dataset got removed it delets the last
+																// dataseries
 		}
-		
+
 		repaint();
 	}
 
