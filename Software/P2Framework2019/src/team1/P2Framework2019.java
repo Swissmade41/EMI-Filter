@@ -10,7 +10,6 @@ import javax.swing.UIManager;
 
 import team1.model.Model;
 import team1.userinterface.Controller;
-import team1.userinterface.InputPanel;
 import team1.userinterface.MenuBar;
 
 import team1.userinterface.View;
