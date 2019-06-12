@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 
 import team1.userinterface.Utility;
 
-
 public class BildPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private Image bild;
@@ -26,7 +25,7 @@ public class BildPanel extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		
+
 		double min = Math.min((double) (this.getWidth()) / bild.getWidth(this),
 				(double) (this.getHeight()) / bild.getHeight(this));
 

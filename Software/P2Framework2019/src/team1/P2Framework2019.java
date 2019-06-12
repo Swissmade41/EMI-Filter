@@ -16,7 +16,7 @@ import team1.userinterface.View;
 import team1.util.TraceV4;
 
 /**
- *	Framework of the software
+ * Framework of the software
  */
 public class P2Framework2019 extends JFrame {
 	private static final long serialVersionUID = 1L;

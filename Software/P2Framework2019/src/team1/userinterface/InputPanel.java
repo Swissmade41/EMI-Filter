@@ -164,7 +164,7 @@ public class InputPanel extends JPanel {
 			}
 		}
 	}
-	
+
 	/**
 	 * Update the input panel
 	 * 
@@ -174,26 +174,26 @@ public class InputPanel extends JPanel {
 	public void update(Observable obs, Object obj) {
 		trace.methodeCall();
 		Model model = (Model) obs;
-		
-		//don't update the inputpanel if the source is from the calculation
-		if(model.getIsCalculated()) {
+
+		// don't update the inputpanel if the source is from the calculation
+		if (model.getIsCalculated()) {
 			model.setIsCalculated(false);
 			return;
 		}
-		
+
 		double[][] effectiveValues = model.getEffectiveParameterValues();
-		double[][] inputValues =model.getUserInputParameterValues();
-		
+		double[][] inputValues = model.getUserInputParameterValues();
+
 		double[] tmpEffectiveParameterValues = new double[effectiveValues[0].length];
 		double[] tmpUserrInputParameterValues = new double[inputValues[0].length];
 		for (int i = 0; i < effectiveValues[0].length; i++) {
 			tmpEffectiveParameterValues[i] = effectiveValues[controller.getSelectedRow()][i];
 			tmpUserrInputParameterValues[i] = inputValues[controller.getSelectedRow()][i];
 		}
-				
+
 		updateInputPanel(tmpUserrInputParameterValues, tmpEffectiveParameterValues);
 	}
-	
+
 }
 
 /**
