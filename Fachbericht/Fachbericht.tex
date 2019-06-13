@@ -11,7 +11,7 @@
 \input{header}			                %loads all packages, definitions and settings												
 \title{«DJ» EMI Filter für Schaltnetzteil}          			%Project Title
 \author{Fachbericht}  		%Document Type => Technical Report, ...
-\date{Windisch, 20.04.2019}             		%Place and Date
+\date{Windisch, 13.06.2019}             		%Place and Date
 
 \begin{document}
 
@@ -50,7 +50,7 @@ Version&2.0 %Normally not used!
 Abstract
 
 \end{abstract}
-und im hauptfile
+Die Firma Schaffner entwickelt EMI-Filter. Um diese zu modellieren, benötigen sie eine Simulationssoftware. Die Hauptanwendung dieser Software besteht darin, die Einfügedämpfung in Abhängigkeit der parasitären Parameter der Bauteile,  über ein Frequenzspektrum bis 30Mhz zu visualisieren. Die Software sollte plattformunabhängig und modular erweiterbar sein. Aus diesem Grund basiert  das Programm auf der Model-View-Controller-Struktur, geschrieben in Java. Für die Berechnung wurden jeweils vereinfachte Ersatzschaltungen für Gleich- und Gegentaktstörungen modelliert. Die einzelnen Bauteile sind modular in die Software implementiert. Diese einzelnen Bauteile werden nun anhand der Ersatzschaltung aneinander gereiht, wodurch diese berechnet wird. Auf der Benutzeroberfläche sind für alle verstellbaren Parameter Slider erzeugt, um die Werte um +/-30\% zu verändern. Dabei werden die Auswirkungen für beide Signale direkt in zwei einzelnen Plots sichtbar. Die Software ist somit in der Lage, Filter direkt miteinander zu vergleichen. Sie kann zudem einfach auf andere Schaltbilder erweitert werden. 
 %%---ABSTRACT----------------------------------------------------------------------------
 \selectlanguage{ngerman}                %ngerman or english
 \thispagestyle{empty}

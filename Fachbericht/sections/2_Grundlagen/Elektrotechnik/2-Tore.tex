@@ -1,21 +1,20 @@
  \subsubsection{Passive 2-Tore} \label{subsubsec:2tore}
- Folgendes Kapitel basiert auf der Quelle x  \textcolor{red}{\textbf{TODO:Quelle ganzes kapitel}}
-Passive 2-Tore sind Netzwerke mit 2 Klemmenpaaren, die in jedem Betriebszustand Leistung verbrauchen. Ein Klemmenpaar wird auch als Tor bezeichnet. Dabei wird ein Tor als Eingang für ein elektrisches Signal verwendet. Folglich wird am anderen Tor das Ausgangssignal abgegriffen. Ein Netzwerk, das intern nur aus beliebigen R-(ohmischer Widerstand), L-(Induktivität), C-(Kapazität) und M-(Gegeninduktivität) Komponenten aufgebaut ist, ist immer ein passives Netzwerk. Ein solches 2-Tor ist in der Abbildung \ref{fig:tor2} dargestellt.
+ Folgendes Kapitel basiert auf der Quelle \cite{p._niklaus_2-tore_2019} Passive 2-Tore sind Netzwerke mit 2 Klemmenpaaren, die in jedem Betriebszustand Leistung verbrauchen. Ein Klemmenpaar wird auch als Tor bezeichnet. Dabei wird ein Tor als Eingang für ein elektrisches Signal verwendet. Folglich wird am anderen Tor das Ausgangssignal abgegriffen. Ein Netzwerk, das intern nur aus beliebigen R-(ohmischer Widerstand), L-(Induktivität), C-(Kapazität) und M-(Gegeninduktivität) Komponenten aufgebaut ist, ist immer ein passives Netzwerk. Ein solches 2-Tor ist in der Abbildung \ref{fig:tor2} dargestellt.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=8cm]{2Tor.png}
-	\caption{Zweitor (2-Tor) \textcolor{red}{\textbf{TODO:Quelle Bild}} }
+	\caption{Zweitor (2-Tor) \cite{p._niklaus_2-tore_2019} }
 	\label{fig:tor2}
 \end{figure}
 
-Ein solches Netzwerk ist zusätzlich noch reziprok. Reziproke Netzwerke haben die Eigenschaft, dass es egal ist, in welche Richtung sie betrieben werden, solange der Innenwiderstand der Quelle gleich gross wie die Lastimpedanz ist. Anhand vom folgenden Beispiel (Abbildung: \ref{fig:reziprozitat}) wird dies veranschaulicht. Die Leistung im Verbraucher ist in beiden Betriebszuständen dieselbe. Mit dieser Eigenschaft können in der  Praxis die Berechnungen sehr vereinfacht werden. \textcolor{red}{\textbf{TODO:Quelle Inhalt}}
+Ein solches Netzwerk ist zusätzlich noch reziprok. Reziproke Netzwerke haben die Eigenschaft, dass es egal ist, in welche Richtung sie betrieben werden, solange der Innenwiderstand der Quelle gleich gross wie die Lastimpedanz ist. Anhand vom folgenden Beispiel (Abbildung: \ref{fig:bsp_reziprok}) wird dies veranschaulicht. Die Leistung im Verbraucher ist in beiden Betriebszuständen dieselbe. Mit dieser Eigenschaft können in der  Praxis die Berechnungen sehr vereinfacht werden. 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{bsp_reziprok.png}
 	\caption{Beispiel Reziprozitat}
-	\label{fig:reziprozitat}
+	\label{fig:bsp_reziprok}
 \end{figure}
 
 
@@ -54,9 +53,9 @@ Aus dem Ersatzwiderstand berechnen wir den Gesamtstrom in beiden Schaltungen.
 
 Auf der anderen Seite des Netzwerks hingegen bleiben die Spannungen gleich wie man an den Berechnungen sieht.
 
-\textcolor{red}{\textbf{Formel geht nicht}}
+
 \begin{equation}\label{equ:u2}
-    %U_{2} = \frac{U_{1}\cdotR_{L}}{R_{L}+R_{2}} =  34.88V
+    U_{2} = \frac{U_{1}\cdot{R_{L}}}{R_{L}+R_{2}} =  34.88V
   \end{equation}
 
 \begin{equation}\label{equ:u2'}
@@ -81,7 +80,7 @@ Beim Strom verhält es sich durch den Stromteiler gleich
   \end{equation}
   
 
-Im dargestellten Netzwerk gilt somit
+Im dargestellten Netzwerk \ref{fig:beweis} gilt somit
 
 \begin{equation}\label{equ:verticImpedance}
     \underline{I}_b =  \underline{\tilde{I}}_b
@@ -98,10 +97,10 @@ sowie
 \begin{figure}[H]
 \centering
 \includegraphics[width=12cm]{reziprozitat.jpg}
-\label{fig:reziprozitat}
+	\caption{Reziprozität \cite{p._niklaus_2-tore_2019}}
+		\label{fig:beweis}
 \end{figure}
 
-\textcolor{red}{\textbf{Caption und verweis im text auf bild und Quelleverweis}}
 
 \newpage
 
