@@ -1,6 +1,8 @@
-
 \section{Software} \label{sec:software}
-In diesem Kapitel wird die Umsetzung der Berechnung (Kapitel \ref{sec:umsetzung}) und der anderen Anforderungen an die Software in Java dokumentiert. Die programmiertechnischen Grundlagen sind in Kapitel \ref{sec:grundlagen} beschrieben.
+
+In diesem Kapitel wird die Umsetzung der Berechnung (Kapitel \ref{sec:umsetzung}) und der anderen Anforderungen an die Software in Java dokumentiert. Die programmiertechnischen Grundlagen sind in Kapitel \ref{sec:grundlagen} beschrieben. 
+
+
 \subsection{Übersicht} \label{subsec:uebersicht}
 
 Das Programm simuliert die Einfügedämpfung eines EMI-Filters. Solche Filter werden häufig in Schaltnetzteile verbaut, um zu verhindern, dass Störungen zurück ins Netz gespeist werden.  Die Benutzeroberfläche des Programms ist in der Abbildung \ref{fig:GUI} ersichtlich.
@@ -12,14 +14,9 @@ Das Programm simuliert die Einfügedämpfung eines EMI-Filters. Solche Filter we
 	\label{fig:GUI}
 \end{figure} 
 
-Die Software ist nach dem Model-View/Controller Entwurfsmuster \cite{MVCDesignPattern} aufgebaut. Das Klassendiagramm der Software befindet sich im Anhang (TODO: Verweis).  Die View ist in fünf Panels unterteilt. Das InputPanel (1) beinhaltet für jeden Filterparamter ein Textfeld, einen Slider und ein Anzeigelabel, welche die Parameterwerte definieren. Das  FiltertablePanel (2) verwaltet die verschiedene Filter in einer Tabellen, in der auch die Parameterwerte hinterlegt werden. Das ButtonPanel (3) besitzt vier Buttons, die für die Speicher- und Filterverwaltung zuständig sind. Die Menubar (4) besitzt verschiedene Menüs für die Bedienung des Programms. Das PlotPanel (5) dient zur grafischen Darstellung der Einfügeverluste des Filters. Der Controller leitet Informationen von der View zu dem Model weiter. Das Model besitzt Klassen, um mit die Komponente der modellierten realen Bauteile zu rechnen. Via eines Observer wird ein Update in der View ausgelöst.
+Die Software ist nach dem Model-View/Controller Entwurfsmuster \cite{MVCDesignPattern} aufgebaut. Das Klassendiagramm der Software befindet sich im Anhang \ref{sec:anhang}).  Die View ist in fünf Panels unterteilt. Das InputPanel (1) beinhaltet für jeden Filterparamter ein Textfeld, einen Slider und ein Anzeigelabel, welche die Parameterwerte definieren. Das  FiltertablePanel (2) verwaltet die verschiedene Filter in einer Tabelle, in der auch die Parameterwerte hinterlegt werden. Das ButtonPanel (3) besitzt vier Buttons, die für die Speicher- und Filterverwaltung zuständig sind. Die Menubar (4) besitzt verschiedene Menüs für die Bedienung des Programms. Das PlotPanel (5) dient zur grafischen Darstellung der Einfügeverluste des Filters. Der Controller leitet Informationen von der View zu dem Model weiter. Das Model besitzt Klassen, um mit den Komponenten der modellierten realen Bauteile zu rechnen. Via eines Observer wird ein Update in der View ausgelöst.
 
 \newpage
-
-%Diese Infos gehören auch noch rein
-%Die Oben abgebildete Benutzerfläche ist die Maske, welche sich beim aufstauten der Software auf dem Bildschirm präsentiert. Wie die  meisten gängigen Applikationen verfügt die GUI eine am oberen Rand platzierten Menubar, um Dateien zu verwalten sowie Hilfestellung zu bieten. Im Zentrum ist im oberen Bereich das Plotpanel platziert, welches die Simulation sowohl im Gleichtakt (CM), als auch im Gegentakt (DM) als grafische Kurve darstellt. Gleich unterhalb befindet sich das Inputpanal, es ermöglicht mittels den Textfeldern eine  effiziente Eingabe der  Parameter. Mittels den Sleidern können die Parameter prozentual angepasst werden. Die Filtertabelle links dient zur Verwaltung der Filterprofilen.
-
-
 
 \input{sections/4_Software/View/View}
 \input{sections/4_Software/Controller/Controller}

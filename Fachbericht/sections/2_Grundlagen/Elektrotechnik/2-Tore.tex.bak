@@ -1,12 +1,12 @@
  \subsubsection{Passive 2-Tore} \label{subsubsec:2tore}
  Folgendes Kapitel basiert auf der Quelle x  \textcolor{red}{\textbf{TODO:Quelle ganzes kapitel}}
-Passive 2-Tore sind Netzwerke mit 2 Klemmenpaaren, die in jedem Betriebszustand Leistung verbrauchen. Ein Klemmenpaar wird auch als Tor bezeichnet. Dabei wird ein Tor als Eingang für ein elektrisches Signal verwendet. Folglich wird am anderen Tor das Ausgangssignal abgegriffen. Ein Netzwerk, das intern nur aus beliebigen R-(ohmischer Widerstand), L-(Induktivität), C-(Kapazität) und M-(Gegeninduktivität) Komponenten aufgebaut ist, ist immer ein passives Netzwerk. Ein solches 2-Tor ist in der Abbildung \ref{fig:tor2} dargestellt.
+Passive 2-Tore sind Netzwerke mit 2 Klemmenpaaren, die in jedem Betriebszustand Leistung verbrauchen. Ein Klemmenpaar wird auch als Tor bezeichnet. Dabei wird ein Tor als Eingang für ein elektrisches Signal verwendet. Folglich wird am anderen Tor das Ausgangssignal abgegriffen. Ein Netzwerk, das intern nur aus beliebigen R-(ohmischer Widerstand), L-(Induktivität), C-(Kapazität) und M-(Gegeninduktivität) Komponenten aufgebaut ist, ist immer ein passives Netzwerk. Ein solches 2-Tor ist in der Abbildung \ref{fig:2tor} dargestellt.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=8cm]{2Tor.png}
 	\caption{Zweitor (2-Tor) \textcolor{red}{\textbf{TODO:Quelle Bild}} }
-	\label{fig:tor2}
+	\label{fig:2tor}
 \end{figure}
 
 Ein solches Netzwerk ist zusätzlich noch reziprok. Reziproke Netzwerke haben die Eigenschaft, dass es egal ist, in welche Richtung sie betrieben werden, solange der Innenwiderstand der Quelle gleich gross wie die Lastimpedanz ist. Anhand vom folgenden Beispiel (Abbildung: \ref{fig:reziprozitat}) wird dies veranschaulicht. Die Leistung im Verbraucher ist in beiden Betriebszuständen dieselbe. Mit dieser Eigenschaft können in der  Praxis die Berechnungen sehr vereinfacht werden. \textcolor{red}{\textbf{TODO:Quelle Inhalt}}
@@ -100,9 +100,6 @@ sowie
 \includegraphics[width=12cm]{reziprozitat.jpg}
 \label{fig:reziprozitat}
 \end{figure}
-
-\textcolor{red}{\textbf{Caption und verweis im text auf bild und Quelleverweis}}
-
 \newpage
 
 

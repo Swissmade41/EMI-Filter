@@ -1,0 +1,194 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{hftech}{article}{}
+      \name{author}{1}{}{%
+        {{hash=753ab213692bd774d0da858ca0958b03}{%
+           family={{S. Rupp, A. Maier}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{753ab213692bd774d0da858ca0958b03}
+      \strng{fullhash}{753ab213692bd774d0da858ca0958b03}
+      \strng{bibnamehash}{753ab213692bd774d0da858ca0958b03}
+      \strng{authorbibnamehash}{753ab213692bd774d0da858ca0958b03}
+      \strng{authornamehash}{753ab213692bd774d0da858ca0958b03}
+      \strng{authorfullhash}{753ab213692bd774d0da858ca0958b03}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Duale Hochschule Baden-Württemberg}
+      \field{month}{3}
+      \field{title}{Hochfrequenztechnik {Teil} 2 - {Anwendungen}}
+      \field{year}{2019}
+      \verb{file}
+      \verb Attachment:/Users/lukasvondaniken/Zotero/storage/BA7Y8692/Hochfrequenztechnik_T2ELN3001_Teil_2_SR.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://wwwlehre.dhbw-stuttgart.de/ srupp/HF/Hochfrequenztechnik_T2ELN3001_Teil_2_SR.pdf
+      \endverb
+      \verb{url}
+      \verb http://wwwlehre.dhbw-stuttgart.de/%20srupp/HF/Hochfrequenztechnik_T2ELN3001_Teil_2_SR.pdf
+      \endverb
+    \endentry
+    \entry{Bernstein2015}{book}{}
+      \name{author}{1}{}{%
+        {{hash=305304894df00a5dfcbd9c8aa5f344af}{%
+           family={Bernstein},
+           familyi={B\bibinitperiod},
+           given={Herbert},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin Heidelberg New York}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag}%
+      }
+      \strng{namehash}{305304894df00a5dfcbd9c8aa5f344af}
+      \strng{fullhash}{305304894df00a5dfcbd9c8aa5f344af}
+      \strng{bibnamehash}{305304894df00a5dfcbd9c8aa5f344af}
+      \strng{authorbibnamehash}{305304894df00a5dfcbd9c8aa5f344af}
+      \strng{authornamehash}{305304894df00a5dfcbd9c8aa5f344af}
+      \strng{authorfullhash}{305304894df00a5dfcbd9c8aa5f344af}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1. Aufl.}
+      \field{isbn}{978-3-658-07378-7}
+      \field{title}{{NF- und HF-Messtechnik - Messen mit Oszilloskopen, Netzwerkanalysatoren und Spektrumanalysator}}
+      \field{year}{2015}
+    \endentry
+    \entry{aufgabenstellung}{article}{}
+      \name{author}{1}{}{%
+        {{hash=0b83a2e00c9b22291a4361ff8e0cde0f}{%
+           family={{L. Dalessandro}},
+           familyi={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{0b83a2e00c9b22291a4361ff8e0cde0f}
+      \strng{fullhash}{0b83a2e00c9b22291a4361ff8e0cde0f}
+      \strng{bibnamehash}{0b83a2e00c9b22291a4361ff8e0cde0f}
+      \strng{authorbibnamehash}{0b83a2e00c9b22291a4361ff8e0cde0f}
+      \strng{authornamehash}{0b83a2e00c9b22291a4361ff8e0cde0f}
+      \strng{authorfullhash}{0b83a2e00c9b22291a4361ff8e0cde0f}
+      \field{sortinit}{7}
+      \field{sortinithash}{c818dd9105a2852444fc9f5e145c294e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{21}
+      \field{journaltitle}{Windisch: Hochschule für Technik der Fachhochschule Nordwestschweiz (FHNW)}
+      \field{month}{3}
+      \field{title}{EMI-Filter}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb :Aufgabestellung Projekt DJ Filter LDa2019 DE (3).pdf:PDF
+      \endverb
+    \endentry
+    \entry{MVCDesignPattern}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=ffa1ebd39f2e92b047302aa380678813}{%
+           family={{Jörg Czeschla}},
+           familyi={J\bibinitperiod}}}%
+        {{hash=3f7473fc319c5fbd089d2814578783ef}{%
+           family={{javabeginners.de}},
+           familyi={j\bibinitperiod}}}%
+      }
+      \strng{namehash}{73212d0beb4014d92ca7bf849d5e342d}
+      \strng{fullhash}{73212d0beb4014d92ca7bf849d5e342d}
+      \strng{bibnamehash}{73212d0beb4014d92ca7bf849d5e342d}
+      \strng{authorbibnamehash}{73212d0beb4014d92ca7bf849d5e342d}
+      \strng{authornamehash}{73212d0beb4014d92ca7bf849d5e342d}
+      \strng{authorfullhash}{73212d0beb4014d92ca7bf849d5e342d}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{3}
+      \field{title}{{MVC} {Design} {Pattern}}
+      \field{urlday}{5}
+      \field{urlmonth}{4}
+      \field{urlyear}{2019}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Attachment:/Users/lukasvondaniken/Zotero/storage/BVRHT9HV/MVC Design Pattern.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://javabeginners.de/Design_Patterns/Model-View-Controller.php
+      \endverb
+      \verb{url}
+      \verb https://javabeginners.de/Design_Patterns/Model-View-Controller.php
+      \endverb
+    \endentry
+    \entry{MVCBeispiel}{article}{}
+      \name{author}{1}{}{%
+        {{hash=6750bd853657919fe25e7441eaf724f6}{%
+           family={{Prof. Dr. Richard Gut}},
+           familyi={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{6750bd853657919fe25e7441eaf724f6}
+      \strng{fullhash}{6750bd853657919fe25e7441eaf724f6}
+      \strng{bibnamehash}{6750bd853657919fe25e7441eaf724f6}
+      \strng{authorbibnamehash}{6750bd853657919fe25e7441eaf724f6}
+      \strng{authornamehash}{6750bd853657919fe25e7441eaf724f6}
+      \strng{authorfullhash}{6750bd853657919fe25e7441eaf724f6}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{MVC Pattern}
+      \field{year}{2019}
+    \endentry
+    \entry{jfreechart}{online}{}
+      \name{author}{1}{}{%
+        {{hash=5e40a50babae41d0af325af648aaa203}{%
+           family={{A. Viklund}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{5e40a50babae41d0af325af648aaa203}
+      \strng{fullhash}{5e40a50babae41d0af325af648aaa203}
+      \strng{bibnamehash}{5e40a50babae41d0af325af648aaa203}
+      \strng{authorbibnamehash}{5e40a50babae41d0af325af648aaa203}
+      \strng{authornamehash}{5e40a50babae41d0af325af648aaa203}
+      \strng{authorfullhash}{5e40a50babae41d0af325af648aaa203}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{JfreeChart}
+      \field{urlday}{5}
+      \field{urlmonth}{4}
+      \field{urlyear}{2019}
+      \field{year}{2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb http://www.jfree.org/jfreechart
+      \endverb
+      \verb{url}
+      \verb http://www.jfree.org/jfreechart
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
