@@ -1,6 +1,9 @@
 package team1.userinterface;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -9,24 +12,36 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-import team1.util.Observable;
-import team1.util.Observer;
+import team1.util.BildPanel;
 import team1.util.TraceV4;
 
-public class MenuBar extends JMenuBar implements Observer, ActionListener {
-	private TraceV4 trace = new TraceV4(this);
+/**
+ * The class MenuBar handles the save and load process and provides displaying
+ * the electrical circuit
+ *
+ */
+public class MenuBar extends JMenuBar implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	JMenu menu_File, menu_Window, menu_Simulation, menu_Help;
+	private TraceV4 trace = new TraceV4(this);
+
+	JMenu menu_File, menu_Help, menu_Circuit;
 	JMenuItem menuItemOnTop, submenuItem;
 	Controller controller;
+	Image img;
 
+	/**
+	 * Constructor of the MenuBar
+	 * 
+	 * @param controller Controller object
+	 */
 	public MenuBar(Controller controller) {
 		trace.constructorCall();
 		this.controller = controller;
-		
-		//Menu file
+
+		// Menu file
 		menu_File = new JMenu("File");
 		menu_File.setMnemonic(KeyEvent.VK_F);
 
@@ -35,124 +50,138 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 		MenuItem_Save.setActionCommand("Save filter profile");
 		MenuItem_Save.addActionListener(this);
 		menu_File.add(MenuItem_Save);
-		
+
 		JMenuItem MenuItem_Load = new JMenuItem("Load filter profile ", KeyEvent.VK_L);
 		MenuItem_Load.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
 		MenuItem_Load.setActionCommand("Load filter profile");
 		MenuItem_Load.addActionListener(this);
 		menu_File.add(MenuItem_Load);
-		
+
 		JMenuItem MenuItem_Exit = new JMenuItem("Exit ", KeyEvent.VK_E);
 		MenuItem_Exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 		MenuItem_Exit.setActionCommand("Exit");
 		MenuItem_Exit.addActionListener(this);
 		menu_File.add(MenuItem_Exit);
-		
-		add(menu_File);
-		
-		//Menu Window
-		menu_Window= new JMenu("Window");
-		menu_Window.setMnemonic(KeyEvent.VK_W);
-		
-		JMenuItem menuItemResizable = new JMenuItem("Resizable ", KeyEvent.VK_R);
-		menuItemResizable.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.ALT_MASK));
-		menuItemResizable.setActionCommand("Resizable");
-		menuItemResizable.addActionListener(this);
-		menu_Window.add(menuItemResizable);
 
-		JMenuItem menuItemNotResizable = new JMenuItem("Not Resizable ", KeyEvent.VK_N);
-		menuItemNotResizable.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.ALT_MASK));
-		menuItemNotResizable.setActionCommand("NotResizable");
-		menuItemNotResizable.addActionListener(this);
-		menu_Window.add(menuItemNotResizable);
-		
-		JMenuItem MenuItem_CMFrame = new JMenuItem("Open CM frame ", KeyEvent.VK_C);
-		MenuItem_CMFrame.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
-		MenuItem_CMFrame.setActionCommand("Open CM frame");
-		MenuItem_CMFrame.addActionListener(this);
-		menu_Window.add(MenuItem_CMFrame);
-		
-		JMenuItem MenuItem_DMFrame = new JMenuItem("Open DM frame ", KeyEvent.VK_D);
-		MenuItem_DMFrame.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
-		MenuItem_DMFrame.setActionCommand("Open DM frame");
-		MenuItem_DMFrame.addActionListener(this);
-		menu_Window.add(MenuItem_DMFrame);
-		
-		//TODO
-	//	add(menu_Window);
-		
-		//Menu simulation
-		menu_Simulation= new JMenu("Simulation");
-		menu_Simulation.setMnemonic(KeyEvent.VK_A);
-		
-		JMenuItem MenuItem_MonteCarlo = new JMenuItem("Monte Carlo ", KeyEvent.VK_M);
-		MenuItem_MonteCarlo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK));
-		MenuItem_MonteCarlo.setActionCommand("Monte Carlo");
-		MenuItem_MonteCarlo.addActionListener(this);
-		menu_Simulation.add(MenuItem_MonteCarlo);
-		
-		add(menu_Simulation);
-		
-		//Menu Help
-		menu_Help= new JMenu("Help");
-		menu_Help.setMnemonic(KeyEvent.VK_H);
-		
-		JMenuItem MenuItem_CMElectricalCircuit = new JMenuItem("CM electrical circuit", KeyEvent.VK_C);
-		MenuItem_CMElectricalCircuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+		// Menu Help
+		menu_Circuit = new JMenu("Circuits");
+		menu_Circuit.setMnemonic(KeyEvent.VK_H);
+
+		JMenuItem MenuItem_CMElectricalCircuit = new JMenuItem("CM electrical circuit", KeyEvent.VK_T);
+		MenuItem_CMElectricalCircuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
 		MenuItem_CMElectricalCircuit.setActionCommand("CM electrical circuit");
 		MenuItem_CMElectricalCircuit.addActionListener(this);
-		menu_Help.add(MenuItem_CMElectricalCircuit);
-		
-		JMenuItem MenuItem_DMElectricalCircuit = new JMenuItem("DM electrical circuit", KeyEvent.VK_D);
-		MenuItem_DMElectricalCircuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+		menu_Circuit.add(MenuItem_CMElectricalCircuit);
+
+		JMenuItem MenuItem_DMElectricalCircuit = new JMenuItem("DM electrical circuit", KeyEvent.VK_R);
+		MenuItem_DMElectricalCircuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
 		MenuItem_DMElectricalCircuit.setActionCommand("DM electrical circuit");
 		MenuItem_DMElectricalCircuit.addActionListener(this);
-		menu_Help.add(MenuItem_DMElectricalCircuit);
-		
+		menu_Circuit.add(MenuItem_DMElectricalCircuit);
+
+		// Menu about
+		menu_Help = new JMenu("Help");
+		menu_Help.setMnemonic(KeyEvent.VK_H);
+
+		JMenuItem MenuItem_About = new JMenuItem("About", KeyEvent.VK_A);
+		MenuItem_About.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+		MenuItem_About.setActionCommand("About");
+		MenuItem_About.addActionListener(this);
+		menu_Help.add(MenuItem_About);
+
+		add(menu_File);
+		add(menu_Circuit);
 		add(menu_Help);
-		
+
 	}
 
+	/**
+	 * Listener for the menu bar.
+	 */
 	public void actionPerformed(ActionEvent e) {
 		trace.eventCall();
-		JFrame frame = (JFrame) getTopLevelAncestor();
 		if (e.getActionCommand().equals("Exit")) {
-			System.out.println("Exit");
+			System.exit(0);
 		}
 		if (e.getActionCommand().equals("Save filter profile")) {
-			System.out.println("Save");
+			controller.saveFile();
 		}
 		if (e.getActionCommand().equals("Load filter profile")) {
-			System.out.println("Load");
-		}
-		if (e.getActionCommand().equals("Resizable")) {
-			frame.setResizable(true);
-			System.out.println("Resizable");
-		}
-		if (e.getActionCommand().equals("NotResizable")) {
-			frame.setResizable(false);
-			System.out.println("NotResizable");
-		}
-		if (e.getActionCommand().equals("Open CM frame")) {
-			System.out.println("Open CM fram");
-		}
-		if (e.getActionCommand().equals("Open DM frame")) {
-			System.out.println("Open DM fram");
-		}
-		if (e.getActionCommand().equals("Monte Carlo")) {
-			System.out.println("Monte Carlo");
+			controller.loadFile();
 		}
 		if (e.getActionCommand().equals("CM electrical circuit")) {
-			System.out.println("CM electrical circuit");
+			MenuFrame menuFrame = new MenuFrame("CM.png", "circuit");
+			menuFrame.setTitle("CM circuit");
+
 		}
 		if (e.getActionCommand().equals("DM electrical circuit")) {
-			System.out.println("DM electrical circuit");
+			MenuFrame menuFrame = new MenuFrame("DM.png", "circuit");
+			menuFrame.setTitle("DM circuit");
+		}
+		if (e.getActionCommand().equals("About")) {
+			MenuFrame menuFrame = new MenuFrame("DM.png", "about");
+			menuFrame.setTitle("About");
+		}
+
+	}
+
+	/**
+	 * Class MenuFrame provides the frame to display the electrical circuits and the
+	 * about text
+	 *
+	 */
+	class MenuFrame extends JFrame {
+		private static final long serialVersionUID = 1L;
+		private TraceV4 trace = new TraceV4(this);
+
+		/**
+		 * constructor of the class MenuFrame
+		 * 
+		 * @param name  contains the name of the image
+		 * @param panel "about" or "circuit" panel
+		 */
+
+		public MenuFrame(String name, String panel) {
+			trace.constructorCall();
+			getContentPane().setLayout(new BorderLayout());
+			if (panel.equals("circuit")) {
+				BildPanel bildPanel = new BildPanel(name);
+				this.setSize(bildPanel.getWidth(), bildPanel.getHeight());
+				getContentPane().add(bildPanel, BorderLayout.CENTER);
+
+			} else if (panel.equals("about")) {
+				getContentPane().add(new AboutPanel(), BorderLayout.CENTER);
+				this.setSize(270, 150);
+			}
+			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+			setVisible(true);
+
 		}
 	}
 
-	@Override
-	public void update(Observable observable, Object obj) {
-		trace.methodeCall();
+	/**
+	 * Class AboutPanel Provides the panel in the circuit menu to display the about
+	 */
+	class AboutPanel extends JPanel {
+		private static final long serialVersionUID = 1L;
+		private TraceV4 trace = new TraceV4(this);
 
+		/**
+		 * Constructor of the class AboutPanel
+		 */
+		public AboutPanel() {
+			trace.constructorCall();
+		}
+
+		/**
+		 * drawing the about text
+		 */
+		public void paintComponent(Graphics g) {
+			trace.methodeCall();
+			g.drawString("EMI-Filter Simulator", 20, 20);
+			g.drawString("Version 1.0", 20, 35);
+			g.drawString("FHNW Poject 2 FS2019 Group 1", 20, 50);
+			g.drawString("Package Plot: http://www.jfree.org/jfreechart/", 20, 80);
+		}
 	}
 }

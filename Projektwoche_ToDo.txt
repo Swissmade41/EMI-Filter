@@ -1,0 +1,39 @@
+Fachbericht:
+
+-Abstract
+-Einleitung
+
+
+-Elektrotechnik (Sortieren)
+	-Aufbau EMI Filter
+	-Parasitäre Parameter
+	-Gleich/Gegentakt
+	-Schaltungsvereinfachung
+	-Einfügedämpfung
+	-Streuparameter
+	-Kettenmatrix
+	
+	-MVC-Struktur
+
+
+	
+-Umsetzung 
+	-
+	-Model
+	-View
+		
+		
+		-Filtertabelle
+		-Buttonpanel
+
+	
+-Testprozess 
+
+
+
+
+
+Programmieren
+	-Trace Implementieren
+
+

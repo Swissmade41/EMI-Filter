@@ -11,14 +11,16 @@ import javax.swing.UIManager;
 import team1.model.Model;
 import team1.userinterface.Controller;
 import team1.userinterface.MenuBar;
-import team1.userinterface.StatusBar;
-import team1.userinterface.ToolBar;
+
 import team1.userinterface.View;
 import team1.util.TraceV4;
 
+/**
+ * Framework of the software
+ */
 public class P2Framework2019 extends JFrame {
-	private TraceV4 trace = new TraceV4(this);
 	private static final long serialVersionUID = 1L;
+	private TraceV4 trace = new TraceV4(this);
 
 	private enum Mode {
 		FIXED, PACKED, FIXEDRESIZABLE, PACKEDRESIZABLE
@@ -30,22 +32,18 @@ public class P2Framework2019 extends JFrame {
 	private Controller controller = new Controller(model);
 	private View view = new View(controller);
 	private MenuBar menuBar = new MenuBar(controller);
-	private ToolBar toolBar = new ToolBar(controller);
-	private StatusBar statusBar = new StatusBar();
 
 	public P2Framework2019() {
 		trace.constructorCall();
+		controller.setView(view);
+
 		model.addObserver(view);
 		trace.registerObserver(model, view);
-//		model.addObserver(toolBar);
-//		trace.registerObserver(model, toolBar);
-//		model.addObserver(menuBar);
-//		trace.registerObserver(model, menuBar);
+		// kann erst wenn alles inizialisiert ist aufgerufen werden
+		view.inputPanel.initializeFirstFilter();
 
 		getContentPane().setLayout(new BorderLayout());
-		//getContentPane().add(toolBar, BorderLayout.PAGE_START);
 		getContentPane().add(view, BorderLayout.CENTER);
-	//	getContentPane().add(statusBar, BorderLayout.SOUTH);
 		setJMenuBar(menuBar);
 
 		pack();
@@ -96,7 +94,7 @@ public class P2Framework2019 extends JFrame {
 				}
 				P2Framework2019 frame = new P2Framework2019();
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.setTitle("EMI-Filter simulator");
+				frame.setTitle("EMI-Filter Simulator");
 				frame.setVisible(true);
 			}
 		});

@@ -1,0 +1,7 @@
+INDEX VERSION 1.131+C:\Users\simon\Documents\GitHub\EMI-Filter\Software\.metadata\.plugins\org.eclipse.jdt.core
+3996102163.index
+1056551157.index
+44204779.index
+3690700367.index
+276116333.index
+757974510.index

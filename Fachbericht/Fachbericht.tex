@@ -1,0 +1,97 @@
+\let\counterwithout\relax
+\let\counterwithin\relax
+\documentclass[final]{fhnwreport}       %[mode] = draft or final
+\usepackage{color, colortbl}
+\usepackage{rotating, rotfloat,ragged2e, hyphenat, diagbox, wrapfig}
+\definecolor{grau}{gray}{0.9}
+\definecolor{hellgrau}{gray}{0.95}
+
+                                        %{class} = fhnwreport, article, 
+                                        %          report, book, beamer, standalone
+\input{header}			                %loads all packages, definitions and settings												
+\title{«DJ» EMI Filter für Schaltnetzteil}          			%Project Title
+\author{Fachbericht}  		%Document Type => Technical Report, ...
+\date{Windisch, 13.06.2019}             		%Place and Date
+
+\begin{document}
+
+%%---TITLEPAGE---------------------------------------------------------------------------
+\selectlanguage{ngerman}                %ngerman or english
+\maketitle
+
+\vspace*{-1cm}						    %compensates the space after the date line.
+\vfill
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{titelBild.png}
+\end{figure}
+\vfill
+
+{
+\renewcommand\arraystretch{2}
+\begin{center}
+\begin{tabular}{ >{\bf} l p{10cm} l }
+Hochschule&Hochschule für Technik - FHNW\\
+Studiengang&Elektro- und Informationstechnik\\
+Auftraggeber&Dr. Luca Dalessandro\\
+Betreuer&Prof. Dr. Sebastian Gaulocher \newline Prof. Peter Niklaus \newline Prof. Dr. Richard Gut \newline  Dr. Anita Gertiser \newline Pascal Buchschacher \\
+Autoren&\textbf{Gruppe 1} \newline Niklaus Schwegler \newline Lukas von Däniken \newline Pascal Puschmann  \newline Simon Rohrer \newline Marco Binder\\
+Version&2.0 %Normally not used!
+\end{tabular}
+\end{center}
+}
+
+\clearpage
+
+%\selectlanguage{ngerman}				%ngerman or english
+\thispagestyle{empty}
+			
+\begin{abstract}
+Abstract
+
+\end{abstract}
+Die Firma Schaffner entwickelt EMI-Filter. Um diese zu modellieren, benötigen sie eine Simulationssoftware. Die Hauptanwendung dieser Software besteht darin, die Einfügedämpfung in Abhängigkeit der parasitären Parameter der Bauteile,  über ein Frequenzspektrum bis 30Mhz zu visualisieren. Die Software sollte plattformunabhängig und modular erweiterbar sein. Aus diesem Grund basiert  das Programm auf der Model-View-Controller-Struktur, geschrieben in Java. Für die Berechnung wurden jeweils vereinfachte Ersatzschaltungen für Gleich- und Gegentaktstörungen modelliert. Die einzelnen Bauteile sind modular in die Software implementiert. Diese einzelnen Bauteile werden nun anhand der Ersatzschaltung aneinander gereiht, wodurch diese berechnet wird. Auf der Benutzeroberfläche sind für alle verstellbaren Parameter Slider erzeugt, um die Werte um +/-30\% zu verändern. Dabei werden die Auswirkungen für beide Signale direkt in zwei einzelnen Plots sichtbar. Die Software ist somit in der Lage, Filter direkt miteinander zu vergleichen. Sie kann zudem einfach auf andere Schaltbilder erweitert werden. 
+%%---ABSTRACT----------------------------------------------------------------------------
+\selectlanguage{ngerman}                %ngerman or english
+\thispagestyle{empty}
+\include{sections/abstract}
+
+%%---TABLE OF CONTENTS-------------------------------------------------------------------
+\pagenumbering{Roman}
+\selectlanguage{ngerman}                %ngerman or english
+\tableofcontents
+\clearpage
+%%---TEXT--------------------------------------------------------------------------------
+\pagenumbering{arabic}
+
+\include{sections/1_Einleitung/Einleitung}
+\include{sections/2_Grundlagen/Grundlagen}
+\include{sections/3_Umsetzung/Umsetzung}
+\include{sections/4_Software/Software}
+\include{sections/5_Testkonzept/Testkonzept}
+\include{sections/6_Schluss/Schluss}
+
+
+%%---BIBLIOGRAPHY------------------------------------------------------------------------
+
+{\sloppypar
+\selectlanguage{ngerman}	
+\setlength{\bibitemsep}{\baselineskip}
+\printbibliography[heading=bibintoc]
+\label{sec:lit}
+}
+
+%%---Anhang------------------------------------------------------------------------
+
+\include{sections/7_Anhang/Anhang}
+
+%%---NOTES for DEBUG---------------------------------------------------------------------
+\ifdraft{%Do this only if mode=draft
+%%requires \usepackage{todonotes})
+\newpage
+\listoftodos[\section{Todo-Notes}]
+\clearpage
+}
+{%Do this only if mode=final
+}
+\end{document}

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"team1"},{"l":"team1.model"}]
